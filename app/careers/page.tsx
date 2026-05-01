@@ -96,7 +96,7 @@ export default function CareersPage() {
       {/* ── HERO ── */}
       <section
         style={{
-          background: "linear-gradient(135deg, #0E1847 0%, #1B2866 60%, #0E2A5A 100%)",
+          background: "linear-gradient(135deg, #0A0A0A 0%, #141414 60%, #0A0A0A 100%)",
           padding: "120px 60px 80px",
           position: "relative",
           overflow: "hidden",
@@ -161,11 +161,11 @@ export default function CareersPage() {
                 display: "block",
                 fontSize: "11px",
                 fontWeight: 600,
-                letterSpacing: "3px",
+                letterSpacing: "4px",
                 textTransform: "uppercase",
-                color: "#F97316",
+                color: "rgba(255,255,255,0.55)",
                 marginBottom: "18px",
-                fontFamily: "var(--font-dm)",
+                fontFamily: "var(--font-body)",
               }}
             >
               Careers at Trip 2 Tackle
@@ -176,9 +176,9 @@ export default function CareersPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
               style={{
-                fontFamily: "var(--font-playfair)",
+                fontFamily: "var(--font-heading)",
                 fontSize: "clamp(36px, 5vw, 58px)",
-                fontWeight: 700,
+                fontWeight: 600,
                 color: "#fff",
                 lineHeight: 1.1,
                 marginBottom: "20px",
@@ -186,7 +186,7 @@ export default function CareersPage() {
             >
               Shape Your Career
               <br />
-              <span style={{ color: "#F97316" }}>in Travel</span>
+              <span style={{ color: "#FFFFFF", fontStyle: "italic" }}>in Travel</span>
             </motion.h1>
 
             <motion.p
@@ -194,11 +194,11 @@ export default function CareersPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
               style={{
-                color: "#94A3B8",
+                color: "rgba(255,255,255,0.6)",
                 fontSize: "17px",
                 lineHeight: 1.7,
                 marginBottom: "36px",
-                fontFamily: "var(--font-dm)",
+                fontFamily: "var(--font-body)",
                 fontWeight: 300,
                 maxWidth: "520px",
               }}
@@ -223,12 +223,12 @@ export default function CareersPage() {
                   fontSize: "15px",
                   border: "none",
                   cursor: "pointer",
-                  fontFamily: "var(--font-dm)",
+                  fontFamily: "var(--font-body)",
                   boxShadow: "0 4px 20px rgba(249,115,22,0.4)",
                   transition: "background 0.2s, transform 0.2s",
                 }}
                 onMouseEnter={(e) => {
-                  (e.currentTarget as HTMLElement).style.background = "#EA6C0B";
+                  (e.currentTarget as HTMLElement).style.background = "#E86C0A";
                   (e.currentTarget as HTMLElement).style.transform = "translateY(-1px)";
                 }}
                 onMouseLeave={(e) => {
@@ -248,7 +248,7 @@ export default function CareersPage() {
                   fontWeight: 500,
                   fontSize: "15px",
                   textDecoration: "none",
-                  fontFamily: "var(--font-dm)",
+                  fontFamily: "var(--font-body)",
                   background: "rgba(255,255,255,0.06)",
                   backdropFilter: "blur(8px)",
                   transition: "background 0.2s",
@@ -308,7 +308,7 @@ export default function CareersPage() {
               style={{
                 position: "absolute",
                 inset: 0,
-                background: "linear-gradient(to top, rgba(14,24,71,0.5) 0%, transparent 60%)",
+                background: "linear-gradient(to top, rgba(10,10,10,0.5) 0%, transparent 60%)",
               }}
             />
             {i === 1 && (
@@ -318,12 +318,12 @@ export default function CareersPage() {
                   bottom: "14px",
                   left: "50%",
                   transform: "translateX(-50%)",
-                  color: "#F97316",
+                  color: "rgba(255,255,255,0.7)",
                   fontSize: "11px",
                   fontWeight: 700,
                   letterSpacing: "2.5px",
                   textTransform: "uppercase",
-                  fontFamily: "var(--font-dm)",
+                  fontFamily: "var(--font-body)",
                   whiteSpace: "nowrap",
                 }}
               >
@@ -343,21 +343,21 @@ export default function CareersPage() {
                 display: "block",
                 fontSize: "11px",
                 fontWeight: 600,
-                letterSpacing: "3px",
+                letterSpacing: "4px",
                 textTransform: "uppercase",
-                color: "#F97316",
+                color: "#9E9A94",
                 marginBottom: "10px",
-                fontFamily: "var(--font-dm)",
+                fontFamily: "var(--font-body)",
               }}
             >
               Why Join Us
             </span>
             <h2
               style={{
-                fontFamily: "var(--font-playfair)",
+                fontFamily: "var(--font-heading)",
                 fontSize: "clamp(32px, 4vw, 44px)",
-                color: "#111827",
-                fontWeight: 700,
+                color: "#1A1A1A",
+                fontWeight: 600,
               }}
             >
               Built Different. For People Who Think Different.
@@ -382,7 +382,7 @@ export default function CareersPage() {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: i * 0.1 }}
               style={{
-                background: "#F8F9FA",
+                background: "#F3F2F0",
                 borderRadius: "16px",
                 padding: "32px 28px",
                 borderTop: "4px solid #F97316",
@@ -393,10 +393,10 @@ export default function CareersPage() {
               <div style={{ fontSize: "32px", marginBottom: "14px" }}>{w.icon}</div>
               <h3
                 style={{
-                  fontFamily: "var(--font-playfair)",
+                  fontFamily: "var(--font-heading)",
                   fontSize: "19px",
-                  color: "#111827",
-                  fontWeight: 700,
+                  color: "#1A1A1A",
+                  fontWeight: 600,
                   marginBottom: "10px",
                 }}
               >
@@ -404,10 +404,10 @@ export default function CareersPage() {
               </h3>
               <p
                 style={{
-                  color: "#6B7280",
+                  color: "#9E9A94",
                   fontSize: "14px",
                   lineHeight: 1.7,
-                  fontFamily: "var(--font-dm)",
+                  fontFamily: "var(--font-body)",
                 }}
               >
                 {w.desc}
@@ -418,7 +418,7 @@ export default function CareersPage() {
       </section>
 
       {/* ── PERKS ── */}
-      <section style={{ background: "#F8F9FA", padding: "80px 60px" }}>
+      <section style={{ background: "#F3F2F0", padding: "80px 60px" }}>
         <FadeIn>
           <div style={{ textAlign: "center", marginBottom: "48px" }}>
             <span
@@ -426,21 +426,21 @@ export default function CareersPage() {
                 display: "block",
                 fontSize: "11px",
                 fontWeight: 600,
-                letterSpacing: "3px",
+                letterSpacing: "4px",
                 textTransform: "uppercase",
-                color: "#F97316",
+                color: "#9E9A94",
                 marginBottom: "10px",
-                fontFamily: "var(--font-dm)",
+                fontFamily: "var(--font-body)",
               }}
             >
               Perks & Benefits
             </span>
             <h2
               style={{
-                fontFamily: "var(--font-playfair)",
+                fontFamily: "var(--font-heading)",
                 fontSize: "clamp(30px, 4vw, 40px)",
-                color: "#111827",
-                fontWeight: 700,
+                color: "#1A1A1A",
+                fontWeight: 600,
               }}
             >
               We Take Care of Our People
@@ -471,7 +471,7 @@ export default function CareersPage() {
                 display: "flex",
                 alignItems: "flex-start",
                 gap: "16px",
-                border: "1px solid #E2E8F0",
+                border: "1px solid #E8E4DD",
                 transition: "border-color 0.2s, box-shadow 0.2s",
               }}
               whileHover={{ borderColor: "#F97316", boxShadow: "0 6px 24px rgba(0,0,0,0.07)" }}
@@ -496,9 +496,9 @@ export default function CareersPage() {
                   style={{
                     fontWeight: 600,
                     fontSize: "14px",
-                    color: "#111827",
+                    color: "#1A1A1A",
                     marginBottom: "4px",
-                    fontFamily: "var(--font-dm)",
+                    fontFamily: "var(--font-body)",
                   }}
                 >
                   {p.title}
@@ -506,9 +506,9 @@ export default function CareersPage() {
                 <div
                   style={{
                     fontSize: "13px",
-                    color: "#6B7280",
+                    color: "#9E9A94",
                     lineHeight: 1.55,
-                    fontFamily: "var(--font-dm)",
+                    fontFamily: "var(--font-body)",
                   }}
                 >
                   {p.desc}
@@ -528,31 +528,31 @@ export default function CareersPage() {
                 display: "block",
                 fontSize: "11px",
                 fontWeight: 600,
-                letterSpacing: "3px",
+                letterSpacing: "4px",
                 textTransform: "uppercase",
-                color: "#F97316",
+                color: "#9E9A94",
                 marginBottom: "10px",
-                fontFamily: "var(--font-dm)",
+                fontFamily: "var(--font-body)",
               }}
             >
               Current Openings
             </span>
             <h2
               style={{
-                fontFamily: "var(--font-playfair)",
+                fontFamily: "var(--font-heading)",
                 fontSize: "clamp(30px, 4vw, 42px)",
-                color: "#111827",
-                fontWeight: 700,
+                color: "#1A1A1A",
+                fontWeight: 600,
               }}
             >
               Open Positions
             </h2>
             <p
               style={{
-                color: "#6B7280",
+                color: "#9E9A94",
                 marginTop: "10px",
                 fontSize: "15px",
-                fontFamily: "var(--font-dm)",
+                fontFamily: "var(--font-body)",
               }}
             >
               Don&apos;t see your role? Send your CV — we&apos;re always looking for great people.
@@ -584,7 +584,7 @@ export default function CareersPage() {
                 display: "flex",
                 justifyContent: "space-between",
                 alignItems: "center",
-                border: "1px solid #E2E8F0",
+                border: "1px solid #E8E4DD",
                 borderLeft: "4px solid transparent",
                 cursor: "pointer",
               }}
@@ -594,9 +594,9 @@ export default function CareersPage() {
                   style={{
                     fontSize: "16px",
                     fontWeight: 600,
-                    color: "#111827",
+                    color: "#1A1A1A",
                     marginBottom: "5px",
-                    fontFamily: "var(--font-dm)",
+                    fontFamily: "var(--font-body)",
                   }}
                 >
                   {r.role}
@@ -604,9 +604,9 @@ export default function CareersPage() {
                 <p
                   style={{
                     fontSize: "13px",
-                    color: "#6B7280",
+                    color: "#9E9A94",
                     marginBottom: "10px",
-                    fontFamily: "var(--font-dm)",
+                    fontFamily: "var(--font-body)",
                   }}
                 >
                   {r.desc}
@@ -617,11 +617,11 @@ export default function CareersPage() {
                       key={tag}
                       style={{
                         fontSize: "11px",
-                        color: "#374151",
-                        background: "#F1F5F9",
+                        color: "#5A5652",
+                        background: "#F3F2F0",
                         padding: "3px 10px",
                         borderRadius: "20px",
-                        fontFamily: "var(--font-dm)",
+                        fontFamily: "var(--font-body)",
                         fontWeight: 500,
                       }}
                     >
@@ -640,14 +640,14 @@ export default function CareersPage() {
                   fontWeight: 700,
                   border: "none",
                   cursor: "pointer",
-                  fontFamily: "var(--font-dm)",
+                  fontFamily: "var(--font-body)",
                   whiteSpace: "nowrap",
                   marginLeft: "24px",
                   flexShrink: 0,
                   transition: "background 0.2s",
                 }}
                 onMouseEnter={(e) => {
-                  (e.currentTarget as HTMLElement).style.background = "#EA6C0B";
+                  (e.currentTarget as HTMLElement).style.background = "#E86C0A";
                 }}
                 onMouseLeave={(e) => {
                   (e.currentTarget as HTMLElement).style.background = "#F97316";
@@ -666,7 +666,7 @@ export default function CareersPage() {
             transition={{ duration: 0.45, delay: 0.35 }}
             style={{
               marginTop: "6px",
-              background: "linear-gradient(135deg, #1B2866 0%, #0E1847 100%)",
+              background: "#0A0A0A",
               borderRadius: "14px",
               padding: "32px 36px",
               display: "flex",
@@ -683,16 +683,16 @@ export default function CareersPage() {
                   fontSize: "17px",
                   fontWeight: 600,
                   marginBottom: "5px",
-                  fontFamily: "var(--font-dm)",
+                  fontFamily: "var(--font-body)",
                 }}
               >
                 Don&apos;t see your perfect role?
               </h4>
               <p
                 style={{
-                  color: "#94A3B8",
+                  color: "rgba(255,255,255,0.45)",
                   fontSize: "13px",
-                  fontFamily: "var(--font-dm)",
+                  fontFamily: "var(--font-body)",
                 }}
               >
                 Send us your CV and a note on what excites you. We&apos;ll reach out.
@@ -708,13 +708,13 @@ export default function CareersPage() {
                 fontWeight: 700,
                 fontSize: "14px",
                 textDecoration: "none",
-                fontFamily: "var(--font-dm)",
+                fontFamily: "var(--font-body)",
                 whiteSpace: "nowrap",
                 boxShadow: "0 4px 16px rgba(249,115,22,0.35)",
                 transition: "background 0.2s",
               }}
               onMouseEnter={(e) => {
-                (e.currentTarget as HTMLElement).style.background = "#EA6C0B";
+                (e.currentTarget as HTMLElement).style.background = "#E86C0A";
               }}
               onMouseLeave={(e) => {
                 (e.currentTarget as HTMLElement).style.background = "#F97316";
@@ -737,10 +737,10 @@ export default function CareersPage() {
         <FadeIn>
           <h2
             style={{
-              fontFamily: "var(--font-playfair)",
+              fontFamily: "var(--font-heading)",
               fontSize: "clamp(28px, 4vw, 38px)",
               color: "#fff",
-              fontWeight: 700,
+              fontWeight: 600,
               marginBottom: "12px",
             }}
           >
@@ -751,7 +751,7 @@ export default function CareersPage() {
               color: "rgba(255,255,255,0.8)",
               fontSize: "16px",
               marginBottom: "28px",
-              fontFamily: "var(--font-dm)",
+              fontFamily: "var(--font-body)",
             }}
           >
             Also check our{" "}
@@ -768,7 +768,7 @@ export default function CareersPage() {
             target="_blank"
             rel="noopener noreferrer"
             style={{
-              background: "#1B2866",
+              background: "#0A0A0A",
               color: "#fff",
               padding: "14px 34px",
               borderRadius: "8px",
@@ -778,14 +778,14 @@ export default function CareersPage() {
               display: "inline-flex",
               alignItems: "center",
               gap: "8px",
-              fontFamily: "var(--font-dm)",
+              fontFamily: "var(--font-body)",
               transition: "background 0.2s",
             }}
             onMouseEnter={(e) => {
-              (e.currentTarget as HTMLElement).style.background = "#0E1847";
+              (e.currentTarget as HTMLElement).style.background = "#141414";
             }}
             onMouseLeave={(e) => {
-              (e.currentTarget as HTMLElement).style.background = "#1B2866";
+              (e.currentTarget as HTMLElement).style.background = "#0A0A0A";
             }}
           >
             💬 Talk to Us on WhatsApp

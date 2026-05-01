@@ -23,7 +23,7 @@ function MobileHero() {
         width: "100%",
         height: "100vh",
         overflow: "hidden",
-        background: "linear-gradient(135deg, #0E1847 0%, #1B2866 40%, #0E2A5A 100%)",
+        background: "linear-gradient(135deg, #0A0A0A 0%, #141414 40%, #0A0A0A 100%)",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
@@ -69,11 +69,11 @@ function MobileHero() {
             display: "block",
             fontSize: 11,
             fontWeight: 600,
-            letterSpacing: "3px",
+            letterSpacing: "4px",
             textTransform: "uppercase",
-            color: "#F97316",
+            color: "rgba(255,255,255,0.55)",
             marginBottom: 18,
-            fontFamily: "var(--font-dm)",
+            fontFamily: "var(--font-body)",
             textShadow: "0 1px 8px rgba(0,0,0,0.7)",
           }}
         >
@@ -85,9 +85,9 @@ function MobileHero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
           style={{
-            fontFamily: "var(--font-playfair)",
+            fontFamily: "var(--font-heading)",
             fontSize: "clamp(44px, 10vw, 72px)",
-            fontWeight: 900,
+            fontWeight: 700,
             lineHeight: 1.02,
             color: "#fff",
             textShadow: "0 4px 48px rgba(0,0,0,0.7)",
@@ -95,7 +95,7 @@ function MobileHero() {
           }}
         >
           Trip to{" "}
-          <span className="gold-shimmer-text">Tackle</span>
+          <span style={{ color: "#FFFFFF" }}>Tackle</span>
         </motion.h1>
 
         <motion.p
@@ -108,7 +108,7 @@ function MobileHero() {
             fontWeight: 300,
             lineHeight: 1.6,
             marginBottom: 8,
-            fontFamily: "var(--font-dm)",
+            fontFamily: "var(--font-body)",
             textShadow: "0 2px 14px rgba(0,0,0,0.6)",
           }}
         >
@@ -123,7 +123,7 @@ function MobileHero() {
             fontSize: 13,
             color: "rgba(255,255,255,0.5)",
             marginBottom: 36,
-            fontFamily: "var(--font-dm)",
+            fontFamily: "var(--font-body)",
             textShadow: "0 1px 8px rgba(0,0,0,0.6)",
           }}
         >
@@ -150,7 +150,7 @@ function MobileHero() {
               alignItems: "center",
               gap: 8,
               boxShadow: "0 4px 28px rgba(249,115,22,0.4)",
-              fontFamily: "var(--font-dm)",
+              fontFamily: "var(--font-body)",
             }}
           >
             Explore Packages
@@ -170,7 +170,7 @@ function MobileHero() {
               fontWeight: 500,
               textDecoration: "none",
               backdropFilter: "blur(12px)",
-              fontFamily: "var(--font-dm)",
+              fontFamily: "var(--font-body)",
             }}
           >
             Chat with Us
@@ -330,7 +330,7 @@ export default function HeroScrollAnimation() {
         style={{
           width: "100%",
           height: "100vh",
-          background: "linear-gradient(135deg, #0E1847 0%, #1B2866 40%, #0E2A5A 100%)",
+          background: "#0A0A0A",
         }}
       />
     );
@@ -352,7 +352,7 @@ export default function HeroScrollAnimation() {
           width: "100%",
           height: "100vh",
           overflow: "hidden",
-          background: "#0E1847",
+          background: "#0A0A0A",
         }}
       >
         <canvas
@@ -366,7 +366,7 @@ export default function HeroScrollAnimation() {
           }}
         />
 
-        {/* Gradient overlay — matches Trippy reference: subtle black, no navy wash */}
+        {/* Gradient overlay */}
         <div
           style={{
             position: "absolute",
@@ -392,7 +392,7 @@ export default function HeroScrollAnimation() {
               flexDirection: "column",
               alignItems: "center",
               justifyContent: "center",
-              background: "#0E1847",
+              background: "#0A0A0A",
               zIndex: 20,
             }}
           >
@@ -413,7 +413,7 @@ export default function HeroScrollAnimation() {
                 fontSize: 11,
                 letterSpacing: "3px",
                 textTransform: "uppercase",
-                fontFamily: "var(--font-dm)",
+                fontFamily: "var(--font-body)",
               }}
             >
               Loading
@@ -445,11 +445,11 @@ export default function HeroScrollAnimation() {
               display: "block",
               fontSize: 11,
               fontWeight: 600,
-              letterSpacing: "3px",
+              letterSpacing: "4px",
               textTransform: "uppercase",
-              color: "#F97316",
+              color: "rgba(255,255,255,0.6)",
               marginBottom: 20,
-              fontFamily: "var(--font-dm)",
+              fontFamily: "var(--font-body)",
               textShadow: "0 1px 8px rgba(0,0,0,0.7)",
             }}
           >
@@ -461,9 +461,9 @@ export default function HeroScrollAnimation() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
             style={{
-              fontFamily: "var(--font-playfair)",
+              fontFamily: "var(--font-heading)",
               fontSize: "clamp(52px, 7vw, 100px)",
-              fontWeight: 900,
+              fontWeight: 700,
               lineHeight: 1.02,
               color: "#fff",
               textShadow: "0 4px 48px rgba(0,0,0,0.7)",
@@ -471,7 +471,7 @@ export default function HeroScrollAnimation() {
             }}
           >
             Trip to{" "}
-            <span className="gold-shimmer-text">Tackle</span>
+            <span style={{ color: "#FFFFFF" }}>Tackle</span>
           </motion.h1>
 
           <motion.p
@@ -485,7 +485,7 @@ export default function HeroScrollAnimation() {
               maxWidth: 520,
               lineHeight: 1.6,
               marginBottom: 8,
-              fontFamily: "var(--font-dm)",
+              fontFamily: "var(--font-body)",
               textShadow: "0 2px 14px rgba(0,0,0,0.6)",
             }}
           >
@@ -500,7 +500,7 @@ export default function HeroScrollAnimation() {
               fontSize: 13,
               color: "rgba(255,255,255,0.5)",
               marginBottom: 42,
-              fontFamily: "var(--font-dm)",
+              fontFamily: "var(--font-body)",
               textShadow: "0 1px 8px rgba(0,0,0,0.6)",
             }}
           >
@@ -528,11 +528,11 @@ export default function HeroScrollAnimation() {
                 gap: 8,
                 boxShadow: "0 4px 28px rgba(249,115,22,0.4)",
                 transition: "background 0.2s, transform 0.18s, box-shadow 0.2s",
-                fontFamily: "var(--font-dm)",
+                fontFamily: "var(--font-body)",
               }}
               onMouseEnter={(e) => {
                 const el = e.currentTarget as HTMLElement;
-                el.style.background = "#EA6C0B";
+                el.style.background = "#E86C0A";
                 el.style.transform = "translateY(-2px)";
                 el.style.boxShadow = "0 8px 36px rgba(249,115,22,0.55)";
               }}
@@ -564,7 +564,7 @@ export default function HeroScrollAnimation() {
                 textDecoration: "none",
                 backdropFilter: "blur(12px)",
                 transition: "background 0.2s, border-color 0.2s",
-                fontFamily: "var(--font-dm)",
+                fontFamily: "var(--font-body)",
               }}
               onMouseEnter={(e) => {
                 const el = e.currentTarget as HTMLElement;
@@ -606,7 +606,7 @@ export default function HeroScrollAnimation() {
               fontSize: 9,
               letterSpacing: "3px",
               textTransform: "uppercase",
-              fontFamily: "var(--font-dm)",
+              fontFamily: "var(--font-body)",
               textShadow: "0 1px 6px rgba(0,0,0,0.7)",
             }}
           >

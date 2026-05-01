@@ -1,22 +1,19 @@
 @import "tailwindcss";
 
 @theme {
-  --color-navy: #1B2866;
-  --color-navy-dark: #0E1847;
+  --color-charcoal: #0A0A0A;
+  --color-charcoal-mid: #141414;
+  --color-charcoal-light: #1E1E1E;
+  --color-warm-white: #FAF9F7;
+  --color-gray-100: #F3F2F0;
+  --color-gray-200: #E8E4DD;
+  --color-gray-400: #9E9A94;
+  --color-gray-600: #5A5652;
+  --color-text-dark: #1A1A1A;
   --color-orange: #F97316;
-  --color-orange-dark: #EA6C0B;
-  --color-teal: #0891B2;
-  --color-gold: #F59E0B;
-  --color-bg-white: #FFFFFF;
-  --color-bg-gray: #F8F9FA;
-  --color-bg-gray-mid: #F1F5F9;
-  --color-text-dark: #111827;
-  --color-text-mid: #374151;
-  --color-text-light: #6B7280;
-  --color-border: #E2E8F0;
-  --color-dim-on-dark: #94A3B8;
-  --font-playfair: var(--font-playfair-var), 'Playfair Display', Georgia, serif;
-  --font-dm: var(--font-dm-var), 'DM Sans', sans-serif;
+  --color-orange-dark: #E86C0A;
+  --font-heading: var(--font-heading-var), 'Cormorant Garamond', Georgia, serif;
+  --font-body: var(--font-body-var), 'Outfit', sans-serif;
 }
 
 * {
@@ -29,18 +26,18 @@ html {
 
 body {
   background-color: #FFFFFF;
-  color: #111827;
+  color: #1A1A1A;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-family: var(--font-dm), 'DM Sans', sans-serif;
+  font-family: var(--font-body), 'Outfit', sans-serif;
 }
 
-/* Custom scrollbar */
+/* Custom scrollbar — premium charcoal */
 ::-webkit-scrollbar { width: 5px; }
-::-webkit-scrollbar-track { background: #F1F5F9; }
-::-webkit-scrollbar-thumb { background: #1B2866; border-radius: 3px; }
-::-webkit-scrollbar-thumb:hover { background: #0891B2; }
+::-webkit-scrollbar-track { background: #F3F2F0; }
+::-webkit-scrollbar-thumb { background: #1A1A1A; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #F97316; }
 
 /* Fade mask for testimonials */
 .fade-mask {
@@ -54,7 +51,7 @@ body {
   50% { transform: translateX(-50%) translateY(8px); }
 }
 
-/* Shimmer */
+/* Shimmer — warm neutral */
 @keyframes shimmer-move {
   0% { background-position: -200% center; }
   100% { background-position: 200% center; }
@@ -79,7 +76,7 @@ body {
 }
 
 .gold-shimmer-text {
-  background: linear-gradient(90deg, #F97316 0%, #FBBF24 40%, #F97316 60%, #EA6C0B 100%);
+  background: linear-gradient(90deg, #fff 0%, #E8E4DD 40%, #fff 60%, #E8E4DD 100%);
   background-size: 200% auto;
   animation: shimmer-move 3s linear infinite;
   -webkit-background-clip: text;

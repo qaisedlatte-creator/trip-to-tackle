@@ -34,7 +34,7 @@ export default function BlogPage() {
       {/* Hero */}
       <section
         style={{
-          background: "linear-gradient(135deg, #0E1847 0%, #1B2866 60%, #0E2A5A 100%)",
+          background: "linear-gradient(135deg, #0A0A0A 0%, #141414 60%, #0A0A0A 100%)",
           padding: "120px 60px 80px",
           position: "relative",
           overflow: "hidden",
@@ -62,11 +62,11 @@ export default function BlogPage() {
               display: "block",
               fontSize: "11px",
               fontWeight: 600,
-              letterSpacing: "3px",
+              letterSpacing: "4px",
               textTransform: "uppercase",
-              color: "#F97316",
+              color: "rgba(255,255,255,0.55)",
               marginBottom: "14px",
-              fontFamily: "var(--font-dm)",
+              fontFamily: "var(--font-body)",
             }}
           >
             Insights &amp; Stories
@@ -76,10 +76,10 @@ export default function BlogPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.1 }}
             style={{
-              fontFamily: "var(--font-playfair)",
+              fontFamily: "var(--font-heading)",
               fontSize: "clamp(34px, 5vw, 54px)",
               color: "#fff",
-              fontWeight: 700,
+              fontWeight: 600,
               marginBottom: "14px",
             }}
           >
@@ -90,11 +90,11 @@ export default function BlogPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.18 }}
             style={{
-              color: "#94A3B8",
+              color: "rgba(255,255,255,0.5)",
               fontSize: "16px",
               maxWidth: "460px",
               lineHeight: 1.6,
-              fontFamily: "var(--font-dm)",
+              fontFamily: "var(--font-body)",
             }}
           >
             Travel tips, destination guides, and real stories from the road.
@@ -114,10 +114,10 @@ export default function BlogPage() {
           <div style={{ fontSize: "64px", marginBottom: "20px" }}>📝</div>
           <h2
             style={{
-              fontFamily: "var(--font-playfair)",
+              fontFamily: "var(--font-heading)",
               fontSize: "clamp(28px, 4vw, 40px)",
-              color: "#111827",
-              fontWeight: 700,
+              color: "#1A1A1A",
+              fontWeight: 600,
               marginBottom: "16px",
             }}
           >
@@ -125,11 +125,11 @@ export default function BlogPage() {
           </h2>
           <p
             style={{
-              color: "#6B7280",
+              color: "#9E9A94",
               fontSize: "16px",
               lineHeight: 1.75,
               marginBottom: "36px",
-              fontFamily: "var(--font-dm)",
+              fontFamily: "var(--font-body)",
             }}
           >
             We&apos;re crafting travel stories, trip guides, and insider tips. Subscribe below to be the first to know when we go live.
@@ -141,15 +141,15 @@ export default function BlogPage() {
               initial={{ opacity: 0, scale: 0.92 }}
               animate={{ opacity: 1, scale: 1 }}
               style={{
-                background: "#F8F9FA",
-                border: "1px solid #E2E8F0",
+                background: "#F3F2F0",
+                border: "1px solid #E8E4DD",
                 borderRadius: "14px",
                 padding: "28px 32px",
-                color: "#111827",
+                color: "#1A1A1A",
               }}
             >
               <div style={{ fontSize: "36px", marginBottom: "12px" }}>🎉</div>
-              <p style={{ fontWeight: 600, fontSize: "16px", fontFamily: "var(--font-dm)" }}>
+              <p style={{ fontWeight: 600, fontSize: "16px", fontFamily: "var(--font-body)" }}>
                 You&apos;re on the list! We&apos;ll notify you when we launch.
               </p>
             </motion.div>
@@ -178,16 +178,16 @@ export default function BlogPage() {
                   flex: 1,
                   minWidth: "200px",
                   padding: "13px 16px",
-                  border: "1.5px solid #E2E8F0",
+                  border: "1.5px solid #E8E4DD",
                   borderRadius: "8px",
                   fontSize: "14px",
-                  fontFamily: "var(--font-dm)",
-                  color: "#111827",
+                  fontFamily: "var(--font-body)",
+                  color: "#1A1A1A",
                   outline: "none",
                   transition: "border-color 0.2s",
                 }}
                 onFocus={(e) => { e.target.style.borderColor = "#F97316"; }}
-                onBlur={(e) => { e.target.style.borderColor = "#E2E8F0"; }}
+                onBlur={(e) => { e.target.style.borderColor = "#E8E4DD"; }}
               />
               <button
                 type="submit"
@@ -200,11 +200,11 @@ export default function BlogPage() {
                   fontWeight: 700,
                   border: "none",
                   cursor: "pointer",
-                  fontFamily: "var(--font-dm)",
+                  fontFamily: "var(--font-body)",
                   transition: "background 0.2s",
                   whiteSpace: "nowrap",
                 }}
-                onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.background = "#EA6C0B"; }}
+                onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.background = "#E86C0A"; }}
                 onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.background = "#F97316"; }}
               >
                 Notify Me
@@ -215,28 +215,28 @@ export default function BlogPage() {
       </section>
 
       {/* What's coming */}
-      <section style={{ background: "#F8F9FA", padding: "72px 60px" }}>
+      <section style={{ background: "#F3F2F0", padding: "72px 60px" }}>
         <div style={{ textAlign: "center", marginBottom: "44px" }}>
           <span
             style={{
               display: "block",
               fontSize: "11px",
               fontWeight: 600,
-              letterSpacing: "3px",
+              letterSpacing: "4px",
               textTransform: "uppercase",
-              color: "#F97316",
+              color: "#9E9A94",
               marginBottom: "10px",
-              fontFamily: "var(--font-dm)",
+              fontFamily: "var(--font-body)",
             }}
           >
             Coming Soon
           </span>
           <h3
             style={{
-              fontFamily: "var(--font-playfair)",
+              fontFamily: "var(--font-heading)",
               fontSize: "clamp(24px, 3vw, 32px)",
-              color: "#111827",
-              fontWeight: 700,
+              color: "#1A1A1A",
+              fontWeight: 600,
             }}
           >
             What to Expect
@@ -264,13 +264,13 @@ export default function BlogPage() {
                 borderRadius: "16px",
                 overflow: "hidden",
                 boxShadow: "0 2px 16px rgba(0,0,0,0.05)",
-                border: "1px solid #E2E8F0",
+                border: "1px solid #E8E4DD",
               }}
             >
               <div
                 style={{
                   height: "120px",
-                  background: "linear-gradient(135deg, #1B2866 0%, #0E2A5A 100%)",
+                  background: "linear-gradient(135deg, #0A0A0A 0%, #141414 100%)",
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
@@ -282,10 +282,10 @@ export default function BlogPage() {
               <div style={{ padding: "20px 22px" }}>
                 <h4
                   style={{
-                    fontFamily: "var(--font-playfair)",
+                    fontFamily: "var(--font-heading)",
                     fontSize: "17px",
-                    color: "#111827",
-                    fontWeight: 700,
+                    color: "#1A1A1A",
+                    fontWeight: 600,
                     marginBottom: "8px",
                   }}
                 >
@@ -293,10 +293,10 @@ export default function BlogPage() {
                 </h4>
                 <p
                   style={{
-                    color: "#6B7280",
+                    color: "#9E9A94",
                     fontSize: "13px",
                     lineHeight: 1.65,
-                    fontFamily: "var(--font-dm)",
+                    fontFamily: "var(--font-body)",
                   }}
                 >
                   {t.desc}
@@ -308,18 +308,19 @@ export default function BlogPage() {
       </section>
 
       {/* CTA */}
-      <div style={{ background: "#1B2866", padding: "60px", textAlign: "center" }}>
+      <div style={{ background: "#0A0A0A", padding: "60px", textAlign: "center" }}>
         <h3
           style={{
-            fontFamily: "var(--font-playfair)",
+            fontFamily: "var(--font-heading)",
             fontSize: "30px",
             color: "#fff",
             marginBottom: "12px",
+            fontWeight: 600,
           }}
         >
           Want Travel Tips Now?
         </h3>
-        <p style={{ color: "#94A3B8", marginBottom: "24px", fontSize: "15px", fontFamily: "var(--font-dm)" }}>
+        <p style={{ color: "rgba(255,255,255,0.45)", marginBottom: "24px", fontSize: "15px", fontFamily: "var(--font-body)" }}>
           Follow us on Instagram or chat with us on WhatsApp for daily travel inspo.
         </p>
         <a
@@ -334,12 +335,15 @@ export default function BlogPage() {
             fontWeight: 700,
             fontSize: "15px",
             textDecoration: "none",
-            fontFamily: "var(--font-dm)",
+            fontFamily: "var(--font-body)",
             display: "inline-flex",
             alignItems: "center",
             gap: "8px",
             boxShadow: "0 4px 16px rgba(249,115,22,0.35)",
+            transition: "background 0.2s",
           }}
+          onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.background = "#E86C0A"; }}
+          onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.background = "#F97316"; }}
         >
           💬 WhatsApp Us
         </a>

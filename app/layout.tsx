@@ -1,23 +1,24 @@
 import type { Metadata } from "next";
-import { Playfair_Display, DM_Sans } from "next/font/google";
+import { Cormorant_Garamond, Outfit } from "next/font/google";
 import "./globals.css";
 
-const playfair = Playfair_Display({
+const cormorant = Cormorant_Garamond({
   subsets: ["latin"],
-  variable: "--font-playfair-var",
-  weight: ["400", "700", "900"],
+  variable: "--font-heading-var",
+  weight: ["300", "400", "500", "600", "700"],
   display: "swap",
+  style: ["normal", "italic"],
 });
 
-const dmSans = DM_Sans({
+const outfit = Outfit({
   subsets: ["latin"],
-  variable: "--font-dm-var",
+  variable: "--font-body-var",
   weight: ["300", "400", "500", "600"],
   display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "Trip to Tackle — Discover Your Next Adventure",
+  title: "Trip 2 Tackle — Travel to Experience",
   description:
     "Affordable & personalized group travel packages across India and beyond. Live departures, real groups, unforgettable journeys.",
   keywords: "travel, group packages, India, international, Kerala, Kashmir, Bali",
@@ -31,7 +32,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${playfair.variable} ${dmSans.variable}`}
+      className={`${cormorant.variable} ${outfit.variable}`}
     >
       <body>{children}</body>
     </html>

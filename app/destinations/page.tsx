@@ -110,9 +110,9 @@ export default function DestinationsPage() {
       {/* Hero */}
       <div
         style={{
-          background: "#1B2866",
+          background: "#0A0A0A",
           padding: "110px 60px 52px",
-          borderBottom: "1px solid rgba(255,255,255,0.07)",
+          borderBottom: "1px solid rgba(255,255,255,0.06)",
           position: "relative",
           overflow: "hidden",
         }}
@@ -122,7 +122,7 @@ export default function DestinationsPage() {
             position: "absolute",
             inset: 0,
             backgroundImage:
-              "linear-gradient(rgba(245,197,66,0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(245,197,66,0.02) 1px, transparent 1px)",
+              "linear-gradient(rgba(249,115,22,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(249,115,22,0.03) 1px, transparent 1px)",
             backgroundSize: "60px 60px",
             pointerEvents: "none",
           }}
@@ -136,11 +136,11 @@ export default function DestinationsPage() {
               display: "block",
               fontSize: "10.5px",
               fontWeight: 600,
-              letterSpacing: "3px",
+              letterSpacing: "4px",
               textTransform: "uppercase",
-              color: "#F97316",
+              color: "rgba(255,255,255,0.55)",
               marginBottom: "14px",
-              fontFamily: "var(--font-dm)",
+              fontFamily: "var(--font-body)",
             }}
           >
             Explore the World
@@ -150,10 +150,10 @@ export default function DestinationsPage() {
             animate={headerInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.7, delay: 0.1 }}
             style={{
-              fontFamily: "var(--font-playfair)",
+              fontFamily: "var(--font-heading)",
               fontSize: "clamp(36px, 5vw, 56px)",
               color: "#fff",
-              fontWeight: 700,
+              fontWeight: 600,
               marginBottom: "14px",
             }}
           >
@@ -164,11 +164,11 @@ export default function DestinationsPage() {
             animate={headerInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.7, delay: 0.18 }}
             style={{
-              color: "#94A3B8",
+              color: "rgba(255,255,255,0.5)",
               fontSize: "16px",
               maxWidth: "500px",
               lineHeight: 1.6,
-              fontFamily: "var(--font-dm)",
+              fontFamily: "var(--font-body)",
               marginBottom: "36px",
             }}
           >
@@ -195,8 +195,8 @@ export default function DestinationsPage() {
                   border: "1.5px solid",
                   borderColor: activeFilter === f ? "#F97316" : "rgba(255,255,255,0.2)",
                   background: activeFilter === f ? "#F97316" : "transparent",
-                  color: activeFilter === f ? "#1B2866" : "rgba(255,255,255,0.7)",
-                  fontFamily: "var(--font-dm)",
+                  color: activeFilter === f ? "#fff" : "rgba(255,255,255,0.7)",
+                  fontFamily: "var(--font-body)",
                   transition: "all 0.2s",
                 }}
               >
@@ -208,7 +208,7 @@ export default function DestinationsPage() {
       </div>
 
       {/* Grid */}
-      <div style={{ background: "#F8F9FA", padding: "52px 60px 88px" }}>
+      <div style={{ background: "#F3F2F0", padding: "52px 60px 88px" }}>
         <div
           style={{
             display: "grid",
@@ -247,13 +247,13 @@ export default function DestinationsPage() {
                     top: "14px",
                     right: "14px",
                     background: "#F97316",
-                    color: "#1B2866",
+                    color: "#fff",
                     fontSize: "10px",
                     fontWeight: 700,
                     padding: "4px 10px",
                     borderRadius: "20px",
                     letterSpacing: "0.8px",
-                    fontFamily: "var(--font-dm)",
+                    fontFamily: "var(--font-body)",
                   }}
                 >
                   {d.badge}
@@ -263,12 +263,12 @@ export default function DestinationsPage() {
                     position: "absolute",
                     bottom: "14px",
                     left: "14px",
-                    background: "rgba(13,27,62,0.8)",
+                    background: "rgba(10,10,10,0.8)",
                     color: "#fff",
                     fontSize: "11px",
                     padding: "4px 10px",
                     borderRadius: "6px",
-                    fontFamily: "var(--font-dm)",
+                    fontFamily: "var(--font-body)",
                   }}
                 >
                   {d.nights}
@@ -278,11 +278,11 @@ export default function DestinationsPage() {
                 <div
                   style={{
                     fontSize: "11px",
-                    color: "#999",
+                    color: "#9E9A94",
                     letterSpacing: "1px",
                     textTransform: "uppercase",
                     marginBottom: "4px",
-                    fontFamily: "var(--font-dm)",
+                    fontFamily: "var(--font-body)",
                   }}
                 >
                   {d.region} · {d.type}
@@ -290,9 +290,9 @@ export default function DestinationsPage() {
                 <h3
                   style={{
                     fontSize: "20px",
-                    fontFamily: "var(--font-playfair)",
-                    color: "#1B2866",
-                    fontWeight: 700,
+                    fontFamily: "var(--font-heading)",
+                    color: "#1A1A1A",
+                    fontWeight: 600,
                     marginBottom: "14px",
                   }}
                 >
@@ -306,15 +306,15 @@ export default function DestinationsPage() {
                   }}
                 >
                   <div>
-                    <div style={{ fontSize: "11px", color: "#999", fontFamily: "var(--font-dm)" }}>
+                    <div style={{ fontSize: "11px", color: "#9E9A94", fontFamily: "var(--font-body)" }}>
                       Starting from
                     </div>
                     <div
                       style={{
                         fontSize: "20px",
                         fontWeight: 700,
-                        color: "#1B2866",
-                        fontFamily: "var(--font-dm)",
+                        color: "#1A1A1A",
+                        fontFamily: "var(--font-body)",
                       }}
                     >
                       {d.price}
@@ -323,21 +323,21 @@ export default function DestinationsPage() {
                   <Link
                     href="#"
                     style={{
-                      background: "#1B2866",
+                      background: "#F97316",
                       color: "#fff",
                       padding: "9px 18px",
                       borderRadius: "8px",
                       fontSize: "13px",
                       fontWeight: 600,
                       textDecoration: "none",
-                      fontFamily: "var(--font-dm)",
+                      fontFamily: "var(--font-body)",
                       transition: "background 0.2s",
                     }}
                     onMouseEnter={(e) => {
-                      (e.currentTarget as HTMLElement).style.background = "#1e2e58";
+                      (e.currentTarget as HTMLElement).style.background = "#E86C0A";
                     }}
                     onMouseLeave={(e) => {
-                      (e.currentTarget as HTMLElement).style.background = "#1B2866";
+                      (e.currentTarget as HTMLElement).style.background = "#F97316";
                     }}
                   >
                     View Trip
@@ -349,9 +349,9 @@ export default function DestinationsPage() {
         </div>
 
         {filtered.length === 0 && (
-          <div style={{ textAlign: "center", padding: "80px 40px", color: "#888" }}>
+          <div style={{ textAlign: "center", padding: "80px 40px", color: "#9E9A94" }}>
             <div style={{ fontSize: "48px", marginBottom: "16px" }}>🗺️</div>
-            <p style={{ fontSize: "18px", fontFamily: "var(--font-dm)" }}>
+            <p style={{ fontSize: "18px", fontFamily: "var(--font-body)" }}>
               No destinations match this filter. More coming soon!
             </p>
           </div>
@@ -359,23 +359,24 @@ export default function DestinationsPage() {
       </div>
 
       {/* CTA */}
-      <section style={{ background: "#1B2866", padding: "64px 60px", textAlign: "center" }}>
+      <section style={{ background: "#0A0A0A", padding: "64px 60px", textAlign: "center" }}>
         <h3
           style={{
-            fontFamily: "var(--font-playfair)",
+            fontFamily: "var(--font-heading)",
             fontSize: "36px",
             color: "#fff",
             marginBottom: "12px",
+            fontWeight: 600,
           }}
         >
           Can&apos;t Find What You&apos;re Looking For?
         </h3>
         <p
           style={{
-            color: "#94A3B8",
+            color: "rgba(255,255,255,0.45)",
             marginBottom: "28px",
             fontSize: "15px",
-            fontFamily: "var(--font-dm)",
+            fontFamily: "var(--font-body)",
           }}
         >
           We can plan a custom trip to almost anywhere. Just ask on WhatsApp.
@@ -386,13 +387,20 @@ export default function DestinationsPage() {
           rel="noopener noreferrer"
           style={{
             background: "#F97316",
-            color: "#1B2866",
+            color: "#fff",
             padding: "13px 32px",
             borderRadius: "10px",
             fontWeight: 700,
             fontSize: "15px",
             textDecoration: "none",
-            fontFamily: "var(--font-dm)",
+            fontFamily: "var(--font-body)",
+            transition: "background 0.2s",
+          }}
+          onMouseEnter={(e) => {
+            (e.currentTarget as HTMLElement).style.background = "#E86C0A";
+          }}
+          onMouseLeave={(e) => {
+            (e.currentTarget as HTMLElement).style.background = "#F97316";
           }}
         >
           💬 Request a Custom Trip

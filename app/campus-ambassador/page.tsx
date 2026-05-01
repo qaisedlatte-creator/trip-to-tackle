@@ -106,7 +106,7 @@ function ApplyForm() {
     background: "rgba(255,255,255,0.07)",
     color: "#fff",
     fontSize: "14px",
-    fontFamily: "var(--font-dm)",
+    fontFamily: "var(--font-body)",
     outline: "none",
     transition: "border-color 0.2s",
   };
@@ -132,10 +132,10 @@ function ApplyForm() {
         }}
       >
         <div style={{ fontSize: "52px", marginBottom: "18px" }}>🎉</div>
-        <h3 style={{ fontFamily: "var(--font-playfair)", fontSize: "26px", color: "#fff", fontWeight: 700, marginBottom: "12px" }}>
+        <h3 style={{ fontFamily: "var(--font-heading)", fontSize: "26px", color: "#fff", fontWeight: 600, marginBottom: "12px" }}>
           Application Submitted!
         </h3>
-        <p style={{ color: "rgba(255,255,255,0.7)", fontSize: "15px", fontFamily: "var(--font-dm)", maxWidth: "380px", margin: "0 auto", lineHeight: 1.6 }}>
+        <p style={{ color: "rgba(255,255,255,0.7)", fontSize: "15px", fontFamily: "var(--font-body)", maxWidth: "380px", margin: "0 auto", lineHeight: 1.6 }}>
           We&apos;ll review your application and reach out within 48 hours on WhatsApp. Get ready to tackle your campus! ✈️
         </p>
       </motion.div>
@@ -153,7 +153,7 @@ function ApplyForm() {
           { key: "instagram", label: "Instagram Handle", placeholder: "@yourhandle" },
         ].map(({ key, label, placeholder }) => (
           <div key={key}>
-            <label style={{ display: "block", fontSize: "11px", fontWeight: 600, letterSpacing: "1px", textTransform: "uppercase", color: "rgba(255,255,255,0.6)", marginBottom: "7px", fontFamily: "var(--font-dm)" }}>
+            <label style={{ display: "block", fontSize: "11px", fontWeight: 600, letterSpacing: "1px", textTransform: "uppercase", color: "rgba(255,255,255,0.6)", marginBottom: "7px", fontFamily: "var(--font-body)" }}>
               {label}
             </label>
             <input
@@ -170,7 +170,7 @@ function ApplyForm() {
         ))}
       </div>
       <div style={{ marginBottom: "24px" }}>
-        <label style={{ display: "block", fontSize: "11px", fontWeight: 600, letterSpacing: "1px", textTransform: "uppercase", color: "rgba(255,255,255,0.6)", marginBottom: "7px", fontFamily: "var(--font-dm)" }}>
+        <label style={{ display: "block", fontSize: "11px", fontWeight: 600, letterSpacing: "1px", textTransform: "uppercase", color: "rgba(255,255,255,0.6)", marginBottom: "7px", fontFamily: "var(--font-body)" }}>
           Why do you want to join?
         </label>
         <textarea
@@ -198,7 +198,7 @@ function ApplyForm() {
           fontSize: "15px",
           fontWeight: 700,
           cursor: "pointer",
-          fontFamily: "var(--font-dm)",
+          fontFamily: "var(--font-body)",
           boxShadow: "0 4px 20px rgba(249,115,22,0.4)",
           display: "flex",
           alignItems: "center",
@@ -220,7 +220,7 @@ export default function CampusAmbassadorPage() {
       {/* ── HERO ── */}
       <section
         style={{
-          background: "linear-gradient(135deg, #0E1847 0%, #1B2866 50%, #0E2A5A 100%)",
+          background: "linear-gradient(135deg, #0A0A0A 0%, #141414 50%, #0A0A0A 100%)",
           padding: "130px 60px 90px",
           position: "relative",
           overflow: "hidden",
@@ -270,7 +270,7 @@ export default function CampusAmbassadorPage() {
               padding: "6px 16px",
               borderRadius: "20px",
               marginBottom: "24px",
-              fontFamily: "var(--font-dm)",
+              fontFamily: "var(--font-body)",
             }}
           >
             Campus Ambassador Program
@@ -281,9 +281,9 @@ export default function CampusAmbassadorPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
             style={{
-              fontFamily: "var(--font-playfair)",
+              fontFamily: "var(--font-heading)",
               fontSize: "clamp(36px, 5.5vw, 66px)",
-              fontWeight: 900,
+              fontWeight: 700,
               color: "#fff",
               lineHeight: 1.08,
               marginBottom: "22px",
@@ -292,7 +292,7 @@ export default function CampusAmbassadorPage() {
           >
             Turn Your Campus
             <br />
-            <span style={{ color: "#F97316" }}>Into a Launchpad</span>
+            <span style={{ color: "#FFFFFF", fontStyle: "italic" }}>Into a Launchpad</span>
           </motion.h1>
 
           <motion.p
@@ -305,7 +305,7 @@ export default function CampusAmbassadorPage() {
               fontWeight: 300,
               lineHeight: 1.7,
               marginBottom: "40px",
-              fontFamily: "var(--font-dm)",
+              fontFamily: "var(--font-body)",
             }}
           >
             Represent Trip 2 Tackle at your college, earn commissions on every booking, unlock exclusive travel perks — and build real-world experience while you study.
@@ -327,12 +327,12 @@ export default function CampusAmbassadorPage() {
                 fontSize: "15px",
                 fontWeight: 700,
                 textDecoration: "none",
-                fontFamily: "var(--font-dm)",
+                fontFamily: "var(--font-body)",
                 boxShadow: "0 4px 24px rgba(249,115,22,0.45)",
                 transition: "background 0.2s, transform 0.2s",
               }}
               onMouseEnter={(e) => {
-                (e.currentTarget as HTMLElement).style.background = "#EA6C0B";
+                (e.currentTarget as HTMLElement).style.background = "#E86C0A";
                 (e.currentTarget as HTMLElement).style.transform = "translateY(-2px)";
               }}
               onMouseLeave={(e) => {
@@ -353,7 +353,7 @@ export default function CampusAmbassadorPage() {
                 fontSize: "15px",
                 fontWeight: 500,
                 textDecoration: "none",
-                fontFamily: "var(--font-dm)",
+                fontFamily: "var(--font-body)",
                 backdropFilter: "blur(8px)",
               }}
             >
@@ -364,7 +364,7 @@ export default function CampusAmbassadorPage() {
       </section>
 
       {/* ── STATS ── */}
-      <div style={{ background: "#1B2866", display: "grid", gridTemplateColumns: "repeat(4,1fr)" }}>
+      <div style={{ background: "#0A0A0A", display: "grid", gridTemplateColumns: "repeat(4,1fr)" }}>
         {[
           { n: "200+", l: "Active Ambassadors" },
           { n: "35+", l: "Colleges Covered" },
@@ -372,8 +372,8 @@ export default function CampusAmbassadorPage() {
           { n: "4.8★", l: "Ambassador Rating" },
         ].map((s, i) => (
           <div key={i} style={{ padding: "22px 20px", textAlign: "center", borderRight: i < 3 ? "1px solid rgba(255,255,255,0.08)" : "none" }}>
-            <div style={{ fontFamily: "var(--font-playfair)", fontSize: "28px", fontWeight: 700, color: "#F97316" }}>{s.n}</div>
-            <div style={{ fontSize: "11.5px", color: "#94A3B8", fontWeight: 500, marginTop: "2px", fontFamily: "var(--font-dm)" }}>{s.l}</div>
+            <div style={{ fontFamily: "var(--font-heading)", fontSize: "28px", fontWeight: 700, color: "#FFFFFF" }}>{s.n}</div>
+            <div style={{ fontSize: "11.5px", color: "rgba(255,255,255,0.45)", fontWeight: 500, marginTop: "2px", fontFamily: "var(--font-body)" }}>{s.l}</div>
           </div>
         ))}
       </div>
@@ -382,17 +382,17 @@ export default function CampusAmbassadorPage() {
       <section id="what-is-cap" style={{ background: "#fff", padding: "88px 60px" }}>
         <div style={{ maxWidth: "720px", margin: "0 auto", textAlign: "center" }}>
           <FadeIn>
-            <span style={{ display: "block", fontSize: "11px", fontWeight: 600, letterSpacing: "3px", textTransform: "uppercase", color: "#F97316", marginBottom: "12px", fontFamily: "var(--font-dm)" }}>
+            <span style={{ display: "block", fontSize: "11px", fontWeight: 600, letterSpacing: "4px", textTransform: "uppercase", color: "#9E9A94", marginBottom: "12px", fontFamily: "var(--font-body)" }}>
               New to This?
             </span>
-            <h2 style={{ fontFamily: "var(--font-playfair)", fontSize: "clamp(28px, 4vw, 40px)", color: "#111827", fontWeight: 700, marginBottom: "22px" }}>
+            <h2 style={{ fontFamily: "var(--font-heading)", fontSize: "clamp(28px, 4vw, 40px)", color: "#1A1A1A", fontWeight: 600, marginBottom: "22px" }}>
               What is a Campus Ambassador Program?
             </h2>
-            <p style={{ color: "#374151", fontSize: "16px", lineHeight: 1.8, fontFamily: "var(--font-dm)", marginBottom: "16px" }}>
+            <p style={{ color: "#5A5652", fontSize: "16px", lineHeight: 1.8, fontFamily: "var(--font-body)", marginBottom: "16px" }}>
               A <strong>Campus Ambassador Program (CAP)</strong> is a structured initiative where selected students officially represent a brand at their college or university.
             </p>
-            <p style={{ color: "#6B7280", fontSize: "15px", lineHeight: 1.8, fontFamily: "var(--font-dm)", marginBottom: "36px" }}>
-              As a <strong style={{ color: "#1B2866" }}>Trip 2 Tackle Campus Ambassador</strong>, you become the official travel representative of your campus — organizing trips, promoting packages to your peers, and earning a commission for every booking you drive. Think of it as running your own micro travel agency, backed by an established brand.
+            <p style={{ color: "#9E9A94", fontSize: "15px", lineHeight: 1.8, fontFamily: "var(--font-body)", marginBottom: "36px" }}>
+              As a <strong style={{ color: "#1A1A1A" }}>Trip 2 Tackle Campus Ambassador</strong>, you become the official travel representative of your campus — organizing trips, promoting packages to your peers, and earning a commission for every booking you drive. Think of it as running your own micro travel agency, backed by an established brand.
             </p>
           </FadeIn>
 
@@ -410,16 +410,16 @@ export default function CampusAmbassadorPage() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.45, delay: i * 0.1 }}
                 style={{
-                  background: "#F8F9FA",
+                  background: "#F3F2F0",
                   borderRadius: "14px",
                   padding: "24px 18px",
-                  border: "1px solid #E2E8F0",
+                  border: "1px solid #E8E4DD",
                   borderBottom: "3px solid #F97316",
                 }}
               >
                 <div style={{ fontSize: "28px", marginBottom: "10px" }}>{p.icon}</div>
-                <div style={{ fontWeight: 700, fontSize: "15px", color: "#111827", marginBottom: "6px", fontFamily: "var(--font-dm)" }}>{p.label}</div>
-                <div style={{ fontSize: "13px", color: "#6B7280", lineHeight: 1.55, fontFamily: "var(--font-dm)" }}>{p.desc}</div>
+                <div style={{ fontWeight: 700, fontSize: "15px", color: "#1A1A1A", marginBottom: "6px", fontFamily: "var(--font-body)" }}>{p.label}</div>
+                <div style={{ fontSize: "13px", color: "#9E9A94", lineHeight: 1.55, fontFamily: "var(--font-body)" }}>{p.desc}</div>
               </motion.div>
             ))}
           </div>
@@ -427,11 +427,11 @@ export default function CampusAmbassadorPage() {
       </section>
 
       {/* ── BENEFITS ── */}
-      <section style={{ background: "#F8F9FA", padding: "88px 60px" }}>
+      <section style={{ background: "#F3F2F0", padding: "88px 60px" }}>
         <FadeIn>
           <div style={{ textAlign: "center", marginBottom: "52px" }}>
-            <span style={{ display: "block", fontSize: "11px", fontWeight: 600, letterSpacing: "3px", textTransform: "uppercase", color: "#F97316", marginBottom: "10px", fontFamily: "var(--font-dm)" }}>What You Get</span>
-            <h2 style={{ fontFamily: "var(--font-playfair)", fontSize: "clamp(28px, 4vw, 40px)", color: "#111827", fontWeight: 700 }}>Built to Reward You</h2>
+            <span style={{ display: "block", fontSize: "11px", fontWeight: 600, letterSpacing: "4px", textTransform: "uppercase", color: "#9E9A94", marginBottom: "10px", fontFamily: "var(--font-body)" }}>What You Get</span>
+            <h2 style={{ fontFamily: "var(--font-heading)", fontSize: "clamp(28px, 4vw, 40px)", color: "#1A1A1A", fontWeight: 600 }}>Built to Reward You</h2>
           </div>
         </FadeIn>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: "22px", maxWidth: "1100px", margin: "0 auto" }}>
@@ -448,17 +448,17 @@ export default function CampusAmbassadorPage() {
                 borderRadius: "16px",
                 padding: "28px 22px",
                 boxShadow: "0 2px 16px rgba(0,0,0,0.06)",
-                border: "1px solid #E2E8F0",
+                border: "1px solid #E8E4DD",
                 position: "relative",
                 overflow: "hidden",
               }}
             >
-              <div style={{ position: "absolute", top: "14px", right: "14px", background: "rgba(249,115,22,0.1)", color: "#F97316", fontSize: "10px", fontWeight: 700, padding: "3px 10px", borderRadius: "20px", fontFamily: "var(--font-dm)" }}>
+              <div style={{ position: "absolute", top: "14px", right: "14px", background: "rgba(249,115,22,0.1)", color: "#F97316", fontSize: "10px", fontWeight: 700, padding: "3px 10px", borderRadius: "20px", fontFamily: "var(--font-body)" }}>
                 {b.tag}
               </div>
               <div style={{ fontSize: "32px", marginBottom: "14px" }}>{b.icon}</div>
-              <h3 style={{ fontFamily: "var(--font-playfair)", fontSize: "17px", color: "#111827", fontWeight: 700, marginBottom: "8px" }}>{b.title}</h3>
-              <p style={{ color: "#6B7280", fontSize: "13px", lineHeight: 1.65, fontFamily: "var(--font-dm)" }}>{b.desc}</p>
+              <h3 style={{ fontFamily: "var(--font-heading)", fontSize: "17px", color: "#1A1A1A", fontWeight: 600, marginBottom: "8px" }}>{b.title}</h3>
+              <p style={{ color: "#9E9A94", fontSize: "13px", lineHeight: 1.65, fontFamily: "var(--font-body)" }}>{b.desc}</p>
             </motion.div>
           ))}
         </div>
@@ -468,8 +468,8 @@ export default function CampusAmbassadorPage() {
       <section style={{ background: "#fff", padding: "88px 60px" }}>
         <FadeIn>
           <div style={{ textAlign: "center", marginBottom: "52px" }}>
-            <span style={{ display: "block", fontSize: "11px", fontWeight: 600, letterSpacing: "3px", textTransform: "uppercase", color: "#F97316", marginBottom: "10px", fontFamily: "var(--font-dm)" }}>The Process</span>
-            <h2 style={{ fontFamily: "var(--font-playfair)", fontSize: "clamp(28px, 4vw, 40px)", color: "#111827", fontWeight: 700 }}>How It Works</h2>
+            <span style={{ display: "block", fontSize: "11px", fontWeight: 600, letterSpacing: "4px", textTransform: "uppercase", color: "#9E9A94", marginBottom: "10px", fontFamily: "var(--font-body)" }}>The Process</span>
+            <h2 style={{ fontFamily: "var(--font-heading)", fontSize: "clamp(28px, 4vw, 40px)", color: "#1A1A1A", fontWeight: 600 }}>How It Works</h2>
           </div>
         </FadeIn>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: "40px", maxWidth: "860px", margin: "0 auto" }}>
@@ -483,24 +483,24 @@ export default function CampusAmbassadorPage() {
               style={{ textAlign: "center" }}
             >
               <div style={{ position: "relative", display: "inline-block", marginBottom: "16px" }}>
-                <div style={{ width: "70px", height: "70px", borderRadius: "18px", background: "#1B2866", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "28px", margin: "0 auto" }}>{s.icon}</div>
-                <div style={{ position: "absolute", top: "-10px", right: "-10px", width: "26px", height: "26px", background: "#F97316", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "10px", fontWeight: 700, color: "#fff", fontFamily: "var(--font-dm)" }}>{s.n}</div>
+                <div style={{ width: "70px", height: "70px", borderRadius: "18px", background: "#0A0A0A", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "28px", margin: "0 auto" }}>{s.icon}</div>
+                <div style={{ position: "absolute", top: "-10px", right: "-10px", width: "26px", height: "26px", background: "#F97316", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "10px", fontWeight: 700, color: "#fff", fontFamily: "var(--font-body)" }}>{s.n}</div>
               </div>
-              <h3 style={{ fontFamily: "var(--font-playfair)", fontSize: "19px", color: "#111827", fontWeight: 700, marginBottom: "8px" }}>{s.title}</h3>
-              <p style={{ color: "#6B7280", fontSize: "14px", lineHeight: 1.7, fontFamily: "var(--font-dm)" }}>{s.desc}</p>
+              <h3 style={{ fontFamily: "var(--font-heading)", fontSize: "19px", color: "#1A1A1A", fontWeight: 600, marginBottom: "8px" }}>{s.title}</h3>
+              <p style={{ color: "#9E9A94", fontSize: "14px", lineHeight: 1.7, fontFamily: "var(--font-body)" }}>{s.desc}</p>
             </motion.div>
           ))}
         </div>
       </section>
 
       {/* ── WHO CAN APPLY ── */}
-      <section style={{ background: "linear-gradient(135deg, #1B2866 0%, #0E1847 100%)", padding: "80px 60px" }}>
+      <section style={{ background: "#0A0A0A", padding: "80px 60px" }}>
         <div style={{ maxWidth: "780px", margin: "0 auto" }}>
           <FadeIn>
             <div style={{ textAlign: "center", marginBottom: "44px" }}>
-              <span style={{ display: "block", fontSize: "11px", fontWeight: 600, letterSpacing: "3px", textTransform: "uppercase", color: "#F97316", marginBottom: "10px", fontFamily: "var(--font-dm)" }}>The Right Fit</span>
-              <h2 style={{ fontFamily: "var(--font-playfair)", fontSize: "clamp(28px, 4vw, 40px)", color: "#fff", fontWeight: 700, marginBottom: "10px" }}>Who Can Apply?</h2>
-              <p style={{ color: "#94A3B8", fontSize: "15px", fontFamily: "var(--font-dm)" }}>No experience needed. Just passion, drive, and a love for travel.</p>
+              <span style={{ display: "block", fontSize: "11px", fontWeight: 600, letterSpacing: "4px", textTransform: "uppercase", color: "rgba(255,255,255,0.5)", marginBottom: "10px", fontFamily: "var(--font-body)" }}>The Right Fit</span>
+              <h2 style={{ fontFamily: "var(--font-heading)", fontSize: "clamp(28px, 4vw, 40px)", color: "#fff", fontWeight: 600, marginBottom: "10px" }}>Who Can Apply?</h2>
+              <p style={{ color: "rgba(255,255,255,0.45)", fontSize: "15px", fontFamily: "var(--font-body)" }}>No experience needed. Just passion, drive, and a love for travel.</p>
             </div>
           </FadeIn>
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "14px" }}>
@@ -522,7 +522,7 @@ export default function CampusAmbassadorPage() {
                 }}
               >
                 <span style={{ fontSize: "22px", flexShrink: 0 }}>{e.icon}</span>
-                <span style={{ color: "rgba(255,255,255,0.85)", fontSize: "14px", fontFamily: "var(--font-dm)", fontWeight: 500 }}>{e.text}</span>
+                <span style={{ color: "rgba(255,255,255,0.85)", fontSize: "14px", fontFamily: "var(--font-body)", fontWeight: 500 }}>{e.text}</span>
               </motion.div>
             ))}
           </div>
@@ -530,11 +530,11 @@ export default function CampusAmbassadorPage() {
       </section>
 
       {/* ── TESTIMONIALS ── */}
-      <section style={{ background: "#F8F9FA", padding: "88px 60px" }}>
+      <section style={{ background: "#F3F2F0", padding: "88px 60px" }}>
         <FadeIn>
           <div style={{ textAlign: "center", marginBottom: "48px" }}>
-            <span style={{ display: "block", fontSize: "11px", fontWeight: 600, letterSpacing: "3px", textTransform: "uppercase", color: "#F97316", marginBottom: "10px", fontFamily: "var(--font-dm)" }}>Real Ambassadors</span>
-            <h2 style={{ fontFamily: "var(--font-playfair)", fontSize: "clamp(28px, 4vw, 40px)", color: "#111827", fontWeight: 700 }}>Hear From Our Community</h2>
+            <span style={{ display: "block", fontSize: "11px", fontWeight: 600, letterSpacing: "4px", textTransform: "uppercase", color: "#9E9A94", marginBottom: "10px", fontFamily: "var(--font-body)" }}>Real Ambassadors</span>
+            <h2 style={{ fontFamily: "var(--font-heading)", fontSize: "clamp(28px, 4vw, 40px)", color: "#1A1A1A", fontWeight: 600 }}>Hear From Our Community</h2>
           </div>
         </FadeIn>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: "20px", maxWidth: "1100px", margin: "0 auto" }}>
@@ -546,18 +546,18 @@ export default function CampusAmbassadorPage() {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: i * 0.1 }}
               className="benefit-card"
-              style={{ background: "#fff", borderRadius: "16px", padding: "24px 20px", border: "1px solid #E2E8F0", boxShadow: "0 2px 12px rgba(0,0,0,0.05)" }}
+              style={{ background: "#fff", borderRadius: "16px", padding: "24px 20px", border: "1px solid #E8E4DD", boxShadow: "0 2px 12px rgba(0,0,0,0.05)" }}
             >
               <div style={{ color: "#F59E0B", fontSize: "13px", letterSpacing: "2px", marginBottom: "12px" }}>★★★★★</div>
-              <p style={{ color: "#374151", fontSize: "13.5px", lineHeight: 1.7, marginBottom: "18px", fontFamily: "var(--font-dm)", fontStyle: "italic" }}>&ldquo;{a.text}&rdquo;</p>
+              <p style={{ color: "#5A5652", fontSize: "13.5px", lineHeight: 1.7, marginBottom: "18px", fontFamily: "var(--font-body)", fontStyle: "italic" }}>&ldquo;{a.text}&rdquo;</p>
               <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
                 <img src={a.img} alt={a.name} style={{ width: "38px", height: "38px", borderRadius: "50%", objectFit: "cover", flexShrink: 0 }} />
                 <div>
-                  <div style={{ color: "#111827", fontWeight: 600, fontSize: "13px", fontFamily: "var(--font-dm)" }}>{a.name}</div>
-                  <div style={{ color: "#6B7280", fontSize: "11px", fontFamily: "var(--font-dm)" }}>{a.college}</div>
+                  <div style={{ color: "#1A1A1A", fontWeight: 600, fontSize: "13px", fontFamily: "var(--font-body)" }}>{a.name}</div>
+                  <div style={{ color: "#9E9A94", fontSize: "11px", fontFamily: "var(--font-body)" }}>{a.college}</div>
                 </div>
               </div>
-              <div style={{ marginTop: "12px", background: "rgba(249,115,22,0.08)", color: "#F97316", fontSize: "11px", fontWeight: 700, padding: "5px 12px", borderRadius: "20px", display: "inline-block", fontFamily: "var(--font-dm)" }}>
+              <div style={{ marginTop: "12px", background: "rgba(249,115,22,0.08)", color: "#F97316", fontSize: "11px", fontWeight: 700, padding: "5px 12px", borderRadius: "20px", display: "inline-block", fontFamily: "var(--font-body)" }}>
                 🏆 {a.stat}
               </div>
             </motion.div>
@@ -569,7 +569,7 @@ export default function CampusAmbassadorPage() {
       <section
         id="apply"
         style={{
-          background: "linear-gradient(135deg, #0E1847 0%, #1B2866 60%, #0E2A5A 100%)",
+          background: "linear-gradient(135deg, #0A0A0A 0%, #141414 60%, #0A0A0A 100%)",
           padding: "88px 60px",
           position: "relative",
           overflow: "hidden",
@@ -579,9 +579,9 @@ export default function CampusAmbassadorPage() {
         <div style={{ maxWidth: "640px", margin: "0 auto", position: "relative", zIndex: 2 }}>
           <FadeIn>
             <div style={{ textAlign: "center", marginBottom: "40px" }}>
-              <span style={{ display: "block", fontSize: "11px", fontWeight: 600, letterSpacing: "3px", textTransform: "uppercase", color: "#F97316", marginBottom: "10px", fontFamily: "var(--font-dm)" }}>Ready to Start?</span>
-              <h2 style={{ fontFamily: "var(--font-playfair)", fontSize: "clamp(28px, 4vw, 40px)", color: "#fff", fontWeight: 700, marginBottom: "10px" }}>Apply to Become an Ambassador</h2>
-              <p style={{ color: "#94A3B8", fontSize: "14px", fontFamily: "var(--font-dm)" }}>Takes 2 minutes. We respond within 48 hours.</p>
+              <span style={{ display: "block", fontSize: "11px", fontWeight: 600, letterSpacing: "4px", textTransform: "uppercase", color: "rgba(255,255,255,0.5)", marginBottom: "10px", fontFamily: "var(--font-body)" }}>Ready to Start?</span>
+              <h2 style={{ fontFamily: "var(--font-heading)", fontSize: "clamp(28px, 4vw, 40px)", color: "#fff", fontWeight: 600, marginBottom: "10px" }}>Apply to Become an Ambassador</h2>
+              <p style={{ color: "rgba(255,255,255,0.45)", fontSize: "14px", fontFamily: "var(--font-body)" }}>Takes 2 minutes. We respond within 48 hours.</p>
             </div>
           </FadeIn>
           <motion.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.1 }}>
@@ -593,10 +593,10 @@ export default function CampusAmbassadorPage() {
       {/* ── FOOTER CTA ── */}
       <section style={{ background: "#F97316", padding: "60px 60px", textAlign: "center" }}>
         <FadeIn>
-          <h2 style={{ fontFamily: "var(--font-playfair)", fontSize: "clamp(26px, 4vw, 36px)", color: "#fff", fontWeight: 700, marginBottom: "12px" }}>
+          <h2 style={{ fontFamily: "var(--font-heading)", fontSize: "clamp(26px, 4vw, 36px)", color: "#fff", fontWeight: 600, marginBottom: "12px" }}>
             Ready to Lead Your Campus?
           </h2>
-          <p style={{ color: "rgba(255,255,255,0.8)", fontSize: "15px", marginBottom: "26px", fontFamily: "var(--font-dm)" }}>
+          <p style={{ color: "rgba(255,255,255,0.8)", fontSize: "15px", marginBottom: "26px", fontFamily: "var(--font-body)" }}>
             Questions? We&apos;re on WhatsApp.
           </p>
           <a
@@ -604,7 +604,7 @@ export default function CampusAmbassadorPage() {
             target="_blank"
             rel="noopener noreferrer"
             style={{
-              background: "#1B2866",
+              background: "#0A0A0A",
               color: "#fff",
               padding: "13px 32px",
               borderRadius: "8px",
@@ -614,11 +614,11 @@ export default function CampusAmbassadorPage() {
               display: "inline-flex",
               alignItems: "center",
               gap: "8px",
-              fontFamily: "var(--font-dm)",
+              fontFamily: "var(--font-body)",
               transition: "background 0.2s",
             }}
-            onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.background = "#0E1847"; }}
-            onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.background = "#1B2866"; }}
+            onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.background = "#141414"; }}
+            onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.background = "#0A0A0A"; }}
           >
             💬 Chat on WhatsApp
           </a>

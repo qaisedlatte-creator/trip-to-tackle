@@ -182,7 +182,7 @@ function StatsBar() {
     <div
       ref={ref}
       style={{
-        background: "#1B2866",
+        background: "#0A0A0A",
         display: "grid",
         gridTemplateColumns: "repeat(4, 1fr)",
       }}
@@ -201,10 +201,10 @@ function StatsBar() {
         >
           <div
             style={{
-              fontFamily: "var(--font-playfair)",
+              fontFamily: "var(--font-heading)",
               fontSize: "30px",
               fontWeight: 700,
-              color: "#F97316",
+              color: "#FFFFFF",
             }}
           >
             {s.n}
@@ -212,10 +212,10 @@ function StatsBar() {
           <div
             style={{
               fontSize: "11.5px",
-              color: "#94A3B8",
+              color: "rgba(255,255,255,0.45)",
               fontWeight: 500,
               marginTop: "2px",
-              fontFamily: "var(--font-dm)",
+              fontFamily: "var(--font-body)",
             }}
           >
             {s.l}
@@ -243,7 +243,7 @@ function PackageCard({ pkg, index }: { pkg: typeof packages[0]; index: number })
         borderRadius: "18px",
         overflow: "hidden",
         boxShadow: "0 4px 24px rgba(0,0,0,0.07)",
-        border: "1px solid #E2E8F0",
+        border: "1px solid #E8E4DD",
         cursor: "pointer",
       }}
     >
@@ -271,7 +271,7 @@ function PackageCard({ pkg, index }: { pkg: typeof packages[0]; index: number })
             borderRadius: "20px",
             letterSpacing: "0.8px",
             textTransform: "uppercase",
-            fontFamily: "var(--font-dm)",
+            fontFamily: "var(--font-body)",
           }}
         >
           {pkg.badge}
@@ -282,7 +282,7 @@ function PackageCard({ pkg, index }: { pkg: typeof packages[0]; index: number })
             position: "absolute",
             bottom: "12px",
             left: "14px",
-            background: "rgba(27,40,102,0.85)",
+            background: "rgba(10,10,10,0.85)",
             color: "#fff",
             fontSize: "11px",
             padding: "4px 10px",
@@ -291,7 +291,7 @@ function PackageCard({ pkg, index }: { pkg: typeof packages[0]; index: number })
             alignItems: "center",
             gap: "5px",
             backdropFilter: "blur(4px)",
-            fontFamily: "var(--font-dm)",
+            fontFamily: "var(--font-body)",
           }}
         >
           <div
@@ -312,21 +312,21 @@ function PackageCard({ pkg, index }: { pkg: typeof packages[0]; index: number })
         <div
           style={{
             fontSize: "10.5px",
-            color: "#6B7280",
+            color: "#9E9A94",
             letterSpacing: "1px",
             textTransform: "uppercase",
             marginBottom: "4px",
-            fontFamily: "var(--font-dm)",
+            fontFamily: "var(--font-body)",
           }}
         >
           {pkg.region}
         </div>
         <div
           style={{
-            fontFamily: "var(--font-playfair)",
+            fontFamily: "var(--font-heading)",
             fontSize: "21px",
-            fontWeight: 700,
-            color: "#111827",
+            fontWeight: 600,
+            color: "#1A1A1A",
             marginBottom: "10px",
           }}
         >
@@ -340,11 +340,11 @@ function PackageCard({ pkg, index }: { pkg: typeof packages[0]; index: number })
               key={m}
               style={{
                 fontSize: "12px",
-                color: "#6B7280",
+                color: "#9E9A94",
                 display: "flex",
                 alignItems: "center",
                 gap: "4px",
-                fontFamily: "var(--font-dm)",
+                fontFamily: "var(--font-body)",
               }}
             >
               {m}
@@ -356,13 +356,13 @@ function PackageCard({ pkg, index }: { pkg: typeof packages[0]; index: number })
             <span
               key={d}
               style={{
-                background: "#F1F5F9",
-                color: "#1B2866",
+                background: "#F3F2F0",
+                color: "#5A5652",
                 fontSize: "11.5px",
                 fontWeight: 500,
                 padding: "4px 10px",
                 borderRadius: "20px",
-                fontFamily: "var(--font-dm)",
+                fontFamily: "var(--font-body)",
               }}
             >
               {d}
@@ -374,13 +374,13 @@ function PackageCard({ pkg, index }: { pkg: typeof packages[0]; index: number })
             display: "flex",
             justifyContent: "space-between",
             alignItems: "center",
-            borderTop: "1px solid #E2E8F0",
+            borderTop: "1px solid #E8E4DD",
             paddingTop: "16px",
           }}
         >
           <div>
             <div
-              style={{ fontSize: "11px", color: "#6B7280", fontFamily: "var(--font-dm)" }}
+              style={{ fontSize: "11px", color: "#9E9A94", fontFamily: "var(--font-body)" }}
             >
               per person
             </div>
@@ -388,8 +388,8 @@ function PackageCard({ pkg, index }: { pkg: typeof packages[0]; index: number })
               style={{
                 fontSize: "22px",
                 fontWeight: 700,
-                color: "#111827",
-                fontFamily: "var(--font-dm)",
+                color: "#1A1A1A",
+                fontFamily: "var(--font-body)",
               }}
             >
               {pkg.price}
@@ -406,10 +406,10 @@ function PackageCard({ pkg, index }: { pkg: typeof packages[0]; index: number })
               fontWeight: 600,
               textDecoration: "none",
               transition: "background 0.2s",
-              fontFamily: "var(--font-dm)",
+              fontFamily: "var(--font-body)",
             }}
             onMouseEnter={(e) => {
-              (e.currentTarget as HTMLElement).style.background = "#EA6C0B";
+              (e.currentTarget as HTMLElement).style.background = "#E86C0A";
             }}
             onMouseLeave={(e) => {
               (e.currentTarget as HTMLElement).style.background = "#F97316";
@@ -435,7 +435,7 @@ function PackagesSection() {
       : packages.filter((p) => p.category === activeFilter);
 
   return (
-    <section id="packages" style={{ background: "#F8F9FA", padding: "88px 60px" }}>
+    <section id="packages" style={{ background: "#F3F2F0", padding: "88px 60px" }}>
       <div ref={headerRef} style={{ textAlign: "center", marginBottom: "52px" }}>
         <motion.span
           initial={{ opacity: 0, y: 16 }}
@@ -445,11 +445,11 @@ function PackagesSection() {
             display: "block",
             fontSize: "10.5px",
             fontWeight: 600,
-            letterSpacing: "3px",
+            letterSpacing: "4px",
             textTransform: "uppercase",
-            color: "#F97316",
+            color: "#9E9A94",
             marginBottom: "10px",
-            fontFamily: "var(--font-dm)",
+            fontFamily: "var(--font-body)",
           }}
         >
           Live Group Departures
@@ -459,10 +459,10 @@ function PackagesSection() {
           animate={headerInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.1 }}
           style={{
-            fontFamily: "var(--font-playfair)",
+            fontFamily: "var(--font-heading)",
             fontSize: "46px",
-            fontWeight: 700,
-            color: "#111827",
+            fontWeight: 600,
+            color: "#1A1A1A",
           }}
         >
           Upcoming Group Packages
@@ -472,12 +472,12 @@ function PackagesSection() {
           animate={headerInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.18 }}
           style={{
-            color: "#6B7280",
+            color: "#9E9A94",
             fontSize: "15.5px",
             marginTop: "10px",
             maxWidth: "480px",
             marginInline: "auto",
-            fontFamily: "var(--font-dm)",
+            fontFamily: "var(--font-body)",
           }}
         >
           Real departure dates, fixed group sizes — join fellow travellers and go.
@@ -505,10 +505,10 @@ function PackagesSection() {
               fontWeight: 500,
               cursor: "pointer",
               border: "1.5px solid",
-              borderColor: activeFilter === f ? "#1B2866" : "#E2E8F0",
-              background: activeFilter === f ? "#1B2866" : "#fff",
-              color: activeFilter === f ? "#fff" : "#374151",
-              fontFamily: "var(--font-dm)",
+              borderColor: activeFilter === f ? "#0A0A0A" : "#E8E4DD",
+              background: activeFilter === f ? "#0A0A0A" : "#fff",
+              color: activeFilter === f ? "#fff" : "#5A5652",
+              fontFamily: "var(--font-body)",
               transition: "all 0.2s",
             }}
           >
@@ -574,22 +574,22 @@ function HowItWorksSection() {
             style={{
               fontSize: "10.5px",
               fontWeight: 600,
-              letterSpacing: "3px",
+              letterSpacing: "4px",
               textTransform: "uppercase",
-              color: "#F97316",
+              color: "#9E9A94",
               display: "block",
               marginBottom: "10px",
-              fontFamily: "var(--font-dm)",
+              fontFamily: "var(--font-body)",
             }}
           >
             HOW IT WORKS
           </span>
           <h2
             style={{
-              fontFamily: "var(--font-playfair)",
+              fontFamily: "var(--font-heading)",
               fontSize: "38px",
-              fontWeight: 700,
-              color: "#111827",
+              fontWeight: 600,
+              color: "#1A1A1A",
             }}
           >
             Booking Made Easy as 1–2–3
@@ -601,14 +601,14 @@ function HowItWorksSection() {
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7, delay: 0.15 }}
           style={{
-            background: "#1B2866",
+            background: "#0A0A0A",
             borderRadius: "20px",
             padding: "44px 40px",
             display: "grid",
             gridTemplateColumns: "repeat(3, 1fr)",
             gap: "0",
             border: "2px solid rgba(249,115,22,0.18)",
-            boxShadow: "0 20px 60px rgba(27,40,102,0.15)",
+            boxShadow: "0 20px 60px rgba(0,0,0,0.25)",
             position: "relative",
             overflow: "hidden",
           }}
@@ -674,7 +674,7 @@ function HowItWorksSection() {
                     fontSize: "11px",
                     fontWeight: 700,
                     color: "#fff",
-                    fontFamily: "var(--font-dm)",
+                    fontFamily: "var(--font-body)",
                   }}
                 >
                   {s.n}
@@ -686,17 +686,17 @@ function HowItWorksSection() {
                   fontSize: "16px",
                   fontWeight: 600,
                   marginBottom: "10px",
-                  fontFamily: "var(--font-dm)",
+                  fontFamily: "var(--font-body)",
                 }}
               >
                 {s.title}
               </div>
               <p
                 style={{
-                  color: "#94A3B8",
+                  color: "rgba(255,255,255,0.5)",
                   fontSize: "13.5px",
                   lineHeight: 1.75,
-                  fontFamily: "var(--font-dm)",
+                  fontFamily: "var(--font-body)",
                 }}
               >
                 {s.desc}
@@ -740,7 +740,7 @@ function TestimonialCard({ t }: { t: (typeof testimonials)[0] }) {
           fontSize: "14px",
           lineHeight: 1.75,
           marginBottom: "18px",
-          fontFamily: "var(--font-dm)",
+          fontFamily: "var(--font-body)",
         }}
       >
         &ldquo;{t.text}&rdquo;
@@ -770,17 +770,17 @@ function TestimonialCard({ t }: { t: (typeof testimonials)[0] }) {
               color: "#fff",
               fontWeight: 600,
               fontSize: "14px",
-              fontFamily: "var(--font-dm)",
+              fontFamily: "var(--font-body)",
             }}
           >
             {t.name}
           </div>
           <div
             style={{
-              color: "#94A3B8",
+              color: "rgba(255,255,255,0.45)",
               fontSize: "12px",
               marginTop: "2px",
-              fontFamily: "var(--font-dm)",
+              fontFamily: "var(--font-body)",
             }}
           >
             {t.role}
@@ -839,7 +839,7 @@ function TestimonialsSection() {
 
   return (
     <section
-      style={{ background: "#1B2866", padding: "88px 60px", overflow: "hidden" }}
+      style={{ background: "#0A0A0A", padding: "88px 60px", overflow: "hidden" }}
     >
       <motion.div
         ref={ref}
@@ -852,21 +852,21 @@ function TestimonialsSection() {
           style={{
             fontSize: "11px",
             fontWeight: 600,
-            letterSpacing: "3px",
+            letterSpacing: "4px",
             textTransform: "uppercase",
-            color: "#F97316",
+            color: "rgba(255,255,255,0.5)",
             display: "block",
             marginBottom: "12px",
-            fontFamily: "var(--font-dm)",
+            fontFamily: "var(--font-body)",
           }}
         >
           What Travellers Say
         </span>
         <h2
           style={{
-            fontFamily: "var(--font-playfair)",
+            fontFamily: "var(--font-heading)",
             fontSize: "clamp(32px, 4vw, 48px)",
-            fontWeight: 700,
+            fontWeight: 600,
             color: "#fff",
           }}
         >
@@ -874,10 +874,10 @@ function TestimonialsSection() {
         </h2>
         <p
           style={{
-            color: "#94A3B8",
+            color: "rgba(255,255,255,0.45)",
             marginTop: "12px",
             fontSize: "15px",
-            fontFamily: "var(--font-dm)",
+            fontFamily: "var(--font-body)",
           }}
         >
           Hundreds of happy travellers — here&apos;s what they say.
@@ -917,10 +917,10 @@ function CTABand() {
         animate={inView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.6 }}
         style={{
-          fontFamily: "var(--font-playfair)",
+          fontFamily: "var(--font-heading)",
           fontSize: "42px",
           color: "#fff",
-          fontWeight: 700,
+          fontWeight: 600,
           marginBottom: "12px",
         }}
       >
@@ -934,7 +934,7 @@ function CTABand() {
           color: "rgba(255,255,255,0.85)",
           fontSize: "17px",
           marginBottom: "34px",
-          fontFamily: "var(--font-dm)",
+          fontFamily: "var(--font-body)",
         }}
       >
         Chat with us on WhatsApp and get a custom quote in under 2 hours.
@@ -950,7 +950,7 @@ function CTABand() {
           target="_blank"
           rel="noopener noreferrer"
           style={{
-            background: "#1B2866",
+            background: "#0A0A0A",
             color: "#fff",
             padding: "14px 34px",
             borderRadius: "10px",
@@ -961,13 +961,13 @@ function CTABand() {
             alignItems: "center",
             gap: "8px",
             transition: "background 0.2s",
-            fontFamily: "var(--font-dm)",
+            fontFamily: "var(--font-body)",
           }}
           onMouseEnter={(e) => {
-            (e.currentTarget as HTMLElement).style.background = "#0E1847";
+            (e.currentTarget as HTMLElement).style.background = "#141414";
           }}
           onMouseLeave={(e) => {
-            (e.currentTarget as HTMLElement).style.background = "#1B2866";
+            (e.currentTarget as HTMLElement).style.background = "#0A0A0A";
           }}
         >
           💬 WhatsApp Us
@@ -983,7 +983,7 @@ function CTABand() {
             fontSize: "15px",
             textDecoration: "none",
             transition: "background 0.2s",
-            fontFamily: "var(--font-dm)",
+            fontFamily: "var(--font-body)",
           }}
           onMouseEnter={(e) => {
             (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.15)";
@@ -1009,6 +1009,7 @@ export default function HomePage() {
       <PackagesSection />
       <HowItWorksSection />
       <TestimonialsSection />
+      <CTABand />
       <Footer />
     </>
   );

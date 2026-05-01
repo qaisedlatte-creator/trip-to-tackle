@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
@@ -16,7 +16,22 @@ const navLinks = [
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 80);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  const navBg = scrolled
+    ? "rgba(10,10,10,0.94)"
+    : "transparent";
+  const navBorder = scrolled
+    ? "1px solid rgba(255,255,255,0.06)"
+    : "none";
 
   return (
     <nav
@@ -31,7 +46,10 @@ export default function Navbar() {
         justifyContent: "space-between",
         padding: "0 60px",
         height: "68px",
-        background: "transparent",
+        background: navBg,
+        backdropFilter: scrolled ? "blur(20px)" : "none",
+        borderBottom: navBorder,
+        transition: "background 0.4s, backdrop-filter 0.4s, border-bottom 0.4s",
       }}
     >
       {/* Logo */}
@@ -49,7 +67,10 @@ export default function Navbar() {
           alt="Trip 2 Tackle"
           width={140}
           height={40}
-          style={{ objectFit: "contain", filter: "drop-shadow(0 1px 8px rgba(0,0,0,0.4))" }}
+          style={{
+            objectFit: "contain",
+            filter: "brightness(0) invert(1)",
+          }}
           priority
         />
       </Link>
@@ -77,23 +98,21 @@ export default function Navbar() {
               <Link
                 href={link.href}
                 style={{
-                  color: isActive ? "#fff" : "rgba(255,255,255,0.82)",
+                  color: isActive ? "#fff" : "rgba(255,255,255,0.8)",
                   textDecoration: "none",
                   fontSize: "14px",
                   fontWeight: isActive ? 600 : 500,
                   transition: "color 0.2s",
                   borderBottom: isActive ? "2px solid #F97316" : "none",
                   paddingBottom: isActive ? "2px" : "0",
-                  fontFamily: "var(--font-dm)",
-                  textShadow: "0 1px 8px rgba(0,0,0,0.4)",
+                  fontFamily: "var(--font-body)",
                 }}
                 onMouseEnter={(e) => {
                   (e.target as HTMLElement).style.color = "#fff";
                 }}
                 onMouseLeave={(e) => {
                   if (!isActive)
-                    (e.target as HTMLElement).style.color =
-                      "rgba(255,255,255,0.82)";
+                    (e.target as HTMLElement).style.color = "rgba(255,255,255,0.8)";
                 }}
               >
                 {link.label}
@@ -113,7 +132,7 @@ export default function Navbar() {
             display: "flex",
             alignItems: "center",
             gap: "7px",
-            border: "1.5px solid rgba(255,255,255,0.4)",
+            border: "1.5px solid rgba(255,255,255,0.3)",
             color: "#fff",
             padding: "8px 17px",
             borderRadius: "8px",
@@ -123,7 +142,7 @@ export default function Navbar() {
             backdropFilter: "blur(8px)",
             cursor: "pointer",
             textDecoration: "none",
-            fontFamily: "var(--font-dm)",
+            fontFamily: "var(--font-body)",
             transition: "all 0.2s",
           }}
           onMouseEnter={(e) => {
@@ -133,7 +152,7 @@ export default function Navbar() {
           }}
           onMouseLeave={(e) => {
             const el = e.currentTarget as HTMLElement;
-            el.style.borderColor = "rgba(255,255,255,0.4)";
+            el.style.borderColor = "rgba(255,255,255,0.3)";
             el.style.color = "#fff";
           }}
           className="hidden sm:flex"
@@ -156,13 +175,13 @@ export default function Navbar() {
             fontWeight: 700,
             border: "none",
             cursor: "pointer",
-            fontFamily: "var(--font-dm)",
+            fontFamily: "var(--font-body)",
             textDecoration: "none",
             transition: "background 0.2s",
             boxShadow: "0 2px 12px rgba(249,115,22,0.35)",
           }}
           onMouseEnter={(e) => {
-            (e.currentTarget as HTMLElement).style.background = "#EA6C0B";
+            (e.currentTarget as HTMLElement).style.background = "#E86C0A";
           }}
           onMouseLeave={(e) => {
             (e.currentTarget as HTMLElement).style.background = "#F97316";
@@ -216,7 +235,7 @@ export default function Navbar() {
             top: "68px",
             left: 0,
             right: 0,
-            background: "rgba(27,40,102,0.97)",
+            background: "rgba(10,10,10,0.97)",
             backdropFilter: "blur(20px)",
             borderBottom: "1px solid rgba(255,255,255,0.07)",
             padding: "20px 24px",
@@ -236,7 +255,7 @@ export default function Navbar() {
                 textDecoration: "none",
                 fontSize: "15px",
                 fontWeight: 500,
-                fontFamily: "var(--font-dm)",
+                fontFamily: "var(--font-body)",
               }}
             >
               {link.label}

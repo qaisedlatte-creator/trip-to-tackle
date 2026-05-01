@@ -1,11 +1,12 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 
 export default function Footer() {
   return (
-    <footer style={{ background: "#1B2866", padding: "64px 60px 40px" }}>
+    <footer style={{ background: "#0A0A0A", padding: "64px 60px 40px" }}>
       <div
         style={{
           display: "grid",
@@ -23,16 +24,16 @@ export default function Footer() {
               alt="Trip 2 Tackle"
               width={140}
               height={40}
-              style={{ objectFit: "contain" }}
+              style={{ objectFit: "contain", filter: "brightness(0) invert(1)" }}
             />
           </div>
           <p
             style={{
-              color: "#94A3B8",
+              color: "#9E9A94",
               fontSize: "14px",
               lineHeight: 1.75,
               maxWidth: "280px",
-              fontFamily: "var(--font-dm)",
+              fontFamily: "var(--font-body)",
             }}
           >
             Discover your next adventure with us. Affordable &amp; personalized travel
@@ -40,35 +41,7 @@ export default function Footer() {
           </p>
           <div style={{ display: "flex", gap: "10px", marginTop: "22px" }}>
             {["FB", "IG", "YT", "TW"].map((s) => (
-              <button
-                key={s}
-                style={{
-                  width: "36px",
-                  height: "36px",
-                  borderRadius: "8px",
-                  background: "rgba(255,255,255,0.07)",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  color: "#94A3B8",
-                  fontSize: "11px",
-                  fontWeight: 700,
-                  cursor: "pointer",
-                  border: "none",
-                  fontFamily: "var(--font-dm)",
-                  transition: "background 0.2s, color 0.2s",
-                }}
-                onMouseEnter={(e) => {
-                  (e.currentTarget as HTMLElement).style.background = "rgba(8,145,178,0.18)";
-                  (e.currentTarget as HTMLElement).style.color = "#0891B2";
-                }}
-                onMouseLeave={(e) => {
-                  (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.07)";
-                  (e.currentTarget as HTMLElement).style.color = "#94A3B8";
-                }}
-              >
-                {s}
-              </button>
+              <SocialButton key={s} label={s} />
             ))}
           </div>
         </div>
@@ -111,7 +84,7 @@ export default function Footer() {
 
       <div
         style={{
-          borderTop: "1px solid rgba(255,255,255,0.07)",
+          borderTop: "1px solid rgba(255,255,255,0.06)",
           paddingTop: "28px",
           display: "flex",
           justifyContent: "space-between",
@@ -120,14 +93,62 @@ export default function Footer() {
           gap: "12px",
         }}
       >
-        <p style={{ color: "#94A3B8", fontSize: "12.5px", fontFamily: "var(--font-dm)" }}>
-          © 2026 Trip to Tackle. All rights reserved.
+        <p style={{ color: "#5A5652", fontSize: "12.5px", fontFamily: "var(--font-body)" }}>
+          © 2026 Trip 2 Tackle. All rights reserved.
         </p>
-        <p style={{ color: "#4A5568", fontSize: "12px", fontFamily: "var(--font-dm)" }}>
-          Crafted with ♥ for wanderers everywhere
-        </p>
+        <WebbесCredit />
       </div>
     </footer>
+  );
+}
+
+function SocialButton({ label }: { label: string }) {
+  const [hovered, setHovered] = useState(false);
+  return (
+    <button
+      style={{
+        width: "36px",
+        height: "36px",
+        borderRadius: "8px",
+        background: hovered ? "rgba(249,115,22,0.15)" : "rgba(255,255,255,0.07)",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        color: hovered ? "#F97316" : "#9E9A94",
+        fontSize: "11px",
+        fontWeight: 700,
+        cursor: "pointer",
+        border: "none",
+        fontFamily: "var(--font-body)",
+        transition: "background 0.2s, color 0.2s",
+      }}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+    >
+      {label}
+    </button>
+  );
+}
+
+function WebbесCredit() {
+  const [hovered, setHovered] = useState(false);
+  return (
+    <a
+      href="https://webbes.in"
+      target="_blank"
+      rel="noopener noreferrer"
+      style={{
+        color: hovered ? "#9E9A94" : "#5A5652",
+        fontSize: "12px",
+        textDecoration: "none",
+        fontFamily: "var(--font-body)",
+        transition: "color 0.2s",
+      }}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+    >
+      Developed by <span style={{ color: "#F97316", fontWeight: 600 }}>Webbes</span>
+    </a>
   );
 }
 
@@ -142,11 +163,11 @@ function FooterCol({
     <div>
       <h4
         style={{
-          color: "#fff",
+          color: "#FFFFFF",
           fontSize: "13.5px",
           fontWeight: 600,
           marginBottom: "16px",
-          fontFamily: "var(--font-dm)",
+          fontFamily: "var(--font-body)",
         }}
       >
         {title}
@@ -157,17 +178,17 @@ function FooterCol({
             <Link
               href={link.href}
               style={{
-                color: "#94A3B8",
+                color: "#9E9A94",
                 fontSize: "13px",
                 textDecoration: "none",
-                fontFamily: "var(--font-dm)",
+                fontFamily: "var(--font-body)",
                 transition: "color 0.2s",
               }}
               onMouseEnter={(e) => {
-                (e.currentTarget as HTMLElement).style.color = "#fff";
+                (e.currentTarget as HTMLElement).style.color = "#FFFFFF";
               }}
               onMouseLeave={(e) => {
-                (e.currentTarget as HTMLElement).style.color = "#94A3B8";
+                (e.currentTarget as HTMLElement).style.color = "#9E9A94";
               }}
             >
               {link.label}
