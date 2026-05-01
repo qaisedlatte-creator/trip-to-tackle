@@ -2,8 +2,8 @@
 
 import { useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
+import Navbar from "@/components/blocks/navbar";
+import Footer from "@/components/blocks/footer";
 
 const benefits = [
   {
@@ -629,3 +629,4 @@ export default function CampusAmbassadorPage() {
     </>
   );
 }
+

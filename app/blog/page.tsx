@@ -2,8 +2,8 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
+import Navbar from "@/components/blocks/navbar";
+import Footer from "@/components/blocks/footer";
 
 const comingSoonTopics = [
   {
@@ -353,3 +353,4 @@ export default function BlogPage() {
     </>
   );
 }
+

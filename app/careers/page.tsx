@@ -4,8 +4,8 @@ import { useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion, useInView } from "framer-motion";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
+import Navbar from "@/components/blocks/navbar";
+import Footer from "@/components/blocks/footer";
 
 const whyUs = [
   {
@@ -797,3 +797,4 @@ export default function CareersPage() {
     </>
   );
 }
+
