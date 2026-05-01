@@ -49,7 +49,7 @@ export default function BookingSteps() {
           className="text-center mb-14"
         >
           <p className="section-label mb-2">How It Works</p>
-          <h2 className="font-playfair text-3xl md:text-4xl font-bold text-[#003060]">
+          <h2 className="font-playfair text-3xl md:text-4xl font-bold text-[#0A1F44]">
             Booking Made Easy as 1-2-3
           </h2>
         </motion.div>
@@ -58,7 +58,7 @@ export default function BookingSteps() {
         <div style={{ perspective: "1000px" }}>
           <motion.div
             style={{ rotateX, scale, opacity }}
-            className="bg-[#003060] rounded-3xl shadow-2xl overflow-hidden"
+            className="bg-[#0A1F44] rounded-3xl shadow-2xl overflow-hidden"
           >
             {/* Inner card content */}
             <div className="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-white/10">
@@ -72,8 +72,8 @@ export default function BookingSteps() {
                     <div className="w-20 h-20 rounded-2xl bg-white/10 flex items-center justify-center group-hover:bg-white/20 transition-colors">
                       <step.icon size={32} className="text-white" />
                     </div>
-                    <div className="absolute -top-2 -right-2 w-7 h-7 rounded-full bg-[#FFB03A] flex items-center justify-center">
-                      <span className="font-space text-xs font-bold text-[#003060]">{i + 1}</span>
+                    <div className="absolute -top-2 -right-2 w-7 h-7 rounded-full bg-[#FF6A00] flex items-center justify-center">
+                      <span className="font-space text-xs font-bold text-[#0A1F44]">{i + 1}</span>
                     </div>
                   </div>
                   <h3 className="font-playfair text-xl font-semibold text-white">
@@ -87,7 +87,7 @@ export default function BookingSteps() {
             </div>
 
             {/* Bottom accent bar */}
-            <div className="h-1 bg-gradient-to-r from-[#FFB03A] via-white/20 to-[#FFB03A]" />
+            <div className="h-1 bg-gradient-to-r from-[#FF6A00] via-white/20 to-[#FF6A00]" />
           </motion.div>
         </div>
       </div>

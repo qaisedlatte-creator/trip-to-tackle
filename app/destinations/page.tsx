@@ -193,8 +193,8 @@ export default function DestinationsPage() {
                   fontWeight: 500,
                   cursor: "pointer",
                   border: "1.5px solid",
-                  borderColor: activeFilter === f ? "#F97316" : "rgba(255,255,255,0.2)",
-                  background: activeFilter === f ? "#F97316" : "transparent",
+                  borderColor: activeFilter === f ? "#FF6A00" : "rgba(255,255,255,0.2)",
+                  background: activeFilter === f ? "#FF6A00" : "transparent",
                   color: activeFilter === f ? "#fff" : "rgba(255,255,255,0.7)",
                   fontFamily: "var(--font-body)",
                   transition: "all 0.2s",
@@ -246,7 +246,7 @@ export default function DestinationsPage() {
                     position: "absolute",
                     top: "14px",
                     right: "14px",
-                    background: "#F97316",
+                    background: "#FF6A00",
                     color: "#fff",
                     fontSize: "10px",
                     fontWeight: 700,
@@ -323,7 +323,7 @@ export default function DestinationsPage() {
                   <Link
                     href="#"
                     style={{
-                      background: "#F97316",
+                      background: "#FF6A00",
                       color: "#fff",
                       padding: "9px 18px",
                       borderRadius: "8px",
@@ -334,10 +334,10 @@ export default function DestinationsPage() {
                       transition: "background 0.2s",
                     }}
                     onMouseEnter={(e) => {
-                      (e.currentTarget as HTMLElement).style.background = "#E86C0A";
+                      (e.currentTarget as HTMLElement).style.background = "#d95f00";
                     }}
                     onMouseLeave={(e) => {
-                      (e.currentTarget as HTMLElement).style.background = "#F97316";
+                      (e.currentTarget as HTMLElement).style.background = "#FF6A00";
                     }}
                   >
                     View Trip
@@ -386,7 +386,7 @@ export default function DestinationsPage() {
           target="_blank"
           rel="noopener noreferrer"
           style={{
-            background: "#F97316",
+            background: "#FF6A00",
             color: "#fff",
             padding: "13px 32px",
             borderRadius: "10px",
@@ -397,10 +397,10 @@ export default function DestinationsPage() {
             transition: "background 0.2s",
           }}
           onMouseEnter={(e) => {
-            (e.currentTarget as HTMLElement).style.background = "#E86C0A";
+            (e.currentTarget as HTMLElement).style.background = "#d95f00";
           }}
           onMouseLeave={(e) => {
-            (e.currentTarget as HTMLElement).style.background = "#F97316";
+            (e.currentTarget as HTMLElement).style.background = "#FF6A00";
           }}
         >
           💬 Request a Custom Trip

@@ -112,7 +112,7 @@ function ApplyForm() {
   };
 
   const focus = (e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    e.target.style.borderColor = "#F97316";
+    e.target.style.borderColor = "#FF6A00";
   };
   const blur = (e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     e.target.style.borderColor = "rgba(255,255,255,0.2)";
@@ -191,7 +191,7 @@ function ApplyForm() {
         style={{
           width: "100%",
           padding: "15px",
-          background: "#F97316",
+          background: "#FF6A00",
           color: "#fff",
           border: "none",
           borderRadius: "8px",
@@ -199,7 +199,7 @@ function ApplyForm() {
           fontWeight: 700,
           cursor: "pointer",
           fontFamily: "var(--font-body)",
-          boxShadow: "0 4px 20px rgba(249,115,22,0.4)",
+          boxShadow: "0 4px 20px rgba(255,106,0,0.4)",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
@@ -245,12 +245,12 @@ export default function CampusAmbassadorPage() {
                 width: 4 + Math.random() * 4,
                 height: 4 + Math.random() * 4,
                 borderRadius: "50%",
-                background: "#F97316",
+                background: "#FF6A00",
               }}
             />
           ))}
-          <div style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%,-50%)", width: "500px", height: "500px", borderRadius: "50%", background: "radial-gradient(circle, rgba(249,115,22,0.08) 0%, transparent 70%)" }} />
-          <div style={{ position: "absolute", inset: 0, backgroundImage: "linear-gradient(rgba(249,115,22,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(249,115,22,0.03) 1px, transparent 1px)", backgroundSize: "60px 60px" }} />
+          <div style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%,-50%)", width: "500px", height: "500px", borderRadius: "50%", background: "radial-gradient(circle, rgba(255,106,0,0.08) 0%, transparent 70%)" }} />
+          <div style={{ position: "absolute", inset: 0, backgroundImage: "linear-gradient(rgba(255,106,0,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,106,0,0.03) 1px, transparent 1px)", backgroundSize: "60px 60px" }} />
         </div>
 
         <div style={{ position: "relative", zIndex: 2, maxWidth: "680px" }}>
@@ -260,9 +260,9 @@ export default function CampusAmbassadorPage() {
             transition={{ duration: 0.6 }}
             style={{
               display: "inline-block",
-              background: "rgba(249,115,22,0.15)",
-              border: "1px solid rgba(249,115,22,0.3)",
-              color: "#F97316",
+              background: "rgba(255,106,0,0.15)",
+              border: "1px solid rgba(255,106,0,0.3)",
+              color: "#FF6A00",
               fontSize: "11px",
               fontWeight: 700,
               letterSpacing: "3px",
@@ -320,7 +320,7 @@ export default function CampusAmbassadorPage() {
             <a
               href="#apply"
               style={{
-                background: "#F97316",
+                background: "#FF6A00",
                 color: "#fff",
                 padding: "14px 32px",
                 borderRadius: "8px",
@@ -328,15 +328,15 @@ export default function CampusAmbassadorPage() {
                 fontWeight: 700,
                 textDecoration: "none",
                 fontFamily: "var(--font-body)",
-                boxShadow: "0 4px 24px rgba(249,115,22,0.45)",
+                boxShadow: "0 4px 24px rgba(255,106,0,0.45)",
                 transition: "background 0.2s, transform 0.2s",
               }}
               onMouseEnter={(e) => {
-                (e.currentTarget as HTMLElement).style.background = "#E86C0A";
+                (e.currentTarget as HTMLElement).style.background = "#d95f00";
                 (e.currentTarget as HTMLElement).style.transform = "translateY(-2px)";
               }}
               onMouseLeave={(e) => {
-                (e.currentTarget as HTMLElement).style.background = "#F97316";
+                (e.currentTarget as HTMLElement).style.background = "#FF6A00";
                 (e.currentTarget as HTMLElement).style.transform = "translateY(0)";
               }}
             >
@@ -414,7 +414,7 @@ export default function CampusAmbassadorPage() {
                   borderRadius: "14px",
                   padding: "24px 18px",
                   border: "1px solid #E8E4DD",
-                  borderBottom: "3px solid #F97316",
+                  borderBottom: "3px solid #FF6A00",
                 }}
               >
                 <div style={{ fontSize: "28px", marginBottom: "10px" }}>{p.icon}</div>
@@ -453,7 +453,7 @@ export default function CampusAmbassadorPage() {
                 overflow: "hidden",
               }}
             >
-              <div style={{ position: "absolute", top: "14px", right: "14px", background: "rgba(249,115,22,0.1)", color: "#F97316", fontSize: "10px", fontWeight: 700, padding: "3px 10px", borderRadius: "20px", fontFamily: "var(--font-body)" }}>
+              <div style={{ position: "absolute", top: "14px", right: "14px", background: "rgba(255,106,0,0.1)", color: "#FF6A00", fontSize: "10px", fontWeight: 700, padding: "3px 10px", borderRadius: "20px", fontFamily: "var(--font-body)" }}>
                 {b.tag}
               </div>
               <div style={{ fontSize: "32px", marginBottom: "14px" }}>{b.icon}</div>
@@ -484,7 +484,7 @@ export default function CampusAmbassadorPage() {
             >
               <div style={{ position: "relative", display: "inline-block", marginBottom: "16px" }}>
                 <div style={{ width: "70px", height: "70px", borderRadius: "18px", background: "#0A0A0A", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "28px", margin: "0 auto" }}>{s.icon}</div>
-                <div style={{ position: "absolute", top: "-10px", right: "-10px", width: "26px", height: "26px", background: "#F97316", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "10px", fontWeight: 700, color: "#fff", fontFamily: "var(--font-body)" }}>{s.n}</div>
+                <div style={{ position: "absolute", top: "-10px", right: "-10px", width: "26px", height: "26px", background: "#FF6A00", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "10px", fontWeight: 700, color: "#fff", fontFamily: "var(--font-body)" }}>{s.n}</div>
               </div>
               <h3 style={{ fontFamily: "var(--font-heading)", fontSize: "19px", color: "#1A1A1A", fontWeight: 600, marginBottom: "8px" }}>{s.title}</h3>
               <p style={{ color: "#9E9A94", fontSize: "14px", lineHeight: 1.7, fontFamily: "var(--font-body)" }}>{s.desc}</p>
@@ -557,7 +557,7 @@ export default function CampusAmbassadorPage() {
                   <div style={{ color: "#9E9A94", fontSize: "11px", fontFamily: "var(--font-body)" }}>{a.college}</div>
                 </div>
               </div>
-              <div style={{ marginTop: "12px", background: "rgba(249,115,22,0.08)", color: "#F97316", fontSize: "11px", fontWeight: 700, padding: "5px 12px", borderRadius: "20px", display: "inline-block", fontFamily: "var(--font-body)" }}>
+              <div style={{ marginTop: "12px", background: "rgba(255,106,0,0.08)", color: "#FF6A00", fontSize: "11px", fontWeight: 700, padding: "5px 12px", borderRadius: "20px", display: "inline-block", fontFamily: "var(--font-body)" }}>
                 🏆 {a.stat}
               </div>
             </motion.div>
@@ -575,7 +575,7 @@ export default function CampusAmbassadorPage() {
           overflow: "hidden",
         }}
       >
-        <div style={{ position: "absolute", top: 0, left: "50%", transform: "translateX(-50%)", width: "400px", height: "180px", background: "radial-gradient(ellipse, rgba(249,115,22,0.12) 0%, transparent 70%)", pointerEvents: "none" }} />
+        <div style={{ position: "absolute", top: 0, left: "50%", transform: "translateX(-50%)", width: "400px", height: "180px", background: "radial-gradient(ellipse, rgba(255,106,0,0.12) 0%, transparent 70%)", pointerEvents: "none" }} />
         <div style={{ maxWidth: "640px", margin: "0 auto", position: "relative", zIndex: 2 }}>
           <FadeIn>
             <div style={{ textAlign: "center", marginBottom: "40px" }}>
@@ -591,7 +591,7 @@ export default function CampusAmbassadorPage() {
       </section>
 
       {/* ── FOOTER CTA ── */}
-      <section style={{ background: "#F97316", padding: "60px 60px", textAlign: "center" }}>
+      <section style={{ background: "#FF6A00", padding: "60px 60px", textAlign: "center" }}>
         <FadeIn>
           <h2 style={{ fontFamily: "var(--font-heading)", fontSize: "clamp(26px, 4vw, 36px)", color: "#fff", fontWeight: 600, marginBottom: "12px" }}>
             Ready to Lead Your Campus?

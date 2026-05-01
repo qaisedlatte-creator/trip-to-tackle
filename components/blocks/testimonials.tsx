@@ -67,13 +67,13 @@ const allTestimonials = [
   },
 ];
 
-type Testimonial = typeof allTestimonials[0];
+type Testimonial = (typeof allTestimonials)[0];
 
 function StarRating({ count }: { count: number }) {
   return (
-    <div className="flex gap-0.5">
+    <div style={{ display: "flex", gap: 2 }}>
       {[...Array(count)].map((_, i) => (
-        <svg key={i} width="14" height="14" viewBox="0 0 24 24" fill="#FFB03A">
+        <svg key={i} width="12" height="12" viewBox="0 0 24 24" fill="#FF6A00">
           <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
         </svg>
       ))}
@@ -83,14 +83,53 @@ function StarRating({ count }: { count: number }) {
 
 function TestimonialCard({ t }: { t: Testimonial }) {
   return (
-    <div className="bg-white rounded-3xl p-6 shadow-md mb-4 flex flex-col gap-3">
+    <div
+      style={{
+        background: "#fff",
+        borderRadius: 16,
+        padding: "20px 22px",
+        marginBottom: 14,
+        display: "flex",
+        flexDirection: "column",
+        gap: 12,
+        border: "1px solid rgba(255,255,255,0.12)",
+      }}
+    >
       <StarRating count={t.rating} />
-      <p className="font-dm text-gray-700 text-sm leading-relaxed">
+      <p
+        style={{
+          fontFamily: "var(--font-body)",
+          fontSize: 13.5,
+          color: "#374151",
+          lineHeight: 1.65,
+          fontWeight: 400,
+          margin: 0,
+        }}
+      >
         &ldquo;{t.text}&rdquo;
       </p>
-      <div>
-        <p className="font-dm text-sm font-semibold text-[#003060]">{t.name}</p>
-        <p className="font-dm text-xs text-gray-400 mt-0.5">{t.location} · {t.package}</p>
+      <div style={{ borderTop: "1px solid #f3f4f6", paddingTop: 12 }}>
+        <p
+          style={{
+            fontFamily: "var(--font-body)",
+            fontSize: 13,
+            fontWeight: 600,
+            color: "#0A1F44",
+            margin: 0,
+          }}
+        >
+          {t.name}
+        </p>
+        <p
+          style={{
+            fontFamily: "var(--font-body)",
+            fontSize: 11.5,
+            color: "#9ca3af",
+            margin: "3px 0 0",
+          }}
+        >
+          {t.location} &middot; {t.package}
+        </p>
       </div>
     </div>
   );
@@ -100,20 +139,28 @@ interface ColumnProps {
   testimonials: Testimonial[];
   duration: number;
   reverse?: boolean;
-  className?: string;
+  hidden?: boolean;
 }
 
-function ScrollingColumn({ testimonials, duration, reverse = false, className = "" }: ColumnProps) {
+function ScrollingColumn({ testimonials, duration, reverse = false, hidden = false }: ColumnProps) {
   const doubled = [...testimonials, ...testimonials];
 
   return (
     <div
-      className={`overflow-hidden relative flex-1 min-w-0 [mask-image:linear-gradient(to_bottom,transparent,black_20%,black_80%,transparent)] ${className}`}
+      style={{
+        overflow: "hidden",
+        flex: 1,
+        minWidth: 0,
+        maskImage: "linear-gradient(to bottom, transparent, black 18%, black 82%, transparent)",
+        WebkitMaskImage: "linear-gradient(to bottom, transparent, black 18%, black 82%, transparent)",
+        display: hidden ? "none" : undefined,
+      }}
+      className={hidden ? "hidden md:block" : undefined}
     >
       <motion.div
         animate={{ y: reverse ? ["0%", "-50%"] : ["-50%", "0%"] }}
         transition={{ duration, repeat: Infinity, ease: "linear", repeatType: "loop" }}
-        className="flex flex-col"
+        style={{ display: "flex", flexDirection: "column" }}
       >
         {doubled.map((t, i) => (
           <TestimonialCard key={i} t={t} />
@@ -129,23 +176,34 @@ export default function Testimonials() {
   const col3 = allTestimonials.slice(6, 9);
 
   return (
-    <section className="bg-[#003060] py-20 overflow-hidden">
+    <section style={{ background: "#0A1F44", paddingTop: 96, paddingBottom: 96, overflow: "hidden" }}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-14">
-          <p className="section-label text-[#BECAE6] mb-2">What Travelers Say</p>
-          <h2 className="font-playfair text-3xl md:text-4xl font-bold text-white">
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          style={{ textAlign: "center", marginBottom: 56 }}
+        >
+          <p
+            className="section-label mb-2"
+            style={{ color: "rgba(255,255,255,0.35)" }}
+          >
+            What Travelers Say
+          </p>
+          <h2
+            className="font-playfair text-3xl md:text-4xl font-bold text-white"
+          >
             Real Stories, Real Journeys
           </h2>
-        </div>
+        </motion.div>
 
-        {/* Columns — show 1 on mobile, 3 on desktop */}
-        <div className="flex gap-4 h-[520px]">
-          <ScrollingColumn testimonials={col1} duration={18} />
-          <ScrollingColumn testimonials={col2} duration={22} className="hidden md:flex" />
-          <ScrollingColumn testimonials={col3} duration={15} reverse className="hidden md:flex" />
+        <div style={{ display: "flex", gap: 16, height: 500 }}>
+          <ScrollingColumn testimonials={col1} duration={20} />
+          <ScrollingColumn testimonials={col2} duration={25} hidden />
+          <ScrollingColumn testimonials={col3} duration={17} reverse hidden />
         </div>
       </div>
     </section>
   );
 }
-

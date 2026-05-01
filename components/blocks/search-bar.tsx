@@ -92,7 +92,7 @@ export default function SearchBar() {
       {/* Search button */}
       <button
         onClick={handleSearch}
-        className="bg-[#003060] hover:bg-[#002050] text-white px-6 py-3 rounded-xl font-dm font-medium flex items-center gap-2 transition-colors duration-200 whitespace-nowrap md:ml-1"
+        className="bg-[#0A1F44] hover:bg-[#0d2650] text-white px-6 py-3 rounded-xl font-dm font-medium flex items-center gap-2 transition-colors duration-200 whitespace-nowrap md:ml-1"
       >
         <Search size={18} />
         <span className="hidden sm:inline">Search</span>

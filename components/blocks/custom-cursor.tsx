@@ -66,7 +66,7 @@ export default function CustomCursor() {
         .cursor-dot.cta-hover {
           width: 20px;
           height: 20px;
-          background: #FFB03A;
+          background: #FF6A00;
         }
         .cursor-follower {
           position: fixed;
@@ -82,7 +82,7 @@ export default function CustomCursor() {
         .cursor-follower.cta-hover {
           width: 56px;
           height: 56px;
-          border-color: #FFB03A;
+          border-color: #FF6A00;
         }
         @media (max-width: 768px) {
           .cursor-dot, .cursor-follower { display: none; }

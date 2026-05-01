@@ -5,7 +5,7 @@ import { InstagramIcon, FacebookIcon } from "@/components/blocks/social-icons";
 
 export default function Footer() {
   return (
-    <footer className="bg-[#003060] text-white">
+    <footer className="bg-[#0A1F44] text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
 
@@ -29,7 +29,7 @@ export default function Footer() {
                 href="https://instagram.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#FFB03A] hover:text-[#003060] transition-all duration-200"
+                className="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#FF6A00] hover:text-[#0A1F44] transition-all duration-200"
                 aria-label="Instagram"
               >
                 <InstagramIcon size={16} />
@@ -38,7 +38,7 @@ export default function Footer() {
                 href="https://facebook.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#FFB03A] hover:text-[#003060] transition-all duration-200"
+                className="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#FF6A00] hover:text-[#0A1F44] transition-all duration-200"
                 aria-label="Facebook"
               >
                 <FacebookIcon size={16} />
@@ -71,7 +71,7 @@ export default function Footer() {
                     href={l.href}
                     className="font-dm text-sm text-white/60 hover:text-[#BECAE6] transition-colors duration-150 flex items-center gap-1.5 group"
                   >
-                    <span className="w-1 h-1 rounded-full bg-[#2571BC] group-hover:bg-[#FFB03A] transition-colors" />
+                    <span className="w-1 h-1 rounded-full bg-[#4a6fa5] group-hover:bg-[#FF6A00] transition-colors" />
                     {l.label}
                   </Link>
                 </li>
@@ -95,7 +95,7 @@ export default function Footer() {
                     href={l.href}
                     className="font-dm text-sm text-white/60 hover:text-[#BECAE6] transition-colors duration-150 flex items-center gap-1.5 group"
                   >
-                    <span className="w-1 h-1 rounded-full bg-[#2571BC] group-hover:bg-[#FFB03A] transition-colors" />
+                    <span className="w-1 h-1 rounded-full bg-[#4a6fa5] group-hover:bg-[#FF6A00] transition-colors" />
                     {l.label}
                   </Link>
                 </li>
@@ -114,7 +114,7 @@ export default function Footer() {
                   rel="noopener noreferrer"
                   className="flex items-start gap-3 group"
                 >
-                  <Phone size={16} className="text-[#2571BC] mt-0.5 shrink-0" />
+                  <Phone size={16} className="text-[#4a6fa5] mt-0.5 shrink-0" />
                   <span className="font-dm text-sm text-white/60 group-hover:text-white transition-colors">
                     +91 90000 00000
                   </span>
@@ -125,14 +125,14 @@ export default function Footer() {
                   href="mailto:hello@trip2tackle.com"
                   className="flex items-start gap-3 group"
                 >
-                  <Mail size={16} className="text-[#2571BC] mt-0.5 shrink-0" />
+                  <Mail size={16} className="text-[#4a6fa5] mt-0.5 shrink-0" />
                   <span className="font-dm text-sm text-white/60 group-hover:text-white transition-colors">
                     hello@trip2tackle.com
                   </span>
                 </a>
               </li>
               <li className="flex items-start gap-3">
-                <MapPin size={16} className="text-[#2571BC] mt-0.5 shrink-0" />
+                <MapPin size={16} className="text-[#4a6fa5] mt-0.5 shrink-0" />
                 <span className="font-dm text-sm text-white/60">
                   Kochi, Kerala, India
                 </span>
@@ -154,7 +154,7 @@ export default function Footer() {
             rel="noopener noreferrer"
             className="font-dm text-xs text-white/50 hover:text-white/80 transition-colors"
           >
-            Developed by <span className="text-[#FFB03A] font-semibold">Webbes</span>
+            Developed by <span className="text-[#FF6A00] font-semibold">Webbes</span>
           </a>
         </div>
       </div>

@@ -109,7 +109,7 @@ export default function CareersPage() {
             position: "absolute",
             inset: 0,
             backgroundImage:
-              "linear-gradient(rgba(249,115,22,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(249,115,22,0.04) 1px, transparent 1px)",
+              "linear-gradient(rgba(255,106,0,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(255,106,0,0.04) 1px, transparent 1px)",
             backgroundSize: "60px 60px",
             pointerEvents: "none",
           }}
@@ -123,7 +123,7 @@ export default function CareersPage() {
             width: "420px",
             height: "420px",
             borderRadius: "50%",
-            border: "1px solid rgba(249,115,22,0.1)",
+            border: "1px solid rgba(255,106,0,0.1)",
             pointerEvents: "none",
           }}
         />
@@ -135,7 +135,7 @@ export default function CareersPage() {
             width: "240px",
             height: "240px",
             borderRadius: "50%",
-            border: "1px solid rgba(249,115,22,0.07)",
+            border: "1px solid rgba(255,106,0,0.07)",
             pointerEvents: "none",
           }}
         />
@@ -215,7 +215,7 @@ export default function CareersPage() {
               <button
                 onClick={() => rolesRef.current?.scrollIntoView({ behavior: "smooth" })}
                 style={{
-                  background: "#F97316",
+                  background: "#FF6A00",
                   color: "#fff",
                   padding: "13px 30px",
                   borderRadius: "8px",
@@ -224,15 +224,15 @@ export default function CareersPage() {
                   border: "none",
                   cursor: "pointer",
                   fontFamily: "var(--font-body)",
-                  boxShadow: "0 4px 20px rgba(249,115,22,0.4)",
+                  boxShadow: "0 4px 20px rgba(255,106,0,0.4)",
                   transition: "background 0.2s, transform 0.2s",
                 }}
                 onMouseEnter={(e) => {
-                  (e.currentTarget as HTMLElement).style.background = "#E86C0A";
+                  (e.currentTarget as HTMLElement).style.background = "#d95f00";
                   (e.currentTarget as HTMLElement).style.transform = "translateY(-1px)";
                 }}
                 onMouseLeave={(e) => {
-                  (e.currentTarget as HTMLElement).style.background = "#F97316";
+                  (e.currentTarget as HTMLElement).style.background = "#FF6A00";
                   (e.currentTarget as HTMLElement).style.transform = "translateY(0)";
                 }}
               >
@@ -275,8 +275,8 @@ export default function CareersPage() {
               height: "260px",
               borderRadius: "50%",
               overflow: "hidden",
-              border: "3px solid rgba(249,115,22,0.3)",
-              boxShadow: "0 0 60px rgba(249,115,22,0.15)",
+              border: "3px solid rgba(255,106,0,0.3)",
+              boxShadow: "0 0 60px rgba(255,106,0,0.15)",
               flexShrink: 0,
               position: "relative",
             }}
@@ -385,7 +385,7 @@ export default function CareersPage() {
                 background: "#F3F2F0",
                 borderRadius: "16px",
                 padding: "32px 28px",
-                borderTop: "4px solid #F97316",
+                borderTop: "4px solid #FF6A00",
                 transition: "box-shadow 0.2s, transform 0.2s",
               }}
               whileHover={{ y: -4, boxShadow: "0 12px 36px rgba(0,0,0,0.08)" }}
@@ -474,14 +474,14 @@ export default function CareersPage() {
                 border: "1px solid #E8E4DD",
                 transition: "border-color 0.2s, box-shadow 0.2s",
               }}
-              whileHover={{ borderColor: "#F97316", boxShadow: "0 6px 24px rgba(0,0,0,0.07)" }}
+              whileHover={{ borderColor: "#FF6A00", boxShadow: "0 6px 24px rgba(0,0,0,0.07)" }}
             >
               <div
                 style={{
                   width: "42px",
                   height: "42px",
                   borderRadius: "10px",
-                  background: "rgba(249,115,22,0.1)",
+                  background: "rgba(255,106,0,0.1)",
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
@@ -632,7 +632,7 @@ export default function CareersPage() {
               </div>
               <button
                 style={{
-                  background: "#F97316",
+                  background: "#FF6A00",
                   color: "#fff",
                   padding: "10px 22px",
                   borderRadius: "8px",
@@ -647,10 +647,10 @@ export default function CareersPage() {
                   transition: "background 0.2s",
                 }}
                 onMouseEnter={(e) => {
-                  (e.currentTarget as HTMLElement).style.background = "#E86C0A";
+                  (e.currentTarget as HTMLElement).style.background = "#d95f00";
                 }}
                 onMouseLeave={(e) => {
-                  (e.currentTarget as HTMLElement).style.background = "#F97316";
+                  (e.currentTarget as HTMLElement).style.background = "#FF6A00";
                 }}
               >
                 Apply Now
@@ -701,7 +701,7 @@ export default function CareersPage() {
             <a
               href="mailto:careers@trip2tackle.com"
               style={{
-                background: "#F97316",
+                background: "#FF6A00",
                 color: "#fff",
                 padding: "12px 26px",
                 borderRadius: "8px",
@@ -710,14 +710,14 @@ export default function CareersPage() {
                 textDecoration: "none",
                 fontFamily: "var(--font-body)",
                 whiteSpace: "nowrap",
-                boxShadow: "0 4px 16px rgba(249,115,22,0.35)",
+                boxShadow: "0 4px 16px rgba(255,106,0,0.35)",
                 transition: "background 0.2s",
               }}
               onMouseEnter={(e) => {
-                (e.currentTarget as HTMLElement).style.background = "#E86C0A";
+                (e.currentTarget as HTMLElement).style.background = "#d95f00";
               }}
               onMouseLeave={(e) => {
-                (e.currentTarget as HTMLElement).style.background = "#F97316";
+                (e.currentTarget as HTMLElement).style.background = "#FF6A00";
               }}
             >
               Send Your CV →
@@ -729,7 +729,7 @@ export default function CareersPage() {
       {/* ── BOTTOM CTA ── */}
       <section
         style={{
-          background: "#F97316",
+          background: "#0A1F44",
           padding: "64px 60px",
           textAlign: "center",
         }}

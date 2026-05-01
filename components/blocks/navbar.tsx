@@ -17,25 +17,49 @@ const links = [
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
 
   useEffect(() => {
     setOpen(false);
   }, [pathname]);
 
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 60);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   return (
     <>
-      <nav className="fixed top-0 w-full z-50">
+      <nav
+        className="fixed top-0 w-full z-50 transition-all duration-300"
+        style={{
+          background: scrolled ? "rgba(255,255,255,0.97)" : "transparent",
+          borderBottom: scrolled ? "1px solid rgba(0,0,0,0.07)" : "none",
+          backdropFilter: scrolled ? "blur(16px)" : "none",
+        }}
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
           {/* Logo */}
-          <Link href="/" className="group flex items-center">
+          <Link href="/" className="flex items-center">
             <Image
-              src="/logo.png"
+              src="/logo-color.jpg"
               alt="Trip 2 Tackle"
-              width={130}
-              height={36}
-              style={{ objectFit: "contain", filter: "brightness(0) invert(1)" }}
+              width={140}
+              height={40}
               priority
+              style={{
+                objectFit: "contain",
+                height: "38px",
+                width: "auto",
+                /* On dark (transparent navbar): invert to white
+                   On white (scrolled navbar): multiply blends away white bg */
+                filter: scrolled ? "none" : "brightness(0) invert(1)",
+                mixBlendMode: scrolled ? "multiply" : "normal",
+                transition: "filter 0.3s ease, mix-blend-mode 0.3s ease",
+              }}
             />
           </Link>
 
@@ -45,15 +69,35 @@ export default function Navbar() {
               <Link
                 key={l.href}
                 href={l.href}
-                className={`font-dm text-sm font-medium transition-colors duration-200 relative ${
-                  pathname === l.href ? "text-white" : "text-white/70 hover:text-white"
-                }`}
+                style={{
+                  fontFamily: "var(--font-body)",
+                  fontSize: 14,
+                  fontWeight: 500,
+                  color: scrolled
+                    ? pathname === l.href
+                      ? "#0A1F44"
+                      : "rgba(10,31,68,0.55)"
+                    : pathname === l.href
+                    ? "#fff"
+                    : "rgba(255,255,255,0.65)",
+                  textDecoration: "none",
+                  transition: "color 0.2s",
+                  position: "relative",
+                }}
               >
                 {l.label}
                 {pathname === l.href && (
                   <motion.span
                     layoutId="nav-indicator"
-                    className="absolute -bottom-1 left-0 right-0 h-0.5 bg-[#FFB03A] rounded-full"
+                    style={{
+                      position: "absolute",
+                      bottom: -2,
+                      left: 0,
+                      right: 0,
+                      height: 1.5,
+                      background: scrolled ? "#FF6A00" : "#fff",
+                      borderRadius: 2,
+                    }}
                   />
                 )}
               </Link>
@@ -66,14 +110,37 @@ export default function Navbar() {
               href="https://wa.me/919000000000"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-1.5 text-white border border-white/50 hover:border-white px-3 py-1.5 rounded-md text-sm font-medium transition-all duration-200 hover:bg-white/10 font-dm"
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: 6,
+                fontFamily: "var(--font-body)",
+                fontSize: 13,
+                fontWeight: 500,
+                color: scrolled ? "#0A1F44" : "#fff",
+                border: `1px solid ${scrolled ? "rgba(10,31,68,0.25)" : "rgba(255,255,255,0.4)"}`,
+                padding: "6px 14px",
+                borderRadius: 6,
+                textDecoration: "none",
+                transition: "all 0.2s",
+              }}
             >
-              <MessageCircle size={15} />
+              <MessageCircle size={14} />
               WhatsApp
             </a>
             <Link
               href="/#packages"
-              className="bg-white hover:bg-white/90 text-[#003060] px-4 py-1.5 rounded-md text-sm font-semibold transition-colors duration-200 font-dm"
+              style={{
+                fontFamily: "var(--font-body)",
+                fontSize: 13,
+                fontWeight: 600,
+                background: scrolled ? "#0A1F44" : "#fff",
+                color: scrolled ? "#fff" : "#0A1F44",
+                padding: "6px 16px",
+                borderRadius: 6,
+                textDecoration: "none",
+                transition: "all 0.2s",
+              }}
             >
               Book Now
             </Link>
@@ -81,7 +148,8 @@ export default function Navbar() {
 
           {/* Mobile hamburger */}
           <button
-            className="md:hidden text-white p-1"
+            className="md:hidden p-1"
+            style={{ color: scrolled ? "#0A1F44" : "#fff" }}
             onClick={() => setOpen(true)}
             aria-label="Open menu"
           >
@@ -97,54 +165,99 @@ export default function Navbar() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
-            className="fixed inset-0 z-[100] bg-[#003060] flex flex-col"
+            transition={{ duration: 0.18 }}
+            style={{
+              position: "fixed",
+              inset: 0,
+              zIndex: 100,
+              background: "#0A1F44",
+              display: "flex",
+              flexDirection: "column",
+            }}
           >
-            <div className="flex items-center justify-between px-6 py-5">
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "space-between",
+                padding: "20px 24px",
+              }}
+            >
               <Image
-                src="/logo.png"
+                src="/logo-color.jpg"
                 alt="Trip 2 Tackle"
                 width={120}
                 height={34}
-                style={{ objectFit: "contain", filter: "brightness(0) invert(1)" }}
+                style={{
+                  objectFit: "contain",
+                  height: "34px",
+                  width: "auto",
+                  filter: "brightness(0) invert(1)",
+                }}
               />
-              <button onClick={() => setOpen(false)} className="text-white">
+              <button onClick={() => setOpen(false)} style={{ color: "#fff" }}>
                 <X size={26} />
               </button>
             </div>
-            <div className="flex flex-col items-center justify-center flex-1 gap-7">
+
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                justifyContent: "center",
+                flex: 1,
+                gap: 28,
+              }}
+            >
               {links.map((l, i) => (
                 <motion.div
                   key={l.href}
-                  initial={{ opacity: 0, y: 30 }}
+                  initial={{ opacity: 0, y: 24 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: i * 0.07 + 0.1 }}
+                  transition={{ delay: i * 0.06 + 0.08 }}
                 >
                   <Link
                     href={l.href}
-                    className={`font-playfair text-3xl font-semibold transition-colors ${
-                      pathname === l.href
-                        ? "text-[#FFB03A]"
-                        : "text-white hover:text-white/70"
-                    }`}
+                    style={{
+                      fontFamily: "var(--font-heading)",
+                      fontSize: 28,
+                      fontWeight: 600,
+                      textDecoration: "none",
+                      color: pathname === l.href ? "#FF6A00" : "#fff",
+                      transition: "color 0.2s",
+                    }}
                   >
                     {l.label}
                   </Link>
                 </motion.div>
               ))}
+
               <motion.div
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.55 }}
-                className="mt-4"
+                transition={{ delay: 0.5 }}
+                style={{ marginTop: 8 }}
               >
                 <a
                   href="https://wa.me/919000000000"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 text-white border border-white/40 px-5 py-2.5 rounded-lg text-base min-h-[44px] font-dm"
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: 8,
+                    color: "#fff",
+                    border: "1px solid rgba(255,255,255,0.3)",
+                    padding: "10px 20px",
+                    borderRadius: 8,
+                    fontSize: 15,
+                    fontFamily: "var(--font-body)",
+                    textDecoration: "none",
+                    minHeight: 44,
+                  }}
                 >
-                  <MessageCircle size={18} />
+                  <MessageCircle size={17} />
                   WhatsApp Us
                 </a>
               </motion.div>

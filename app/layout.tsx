@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Playfair_Display, DM_Sans, Space_Mono } from "next/font/google";
 import "./globals.css";
+import SmoothScroll from "@/components/SmoothScroll";
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
@@ -42,7 +43,7 @@ export default function RootLayout({
       className={`${playfair.variable} ${dmSans.variable} ${spaceMono.variable}`}
     >
       <body className="antialiased bg-white text-[#171717]">
-        {children}
+        <SmoothScroll>{children}</SmoothScroll>
       </body>
     </html>
   );

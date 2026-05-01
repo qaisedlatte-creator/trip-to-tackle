@@ -39,3 +39,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# raw uncompressed frame PNGs (large source files, not needed in repo)
+/public/pcframes/
+/public/mobileframes/

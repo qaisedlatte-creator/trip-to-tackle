@@ -33,7 +33,7 @@ export default function DestinationCard({ destination, index = 0 }: Props) {
 
           {/* Arrow button top-right */}
           <div className="absolute top-3 right-3 w-9 h-9 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:bg-white">
-            <ArrowUpRight size={16} className="text-white group-hover:text-[#003060] transition-colors" />
+            <ArrowUpRight size={16} className="text-white group-hover:text-[#0A1F44] transition-colors" />
           </div>
 
           {/* Content bottom */}

@@ -42,7 +42,7 @@ function Counter({ value, suffix, label }: Stat) {
     <div ref={ref} className="text-center px-4 py-3">
       <p className="font-space text-3xl md:text-4xl font-bold text-white">
         {count}
-        <span className="text-[#FFB03A]">{suffix}</span>
+        <span className="text-[#FF6A00]">{suffix}</span>
       </p>
       <p className="font-dm text-sm text-white/70 mt-1">{label}</p>
     </div>

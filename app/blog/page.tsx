@@ -186,13 +186,13 @@ export default function BlogPage() {
                   outline: "none",
                   transition: "border-color 0.2s",
                 }}
-                onFocus={(e) => { e.target.style.borderColor = "#F97316"; }}
+                onFocus={(e) => { e.target.style.borderColor = "#FF6A00"; }}
                 onBlur={(e) => { e.target.style.borderColor = "#E8E4DD"; }}
               />
               <button
                 type="submit"
                 style={{
-                  background: "#F97316",
+                  background: "#FF6A00",
                   color: "#fff",
                   padding: "13px 24px",
                   borderRadius: "8px",
@@ -204,8 +204,8 @@ export default function BlogPage() {
                   transition: "background 0.2s",
                   whiteSpace: "nowrap",
                 }}
-                onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.background = "#E86C0A"; }}
-                onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.background = "#F97316"; }}
+                onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.background = "#d95f00"; }}
+                onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.background = "#FF6A00"; }}
               >
                 Notify Me
               </button>
@@ -270,7 +270,7 @@ export default function BlogPage() {
               <div
                 style={{
                   height: "120px",
-                  background: "linear-gradient(135deg, #0A0A0A 0%, #141414 100%)",
+                  background: "linear-gradient(135deg, #0A1F44 0%, #162d5c 100%)",
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
@@ -328,7 +328,7 @@ export default function BlogPage() {
           target="_blank"
           rel="noopener noreferrer"
           style={{
-            background: "#F97316",
+            background: "#FF6A00",
             color: "#fff",
             padding: "13px 30px",
             borderRadius: "8px",
@@ -342,8 +342,8 @@ export default function BlogPage() {
             boxShadow: "0 4px 16px rgba(249,115,22,0.35)",
             transition: "background 0.2s",
           }}
-          onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.background = "#E86C0A"; }}
-          onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.background = "#F97316"; }}
+          onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.background = "#d95f00"; }}
+          onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.background = "#FF6A00"; }}
         >
           💬 WhatsApp Us
         </a>

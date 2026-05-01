@@ -66,7 +66,7 @@ export default function PaymentModal({ pkg, open, onClose }: Props) {
           setLoading(false);
         },
         prefill: { name, email, contact: phone },
-        theme: { color: "#003060" },
+        theme: { color: "#0A1F44" },
         modal: {
           ondismiss: () => setLoading(false),
         },
@@ -100,26 +100,26 @@ export default function PaymentModal({ pkg, open, onClose }: Props) {
               <CheckCircle className="w-9 h-9 text-green-500" />
             </div>
             <div>
-              <h3 className="font-playfair text-2xl font-bold text-[#003060] mb-2">Booking Confirmed!</h3>
+              <h3 className="font-playfair text-2xl font-bold text-[#0A1F44] mb-2">Booking Confirmed!</h3>
               <p className="font-dm text-gray-500 text-sm">Your adventure awaits. Check your email for details.</p>
             </div>
-            <div className="bg-[#003060]/5 rounded-xl p-4 space-y-1">
+            <div className="bg-[#0A1F44]/5 rounded-xl p-4 space-y-1">
               <p className="font-dm text-sm text-gray-500">Booking Reference</p>
-              <p className="font-space text-2xl font-bold text-[#003060] tracking-widest">{bookingRef}</p>
+              <p className="font-space text-2xl font-bold text-[#0A1F44] tracking-widest">{bookingRef}</p>
             </div>
             <div className="text-sm font-dm text-gray-400 space-y-0.5">
               <p><strong className="text-gray-600">{pkg.name}</strong></p>
               <p>{travelers} traveler{travelers > 1 ? "s" : ""} · {travelDate}</p>
-              <p className="font-space font-bold text-[#003060]">{formatINR(total)} paid</p>
+              <p className="font-space font-bold text-[#0A1F44]">{formatINR(total)} paid</p>
             </div>
-            <Button onClick={handleClose} className="w-full bg-[#003060] hover:bg-[#002050] text-white">
+            <Button onClick={handleClose} className="w-full bg-[#0A1F44] hover:bg-[#002050] text-white">
               Done
             </Button>
           </div>
         ) : (
           <>
             {/* Header */}
-            <div className="bg-[#003060] px-6 py-5 flex items-start justify-between">
+            <div className="bg-[#0A1F44] px-6 py-5 flex items-start justify-between">
               <div>
                 <p className="font-dm text-xs text-white/60 uppercase tracking-wider mb-1">Book Package</p>
                 <h3 className="font-playfair text-xl font-bold text-white">{pkg.name}</h3>
@@ -142,7 +142,7 @@ export default function PaymentModal({ pkg, open, onClose }: Props) {
                   >
                     <Minus size={16} />
                   </button>
-                  <span className="font-space text-xl font-bold text-[#003060] w-8 text-center">{travelers}</span>
+                  <span className="font-space text-xl font-bold text-[#0A1F44] w-8 text-center">{travelers}</span>
                   <button
                     onClick={() => setTravelers(Math.min(20, travelers + 1))}
                     className="w-9 h-9 rounded-full border border-gray-200 flex items-center justify-center hover:bg-gray-50 transition-colors"
@@ -200,12 +200,12 @@ export default function PaymentModal({ pkg, open, onClose }: Props) {
               </div>
 
               {/* Price summary */}
-              <div className="bg-[#003060]/5 rounded-xl p-4 flex items-center justify-between">
+              <div className="bg-[#0A1F44]/5 rounded-xl p-4 flex items-center justify-between">
                 <div>
                   <p className="font-dm text-xs text-gray-500">
                     {pkg.priceLabel} × {travelers} traveler{travelers > 1 ? "s" : ""}
                   </p>
-                  <p className="font-space text-2xl font-bold text-[#003060] mt-0.5">{formatINR(total)}</p>
+                  <p className="font-space text-2xl font-bold text-[#0A1F44] mt-0.5">{formatINR(total)}</p>
                 </div>
                 <div className="text-right">
                   <p className="font-dm text-xs text-gray-400">Total</p>
@@ -216,7 +216,7 @@ export default function PaymentModal({ pkg, open, onClose }: Props) {
               <Button
                 onClick={handleBook}
                 disabled={loading}
-                className="w-full bg-[#FFB03A] hover:bg-[#e89c2a] text-[#003060] font-bold text-base h-12 transition-all duration-200"
+                className="w-full bg-[#FF6A00] hover:bg-[#e89c2a] text-[#0A1F44] font-bold text-base h-12 transition-all duration-200"
               >
                 {loading ? "Processing..." : `Pay ${formatINR(total)}`}
               </Button>
