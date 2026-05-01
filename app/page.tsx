@@ -1,14 +1,18 @@
 "use client";
+import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { MessageCircle, ArrowRight, Users, Calendar, MapPin } from "lucide-react";
+import { MessageCircle, ArrowRight, Users, Calendar, MapPin, Star } from "lucide-react";
 import Navbar from "@/components/blocks/navbar";
 import Footer from "@/components/blocks/footer";
 import HeroScrollAnimation from "@/components/blocks/scroll-animation";
 import Testimonials from "@/components/blocks/testimonials";
 import BookingSteps from "@/components/blocks/booking-steps";
+import PaymentModal from "@/components/blocks/payment-modal";
 import { featuredDestinations } from "@/lib/destinations";
+import { packages } from "@/lib/packages";
+import type { Package } from "@/lib/packages";
 
 const fadeUp = {
   initial: { opacity: 0, y: 18 },
@@ -69,8 +73,14 @@ const livePackages = [
 ];
 
 export default function HomePage() {
+  const [selectedPkg, setSelectedPkg] = useState<Package | null>(null);
+  const [modalOpen, setModalOpen] = useState(false);
+
+  const openModal = (pkg: Package) => { setSelectedPkg(pkg); setModalOpen(true); };
+
   return (
     <>
+      <PaymentModal pkg={selectedPkg} open={modalOpen} onClose={() => setModalOpen(false)} />
       <Navbar />
 
       <main>
@@ -343,6 +353,89 @@ export default function HomePage() {
                   <p className="absolute bottom-3 left-3 font-playfair text-white font-semibold text-lg">
                     {img.name}
                   </p>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* PACKAGES */}
+        <section id="packages" className="py-24 bg-white">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <motion.div {...fadeUp} className="mb-12">
+              <p className="section-label mb-2">Our Packages</p>
+              <h2 className="font-playfair text-3xl md:text-4xl font-bold mt-2" style={{ color: "#0A1F44" }}>
+                Handpicked Group Packages
+              </h2>
+              <p className="font-dm text-gray-500 mt-3 max-w-xl">
+                Fixed prices. No hidden charges. Book instantly with Razorpay.
+              </p>
+            </motion.div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {packages.map((pkg, i) => (
+                <motion.div
+                  key={pkg.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.08, duration: 0.5 }}
+                  className="pkg-card bg-white rounded-2xl overflow-hidden"
+                  style={{ boxShadow: "0 2px 24px rgba(0,0,0,0.08)", border: "1px solid #f0f0f0" }}
+                >
+                  <div className="relative h-52 overflow-hidden">
+                    <Image
+                      src={pkg.image}
+                      alt={pkg.name}
+                      fill
+                      className="pkg-img-inner object-cover"
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+                    {pkg.badge && (
+                      <span className="absolute top-3 left-3 font-dm text-xs font-bold px-2.5 py-1 rounded-full"
+                        style={{ background: "#FF6A00", color: "#fff" }}>
+                        {pkg.badge}
+                      </span>
+                    )}
+                    <div className="absolute bottom-3 right-3 flex items-center gap-1">
+                      <Star size={11} fill="#FFD700" stroke="none" />
+                      <span className="font-dm text-xs text-white font-semibold">4.9</span>
+                    </div>
+                  </div>
+
+                  <div className="p-5">
+                    <p className="font-dm text-xs text-gray-400 uppercase tracking-wide mb-1">
+                      {pkg.destination} · {pkg.duration}
+                    </p>
+                    <h3 className="font-playfair text-lg font-bold mb-3" style={{ color: "#0A1F44" }}>
+                      {pkg.name}
+                    </h3>
+                    <div className="flex flex-wrap gap-1.5 mb-4">
+                      {pkg.includes.slice(0, 3).map((inc) => (
+                        <span key={inc} className="font-dm text-xs px-2 py-0.5 rounded-full bg-gray-100 text-gray-500">
+                          {inc}
+                        </span>
+                      ))}
+                    </div>
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <p className="font-dm text-xs text-gray-400">per person</p>
+                        <p className="font-space text-xl font-bold" style={{ color: "#0A1F44" }}>
+                          {pkg.priceLabel}
+                        </p>
+                      </div>
+                      <button
+                        onClick={() => openModal(pkg)}
+                        className="font-dm font-bold text-sm px-5 py-2.5 rounded-xl transition-all duration-200"
+                        style={{ background: "#0A1F44", color: "#fff" }}
+                        onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.background = "#FF6A00"; }}
+                        onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.background = "#0A1F44"; }}
+                      >
+                        Book Now
+                      </button>
+                    </div>
+                  </div>
                 </motion.div>
               ))}
             </div>

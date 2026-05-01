@@ -52,8 +52,22 @@ export default function PaymentModal({ pkg, open, onClose }: Props) {
       });
       const data = await res.json();
 
+      /* Use env key if configured, otherwise fall back to demo */
+      const rzpKey = process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID ?? "";
+      const isMockOrder = data._mock || !rzpKey || rzpKey.includes("YOUR_KEY");
+
+      if (isMockOrder) {
+        /* Demo mode — simulate successful payment without real Razorpay */
+        await new Promise((r) => setTimeout(r, 900));
+        const ref = generateBookingRef();
+        setBookingRef(ref);
+        setConfirmed(true);
+        setLoading(false);
+        return;
+      }
+
       const options = {
-        key: "rzp_test_XXXX", // REPLACE WITH LIVE KEY
+        key: rzpKey,
         amount: total * 100,
         currency: "INR",
         name: "Trip 2 Tackle",
@@ -67,9 +81,7 @@ export default function PaymentModal({ pkg, open, onClose }: Props) {
         },
         prefill: { name, email, contact: phone },
         theme: { color: "#0A1F44" },
-        modal: {
-          ondismiss: () => setLoading(false),
-        },
+        modal: { ondismiss: () => setLoading(false) },
       };
 
       const rzp = new window.Razorpay(options);
@@ -221,7 +233,7 @@ export default function PaymentModal({ pkg, open, onClose }: Props) {
                 {loading ? "Processing..." : `Pay ${formatINR(total)}`}
               </Button>
               <p className="font-dm text-xs text-center text-gray-400">
-                Secured by Razorpay · Test Mode
+                Secured by Razorpay · {process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID?.includes("YOUR_KEY") ? "Demo Mode" : "Test Mode"}
               </p>
             </div>
           </>

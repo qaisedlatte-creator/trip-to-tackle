@@ -219,9 +219,11 @@ export default function CampusAmbassadorPage() {
 
       {/* ── HERO ── */}
       <section
+        className="px-4 sm:px-6 lg:px-[60px]"
         style={{
           background: "#0A1F44",
-          padding: "130px 60px 90px",
+          paddingTop: "130px",
+          paddingBottom: "90px",
           position: "relative",
           overflow: "hidden",
           textAlign: "center",
@@ -364,7 +366,7 @@ export default function CampusAmbassadorPage() {
       </section>
 
       {/* ── STATS ── */}
-      <div style={{ background: "#0A1F44", display: "grid", gridTemplateColumns: "repeat(4,1fr)" }}>
+      <div className="grid grid-cols-2 md:grid-cols-4" style={{ background: "#0A1F44" }}>
         {[
           { n: "200+", l: "Active Ambassadors" },
           { n: "35+", l: "Colleges Covered" },
@@ -379,7 +381,7 @@ export default function CampusAmbassadorPage() {
       </div>
 
       {/* ── WHAT IS CAP ── */}
-      <section id="what-is-cap" style={{ background: "#fff", padding: "88px 60px" }}>
+      <section id="what-is-cap" className="px-4 sm:px-6 lg:px-[60px]" style={{ background: "#fff", paddingTop: "88px", paddingBottom: "88px" }}>
         <div style={{ maxWidth: "720px", margin: "0 auto", textAlign: "center" }}>
           <FadeIn>
             <span style={{ display: "block", fontSize: "11px", fontWeight: 600, letterSpacing: "4px", textTransform: "uppercase", color: "#9E9A94", marginBottom: "12px", fontFamily: "var(--font-body)" }}>
@@ -397,7 +399,7 @@ export default function CampusAmbassadorPage() {
           </FadeIn>
 
           {/* 3 pillars */}
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: "16px" }}>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             {[
               { icon: "🤝", label: "Represent", desc: "Be the official face of Trip 2 Tackle at your college" },
               { icon: "📣", label: "Promote", desc: "Share packages with your network and campus groups" },
@@ -427,14 +429,14 @@ export default function CampusAmbassadorPage() {
       </section>
 
       {/* ── BENEFITS ── */}
-      <section style={{ background: "#F3F2F0", padding: "88px 60px" }}>
+      <section className="px-4 sm:px-6 lg:px-[60px]" style={{ background: "#F3F2F0", paddingTop: "88px", paddingBottom: "88px" }}>
         <FadeIn>
           <div style={{ textAlign: "center", marginBottom: "52px" }}>
             <span style={{ display: "block", fontSize: "11px", fontWeight: 600, letterSpacing: "4px", textTransform: "uppercase", color: "#9E9A94", marginBottom: "10px", fontFamily: "var(--font-body)" }}>What You Get</span>
             <h2 style={{ fontFamily: "var(--font-heading)", fontSize: "clamp(28px, 4vw, 40px)", color: "#1A1A1A", fontWeight: 600 }}>Built to Reward You</h2>
           </div>
         </FadeIn>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: "22px", maxWidth: "1100px", margin: "0 auto" }}>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
           {benefits.map((b, i) => (
             <motion.div
               key={i}
@@ -465,14 +467,14 @@ export default function CampusAmbassadorPage() {
       </section>
 
       {/* ── HOW IT WORKS ── */}
-      <section style={{ background: "#fff", padding: "88px 60px" }}>
+      <section className="px-4 sm:px-6 lg:px-[60px]" style={{ background: "#fff", paddingTop: "88px", paddingBottom: "88px" }}>
         <FadeIn>
           <div style={{ textAlign: "center", marginBottom: "52px" }}>
             <span style={{ display: "block", fontSize: "11px", fontWeight: 600, letterSpacing: "4px", textTransform: "uppercase", color: "#9E9A94", marginBottom: "10px", fontFamily: "var(--font-body)" }}>The Process</span>
             <h2 style={{ fontFamily: "var(--font-heading)", fontSize: "clamp(28px, 4vw, 40px)", color: "#1A1A1A", fontWeight: 600 }}>How It Works</h2>
           </div>
         </FadeIn>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: "40px", maxWidth: "860px", margin: "0 auto" }}>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 max-w-3xl mx-auto">
           {steps.map((s, i) => (
             <motion.div
               key={i}
@@ -494,7 +496,7 @@ export default function CampusAmbassadorPage() {
       </section>
 
       {/* ── WHO CAN APPLY ── */}
-      <section style={{ background: "#0A1F44", padding: "80px 60px" }}>
+      <section className="px-4 sm:px-6 lg:px-[60px]" style={{ background: "#0A1F44", paddingTop: "80px", paddingBottom: "80px" }}>
         <div style={{ maxWidth: "780px", margin: "0 auto" }}>
           <FadeIn>
             <div style={{ textAlign: "center", marginBottom: "44px" }}>
@@ -503,7 +505,7 @@ export default function CampusAmbassadorPage() {
               <p style={{ color: "rgba(255,255,255,0.45)", fontSize: "15px", fontFamily: "var(--font-body)" }}>No experience needed. Just passion, drive, and a love for travel.</p>
             </div>
           </FadeIn>
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "14px" }}>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             {eligibility.map((e, i) => (
               <motion.div
                 key={i}
@@ -530,14 +532,14 @@ export default function CampusAmbassadorPage() {
       </section>
 
       {/* ── TESTIMONIALS ── */}
-      <section style={{ background: "#F3F2F0", padding: "88px 60px" }}>
+      <section className="px-4 sm:px-6 lg:px-[60px]" style={{ background: "#F3F2F0", paddingTop: "88px", paddingBottom: "88px" }}>
         <FadeIn>
           <div style={{ textAlign: "center", marginBottom: "48px" }}>
             <span style={{ display: "block", fontSize: "11px", fontWeight: 600, letterSpacing: "4px", textTransform: "uppercase", color: "#9E9A94", marginBottom: "10px", fontFamily: "var(--font-body)" }}>Real Ambassadors</span>
             <h2 style={{ fontFamily: "var(--font-heading)", fontSize: "clamp(28px, 4vw, 40px)", color: "#1A1A1A", fontWeight: 600 }}>Hear From Our Community</h2>
           </div>
         </FadeIn>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: "20px", maxWidth: "1100px", margin: "0 auto" }}>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 max-w-5xl mx-auto">
           {ambassadors.map((a, i) => (
             <motion.div
               key={i}
@@ -568,9 +570,11 @@ export default function CampusAmbassadorPage() {
       {/* ── APPLY FORM ── */}
       <section
         id="apply"
+        className="px-4 sm:px-6 lg:px-[60px]"
         style={{
           background: "#0A1F44",
-          padding: "88px 60px",
+          paddingTop: "88px",
+          paddingBottom: "88px",
           position: "relative",
           overflow: "hidden",
         }}

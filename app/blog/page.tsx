@@ -33,9 +33,11 @@ export default function BlogPage() {
 
       {/* Hero */}
       <section
+        className="px-4 sm:px-6 lg:px-[60px]"
         style={{
           background: "#0A1F44",
-          padding: "120px 60px 80px",
+          paddingTop: "120px",
+          paddingBottom: "80px",
           position: "relative",
           overflow: "hidden",
           minHeight: "420px",
@@ -103,7 +105,7 @@ export default function BlogPage() {
       </section>
 
       {/* Coming soon body */}
-      <section style={{ background: "#fff", padding: "88px 60px", textAlign: "center" }}>
+      <section className="px-4 sm:px-6 lg:px-[60px] py-20" style={{ background: "#fff", textAlign: "center" }}>
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -215,7 +217,7 @@ export default function BlogPage() {
       </section>
 
       {/* What's coming */}
-      <section style={{ background: "#F3F2F0", padding: "72px 60px" }}>
+      <section className="px-4 sm:px-6 lg:px-[60px] py-16" style={{ background: "#F3F2F0" }}>
         <div style={{ textAlign: "center", marginBottom: "44px" }}>
           <span
             style={{
@@ -244,13 +246,7 @@ export default function BlogPage() {
         </div>
 
         <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(3, 1fr)",
-            gap: "24px",
-            maxWidth: "860px",
-            margin: "0 auto",
-          }}
+          className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-3xl mx-auto"
         >
           {comingSoonTopics.map((t, i) => (
             <motion.div
@@ -308,7 +304,7 @@ export default function BlogPage() {
       </section>
 
       {/* CTA */}
-      <div style={{ background: "#0A1F44", padding: "60px", textAlign: "center" }}>
+      <div className="px-4 sm:px-6 lg:px-[60px] py-14" style={{ background: "#0A1F44", textAlign: "center" }}>
         <h3
           style={{
             fontFamily: "var(--font-heading)",

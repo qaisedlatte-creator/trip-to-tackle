@@ -109,9 +109,11 @@ export default function DestinationsPage() {
 
       {/* Hero */}
       <div
+        className="px-4 sm:px-6 lg:px-[60px]"
         style={{
           background: "#0A1F44",
-          padding: "110px 60px 52px",
+          paddingTop: "110px",
+          paddingBottom: "52px",
           borderBottom: "1px solid rgba(255,255,255,0.06)",
           position: "relative",
           overflow: "hidden",
@@ -208,13 +210,9 @@ export default function DestinationsPage() {
       </div>
 
       {/* Grid */}
-      <div style={{ background: "#F3F2F0", padding: "52px 60px 88px" }}>
+      <div className="bg-[#F3F2F0] px-4 sm:px-6 lg:px-[60px] py-14" style={{ paddingBottom: "88px" }}>
         <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(3, 1fr)",
-            gap: "28px",
-          }}
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-7"
         >
           {filtered.map((d, i) => (
             <motion.div
@@ -239,7 +237,7 @@ export default function DestinationsPage() {
                   fill
                   className="pkg-img-inner"
                   style={{ objectFit: "cover" }}
-                  sizes="33vw"
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                 />
                 <div
                   style={{
@@ -320,10 +318,12 @@ export default function DestinationsPage() {
                       {d.price}
                     </div>
                   </div>
-                  <Link
-                    href="#"
+                  <a
+                    href={`https://wa.me/919000000000?text=Hi! I'm interested in ${d.name} (${d.price})`}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     style={{
-                      background: "#FF6A00",
+                      background: "#0A1F44",
                       color: "#fff",
                       padding: "9px 18px",
                       borderRadius: "8px",
@@ -334,14 +334,14 @@ export default function DestinationsPage() {
                       transition: "background 0.2s",
                     }}
                     onMouseEnter={(e) => {
-                      (e.currentTarget as HTMLElement).style.background = "#d95f00";
-                    }}
-                    onMouseLeave={(e) => {
                       (e.currentTarget as HTMLElement).style.background = "#FF6A00";
                     }}
+                    onMouseLeave={(e) => {
+                      (e.currentTarget as HTMLElement).style.background = "#0A1F44";
+                    }}
                   >
-                    View Trip
-                  </Link>
+                    Book Now
+                  </a>
                 </div>
               </div>
             </motion.div>

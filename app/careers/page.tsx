@@ -95,9 +95,11 @@ export default function CareersPage() {
 
       {/* ── HERO ── */}
       <section
+        className="px-4 sm:px-6 lg:px-[60px]"
         style={{
           background: "#0A1F44",
-          padding: "120px 60px 80px",
+          paddingTop: "120px",
+          paddingBottom: "80px",
           position: "relative",
           overflow: "hidden",
           minHeight: "520px",
@@ -294,7 +296,7 @@ export default function CareersPage() {
       </section>
 
       {/* ── PHOTO STRIP ── */}
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", height: "220px", overflow: "hidden" }}>
+      <div className="hidden md:grid" style={{ gridTemplateColumns: "repeat(3, 1fr)", height: "220px", overflow: "hidden" }}>
         {teamPhotos.map((src, i) => (
           <div key={i} style={{ position: "relative", overflow: "hidden" }}>
             <Image
@@ -335,7 +337,7 @@ export default function CareersPage() {
       </div>
 
       {/* ── WHY US ── */}
-      <section style={{ background: "#fff", padding: "88px 60px" }}>
+      <section className="px-4 sm:px-6 lg:px-[60px]" style={{ background: "#fff", paddingTop: "88px", paddingBottom: "88px" }}>
         <FadeIn>
           <div style={{ textAlign: "center", marginBottom: "52px" }}>
             <span
@@ -366,13 +368,7 @@ export default function CareersPage() {
         </FadeIn>
 
         <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(3, 1fr)",
-            gap: "28px",
-            maxWidth: "1000px",
-            margin: "0 auto",
-          }}
+          className="grid grid-cols-1 md:grid-cols-3 gap-7 max-w-5xl mx-auto"
         >
           {whyUs.map((w, i) => (
             <motion.div
@@ -418,7 +414,7 @@ export default function CareersPage() {
       </section>
 
       {/* ── PERKS ── */}
-      <section style={{ background: "#F3F2F0", padding: "80px 60px" }}>
+      <section className="px-4 sm:px-6 lg:px-[60px]" style={{ background: "#F3F2F0", paddingTop: "80px", paddingBottom: "80px" }}>
         <FadeIn>
           <div style={{ textAlign: "center", marginBottom: "48px" }}>
             <span
@@ -449,13 +445,7 @@ export default function CareersPage() {
         </FadeIn>
 
         <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(3, 1fr)",
-            gap: "20px",
-            maxWidth: "1000px",
-            margin: "0 auto",
-          }}
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 max-w-5xl mx-auto"
         >
           {perks.map((p, i) => (
             <motion.div
@@ -520,7 +510,7 @@ export default function CareersPage() {
       </section>
 
       {/* ── OPEN ROLES ── */}
-      <section ref={rolesRef} style={{ background: "#fff", padding: "88px 60px" }}>
+      <section ref={rolesRef} className="px-4 sm:px-6 lg:px-[60px]" style={{ background: "#fff", paddingTop: "88px", paddingBottom: "88px" }}>
         <FadeIn>
           <div style={{ textAlign: "center", marginBottom: "48px" }}>
             <span
@@ -728,9 +718,9 @@ export default function CareersPage() {
 
       {/* ── BOTTOM CTA ── */}
       <section
+        className="px-4 sm:px-6 lg:px-[60px] py-16"
         style={{
           background: "#0A1F44",
-          padding: "64px 60px",
           textAlign: "center",
         }}
       >
