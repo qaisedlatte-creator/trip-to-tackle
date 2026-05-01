@@ -20,10 +20,17 @@
   --color-amber: #FF6A00;
 }
 
-* { box-sizing: border-box; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
 
 /* Lenis handles smooth scroll — no CSS override needed */
 html { scroll-behavior: auto; }
+
+/* iOS Safari: fill-available prevents the address-bar gap */
+html, body {
+  width: 100%;
+  min-height: 100vh;
+  min-height: -webkit-fill-available;
+}
 
 body {
   color: #171717;
