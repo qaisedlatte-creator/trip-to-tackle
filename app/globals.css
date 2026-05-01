@@ -20,17 +20,10 @@
   --color-amber: #FF6A00;
 }
 
-* { box-sizing: border-box; margin: 0; padding: 0; }
+* { box-sizing: border-box; }
 
 /* Lenis handles smooth scroll — no CSS override needed */
 html { scroll-behavior: auto; }
-
-/* iOS Safari: fill-available prevents the address-bar gap */
-html, body {
-  width: 100%;
-  min-height: 100vh;
-  min-height: -webkit-fill-available;
-}
 
 body {
   color: #171717;
@@ -100,9 +93,6 @@ h1, h2, h3 {
 .pkg-img-inner { transition: transform 0.5s ease; }
 .pkg-card:hover .pkg-img-inner { transform: scale(1.05); }
 
-@media (max-width: 768px) {
-  section, div, main { max-width: 100%; }
-}
 
 @layer utilities {
   .text-balance { text-wrap: balance; }
