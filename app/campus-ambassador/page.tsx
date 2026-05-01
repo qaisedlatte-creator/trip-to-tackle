@@ -220,7 +220,7 @@ export default function CampusAmbassadorPage() {
       {/* ── HERO ── */}
       <section
         style={{
-          background: "linear-gradient(135deg, #0A0A0A 0%, #141414 50%, #0A0A0A 100%)",
+          background: "#0A1F44",
           padding: "130px 60px 90px",
           position: "relative",
           overflow: "hidden",
@@ -364,7 +364,7 @@ export default function CampusAmbassadorPage() {
       </section>
 
       {/* ── STATS ── */}
-      <div style={{ background: "#0A0A0A", display: "grid", gridTemplateColumns: "repeat(4,1fr)" }}>
+      <div style={{ background: "#0A1F44", display: "grid", gridTemplateColumns: "repeat(4,1fr)" }}>
         {[
           { n: "200+", l: "Active Ambassadors" },
           { n: "35+", l: "Colleges Covered" },
@@ -483,7 +483,7 @@ export default function CampusAmbassadorPage() {
               style={{ textAlign: "center" }}
             >
               <div style={{ position: "relative", display: "inline-block", marginBottom: "16px" }}>
-                <div style={{ width: "70px", height: "70px", borderRadius: "18px", background: "#0A0A0A", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "28px", margin: "0 auto" }}>{s.icon}</div>
+                <div style={{ width: "70px", height: "70px", borderRadius: "18px", background: "#0A1F44", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "28px", margin: "0 auto" }}>{s.icon}</div>
                 <div style={{ position: "absolute", top: "-10px", right: "-10px", width: "26px", height: "26px", background: "#FF6A00", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "10px", fontWeight: 700, color: "#fff", fontFamily: "var(--font-body)" }}>{s.n}</div>
               </div>
               <h3 style={{ fontFamily: "var(--font-heading)", fontSize: "19px", color: "#1A1A1A", fontWeight: 600, marginBottom: "8px" }}>{s.title}</h3>
@@ -494,7 +494,7 @@ export default function CampusAmbassadorPage() {
       </section>
 
       {/* ── WHO CAN APPLY ── */}
-      <section style={{ background: "#0A0A0A", padding: "80px 60px" }}>
+      <section style={{ background: "#0A1F44", padding: "80px 60px" }}>
         <div style={{ maxWidth: "780px", margin: "0 auto" }}>
           <FadeIn>
             <div style={{ textAlign: "center", marginBottom: "44px" }}>
@@ -569,7 +569,7 @@ export default function CampusAmbassadorPage() {
       <section
         id="apply"
         style={{
-          background: "linear-gradient(135deg, #0A0A0A 0%, #141414 60%, #0A0A0A 100%)",
+          background: "#0A1F44",
           padding: "88px 60px",
           position: "relative",
           overflow: "hidden",
@@ -604,7 +604,7 @@ export default function CampusAmbassadorPage() {
             target="_blank"
             rel="noopener noreferrer"
             style={{
-              background: "#0A0A0A",
+              background: "#0A1F44",
               color: "#fff",
               padding: "13px 32px",
               borderRadius: "8px",
@@ -617,8 +617,8 @@ export default function CampusAmbassadorPage() {
               fontFamily: "var(--font-body)",
               transition: "background 0.2s",
             }}
-            onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.background = "#141414"; }}
-            onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.background = "#0A0A0A"; }}
+            onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.background = "#162d5c"; }}
+            onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.background = "#0A1F44"; }}
           >
             💬 Chat on WhatsApp
           </a>

@@ -6,7 +6,7 @@ import Image from "next/image";
 
 export default function Footer() {
   return (
-    <footer style={{ background: "#0A0A0A", padding: "64px 60px 40px" }}>
+    <footer style={{ background: "#0A1F44", padding: "64px 60px 40px" }}>
       <div
         style={{
           display: "grid",
@@ -24,7 +24,7 @@ export default function Footer() {
               alt="Trip 2 Tackle"
               width={140}
               height={40}
-              style={{ objectFit: "contain", height: "36px", width: "auto" }}
+              style={{ objectFit: "contain", height: "46px", width: "auto" }}
             />
           </div>
           <p

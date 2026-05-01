@@ -96,7 +96,7 @@ export default function CareersPage() {
       {/* ── HERO ── */}
       <section
         style={{
-          background: "linear-gradient(135deg, #0A0A0A 0%, #141414 60%, #0A0A0A 100%)",
+          background: "#0A1F44",
           padding: "120px 60px 80px",
           position: "relative",
           overflow: "hidden",
@@ -308,7 +308,7 @@ export default function CareersPage() {
               style={{
                 position: "absolute",
                 inset: 0,
-                background: "linear-gradient(to top, rgba(10,10,10,0.5) 0%, transparent 60%)",
+                background: "linear-gradient(to top, rgba(10,31,68,0.5) 0%, transparent 60%)",
               }}
             />
             {i === 1 && (
@@ -666,7 +666,7 @@ export default function CareersPage() {
             transition={{ duration: 0.45, delay: 0.35 }}
             style={{
               marginTop: "6px",
-              background: "#0A0A0A",
+              background: "#0A1F44",
               borderRadius: "14px",
               padding: "32px 36px",
               display: "flex",
@@ -768,7 +768,7 @@ export default function CareersPage() {
             target="_blank"
             rel="noopener noreferrer"
             style={{
-              background: "#0A0A0A",
+              background: "#0A1F44",
               color: "#fff",
               padding: "14px 34px",
               borderRadius: "8px",
@@ -782,10 +782,10 @@ export default function CareersPage() {
               transition: "background 0.2s",
             }}
             onMouseEnter={(e) => {
-              (e.currentTarget as HTMLElement).style.background = "#141414";
+              (e.currentTarget as HTMLElement).style.background = "#162d5c";
             }}
             onMouseLeave={(e) => {
-              (e.currentTarget as HTMLElement).style.background = "#0A0A0A";
+              (e.currentTarget as HTMLElement).style.background = "#0A1F44";
             }}
           >
             💬 Talk to Us on WhatsApp

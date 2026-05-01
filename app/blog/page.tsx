@@ -34,7 +34,7 @@ export default function BlogPage() {
       {/* Hero */}
       <section
         style={{
-          background: "linear-gradient(135deg, #0A0A0A 0%, #141414 60%, #0A0A0A 100%)",
+          background: "#0A1F44",
           padding: "120px 60px 80px",
           position: "relative",
           overflow: "hidden",
@@ -308,7 +308,7 @@ export default function BlogPage() {
       </section>
 
       {/* CTA */}
-      <div style={{ background: "#0A0A0A", padding: "60px", textAlign: "center" }}>
+      <div style={{ background: "#0A1F44", padding: "60px", textAlign: "center" }}>
         <h3
           style={{
             fontFamily: "var(--font-heading)",

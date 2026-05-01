@@ -65,6 +65,27 @@ const allTestimonials = [
     package: "Singapore Family Tour",
     rating: 5,
   },
+  {
+    text: "The Spiti Valley group trip was unlike anything I've done. New friends, incredible landscapes.",
+    name: "Divya Nambiar",
+    location: "Chennai",
+    package: "Spiti Valley Expedition",
+    rating: 5,
+  },
+  {
+    text: "Booked Bali two weeks before departure and they handled everything seamlessly. Truly impressive.",
+    name: "Arun Kumar",
+    location: "Hyderabad",
+    package: "Bali Soul Journey",
+    rating: 5,
+  },
+  {
+    text: "Kerala backwaters houseboat was a surreal experience. Perfectly curated, zero stress.",
+    name: "Neha Iyer",
+    location: "Mumbai",
+    package: "Alappuzha Backwaters",
+    rating: 5,
+  },
 ];
 
 type Testimonial = (typeof allTestimonials)[0];
@@ -109,25 +130,10 @@ function TestimonialCard({ t }: { t: Testimonial }) {
         &ldquo;{t.text}&rdquo;
       </p>
       <div style={{ borderTop: "1px solid #f3f4f6", paddingTop: 12 }}>
-        <p
-          style={{
-            fontFamily: "var(--font-body)",
-            fontSize: 13,
-            fontWeight: 600,
-            color: "#0A1F44",
-            margin: 0,
-          }}
-        >
+        <p style={{ fontFamily: "var(--font-body)", fontSize: 13, fontWeight: 600, color: "#0A1F44", margin: 0 }}>
           {t.name}
         </p>
-        <p
-          style={{
-            fontFamily: "var(--font-body)",
-            fontSize: 11.5,
-            color: "#9ca3af",
-            margin: "3px 0 0",
-          }}
-        >
+        <p style={{ fontFamily: "var(--font-body)", fontSize: 11.5, color: "#9ca3af", margin: "3px 0 0" }}>
           {t.location} &middot; {t.package}
         </p>
       </div>
@@ -139,10 +145,11 @@ interface ColumnProps {
   testimonials: Testimonial[];
   duration: number;
   reverse?: boolean;
-  hidden?: boolean;
+  desktopOnly?: boolean;
+  xlOnly?: boolean;
 }
 
-function ScrollingColumn({ testimonials, duration, reverse = false, hidden = false }: ColumnProps) {
+function ScrollingColumn({ testimonials, duration, reverse = false, desktopOnly = false, xlOnly = false }: ColumnProps) {
   const doubled = [...testimonials, ...testimonials];
 
   return (
@@ -153,9 +160,8 @@ function ScrollingColumn({ testimonials, duration, reverse = false, hidden = fal
         minWidth: 0,
         maskImage: "linear-gradient(to bottom, transparent, black 18%, black 82%, transparent)",
         WebkitMaskImage: "linear-gradient(to bottom, transparent, black 18%, black 82%, transparent)",
-        display: hidden ? "none" : undefined,
       }}
-      className={hidden ? "hidden md:block" : undefined}
+      className={xlOnly ? "hidden xl:block" : desktopOnly ? "hidden md:block" : undefined}
     >
       <motion.div
         animate={{ y: reverse ? ["0%", "-50%"] : ["-50%", "0%"] }}
@@ -171,9 +177,11 @@ function ScrollingColumn({ testimonials, duration, reverse = false, hidden = fal
 }
 
 export default function Testimonials() {
+  /* 4 columns: col1 mobile+, col2/3 md+, col4 xl+ */
   const col1 = allTestimonials.slice(0, 3);
   const col2 = allTestimonials.slice(3, 6);
   const col3 = allTestimonials.slice(6, 9);
+  const col4 = allTestimonials.slice(9, 12);
 
   return (
     <section style={{ background: "#0A1F44", paddingTop: 96, paddingBottom: 96, overflow: "hidden" }}>
@@ -185,23 +193,19 @@ export default function Testimonials() {
           transition={{ duration: 0.5 }}
           style={{ textAlign: "center", marginBottom: 56 }}
         >
-          <p
-            className="section-label mb-2"
-            style={{ color: "rgba(255,255,255,0.35)" }}
-          >
+          <p className="section-label mb-2" style={{ color: "rgba(255,255,255,0.35)" }}>
             What Travelers Say
           </p>
-          <h2
-            className="font-playfair text-3xl md:text-4xl font-bold text-white"
-          >
+          <h2 className="font-playfair text-3xl md:text-4xl font-bold text-white">
             Real Stories, Real Journeys
           </h2>
         </motion.div>
 
-        <div style={{ display: "flex", gap: 16, height: 500 }}>
+        <div style={{ display: "flex", gap: 16, height: 520 }}>
           <ScrollingColumn testimonials={col1} duration={20} />
-          <ScrollingColumn testimonials={col2} duration={25} hidden />
-          <ScrollingColumn testimonials={col3} duration={17} reverse hidden />
+          <ScrollingColumn testimonials={col2} duration={25} reverse desktopOnly />
+          <ScrollingColumn testimonials={col3} duration={18} desktopOnly />
+          <ScrollingColumn testimonials={col4} duration={22} reverse xlOnly />
         </div>
       </div>
     </section>

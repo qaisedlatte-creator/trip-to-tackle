@@ -8,7 +8,6 @@ import Footer from "@/components/blocks/footer";
 import HeroScrollAnimation from "@/components/blocks/scroll-animation";
 import Testimonials from "@/components/blocks/testimonials";
 import BookingSteps from "@/components/blocks/booking-steps";
-import CustomCursor from "@/components/blocks/custom-cursor";
 import { featuredDestinations } from "@/lib/destinations";
 
 const fadeUp = {
@@ -72,7 +71,6 @@ const livePackages = [
 export default function HomePage() {
   return (
     <>
-      <CustomCursor />
       <Navbar />
 
       <main>

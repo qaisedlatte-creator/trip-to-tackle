@@ -110,7 +110,7 @@ export default function DestinationsPage() {
       {/* Hero */}
       <div
         style={{
-          background: "#0A0A0A",
+          background: "#0A1F44",
           padding: "110px 60px 52px",
           borderBottom: "1px solid rgba(255,255,255,0.06)",
           position: "relative",
@@ -263,7 +263,7 @@ export default function DestinationsPage() {
                     position: "absolute",
                     bottom: "14px",
                     left: "14px",
-                    background: "rgba(10,10,10,0.8)",
+                    background: "rgba(10,31,68,0.8)",
                     color: "#fff",
                     fontSize: "11px",
                     padding: "4px 10px",
@@ -359,7 +359,7 @@ export default function DestinationsPage() {
       </div>
 
       {/* CTA */}
-      <section style={{ background: "#0A0A0A", padding: "64px 60px", textAlign: "center" }}>
+      <section style={{ background: "#0A1F44", padding: "64px 60px", textAlign: "center" }}>
         <h3
           style={{
             fontFamily: "var(--font-heading)",

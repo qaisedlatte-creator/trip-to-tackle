@@ -330,7 +330,7 @@ export default function HeroScrollAnimation() {
         style={{
           width: "100%",
           height: "100vh",
-          background: "#0A0A0A",
+          background: "#0A1F44",
         }}
       />
     );
@@ -352,7 +352,7 @@ export default function HeroScrollAnimation() {
           width: "100%",
           height: "100vh",
           overflow: "hidden",
-          background: "#0A0A0A",
+          background: "#0A1F44",
         }}
       >
         <canvas
@@ -392,7 +392,7 @@ export default function HeroScrollAnimation() {
               flexDirection: "column",
               alignItems: "center",
               justifyContent: "center",
-              background: "#0A0A0A",
+              background: "#0A1F44",
               zIndex: 20,
             }}
           >

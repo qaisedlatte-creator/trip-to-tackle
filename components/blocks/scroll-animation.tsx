@@ -180,7 +180,7 @@ export default function HeroScrollAnimation() {
 
   /* ── SSR guard ── */
   if (isMobile === null) {
-    return <div style={{ width: "100%", height: "100vh", background: "#000" }} />;
+    return <div style={{ width: "100%", height: "100vh", background: "#0A1F44" }} />;
   }
 
   const scrollH = isMobile ? "280vh" : "500vh";
@@ -195,7 +195,7 @@ export default function HeroScrollAnimation() {
           width: "100%",
           height: "100vh",
           overflow: "hidden",
-          background: "#000",
+          background: "#0A1F44",
         }}
       >
         <canvas
@@ -231,7 +231,7 @@ export default function HeroScrollAnimation() {
               flexDirection: "column",
               alignItems: "center",
               justifyContent: "center",
-              background: "#000",
+              background: "#0A1F44",
               zIndex: 20,
               gap: 20,
             }}

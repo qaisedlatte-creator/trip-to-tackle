@@ -39,10 +39,6 @@ body {
 ::-webkit-scrollbar-thumb { background: #0A1F44; border-radius: 2px; }
 ::-webkit-scrollbar-thumb:hover { background: #FF6A00; }
 
-@media (pointer: fine) {
-  *, *::before, *::after { cursor: none !important; }
-}
-
 h1, h2, h3 {
   font-family: var(--font-playfair), "Playfair Display", Georgia, serif;
 }

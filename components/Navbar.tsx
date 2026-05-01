@@ -27,7 +27,7 @@ export default function Navbar() {
   }, []);
 
   const navBg = scrolled
-    ? "rgba(10,10,10,0.94)"
+    ? "rgba(10,31,68,0.94)"
     : "transparent";
   const navBorder = scrolled
     ? "1px solid rgba(255,255,255,0.06)"
@@ -67,7 +67,7 @@ export default function Navbar() {
           alt="Trip 2 Tackle"
           width={140}
           height={40}
-          style={{ objectFit: "contain", height: "36px", width: "auto" }}
+          style={{ objectFit: "contain", height: "46px", width: "auto" }}
           priority
         />
       </Link>
@@ -232,7 +232,7 @@ export default function Navbar() {
             top: "68px",
             left: 0,
             right: 0,
-            background: "rgba(10,10,10,0.97)",
+            background: "rgba(10,31,68,0.97)",
             backdropFilter: "blur(20px)",
             borderBottom: "1px solid rgba(255,255,255,0.07)",
             padding: "20px 24px",

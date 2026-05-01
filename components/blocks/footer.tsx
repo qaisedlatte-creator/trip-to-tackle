@@ -16,7 +16,7 @@ export default function Footer() {
               alt="Trip 2 Tackle"
               width={140}
               height={40}
-              style={{ objectFit: "contain", height: "36px", width: "auto" }}
+              style={{ objectFit: "contain", height: "46px", width: "auto" }}
             />
             <p className="font-playfair text-lg text-white/80 italic leading-snug">
               Travel to Experience
