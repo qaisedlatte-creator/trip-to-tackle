@@ -1,0 +1,121 @@
+@import "tailwindcss";
+
+@theme {
+  --color-navy: #0d1b3e;
+  --color-navy-mid: #162040;
+  --color-navy-light: #1e2e58;
+  --color-gold: #f5c542;
+  --color-gold-dark: #d4a820;
+  --color-off-white: #f7f6f2;
+  --color-text-dim: #8fa0c0;
+  --color-dark-bg: #060e20;
+  --font-playfair: var(--font-playfair-var), 'Playfair Display', Georgia, serif;
+  --font-dm: var(--font-dm-var), 'DM Sans', sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #0d1b3e;
+  color: #fff;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-family: var(--font-dm), 'DM Sans', sans-serif;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: #060e20; }
+::-webkit-scrollbar-thumb { background: #1e2e58; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #d4a820; }
+
+/* Fade mask for testimonials */
+.fade-mask {
+  -webkit-mask-image: linear-gradient(to bottom, transparent, black 20%, black 80%, transparent);
+  mask-image: linear-gradient(to bottom, transparent, black 20%, black 80%, transparent);
+}
+
+/* Hero scroll bounce */
+@keyframes bounce-y {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(8px); }
+}
+
+/* Shimmer */
+@keyframes shimmer-move {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+/* Float particles */
+@keyframes float-up {
+  0% { transform: translateY(100vh) scale(0); opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 0.6; }
+  100% { transform: translateY(-20vh) scale(1); opacity: 0; }
+}
+
+.bounce-scroll {
+  position: absolute;
+  bottom: 36px;
+  left: 50%;
+  animation: bounce-y 2s ease-in-out infinite;
+}
+
+.gold-shimmer-text {
+  background: linear-gradient(90deg, #f5c542 0%, #fff5c0 40%, #f5c542 60%, #d4a820 100%);
+  background-size: 200% auto;
+  animation: shimmer-move 3s linear infinite;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Package card hover */
+.pkg-card {
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.pkg-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.18);
+}
+.pkg-img-inner {
+  transition: transform 0.5s ease;
+}
+.pkg-card:hover .pkg-img-inner {
+  transform: scale(1.06);
+}
+
+/* Role card hover */
+.role-card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+.role-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.1);
+  border-color: rgba(245, 197, 66, 0.3);
+}
+
+/* Benefit card hover */
+.benefit-card {
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.benefit-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
+}
+
+/* Nav link active indicator */
+.nav-link-active {
+  color: #fff !important;
+  border-bottom: 2px solid #f5c542;
+  padding-bottom: 2px;
+}
+
