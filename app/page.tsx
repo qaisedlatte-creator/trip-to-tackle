@@ -1009,7 +1009,6 @@ export default function HomePage() {
       <PackagesSection />
       <HowItWorksSection />
       <TestimonialsSection />
-      <CTABand />
       <Footer />
     </>
   );

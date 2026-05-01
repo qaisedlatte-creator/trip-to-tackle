@@ -47,7 +47,7 @@ function MobileHero() {
           position: "absolute",
           inset: 0,
           background:
-            "linear-gradient(180deg, rgba(14,24,71,0.55) 0%, rgba(14,24,71,0.3) 40%, rgba(14,24,71,0.75) 100%)",
+            "linear-gradient(180deg, rgba(0,0,0,0.42) 0%, rgba(0,0,0,0.2) 40%, rgba(0,0,0,0.45) 100%)",
           pointerEvents: "none",
         }}
       />
@@ -366,18 +366,17 @@ export default function HeroScrollAnimation() {
           }}
         />
 
-        {/* Gradient overlay */}
+        {/* Gradient overlay — matches Trippy reference: subtle black, no navy wash */}
         <div
           style={{
             position: "absolute",
             inset: 0,
             background:
               "linear-gradient(180deg," +
-              "rgba(14,24,71,0.28) 0%," +
-              "rgba(0,0,0,0) 18%," +
-              "rgba(0,0,0,0) 60%," +
-              "rgba(27,40,102,0.92) 88%," +
-              "rgba(27,40,102,1) 100%)",
+              "rgba(0,0,0,0.38) 0%," +
+              "rgba(0,0,0,0.18) 30%," +
+              "rgba(0,0,0,0.18) 65%," +
+              "rgba(0,0,0,0.42) 100%)",
             pointerEvents: "none",
             zIndex: 1,
           }}
