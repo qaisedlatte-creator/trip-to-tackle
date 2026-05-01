@@ -43,6 +43,30 @@ const livePackages = [
     price: "₹14,000",
     image: "https://images.unsplash.com/photo-1518509562904-e7ef99cdcc86?w=600&q=80",
   },
+  {
+    destination: "Kashmir",
+    region: "Jammu & Kashmir",
+    dates: "Aug 2 – Aug 9, 2025",
+    spots: 5,
+    price: "₹16,000",
+    image: "https://images.unsplash.com/photo-1593181629936-11c609b8db9b?w=600&q=80",
+  },
+  {
+    destination: "Vietnam",
+    region: "Southeast Asia",
+    dates: "Aug 18 – Aug 26, 2025",
+    spots: 8,
+    price: "₹32,000",
+    image: "https://images.unsplash.com/photo-1528360983277-13d401cdc186?w=600&q=80",
+  },
+  {
+    destination: "Coorg",
+    region: "Karnataka",
+    dates: "Sep 6 – Sep 8, 2025",
+    spots: 2,
+    price: "₹7,500",
+    image: "https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?w=600&q=80",
+  },
 ];
 
 export default function HomePage() {
@@ -78,8 +102,15 @@ export default function HomePage() {
               </Link>
             </motion.div>
 
-            <div className="flex gap-5 overflow-x-auto pb-4 -mx-4 px-4 sm:-mx-6 sm:px-6"
-              style={{ scrollSnapType: "x mandatory" }}>
+            <div
+              className="flex gap-5 overflow-x-auto -mx-4 px-4 sm:-mx-6 sm:px-6"
+              style={{
+                scrollSnapType: "x mandatory",
+                scrollbarWidth: "none",
+                msOverflowStyle: "none",
+                paddingBottom: 4,
+              }}
+            >
               {featuredDestinations.map((d, i) => (
                 <motion.div
                   key={d.slug}
@@ -139,7 +170,7 @@ export default function HomePage() {
               </p>
             </motion.div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {livePackages.map((pkg, i) => (
                 <motion.div
                   key={pkg.destination}

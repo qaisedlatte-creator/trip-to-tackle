@@ -42,24 +42,15 @@ export default function Navbar() {
         }}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-          {/* Logo */}
+          {/* Logo — color on light bg, white on dark bg */}
           <Link href="/" className="flex items-center">
             <Image
-              src="/logo-color.jpg"
+              src={scrolled ? "/logo-color.png" : "/logo-dark.png"}
               alt="Trip 2 Tackle"
               width={140}
               height={40}
               priority
-              style={{
-                objectFit: "contain",
-                height: "38px",
-                width: "auto",
-                /* On dark (transparent navbar): invert to white
-                   On white (scrolled navbar): multiply blends away white bg */
-                filter: scrolled ? "none" : "brightness(0) invert(1)",
-                mixBlendMode: scrolled ? "multiply" : "normal",
-                transition: "filter 0.3s ease, mix-blend-mode 0.3s ease",
-              }}
+              style={{ objectFit: "contain", height: "36px", width: "auto" }}
             />
           </Link>
 
@@ -74,12 +65,8 @@ export default function Navbar() {
                   fontSize: 14,
                   fontWeight: 500,
                   color: scrolled
-                    ? pathname === l.href
-                      ? "#0A1F44"
-                      : "rgba(10,31,68,0.55)"
-                    : pathname === l.href
-                    ? "#fff"
-                    : "rgba(255,255,255,0.65)",
+                    ? pathname === l.href ? "#0A1F44" : "rgba(10,31,68,0.55)"
+                    : pathname === l.href ? "#fff" : "rgba(255,255,255,0.65)",
                   textDecoration: "none",
                   transition: "color 0.2s",
                   position: "relative",
@@ -175,41 +162,21 @@ export default function Navbar() {
               flexDirection: "column",
             }}
           >
-            <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "space-between",
-                padding: "20px 24px",
-              }}
-            >
+            <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "20px 24px" }}>
+              {/* White logo on dark overlay */}
               <Image
-                src="/logo-color.jpg"
+                src="/logo-dark.png"
                 alt="Trip 2 Tackle"
                 width={120}
                 height={34}
-                style={{
-                  objectFit: "contain",
-                  height: "34px",
-                  width: "auto",
-                  filter: "brightness(0) invert(1)",
-                }}
+                style={{ objectFit: "contain", height: "32px", width: "auto" }}
               />
               <button onClick={() => setOpen(false)} style={{ color: "#fff" }}>
                 <X size={26} />
               </button>
             </div>
 
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                justifyContent: "center",
-                flex: 1,
-                gap: 28,
-              }}
-            >
+            <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", flex: 1, gap: 28 }}>
               {links.map((l, i) => (
                 <motion.div
                   key={l.href}
@@ -225,7 +192,6 @@ export default function Navbar() {
                       fontWeight: 600,
                       textDecoration: "none",
                       color: pathname === l.href ? "#FF6A00" : "#fff",
-                      transition: "color 0.2s",
                     }}
                   >
                     {l.label}
