@@ -222,13 +222,11 @@ export default function HeroScrollAnimation() {
   const scrollH = isMobile ? "240vh" : "500vh";
 
   return (
-    /* full-bleed wrapper: escapes any parent padding via negative margins */
     <div
       ref={containerRef}
       style={{
         position: "relative",
-        width: "100vw",
-        marginLeft: "calc(50% - 50vw)",
+        width: "100%",
         height: scrollH,
       }}
     >
@@ -238,12 +236,10 @@ export default function HeroScrollAnimation() {
         style={{
           position: "sticky",
           top: 0,
-          left: 0,
-          width: "100vw",
+          width: "100%",
           height: stickyH,
           overflow: "hidden",
           background: "#0A1F44",
-          /* GPU compositing — reduces paint cost */
           willChange: "transform",
           transform: "translateZ(0)",
         }}
