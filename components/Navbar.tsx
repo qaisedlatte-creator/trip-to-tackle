@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
@@ -14,16 +14,8 @@ const navLinks = [
 ];
 
 export default function Navbar() {
-  const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const pathname = usePathname();
-
-  useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 60);
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    handleScroll();
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
 
   return (
     <nav
@@ -38,10 +30,7 @@ export default function Navbar() {
         justifyContent: "space-between",
         padding: "0 60px",
         height: "68px",
-        background: scrolled ? "rgba(13,27,62,0.96)" : "rgba(13,27,62,0)",
-        backdropFilter: scrolled ? "blur(16px)" : "blur(0px)",
-        borderBottom: scrolled ? "1px solid rgba(255,255,255,0.07)" : "none",
-        transition: "background 0.4s, backdrop-filter 0.4s, border-bottom 0.4s",
+        background: "transparent",
       }}
     >
       {/* Logo */}
@@ -55,10 +44,10 @@ export default function Navbar() {
           letterSpacing: "-0.3px",
           textDecoration: "none",
           flexShrink: 0,
+          textShadow: "0 1px 12px rgba(0,0,0,0.5)",
         }}
       >
-        Trip to{" "}
-        <span style={{ color: "#f5c542" }}>Tackle</span>
+        Trip to <span style={{ color: "#f5c542" }}>Tackle</span>
       </Link>
 
       {/* Desktop links */}
@@ -77,7 +66,8 @@ export default function Navbar() {
           const isActive =
             link.href === "/"
               ? pathname === "/"
-              : pathname.startsWith(link.href.split("#")[0]) && link.href.split("#")[0] !== "/";
+              : pathname.startsWith(link.href.split("#")[0]) &&
+                link.href.split("#")[0] !== "/";
           return (
             <li key={link.label}>
               <Link
@@ -86,18 +76,20 @@ export default function Navbar() {
                   color: isActive ? "#fff" : "rgba(255,255,255,0.82)",
                   textDecoration: "none",
                   fontSize: "14px",
-                  fontWeight: 500,
+                  fontWeight: isActive ? 600 : 500,
                   transition: "color 0.2s",
                   borderBottom: isActive ? "2px solid #f5c542" : "none",
                   paddingBottom: isActive ? "2px" : "0",
                   fontFamily: "var(--font-dm)",
+                  textShadow: "0 1px 8px rgba(0,0,0,0.4)",
                 }}
                 onMouseEnter={(e) => {
                   (e.target as HTMLElement).style.color = "#fff";
                 }}
                 onMouseLeave={(e) => {
                   if (!isActive)
-                    (e.target as HTMLElement).style.color = "rgba(255,255,255,0.82)";
+                    (e.target as HTMLElement).style.color =
+                      "rgba(255,255,255,0.82)";
                 }}
               >
                 {link.label}
@@ -117,25 +109,28 @@ export default function Navbar() {
             display: "flex",
             alignItems: "center",
             gap: "7px",
-            border: "1.5px solid rgba(255,255,255,0.3)",
+            border: "1.5px solid rgba(255,255,255,0.45)",
             color: "#fff",
             padding: "8px 17px",
             borderRadius: "8px",
             fontSize: "13px",
             fontWeight: 500,
-            background: "transparent",
+            background: "rgba(255,255,255,0.06)",
+            backdropFilter: "blur(8px)",
             cursor: "pointer",
             textDecoration: "none",
             fontFamily: "var(--font-dm)",
             transition: "all 0.2s",
           }}
           onMouseEnter={(e) => {
-            (e.currentTarget as HTMLElement).style.borderColor = "#25d366";
-            (e.currentTarget as HTMLElement).style.color = "#25d366";
+            const el = e.currentTarget as HTMLElement;
+            el.style.borderColor = "#25d366";
+            el.style.color = "#25d366";
           }}
           onMouseLeave={(e) => {
-            (e.currentTarget as HTMLElement).style.borderColor = "rgba(255,255,255,0.3)";
-            (e.currentTarget as HTMLElement).style.color = "#fff";
+            const el = e.currentTarget as HTMLElement;
+            el.style.borderColor = "rgba(255,255,255,0.45)";
+            el.style.color = "#fff";
           }}
           className="hidden sm:flex"
         >
@@ -160,6 +155,7 @@ export default function Navbar() {
             fontFamily: "var(--font-dm)",
             textDecoration: "none",
             transition: "background 0.2s",
+            boxShadow: "0 2px 12px rgba(245,197,66,0.3)",
           }}
           onMouseEnter={(e) => {
             (e.currentTarget as HTMLElement).style.background = "#d4a820";
@@ -184,7 +180,14 @@ export default function Navbar() {
           className="flex md:hidden"
           aria-label="Toggle menu"
         >
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+          <svg
+            width="22"
+            height="22"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+          >
             {menuOpen ? (
               <>
                 <line x1="18" y1="6" x2="6" y2="18" />
@@ -209,8 +212,8 @@ export default function Navbar() {
             top: "68px",
             left: 0,
             right: 0,
-            background: "rgba(13,27,62,0.98)",
-            backdropFilter: "blur(16px)",
+            background: "rgba(13,27,62,0.97)",
+            backdropFilter: "blur(20px)",
             borderBottom: "1px solid rgba(255,255,255,0.07)",
             padding: "20px 24px",
             display: "flex",
@@ -225,7 +228,7 @@ export default function Navbar() {
               href={link.href}
               onClick={() => setMenuOpen(false)}
               style={{
-                color: "rgba(255,255,255,0.85)",
+                color: "rgba(255,255,255,0.9)",
                 textDecoration: "none",
                 fontSize: "15px",
                 fontWeight: 500,
