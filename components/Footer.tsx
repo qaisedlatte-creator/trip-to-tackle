@@ -1,8 +1,11 @@
+"use client";
+
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Footer() {
   return (
-    <footer style={{ background: "#060e20", padding: "64px 60px 40px" }}>
+    <footer style={{ background: "#1B2866", padding: "64px 60px 40px" }}>
       <div
         style={{
           display: "grid",
@@ -14,20 +17,18 @@ export default function Footer() {
       >
         {/* Brand */}
         <div>
-          <div
-            style={{
-              fontFamily: "var(--font-playfair)",
-              fontSize: "24px",
-              color: "#fff",
-              marginBottom: "14px",
-              fontWeight: 700,
-            }}
-          >
-            Trip to <span style={{ color: "#f5c542" }}>Tackle</span>
+          <div style={{ marginBottom: "16px" }}>
+            <Image
+              src="/logo.png"
+              alt="Trip 2 Tackle"
+              width={140}
+              height={40}
+              style={{ objectFit: "contain" }}
+            />
           </div>
           <p
             style={{
-              color: "#8fa0c0",
+              color: "#94A3B8",
               fontSize: "14px",
               lineHeight: 1.75,
               maxWidth: "280px",
@@ -49,7 +50,7 @@ export default function Footer() {
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
-                  color: "#8fa0c0",
+                  color: "#94A3B8",
                   fontSize: "11px",
                   fontWeight: 700,
                   cursor: "pointer",
@@ -58,12 +59,12 @@ export default function Footer() {
                   transition: "background 0.2s, color 0.2s",
                 }}
                 onMouseEnter={(e) => {
-                  (e.currentTarget as HTMLElement).style.background = "rgba(245,197,66,0.15)";
-                  (e.currentTarget as HTMLElement).style.color = "#f5c542";
+                  (e.currentTarget as HTMLElement).style.background = "rgba(8,145,178,0.18)";
+                  (e.currentTarget as HTMLElement).style.color = "#0891B2";
                 }}
                 onMouseLeave={(e) => {
                   (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.07)";
-                  (e.currentTarget as HTMLElement).style.color = "#8fa0c0";
+                  (e.currentTarget as HTMLElement).style.color = "#94A3B8";
                 }}
               >
                 {s}
@@ -119,10 +120,10 @@ export default function Footer() {
           gap: "12px",
         }}
       >
-        <p style={{ color: "#8fa0c0", fontSize: "12.5px", fontFamily: "var(--font-dm)" }}>
+        <p style={{ color: "#94A3B8", fontSize: "12.5px", fontFamily: "var(--font-dm)" }}>
           © 2026 Trip to Tackle. All rights reserved.
         </p>
-        <p style={{ color: "#2a3d5a", fontSize: "12px", fontFamily: "var(--font-dm)" }}>
+        <p style={{ color: "#4A5568", fontSize: "12px", fontFamily: "var(--font-dm)" }}>
           Crafted with ♥ for wanderers everywhere
         </p>
       </div>
@@ -156,7 +157,7 @@ function FooterCol({
             <Link
               href={link.href}
               style={{
-                color: "#8fa0c0",
+                color: "#94A3B8",
                 fontSize: "13px",
                 textDecoration: "none",
                 fontFamily: "var(--font-dm)",
@@ -166,7 +167,7 @@ function FooterCol({
                 (e.currentTarget as HTMLElement).style.color = "#fff";
               }}
               onMouseLeave={(e) => {
-                (e.currentTarget as HTMLElement).style.color = "#8fa0c0";
+                (e.currentTarget as HTMLElement).style.color = "#94A3B8";
               }}
             >
               {link.label}

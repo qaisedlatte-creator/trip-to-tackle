@@ -5,180 +5,105 @@ import { motion, useInView } from "framer-motion";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
-/* ─── DATA ─── */
 const benefits = [
   {
     icon: "💰",
-    title: "Earn Commissions",
-    desc: "Get paid for every booking you drive from your campus. The more you hustle, the more you earn — no cap.",
-    highlight: "Up to ₹3,000 per booking",
+    title: "Earn Real Commissions",
+    tag: "Up to ₹3,000 per booking",
+    desc: "Every trip booked through your referral earns you a commission — no cap, no ceiling. The more you hustle, the more you earn.",
   },
   {
     icon: "✈️",
     title: "Exclusive Travel Perks",
-    desc: "Trip discounts, early access to new packages, and invites to special group departures — just for ambassadors.",
-    highlight: "Free & discounted trips",
+    tag: "Discounted & free trips",
+    desc: "Get deep discounts on Trip 2 Tackle packages and early invites to special group departures — just for ambassadors.",
   },
   {
     icon: "📜",
     title: "Official Certificate",
-    desc: "Receive a verified certificate of completion that you can add to your LinkedIn and resume.",
-    highlight: "Verified credential",
+    tag: "LinkedIn-ready credential",
+    desc: "Complete the program and receive a verified certificate you can add to your LinkedIn profile and resume.",
   },
   {
     icon: "🤝",
-    title: "Network & Grow",
-    desc: "Connect with our team, travel industry professionals, and a growing community of student ambassadors.",
-    highlight: "Industry connections",
+    title: "Network & Mentorship",
+    tag: "Industry connections",
+    desc: "Connect with our founders, travel professionals, and a growing community of student ambassadors across India.",
   },
 ];
 
-const requirements = [
-  { icon: "✈️", label: "Passionate about travel" },
-  { icon: "📱", label: "Active on social media (Instagram, WhatsApp, YouTube)" },
-  { icon: "🎓", label: "Currently enrolled in a college/university" },
-  { icon: "🗣️", label: "Natural networker & communicator" },
-  { icon: "🔥", label: "Self-motivated and driven" },
+const steps = [
+  { n: "01", icon: "📝", title: "Apply Online", desc: "Fill out the quick application below. Tell us who you are and why you want to represent Trip 2 Tackle on your campus." },
+  { n: "02", icon: "🚀", title: "Get Onboarded", desc: "We'll respond within 48 hours. You'll get your ambassador kit, referral link, promo materials and a quick onboarding call." },
+  { n: "03", icon: "💸", title: "Earn & Travel", desc: "Start sharing with your campus. Every booking through your link earns you a commission — paid monthly, no fuss." },
 ];
 
-const howItWorks = [
-  {
-    n: "01",
-    title: "Apply Online",
-    desc: "Fill out the quick application form below. Tell us about yourself and why you want to represent Trip to Tackle.",
-    icon: "📝",
-  },
-  {
-    n: "02",
-    title: "Get Onboarded",
-    desc: "We'll reach out within 48 hours. You'll get your ambassador kit, training materials, and promo codes.",
-    icon: "🚀",
-  },
-  {
-    n: "03",
-    title: "Start Earning",
-    desc: "Share with your campus community. Every booking through your link earns you a commission, instantly.",
-    icon: "💸",
-  },
+const eligibility = [
+  { icon: "🎓", text: "Enrolled in a college or university (any year)" },
+  { icon: "📱", text: "Active presence on Instagram, WhatsApp or YouTube" },
+  { icon: "✈️", text: "Genuine passion for travel and exploration" },
+  { icon: "🗣️", text: "Strong communication skills in your campus community" },
+  { icon: "🔥", text: "Self-motivated, proactive, and results-driven" },
 ];
 
-const currentAmbassadors = [
+const ambassadors = [
   {
     name: "Rahul Menon",
     college: "CUSAT, Kochi",
-    text: "Being a Trip to Tackle ambassador has been incredible. I've already earned ₹18,000 this semester while planning trips for my friends!",
+    text: "I've already earned ₹18,000 this semester just by sharing Trip 2 Tackle packages with my hostel group. Best side hustle ever!",
     img: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&q=80",
-    earned: "₹18,000 earned",
+    stat: "₹18,000 earned",
   },
   {
     name: "Nisha Varghese",
     college: "MES College, Thrissur",
-    text: "The travel perks alone are worth it. I went on the Wayanad trip at 60% off — and my whole friend group booked through me!",
+    text: "The travel discounts alone are worth it. I went on the Wayanad trip at 60% off — organized by a package I promoted!",
     img: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&q=80",
-    earned: "5 trips organized",
+    stat: "5 trips organized",
   },
   {
     name: "Akhil Krishnan",
     college: "NIT Calicut",
-    text: "I love that I get to combine two things I'm obsessed with — travel and entrepreneurship. The team is super supportive.",
+    text: "I love combining travel and entrepreneurship. The founders are genuinely accessible and support you every step of the way.",
     img: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=80&q=80",
-    earned: "12 bookings closed",
+    stat: "12 bookings closed",
   },
   {
     name: "Sreya Thomas",
     college: "Christ College, Bangalore",
-    text: "The certificate was a huge bonus — I added it to my LinkedIn and got 3 interview calls mentioning it. Worth every bit.",
+    text: "The certificate opened doors — I got 3 internship interview calls that specifically mentioned my CAP experience on LinkedIn.",
     img: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=80&q=80",
-    earned: "Certified Ambassador",
+    stat: "Certified Ambassador",
   },
 ];
 
-function FadeSection({
-  children,
-  delay = 0,
-}: {
-  children: React.ReactNode;
-  delay?: number;
-}) {
+function FadeIn({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) {
   const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-80px" });
+  const inView = useInView(ref, { once: true, margin: "-60px" });
   return (
     <motion.div
       ref={ref}
-      initial={{ opacity: 0, y: 28 }}
+      initial={{ opacity: 0, y: 24 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.65, delay, ease: [0.16, 1, 0.3, 1] }}
+      transition={{ duration: 0.6, delay, ease: [0.16, 1, 0.3, 1] }}
     >
       {children}
     </motion.div>
   );
 }
 
-/* ─── APPLY FORM ─── */
 function ApplyForm() {
   const [submitted, setSubmitted] = useState(false);
   const [form, setForm] = useState({
-    name: "",
-    college: "",
-    city: "",
-    email: "",
-    instagram: "",
-    why: "",
+    name: "", college: "", city: "", email: "", instagram: "", why: "",
   });
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setSubmitted(true);
-  };
-
-  if (submitted) {
-    return (
-      <motion.div
-        initial={{ opacity: 0, scale: 0.9 }}
-        animate={{ opacity: 1, scale: 1 }}
-        style={{
-          textAlign: "center",
-          padding: "60px 40px",
-          background: "rgba(255,255,255,0.1)",
-          borderRadius: "20px",
-          border: "1px solid rgba(255,255,255,0.2)",
-        }}
-      >
-        <div style={{ fontSize: "56px", marginBottom: "20px" }}>🎉</div>
-        <h3
-          style={{
-            fontFamily: "var(--font-playfair)",
-            fontSize: "28px",
-            color: "#fff",
-            fontWeight: 700,
-            marginBottom: "12px",
-          }}
-        >
-          Application Submitted!
-        </h3>
-        <p
-          style={{
-            color: "rgba(255,255,255,0.8)",
-            fontSize: "16px",
-            fontFamily: "var(--font-dm)",
-            maxWidth: "400px",
-            margin: "0 auto",
-            lineHeight: 1.6,
-          }}
-        >
-          We&apos;ll review your application and reach out within 48 hours on WhatsApp.
-          Welcome to the journey! ✈️
-        </p>
-      </motion.div>
-    );
-  }
 
   const inputStyle: React.CSSProperties = {
     width: "100%",
-    padding: "13px 16px",
-    borderRadius: "10px",
+    padding: "12px 16px",
+    borderRadius: "8px",
     border: "1.5px solid rgba(255,255,255,0.2)",
-    background: "rgba(255,255,255,0.08)",
+    background: "rgba(255,255,255,0.07)",
     color: "#fff",
     fontSize: "14px",
     fontFamily: "var(--font-dm)",
@@ -186,107 +111,107 @@ function ApplyForm() {
     transition: "border-color 0.2s",
   };
 
-  const labelStyle: React.CSSProperties = {
-    display: "block",
-    fontSize: "12px",
-    fontWeight: 600,
-    letterSpacing: "1px",
-    textTransform: "uppercase",
-    color: "rgba(255,255,255,0.7)",
-    marginBottom: "8px",
-    fontFamily: "var(--font-dm)",
+  const focus = (e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    e.target.style.borderColor = "#F97316";
+  };
+  const blur = (e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    e.target.style.borderColor = "rgba(255,255,255,0.2)";
   };
 
-  return (
-    <form onSubmit={handleSubmit}>
-      <div
+  if (submitted) {
+    return (
+      <motion.div
+        initial={{ opacity: 0, scale: 0.92 }}
+        animate={{ opacity: 1, scale: 1 }}
         style={{
-          display: "grid",
-          gridTemplateColumns: "1fr 1fr",
-          gap: "20px",
-          marginBottom: "20px",
+          textAlign: "center",
+          padding: "60px 40px",
+          background: "rgba(255,255,255,0.06)",
+          borderRadius: "20px",
+          border: "1px solid rgba(255,255,255,0.12)",
         }}
       >
+        <div style={{ fontSize: "52px", marginBottom: "18px" }}>🎉</div>
+        <h3 style={{ fontFamily: "var(--font-playfair)", fontSize: "26px", color: "#fff", fontWeight: 700, marginBottom: "12px" }}>
+          Application Submitted!
+        </h3>
+        <p style={{ color: "rgba(255,255,255,0.7)", fontSize: "15px", fontFamily: "var(--font-dm)", maxWidth: "380px", margin: "0 auto", lineHeight: 1.6 }}>
+          We&apos;ll review your application and reach out within 48 hours on WhatsApp. Get ready to tackle your campus! ✈️
+        </p>
+      </motion.div>
+    );
+  }
+
+  return (
+    <form onSubmit={(e) => { e.preventDefault(); setSubmitted(true); }}>
+      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "16px", marginBottom: "16px" }}>
         {[
-          { key: "name", label: "Full Name", placeholder: "Your name" },
+          { key: "name", label: "Full Name", placeholder: "Your full name" },
           { key: "college", label: "College / University", placeholder: "Your institution" },
           { key: "city", label: "City", placeholder: "Your city" },
           { key: "email", label: "Email Address", placeholder: "you@email.com" },
           { key: "instagram", label: "Instagram Handle", placeholder: "@yourhandle" },
         ].map(({ key, label, placeholder }) => (
-          <div key={key} style={key === "instagram" ? {} : {}}>
-            <label style={labelStyle}>{label}</label>
+          <div key={key}>
+            <label style={{ display: "block", fontSize: "11px", fontWeight: 600, letterSpacing: "1px", textTransform: "uppercase", color: "rgba(255,255,255,0.6)", marginBottom: "7px", fontFamily: "var(--font-dm)" }}>
+              {label}
+            </label>
             <input
               type={key === "email" ? "email" : "text"}
               placeholder={placeholder}
               value={form[key as keyof typeof form]}
               onChange={(e) => setForm({ ...form, [key]: e.target.value })}
               style={inputStyle}
-              onFocus={(e) => {
-                (e.target as HTMLInputElement).style.borderColor = "#f5c542";
-              }}
-              onBlur={(e) => {
-                (e.target as HTMLInputElement).style.borderColor = "rgba(255,255,255,0.2)";
-              }}
+              onFocus={focus}
+              onBlur={blur}
               required
             />
           </div>
         ))}
       </div>
-
-      <div style={{ marginBottom: "28px" }}>
-        <label style={labelStyle}>Why do you want to join?</label>
+      <div style={{ marginBottom: "24px" }}>
+        <label style={{ display: "block", fontSize: "11px", fontWeight: 600, letterSpacing: "1px", textTransform: "uppercase", color: "rgba(255,255,255,0.6)", marginBottom: "7px", fontFamily: "var(--font-dm)" }}>
+          Why do you want to join?
+        </label>
         <textarea
-          placeholder="Tell us about your love for travel, your network, and what you'd bring as an ambassador..."
+          placeholder="Tell us about your love for travel, your campus network, and what you'd bring as an ambassador..."
           value={form.why}
           onChange={(e) => setForm({ ...form, why: e.target.value })}
           rows={4}
-          style={{
-            ...inputStyle,
-            resize: "vertical",
-            minHeight: "100px",
-          }}
-          onFocus={(e) => {
-            (e.target as HTMLTextAreaElement).style.borderColor = "#f5c542";
-          }}
-          onBlur={(e) => {
-            (e.target as HTMLTextAreaElement).style.borderColor = "rgba(255,255,255,0.2)";
-          }}
+          style={{ ...inputStyle, resize: "vertical", minHeight: "100px" }}
+          onFocus={focus}
+          onBlur={blur}
           required
         />
       </div>
-
       <motion.button
         type="submit"
         whileHover={{ scale: 1.02 }}
         whileTap={{ scale: 0.98 }}
         style={{
           width: "100%",
-          padding: "16px",
-          background: "#f5c542",
-          color: "#0d1b3e",
+          padding: "15px",
+          background: "#F97316",
+          color: "#fff",
           border: "none",
-          borderRadius: "10px",
-          fontSize: "16px",
+          borderRadius: "8px",
+          fontSize: "15px",
           fontWeight: 700,
           cursor: "pointer",
           fontFamily: "var(--font-dm)",
+          boxShadow: "0 4px 20px rgba(249,115,22,0.4)",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
           gap: "8px",
         }}
       >
-        Submit Application
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-          <path d="M5 12h14M12 5l7 7-7 7" />
-        </svg>
+        Submit Application →
       </motion.button>
     </form>
   );
 }
 
-/* ─── MAIN PAGE ─── */
 export default function CampusAmbassadorPage() {
   return (
     <>
@@ -295,95 +220,69 @@ export default function CampusAmbassadorPage() {
       {/* ── HERO ── */}
       <section
         style={{
-          background: "#0d1b3e",
+          background: "linear-gradient(135deg, #0E1847 0%, #1B2866 50%, #0E2A5A 100%)",
           padding: "130px 60px 90px",
           position: "relative",
           overflow: "hidden",
+          textAlign: "center",
           minHeight: "520px",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          textAlign: "center",
         }}
       >
         {/* Animated particles */}
         <div style={{ position: "absolute", inset: 0, overflow: "hidden", pointerEvents: "none" }}>
-          {Array.from({ length: 20 }, (_, i) => (
+          {Array.from({ length: 16 }, (_, i) => (
             <motion.div
               key={i}
-              animate={{
-                y: [0, -120],
-                opacity: [0, 0.6, 0],
-                scale: [0, 1, 0],
-              }}
-              transition={{
-                duration: 8 + Math.random() * 6,
-                repeat: Infinity,
-                delay: Math.random() * 10,
-                ease: "easeInOut",
-              }}
+              animate={{ y: [0, -100], opacity: [0, 0.5, 0], scale: [0, 1, 0] }}
+              transition={{ duration: 8 + Math.random() * 6, repeat: Infinity, delay: Math.random() * 10, ease: "easeInOut" }}
               style={{
                 position: "absolute",
                 bottom: 0,
-                left: `${5 + i * 5}%`,
-                width: 4 + Math.random() * 5,
-                height: 4 + Math.random() * 5,
+                left: `${6 + i * 6}%`,
+                width: 4 + Math.random() * 4,
+                height: 4 + Math.random() * 4,
                 borderRadius: "50%",
-                background: "#f5c542",
+                background: "#F97316",
               }}
             />
           ))}
-
-          {/* Radial glows */}
-          <div
-            style={{
-              position: "absolute",
-              top: "50%",
-              left: "50%",
-              transform: "translate(-50%, -50%)",
-              width: "600px",
-              height: "600px",
-              borderRadius: "50%",
-              background: "radial-gradient(circle, rgba(245,197,66,0.07) 0%, transparent 70%)",
-            }}
-          />
-          <div
-            style={{
-              position: "absolute",
-              inset: 0,
-              backgroundImage:
-                "linear-gradient(rgba(245,197,66,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(245,197,66,0.03) 1px, transparent 1px)",
-              backgroundSize: "60px 60px",
-            }}
-          />
+          <div style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%,-50%)", width: "500px", height: "500px", borderRadius: "50%", background: "radial-gradient(circle, rgba(249,115,22,0.08) 0%, transparent 70%)" }} />
+          <div style={{ position: "absolute", inset: 0, backgroundImage: "linear-gradient(rgba(249,115,22,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(249,115,22,0.03) 1px, transparent 1px)", backgroundSize: "60px 60px" }} />
         </div>
 
-        <div style={{ position: "relative", zIndex: 2, maxWidth: "700px" }}>
+        <div style={{ position: "relative", zIndex: 2, maxWidth: "680px" }}>
           <motion.span
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="gold-shimmer-text"
             style={{
-              display: "block",
-              fontSize: "13px",
-              fontWeight: 600,
-              letterSpacing: "4px",
+              display: "inline-block",
+              background: "rgba(249,115,22,0.15)",
+              border: "1px solid rgba(249,115,22,0.3)",
+              color: "#F97316",
+              fontSize: "11px",
+              fontWeight: 700,
+              letterSpacing: "3px",
               textTransform: "uppercase",
-              marginBottom: "22px",
+              padding: "6px 16px",
+              borderRadius: "20px",
+              marginBottom: "24px",
               fontFamily: "var(--font-dm)",
             }}
           >
-            Travel. Earn. Lead.
+            Campus Ambassador Program
           </motion.span>
 
           <motion.h1
-            initial={{ opacity: 0, y: 22 }}
+            initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
             style={{
               fontFamily: "var(--font-playfair)",
-              fontSize: "clamp(38px, 5vw, 68px)",
+              fontSize: "clamp(36px, 5.5vw, 66px)",
               fontWeight: 900,
               color: "#fff",
               lineHeight: 1.08,
@@ -391,12 +290,13 @@ export default function CampusAmbassadorPage() {
               textShadow: "0 4px 30px rgba(0,0,0,0.4)",
             }}
           >
-            Become a{" "}
-            <span style={{ color: "#f5c542" }}>Campus Ambassador</span>
+            Turn Your Campus
+            <br />
+            <span style={{ color: "#F97316" }}>Into a Launchpad</span>
           </motion.h1>
 
           <motion.p
-            initial={{ opacity: 0, y: 22 }}
+            initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9, delay: 0.2 }}
             style={{
@@ -408,211 +308,157 @@ export default function CampusAmbassadorPage() {
               fontFamily: "var(--font-dm)",
             }}
           >
-            Represent Trip to Tackle on your campus. Organize group trips, earn real commissions,
-            and unlock exclusive travel perks — all while building real-world experience.
+            Represent Trip 2 Tackle at your college, earn commissions on every booking, unlock exclusive travel perks — and build real-world experience while you study.
           </motion.p>
 
           <motion.div
-            initial={{ opacity: 0, y: 22 }}
+            initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9, delay: 0.32 }}
-            style={{
-              display: "flex",
-              gap: "14px",
-              justifyContent: "center",
-              flexWrap: "wrap",
-            }}
+            style={{ display: "flex", gap: "14px", justifyContent: "center", flexWrap: "wrap" }}
           >
             <a
               href="#apply"
               style={{
-                background: "#f5c542",
-                color: "#0d1b3e",
+                background: "#F97316",
+                color: "#fff",
                 padding: "14px 32px",
-                borderRadius: "100px",
+                borderRadius: "8px",
                 fontSize: "15px",
                 fontWeight: 700,
                 textDecoration: "none",
                 fontFamily: "var(--font-dm)",
+                boxShadow: "0 4px 24px rgba(249,115,22,0.45)",
                 transition: "background 0.2s, transform 0.2s",
               }}
               onMouseEnter={(e) => {
-                (e.currentTarget as HTMLElement).style.background = "#d4a820";
+                (e.currentTarget as HTMLElement).style.background = "#EA6C0B";
                 (e.currentTarget as HTMLElement).style.transform = "translateY(-2px)";
               }}
               onMouseLeave={(e) => {
-                (e.currentTarget as HTMLElement).style.background = "#f5c542";
+                (e.currentTarget as HTMLElement).style.background = "#F97316";
                 (e.currentTarget as HTMLElement).style.transform = "translateY(0)";
               }}
             >
               Apply Now — It&apos;s Free
             </a>
             <a
-              href="https://wa.me/919000000000"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="#what-is-cap"
               style={{
-                background: "rgba(255,255,255,0.1)",
+                background: "rgba(255,255,255,0.07)",
                 border: "1.5px solid rgba(255,255,255,0.3)",
                 color: "#fff",
-                padding: "14px 28px",
-                borderRadius: "100px",
+                padding: "14px 26px",
+                borderRadius: "8px",
                 fontSize: "15px",
                 fontWeight: 500,
                 textDecoration: "none",
                 fontFamily: "var(--font-dm)",
+                backdropFilter: "blur(8px)",
               }}
             >
-              Ask Us on WhatsApp
+              Learn More ↓
             </a>
           </motion.div>
         </div>
       </section>
 
       {/* ── STATS ── */}
-      <div
-        style={{
-          background: "#f5c542",
-          display: "grid",
-          gridTemplateColumns: "repeat(4, 1fr)",
-        }}
-      >
+      <div style={{ background: "#1B2866", display: "grid", gridTemplateColumns: "repeat(4,1fr)" }}>
         {[
           { n: "200+", l: "Active Ambassadors" },
           { n: "35+", l: "Colleges Covered" },
           { n: "₹2.4L+", l: "Commissions Paid" },
           { n: "4.8★", l: "Ambassador Rating" },
         ].map((s, i) => (
-          <div
-            key={i}
-            style={{
-              padding: "22px 20px",
-              textAlign: "center",
-              borderRight: i < 3 ? "1px solid rgba(0,0,0,0.1)" : "none",
-            }}
-          >
-            <div
-              style={{
-                fontFamily: "var(--font-playfair)",
-                fontSize: "28px",
-                fontWeight: 700,
-                color: "#0d1b3e",
-              }}
-            >
-              {s.n}
-            </div>
-            <div
-              style={{
-                fontSize: "11.5px",
-                color: "rgba(13,27,62,0.65)",
-                fontWeight: 500,
-                marginTop: "2px",
-                fontFamily: "var(--font-dm)",
-              }}
-            >
-              {s.l}
-            </div>
+          <div key={i} style={{ padding: "22px 20px", textAlign: "center", borderRight: i < 3 ? "1px solid rgba(255,255,255,0.08)" : "none" }}>
+            <div style={{ fontFamily: "var(--font-playfair)", fontSize: "28px", fontWeight: 700, color: "#F97316" }}>{s.n}</div>
+            <div style={{ fontSize: "11.5px", color: "#94A3B8", fontWeight: 500, marginTop: "2px", fontFamily: "var(--font-dm)" }}>{s.l}</div>
           </div>
         ))}
       </div>
 
-      {/* ── BENEFITS ── */}
-      <section style={{ background: "#f7f6f2", padding: "88px 60px" }}>
-        <FadeSection>
-          <div style={{ textAlign: "center", marginBottom: "52px" }}>
-            <span
-              style={{
-                display: "block",
-                fontSize: "10.5px",
-                fontWeight: 600,
-                letterSpacing: "3px",
-                textTransform: "uppercase",
-                color: "#0d1b3e",
-                marginBottom: "10px",
-                fontFamily: "var(--font-dm)",
-              }}
-            >
-              What You Get
+      {/* ── WHAT IS CAP ── */}
+      <section id="what-is-cap" style={{ background: "#fff", padding: "88px 60px" }}>
+        <div style={{ maxWidth: "720px", margin: "0 auto", textAlign: "center" }}>
+          <FadeIn>
+            <span style={{ display: "block", fontSize: "11px", fontWeight: 600, letterSpacing: "3px", textTransform: "uppercase", color: "#F97316", marginBottom: "12px", fontFamily: "var(--font-dm)" }}>
+              New to This?
             </span>
-            <h2
-              style={{
-                fontFamily: "var(--font-playfair)",
-                fontSize: "44px",
-                color: "#0d1b3e",
-                fontWeight: 700,
-              }}
-            >
-              Built to Reward You
+            <h2 style={{ fontFamily: "var(--font-playfair)", fontSize: "clamp(28px, 4vw, 40px)", color: "#111827", fontWeight: 700, marginBottom: "22px" }}>
+              What is a Campus Ambassador Program?
             </h2>
-          </div>
-        </FadeSection>
+            <p style={{ color: "#374151", fontSize: "16px", lineHeight: 1.8, fontFamily: "var(--font-dm)", marginBottom: "16px" }}>
+              A <strong>Campus Ambassador Program (CAP)</strong> is a structured initiative where selected students officially represent a brand at their college or university.
+            </p>
+            <p style={{ color: "#6B7280", fontSize: "15px", lineHeight: 1.8, fontFamily: "var(--font-dm)", marginBottom: "36px" }}>
+              As a <strong style={{ color: "#1B2866" }}>Trip 2 Tackle Campus Ambassador</strong>, you become the official travel representative of your campus — organizing trips, promoting packages to your peers, and earning a commission for every booking you drive. Think of it as running your own micro travel agency, backed by an established brand.
+            </p>
+          </FadeIn>
 
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(4, 1fr)",
-            gap: "24px",
-            maxWidth: "1100px",
-            margin: "0 auto",
-          }}
-        >
+          {/* 3 pillars */}
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: "16px" }}>
+            {[
+              { icon: "🤝", label: "Represent", desc: "Be the official face of Trip 2 Tackle at your college" },
+              { icon: "📣", label: "Promote", desc: "Share packages with your network and campus groups" },
+              { icon: "💰", label: "Earn", desc: "Get paid for every booking you refer — real commissions" },
+            ].map((p, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.45, delay: i * 0.1 }}
+                style={{
+                  background: "#F8F9FA",
+                  borderRadius: "14px",
+                  padding: "24px 18px",
+                  border: "1px solid #E2E8F0",
+                  borderBottom: "3px solid #F97316",
+                }}
+              >
+                <div style={{ fontSize: "28px", marginBottom: "10px" }}>{p.icon}</div>
+                <div style={{ fontWeight: 700, fontSize: "15px", color: "#111827", marginBottom: "6px", fontFamily: "var(--font-dm)" }}>{p.label}</div>
+                <div style={{ fontSize: "13px", color: "#6B7280", lineHeight: 1.55, fontFamily: "var(--font-dm)" }}>{p.desc}</div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── BENEFITS ── */}
+      <section style={{ background: "#F8F9FA", padding: "88px 60px" }}>
+        <FadeIn>
+          <div style={{ textAlign: "center", marginBottom: "52px" }}>
+            <span style={{ display: "block", fontSize: "11px", fontWeight: 600, letterSpacing: "3px", textTransform: "uppercase", color: "#F97316", marginBottom: "10px", fontFamily: "var(--font-dm)" }}>What You Get</span>
+            <h2 style={{ fontFamily: "var(--font-playfair)", fontSize: "clamp(28px, 4vw, 40px)", color: "#111827", fontWeight: 700 }}>Built to Reward You</h2>
+          </div>
+        </FadeIn>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: "22px", maxWidth: "1100px", margin: "0 auto" }}>
           {benefits.map((b, i) => (
             <motion.div
               key={i}
-              initial={{ opacity: 0, y: 28 }}
+              initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.55, delay: i * 0.1 }}
+              transition={{ duration: 0.5, delay: i * 0.1 }}
               className="benefit-card"
               style={{
                 background: "#fff",
-                borderRadius: "18px",
-                padding: "32px 26px",
-                boxShadow: "0 4px 24px rgba(0,0,0,0.07)",
+                borderRadius: "16px",
+                padding: "28px 22px",
+                boxShadow: "0 2px 16px rgba(0,0,0,0.06)",
+                border: "1px solid #E2E8F0",
                 position: "relative",
                 overflow: "hidden",
               }}
             >
-              {/* Highlight tag */}
-              <div
-                style={{
-                  position: "absolute",
-                  top: "16px",
-                  right: "16px",
-                  background: "rgba(245,197,66,0.15)",
-                  color: "#d4a820",
-                  fontSize: "10px",
-                  fontWeight: 700,
-                  padding: "3px 10px",
-                  borderRadius: "20px",
-                  fontFamily: "var(--font-dm)",
-                  letterSpacing: "0.5px",
-                }}
-              >
-                {b.highlight}
+              <div style={{ position: "absolute", top: "14px", right: "14px", background: "rgba(249,115,22,0.1)", color: "#F97316", fontSize: "10px", fontWeight: 700, padding: "3px 10px", borderRadius: "20px", fontFamily: "var(--font-dm)" }}>
+                {b.tag}
               </div>
-              <div style={{ fontSize: "36px", marginBottom: "18px" }}>{b.icon}</div>
-              <h3
-                style={{
-                  fontFamily: "var(--font-playfair)",
-                  fontSize: "19px",
-                  color: "#0d1b3e",
-                  fontWeight: 700,
-                  marginBottom: "10px",
-                }}
-              >
-                {b.title}
-              </h3>
-              <p
-                style={{
-                  color: "#777",
-                  fontSize: "13.5px",
-                  lineHeight: 1.7,
-                  fontFamily: "var(--font-dm)",
-                }}
-              >
-                {b.desc}
-              </p>
+              <div style={{ fontSize: "32px", marginBottom: "14px" }}>{b.icon}</div>
+              <h3 style={{ fontFamily: "var(--font-playfair)", fontSize: "17px", color: "#111827", fontWeight: 700, marginBottom: "8px" }}>{b.title}</h3>
+              <p style={{ color: "#6B7280", fontSize: "13px", lineHeight: 1.65, fontFamily: "var(--font-dm)" }}>{b.desc}</p>
             </motion.div>
           ))}
         </div>
@@ -620,326 +466,99 @@ export default function CampusAmbassadorPage() {
 
       {/* ── HOW IT WORKS ── */}
       <section style={{ background: "#fff", padding: "88px 60px" }}>
-        <FadeSection>
+        <FadeIn>
           <div style={{ textAlign: "center", marginBottom: "52px" }}>
-            <span
-              style={{
-                display: "block",
-                fontSize: "10.5px",
-                fontWeight: 600,
-                letterSpacing: "3px",
-                textTransform: "uppercase",
-                color: "#f5c542",
-                marginBottom: "10px",
-                fontFamily: "var(--font-dm)",
-              }}
-            >
-              The Process
-            </span>
-            <h2
-              style={{
-                fontFamily: "var(--font-playfair)",
-                fontSize: "44px",
-                color: "#0d1b3e",
-                fontWeight: 700,
-              }}
-            >
-              How It Works
-            </h2>
+            <span style={{ display: "block", fontSize: "11px", fontWeight: 600, letterSpacing: "3px", textTransform: "uppercase", color: "#F97316", marginBottom: "10px", fontFamily: "var(--font-dm)" }}>The Process</span>
+            <h2 style={{ fontFamily: "var(--font-playfair)", fontSize: "clamp(28px, 4vw, 40px)", color: "#111827", fontWeight: 700 }}>How It Works</h2>
           </div>
-        </FadeSection>
-
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(3, 1fr)",
-            gap: "40px",
-            maxWidth: "900px",
-            margin: "0 auto",
-          }}
-        >
-          {howItWorks.map((s, i) => (
+        </FadeIn>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: "40px", maxWidth: "860px", margin: "0 auto" }}>
+          {steps.map((s, i) => (
             <motion.div
               key={i}
-              initial={{ opacity: 0, y: 28 }}
+              initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.55, delay: i * 0.15 }}
+              transition={{ duration: 0.5, delay: i * 0.12 }}
               style={{ textAlign: "center" }}
             >
-              <div
-                style={{
-                  width: "72px",
-                  height: "72px",
-                  borderRadius: "18px",
-                  background: "#0d1b3e",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  fontSize: "30px",
-                  margin: "0 auto 18px",
-                  position: "relative",
-                }}
-              >
-                {s.icon}
-                <div
-                  style={{
-                    position: "absolute",
-                    top: "-10px",
-                    right: "-10px",
-                    width: "26px",
-                    height: "26px",
-                    background: "#f5c542",
-                    borderRadius: "50%",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    fontSize: "10px",
-                    fontWeight: 700,
-                    color: "#0d1b3e",
-                    fontFamily: "var(--font-dm)",
-                  }}
-                >
-                  {s.n}
-                </div>
+              <div style={{ position: "relative", display: "inline-block", marginBottom: "16px" }}>
+                <div style={{ width: "70px", height: "70px", borderRadius: "18px", background: "#1B2866", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "28px", margin: "0 auto" }}>{s.icon}</div>
+                <div style={{ position: "absolute", top: "-10px", right: "-10px", width: "26px", height: "26px", background: "#F97316", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "10px", fontWeight: 700, color: "#fff", fontFamily: "var(--font-dm)" }}>{s.n}</div>
               </div>
-              <h3
-                style={{
-                  fontFamily: "var(--font-playfair)",
-                  fontSize: "20px",
-                  color: "#0d1b3e",
-                  fontWeight: 700,
-                  marginBottom: "10px",
-                }}
-              >
-                {s.title}
-              </h3>
-              <p
-                style={{
-                  color: "#777",
-                  fontSize: "14px",
-                  lineHeight: 1.7,
-                  fontFamily: "var(--font-dm)",
-                }}
-              >
-                {s.desc}
-              </p>
+              <h3 style={{ fontFamily: "var(--font-playfair)", fontSize: "19px", color: "#111827", fontWeight: 700, marginBottom: "8px" }}>{s.title}</h3>
+              <p style={{ color: "#6B7280", fontSize: "14px", lineHeight: 1.7, fontFamily: "var(--font-dm)" }}>{s.desc}</p>
             </motion.div>
           ))}
         </div>
       </section>
 
-      {/* ── WHO WE LOOK FOR ── */}
-      <section style={{ background: "#0d1b3e", padding: "80px 60px" }}>
-        <div
-          style={{
-            maxWidth: "800px",
-            margin: "0 auto",
-          }}
-        >
-          <FadeSection>
+      {/* ── WHO CAN APPLY ── */}
+      <section style={{ background: "linear-gradient(135deg, #1B2866 0%, #0E1847 100%)", padding: "80px 60px" }}>
+        <div style={{ maxWidth: "780px", margin: "0 auto" }}>
+          <FadeIn>
             <div style={{ textAlign: "center", marginBottom: "44px" }}>
-              <span
-                style={{
-                  display: "block",
-                  fontSize: "10.5px",
-                  fontWeight: 600,
-                  letterSpacing: "3px",
-                  textTransform: "uppercase",
-                  color: "#f5c542",
-                  marginBottom: "10px",
-                  fontFamily: "var(--font-dm)",
-                }}
-              >
-                The Right Fit
-              </span>
-              <h2
-                style={{
-                  fontFamily: "var(--font-playfair)",
-                  fontSize: "44px",
-                  color: "#fff",
-                  fontWeight: 700,
-                  marginBottom: "12px",
-                }}
-              >
-                Who We&apos;re Looking For
-              </h2>
-              <p
-                style={{
-                  color: "#8fa0c0",
-                  fontSize: "16px",
-                  fontFamily: "var(--font-dm)",
-                }}
-              >
-                No experience needed. Just passion, hustle, and a love for travel.
-              </p>
+              <span style={{ display: "block", fontSize: "11px", fontWeight: 600, letterSpacing: "3px", textTransform: "uppercase", color: "#F97316", marginBottom: "10px", fontFamily: "var(--font-dm)" }}>The Right Fit</span>
+              <h2 style={{ fontFamily: "var(--font-playfair)", fontSize: "clamp(28px, 4vw, 40px)", color: "#fff", fontWeight: 700, marginBottom: "10px" }}>Who Can Apply?</h2>
+              <p style={{ color: "#94A3B8", fontSize: "15px", fontFamily: "var(--font-dm)" }}>No experience needed. Just passion, drive, and a love for travel.</p>
             </div>
-          </FadeSection>
-
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "1fr 1fr",
-              gap: "16px",
-            }}
-          >
-            {requirements.map((r, i) => (
+          </FadeIn>
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "14px" }}>
+            {eligibility.map((e, i) => (
               <motion.div
                 key={i}
-                initial={{ opacity: 0, x: i % 2 === 0 ? -20 : 20 }}
+                initial={{ opacity: 0, x: i % 2 === 0 ? -16 : 16 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: i * 0.1 }}
+                transition={{ duration: 0.45, delay: i * 0.08 }}
                 style={{
                   display: "flex",
                   alignItems: "center",
-                  gap: "16px",
+                  gap: "14px",
                   background: "rgba(255,255,255,0.05)",
                   border: "1px solid rgba(255,255,255,0.08)",
                   borderRadius: "12px",
-                  padding: "18px 20px",
+                  padding: "16px 18px",
                 }}
               >
-                <div style={{ fontSize: "24px", flexShrink: 0 }}>{r.icon}</div>
-                <span
-                  style={{
-                    color: "rgba(255,255,255,0.85)",
-                    fontSize: "14px",
-                    fontFamily: "var(--font-dm)",
-                    fontWeight: 500,
-                  }}
-                >
-                  {r.label}
-                </span>
+                <span style={{ fontSize: "22px", flexShrink: 0 }}>{e.icon}</span>
+                <span style={{ color: "rgba(255,255,255,0.85)", fontSize: "14px", fontFamily: "var(--font-dm)", fontWeight: 500 }}>{e.text}</span>
               </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* ── CURRENT AMBASSADORS ── */}
-      <section style={{ background: "#f7f6f2", padding: "88px 60px" }}>
-        <FadeSection>
-          <div style={{ textAlign: "center", marginBottom: "52px" }}>
-            <span
-              style={{
-                display: "block",
-                fontSize: "10.5px",
-                fontWeight: 600,
-                letterSpacing: "3px",
-                textTransform: "uppercase",
-                color: "#0d1b3e",
-                marginBottom: "10px",
-                fontFamily: "var(--font-dm)",
-              }}
-            >
-              Hear from Our Ambassadors
-            </span>
-            <h2
-              style={{
-                fontFamily: "var(--font-playfair)",
-                fontSize: "44px",
-                color: "#0d1b3e",
-                fontWeight: 700,
-              }}
-            >
-              Real People, Real Results
-            </h2>
+      {/* ── TESTIMONIALS ── */}
+      <section style={{ background: "#F8F9FA", padding: "88px 60px" }}>
+        <FadeIn>
+          <div style={{ textAlign: "center", marginBottom: "48px" }}>
+            <span style={{ display: "block", fontSize: "11px", fontWeight: 600, letterSpacing: "3px", textTransform: "uppercase", color: "#F97316", marginBottom: "10px", fontFamily: "var(--font-dm)" }}>Real Ambassadors</span>
+            <h2 style={{ fontFamily: "var(--font-playfair)", fontSize: "clamp(28px, 4vw, 40px)", color: "#111827", fontWeight: 700 }}>Hear From Our Community</h2>
           </div>
-        </FadeSection>
-
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(4, 1fr)",
-            gap: "24px",
-            maxWidth: "1100px",
-            margin: "0 auto",
-          }}
-        >
-          {currentAmbassadors.map((a, i) => (
+        </FadeIn>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: "20px", maxWidth: "1100px", margin: "0 auto" }}>
+          {ambassadors.map((a, i) => (
             <motion.div
               key={i}
-              initial={{ opacity: 0, y: 28 }}
+              initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.55, delay: i * 0.1 }}
+              transition={{ duration: 0.5, delay: i * 0.1 }}
               className="benefit-card"
-              style={{
-                background: "#fff",
-                borderRadius: "18px",
-                padding: "26px 22px",
-                boxShadow: "0 4px 20px rgba(0,0,0,0.07)",
-              }}
+              style={{ background: "#fff", borderRadius: "16px", padding: "24px 20px", border: "1px solid #E2E8F0", boxShadow: "0 2px 12px rgba(0,0,0,0.05)" }}
             >
-              <div style={{ color: "#f5c542", fontSize: "13px", letterSpacing: "2px", marginBottom: "12px" }}>
-                ★★★★★
-              </div>
-              <p
-                style={{
-                  color: "#555",
-                  fontSize: "13.5px",
-                  lineHeight: 1.7,
-                  marginBottom: "20px",
-                  fontFamily: "var(--font-dm)",
-                  fontStyle: "italic",
-                }}
-              >
-                &ldquo;{a.text}&rdquo;
-              </p>
-              <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
-                <div
-                  style={{
-                    width: "42px",
-                    height: "42px",
-                    borderRadius: "50%",
-                    overflow: "hidden",
-                    flexShrink: 0,
-                    position: "relative",
-                  }}
-                >
-                  <img
-                    src={a.img}
-                    alt={a.name}
-                    style={{ width: "100%", height: "100%", objectFit: "cover" }}
-                  />
-                </div>
+              <div style={{ color: "#F59E0B", fontSize: "13px", letterSpacing: "2px", marginBottom: "12px" }}>★★★★★</div>
+              <p style={{ color: "#374151", fontSize: "13.5px", lineHeight: 1.7, marginBottom: "18px", fontFamily: "var(--font-dm)", fontStyle: "italic" }}>&ldquo;{a.text}&rdquo;</p>
+              <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+                <img src={a.img} alt={a.name} style={{ width: "38px", height: "38px", borderRadius: "50%", objectFit: "cover", flexShrink: 0 }} />
                 <div>
-                  <div
-                    style={{
-                      color: "#0d1b3e",
-                      fontWeight: 600,
-                      fontSize: "14px",
-                      fontFamily: "var(--font-dm)",
-                    }}
-                  >
-                    {a.name}
-                  </div>
-                  <div
-                    style={{
-                      color: "#888",
-                      fontSize: "12px",
-                      fontFamily: "var(--font-dm)",
-                    }}
-                  >
-                    {a.college}
-                  </div>
+                  <div style={{ color: "#111827", fontWeight: 600, fontSize: "13px", fontFamily: "var(--font-dm)" }}>{a.name}</div>
+                  <div style={{ color: "#6B7280", fontSize: "11px", fontFamily: "var(--font-dm)" }}>{a.college}</div>
                 </div>
               </div>
-              <div
-                style={{
-                  marginTop: "14px",
-                  background: "rgba(245,197,66,0.12)",
-                  color: "#d4a820",
-                  fontSize: "12px",
-                  fontWeight: 600,
-                  padding: "6px 12px",
-                  borderRadius: "20px",
-                  display: "inline-block",
-                  fontFamily: "var(--font-dm)",
-                }}
-              >
-                🏆 {a.earned}
+              <div style={{ marginTop: "12px", background: "rgba(249,115,22,0.08)", color: "#F97316", fontSize: "11px", fontWeight: 700, padding: "5px 12px", borderRadius: "20px", display: "inline-block", fontFamily: "var(--font-dm)" }}>
+                🏆 {a.stat}
               </div>
             </motion.div>
           ))}
@@ -950,116 +569,45 @@ export default function CampusAmbassadorPage() {
       <section
         id="apply"
         style={{
-          background: "linear-gradient(135deg, #0d1b3e 0%, #162040 50%, #060e20 100%)",
+          background: "linear-gradient(135deg, #0E1847 0%, #1B2866 60%, #0E2A5A 100%)",
           padding: "88px 60px",
           position: "relative",
           overflow: "hidden",
         }}
       >
-        {/* Gold glow */}
-        <div
-          style={{
-            position: "absolute",
-            top: 0,
-            left: "50%",
-            transform: "translateX(-50%)",
-            width: "500px",
-            height: "200px",
-            background: "radial-gradient(ellipse, rgba(245,197,66,0.1) 0%, transparent 70%)",
-            pointerEvents: "none",
-          }}
-        />
-
-        <div style={{ maxWidth: "680px", margin: "0 auto", position: "relative", zIndex: 2 }}>
-          <FadeSection>
-            <div style={{ textAlign: "center", marginBottom: "44px" }}>
-              <span
-                style={{
-                  display: "block",
-                  fontSize: "10.5px",
-                  fontWeight: 600,
-                  letterSpacing: "3px",
-                  textTransform: "uppercase",
-                  color: "#f5c542",
-                  marginBottom: "10px",
-                  fontFamily: "var(--font-dm)",
-                }}
-              >
-                Ready to Start?
-              </span>
-              <h2
-                style={{
-                  fontFamily: "var(--font-playfair)",
-                  fontSize: "42px",
-                  color: "#fff",
-                  fontWeight: 700,
-                  marginBottom: "12px",
-                }}
-              >
-                Apply to Become an Ambassador
-              </h2>
-              <p
-                style={{
-                  color: "#8fa0c0",
-                  fontSize: "15px",
-                  fontFamily: "var(--font-dm)",
-                }}
-              >
-                Takes 2 minutes. We&apos;ll respond within 48 hours.
-              </p>
+        <div style={{ position: "absolute", top: 0, left: "50%", transform: "translateX(-50%)", width: "400px", height: "180px", background: "radial-gradient(ellipse, rgba(249,115,22,0.12) 0%, transparent 70%)", pointerEvents: "none" }} />
+        <div style={{ maxWidth: "640px", margin: "0 auto", position: "relative", zIndex: 2 }}>
+          <FadeIn>
+            <div style={{ textAlign: "center", marginBottom: "40px" }}>
+              <span style={{ display: "block", fontSize: "11px", fontWeight: 600, letterSpacing: "3px", textTransform: "uppercase", color: "#F97316", marginBottom: "10px", fontFamily: "var(--font-dm)" }}>Ready to Start?</span>
+              <h2 style={{ fontFamily: "var(--font-playfair)", fontSize: "clamp(28px, 4vw, 40px)", color: "#fff", fontWeight: 700, marginBottom: "10px" }}>Apply to Become an Ambassador</h2>
+              <p style={{ color: "#94A3B8", fontSize: "14px", fontFamily: "var(--font-dm)" }}>Takes 2 minutes. We respond within 48 hours.</p>
             </div>
-          </FadeSection>
-
-          <motion.div
-            initial={{ opacity: 0, y: 28 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.65, delay: 0.1 }}
-          >
+          </FadeIn>
+          <motion.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.1 }}>
             <ApplyForm />
           </motion.div>
         </div>
       </section>
 
       {/* ── FOOTER CTA ── */}
-      <section
-        style={{
-          background: "#f5c542",
-          padding: "64px 60px",
-          textAlign: "center",
-        }}
-      >
-        <FadeSection>
-          <h2
-            style={{
-              fontFamily: "var(--font-playfair)",
-              fontSize: "38px",
-              color: "#0d1b3e",
-              fontWeight: 700,
-              marginBottom: "12px",
-            }}
-          >
+      <section style={{ background: "#F97316", padding: "60px 60px", textAlign: "center" }}>
+        <FadeIn>
+          <h2 style={{ fontFamily: "var(--font-playfair)", fontSize: "clamp(26px, 4vw, 36px)", color: "#fff", fontWeight: 700, marginBottom: "12px" }}>
             Ready to Lead Your Campus?
           </h2>
-          <p
-            style={{
-              color: "rgba(13,27,62,0.7)",
-              fontSize: "16px",
-              marginBottom: "28px",
-              fontFamily: "var(--font-dm)",
-            }}
-          >
-            Questions? We&apos;re always available on WhatsApp.
+          <p style={{ color: "rgba(255,255,255,0.8)", fontSize: "15px", marginBottom: "26px", fontFamily: "var(--font-dm)" }}>
+            Questions? We&apos;re on WhatsApp.
           </p>
           <a
             href="https://wa.me/919000000000"
             target="_blank"
             rel="noopener noreferrer"
             style={{
-              background: "#0d1b3e",
+              background: "#1B2866",
               color: "#fff",
-              padding: "14px 34px",
-              borderRadius: "10px",
+              padding: "13px 32px",
+              borderRadius: "8px",
               fontWeight: 600,
               fontSize: "15px",
               textDecoration: "none",
@@ -1067,11 +615,14 @@ export default function CampusAmbassadorPage() {
               alignItems: "center",
               gap: "8px",
               fontFamily: "var(--font-dm)",
+              transition: "background 0.2s",
             }}
+            onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.background = "#0E1847"; }}
+            onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.background = "#1B2866"; }}
           >
             💬 Chat on WhatsApp
           </a>
-        </FadeSection>
+        </FadeIn>
       </section>
 
       <Footer />

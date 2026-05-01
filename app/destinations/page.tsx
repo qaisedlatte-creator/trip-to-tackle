@@ -110,7 +110,7 @@ export default function DestinationsPage() {
       {/* Hero */}
       <div
         style={{
-          background: "#0d1b3e",
+          background: "#1B2866",
           padding: "110px 60px 52px",
           borderBottom: "1px solid rgba(255,255,255,0.07)",
           position: "relative",
@@ -138,7 +138,7 @@ export default function DestinationsPage() {
               fontWeight: 600,
               letterSpacing: "3px",
               textTransform: "uppercase",
-              color: "#f5c542",
+              color: "#F97316",
               marginBottom: "14px",
               fontFamily: "var(--font-dm)",
             }}
@@ -164,7 +164,7 @@ export default function DestinationsPage() {
             animate={headerInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.7, delay: 0.18 }}
             style={{
-              color: "#8fa0c0",
+              color: "#94A3B8",
               fontSize: "16px",
               maxWidth: "500px",
               lineHeight: 1.6,
@@ -193,9 +193,9 @@ export default function DestinationsPage() {
                   fontWeight: 500,
                   cursor: "pointer",
                   border: "1.5px solid",
-                  borderColor: activeFilter === f ? "#f5c542" : "rgba(255,255,255,0.2)",
-                  background: activeFilter === f ? "#f5c542" : "transparent",
-                  color: activeFilter === f ? "#0d1b3e" : "rgba(255,255,255,0.7)",
+                  borderColor: activeFilter === f ? "#F97316" : "rgba(255,255,255,0.2)",
+                  background: activeFilter === f ? "#F97316" : "transparent",
+                  color: activeFilter === f ? "#1B2866" : "rgba(255,255,255,0.7)",
                   fontFamily: "var(--font-dm)",
                   transition: "all 0.2s",
                 }}
@@ -208,7 +208,7 @@ export default function DestinationsPage() {
       </div>
 
       {/* Grid */}
-      <div style={{ background: "#f7f6f2", padding: "52px 60px 88px" }}>
+      <div style={{ background: "#F8F9FA", padding: "52px 60px 88px" }}>
         <div
           style={{
             display: "grid",
@@ -246,8 +246,8 @@ export default function DestinationsPage() {
                     position: "absolute",
                     top: "14px",
                     right: "14px",
-                    background: "#f5c542",
-                    color: "#0d1b3e",
+                    background: "#F97316",
+                    color: "#1B2866",
                     fontSize: "10px",
                     fontWeight: 700,
                     padding: "4px 10px",
@@ -291,7 +291,7 @@ export default function DestinationsPage() {
                   style={{
                     fontSize: "20px",
                     fontFamily: "var(--font-playfair)",
-                    color: "#0d1b3e",
+                    color: "#1B2866",
                     fontWeight: 700,
                     marginBottom: "14px",
                   }}
@@ -313,7 +313,7 @@ export default function DestinationsPage() {
                       style={{
                         fontSize: "20px",
                         fontWeight: 700,
-                        color: "#0d1b3e",
+                        color: "#1B2866",
                         fontFamily: "var(--font-dm)",
                       }}
                     >
@@ -323,7 +323,7 @@ export default function DestinationsPage() {
                   <Link
                     href="#"
                     style={{
-                      background: "#0d1b3e",
+                      background: "#1B2866",
                       color: "#fff",
                       padding: "9px 18px",
                       borderRadius: "8px",
@@ -337,7 +337,7 @@ export default function DestinationsPage() {
                       (e.currentTarget as HTMLElement).style.background = "#1e2e58";
                     }}
                     onMouseLeave={(e) => {
-                      (e.currentTarget as HTMLElement).style.background = "#0d1b3e";
+                      (e.currentTarget as HTMLElement).style.background = "#1B2866";
                     }}
                   >
                     View Trip
@@ -359,7 +359,7 @@ export default function DestinationsPage() {
       </div>
 
       {/* CTA */}
-      <section style={{ background: "#0d1b3e", padding: "64px 60px", textAlign: "center" }}>
+      <section style={{ background: "#1B2866", padding: "64px 60px", textAlign: "center" }}>
         <h3
           style={{
             fontFamily: "var(--font-playfair)",
@@ -372,7 +372,7 @@ export default function DestinationsPage() {
         </h3>
         <p
           style={{
-            color: "#8fa0c0",
+            color: "#94A3B8",
             marginBottom: "28px",
             fontSize: "15px",
             fontFamily: "var(--font-dm)",
@@ -385,8 +385,8 @@ export default function DestinationsPage() {
           target="_blank"
           rel="noopener noreferrer"
           style={{
-            background: "#f5c542",
-            color: "#0d1b3e",
+            background: "#F97316",
+            color: "#1B2866",
             padding: "13px 32px",
             borderRadius: "10px",
             fontWeight: 700,

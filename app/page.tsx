@@ -168,7 +168,7 @@ const testimonials = [
   },
 ];
 
-/* ─── HERO — delegated to scroll-animation component ─── */
+/* ─── HERO ─── */
 function HeroSection() {
   return <HeroScrollAnimation />;
 }
@@ -182,7 +182,7 @@ function StatsBar() {
     <div
       ref={ref}
       style={{
-        background: "#f5c542",
+        background: "#1B2866",
         display: "grid",
         gridTemplateColumns: "repeat(4, 1fr)",
       }}
@@ -196,7 +196,7 @@ function StatsBar() {
           style={{
             padding: "22px 20px",
             textAlign: "center",
-            borderRight: i < stats.length - 1 ? "1px solid rgba(0,0,0,0.1)" : "none",
+            borderRight: i < stats.length - 1 ? "1px solid rgba(255,255,255,0.08)" : "none",
           }}
         >
           <div
@@ -204,7 +204,7 @@ function StatsBar() {
               fontFamily: "var(--font-playfair)",
               fontSize: "30px",
               fontWeight: 700,
-              color: "#0d1b3e",
+              color: "#F97316",
             }}
           >
             {s.n}
@@ -212,7 +212,7 @@ function StatsBar() {
           <div
             style={{
               fontSize: "11.5px",
-              color: "rgba(13,27,62,0.65)",
+              color: "#94A3B8",
               fontWeight: 500,
               marginTop: "2px",
               fontFamily: "var(--font-dm)",
@@ -243,6 +243,7 @@ function PackageCard({ pkg, index }: { pkg: typeof packages[0]; index: number })
         borderRadius: "18px",
         overflow: "hidden",
         boxShadow: "0 4px 24px rgba(0,0,0,0.07)",
+        border: "1px solid #E2E8F0",
         cursor: "pointer",
       }}
     >
@@ -262,8 +263,8 @@ function PackageCard({ pkg, index }: { pkg: typeof packages[0]; index: number })
             position: "absolute",
             top: "14px",
             right: "14px",
-            background: "#f5c542",
-            color: "#0d1b3e",
+            background: "#F97316",
+            color: "#fff",
             fontSize: "10px",
             fontWeight: 700,
             padding: "4px 11px",
@@ -281,7 +282,7 @@ function PackageCard({ pkg, index }: { pkg: typeof packages[0]; index: number })
             position: "absolute",
             bottom: "12px",
             left: "14px",
-            background: "rgba(13,27,62,0.85)",
+            background: "rgba(27,40,102,0.85)",
             color: "#fff",
             fontSize: "11px",
             padding: "4px 10px",
@@ -298,7 +299,7 @@ function PackageCard({ pkg, index }: { pkg: typeof packages[0]; index: number })
               width: "6px",
               height: "6px",
               borderRadius: "50%",
-              background: pkg.seatsLow ? "#f59e0b" : "#4ade80",
+              background: pkg.seatsLow ? "#F59E0B" : "#4ade80",
               flexShrink: 0,
             }}
           />
@@ -311,7 +312,7 @@ function PackageCard({ pkg, index }: { pkg: typeof packages[0]; index: number })
         <div
           style={{
             fontSize: "10.5px",
-            color: "#999",
+            color: "#6B7280",
             letterSpacing: "1px",
             textTransform: "uppercase",
             marginBottom: "4px",
@@ -325,7 +326,7 @@ function PackageCard({ pkg, index }: { pkg: typeof packages[0]; index: number })
             fontFamily: "var(--font-playfair)",
             fontSize: "21px",
             fontWeight: 700,
-            color: "#0d1b3e",
+            color: "#111827",
             marginBottom: "10px",
           }}
         >
@@ -339,7 +340,7 @@ function PackageCard({ pkg, index }: { pkg: typeof packages[0]; index: number })
               key={m}
               style={{
                 fontSize: "12px",
-                color: "#777",
+                color: "#6B7280",
                 display: "flex",
                 alignItems: "center",
                 gap: "4px",
@@ -355,8 +356,8 @@ function PackageCard({ pkg, index }: { pkg: typeof packages[0]; index: number })
             <span
               key={d}
               style={{
-                background: "rgba(13,27,62,0.06)",
-                color: "#0d1b3e",
+                background: "#F1F5F9",
+                color: "#1B2866",
                 fontSize: "11.5px",
                 fontWeight: 500,
                 padding: "4px 10px",
@@ -373,13 +374,13 @@ function PackageCard({ pkg, index }: { pkg: typeof packages[0]; index: number })
             display: "flex",
             justifyContent: "space-between",
             alignItems: "center",
-            borderTop: "1px solid #f0f0f0",
+            borderTop: "1px solid #E2E8F0",
             paddingTop: "16px",
           }}
         >
           <div>
             <div
-              style={{ fontSize: "11px", color: "#aaa", fontFamily: "var(--font-dm)" }}
+              style={{ fontSize: "11px", color: "#6B7280", fontFamily: "var(--font-dm)" }}
             >
               per person
             </div>
@@ -387,7 +388,7 @@ function PackageCard({ pkg, index }: { pkg: typeof packages[0]; index: number })
               style={{
                 fontSize: "22px",
                 fontWeight: 700,
-                color: "#0d1b3e",
+                color: "#111827",
                 fontFamily: "var(--font-dm)",
               }}
             >
@@ -397,7 +398,7 @@ function PackageCard({ pkg, index }: { pkg: typeof packages[0]; index: number })
           <Link
             href="#"
             style={{
-              background: "#0d1b3e",
+              background: "#F97316",
               color: "#fff",
               padding: "9px 18px",
               borderRadius: "8px",
@@ -408,10 +409,10 @@ function PackageCard({ pkg, index }: { pkg: typeof packages[0]; index: number })
               fontFamily: "var(--font-dm)",
             }}
             onMouseEnter={(e) => {
-              (e.currentTarget as HTMLElement).style.background = "#1e2e58";
+              (e.currentTarget as HTMLElement).style.background = "#EA6C0B";
             }}
             onMouseLeave={(e) => {
-              (e.currentTarget as HTMLElement).style.background = "#0d1b3e";
+              (e.currentTarget as HTMLElement).style.background = "#F97316";
             }}
           >
             View Trip
@@ -434,7 +435,7 @@ function PackagesSection() {
       : packages.filter((p) => p.category === activeFilter);
 
   return (
-    <section id="packages" style={{ background: "#f7f6f2", padding: "88px 60px" }}>
+    <section id="packages" style={{ background: "#F8F9FA", padding: "88px 60px" }}>
       <div ref={headerRef} style={{ textAlign: "center", marginBottom: "52px" }}>
         <motion.span
           initial={{ opacity: 0, y: 16 }}
@@ -446,7 +447,7 @@ function PackagesSection() {
             fontWeight: 600,
             letterSpacing: "3px",
             textTransform: "uppercase",
-            color: "#0d1b3e",
+            color: "#F97316",
             marginBottom: "10px",
             fontFamily: "var(--font-dm)",
           }}
@@ -461,7 +462,7 @@ function PackagesSection() {
             fontFamily: "var(--font-playfair)",
             fontSize: "46px",
             fontWeight: 700,
-            color: "#0d1b3e",
+            color: "#111827",
           }}
         >
           Upcoming Group Packages
@@ -471,7 +472,7 @@ function PackagesSection() {
           animate={headerInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.18 }}
           style={{
-            color: "#666",
+            color: "#6B7280",
             fontSize: "15.5px",
             marginTop: "10px",
             maxWidth: "480px",
@@ -504,9 +505,9 @@ function PackagesSection() {
               fontWeight: 500,
               cursor: "pointer",
               border: "1.5px solid",
-              borderColor: activeFilter === f ? "#0d1b3e" : "#d0d0d0",
-              background: activeFilter === f ? "#0d1b3e" : "#fff",
-              color: activeFilter === f ? "#fff" : "#555",
+              borderColor: activeFilter === f ? "#1B2866" : "#E2E8F0",
+              background: activeFilter === f ? "#1B2866" : "#fff",
+              color: activeFilter === f ? "#fff" : "#374151",
               fontFamily: "var(--font-dm)",
               transition: "all 0.2s",
             }}
@@ -561,7 +562,7 @@ function HowItWorksSection() {
   ];
 
   return (
-    <section style={{ background: "#fff", padding: "88px 60px" }}>
+    <section style={{ background: "#FFFFFF", padding: "88px 60px" }}>
       <div ref={ref} style={{ maxWidth: "900px", margin: "0 auto" }}>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -575,7 +576,7 @@ function HowItWorksSection() {
               fontWeight: 600,
               letterSpacing: "3px",
               textTransform: "uppercase",
-              color: "#f5c542",
+              color: "#F97316",
               display: "block",
               marginBottom: "10px",
               fontFamily: "var(--font-dm)",
@@ -588,7 +589,7 @@ function HowItWorksSection() {
               fontFamily: "var(--font-playfair)",
               fontSize: "38px",
               fontWeight: 700,
-              color: "#0d1b3e",
+              color: "#111827",
             }}
           >
             Booking Made Easy as 1–2–3
@@ -600,19 +601,19 @@ function HowItWorksSection() {
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7, delay: 0.15 }}
           style={{
-            background: "#0d1b3e",
+            background: "#1B2866",
             borderRadius: "20px",
             padding: "44px 40px",
             display: "grid",
             gridTemplateColumns: "repeat(3, 1fr)",
             gap: "0",
-            border: "2px solid rgba(245,197,66,0.18)",
-            boxShadow: "0 20px 60px rgba(13,27,62,0.15)",
+            border: "2px solid rgba(249,115,22,0.18)",
+            boxShadow: "0 20px 60px rgba(27,40,102,0.15)",
             position: "relative",
             overflow: "hidden",
           }}
         >
-          {/* Gold bottom accent */}
+          {/* Orange bottom accent */}
           <div
             style={{
               position: "absolute",
@@ -621,7 +622,7 @@ function HowItWorksSection() {
               right: "40px",
               height: "3px",
               background:
-                "linear-gradient(90deg, transparent, #f5c542, transparent)",
+                "linear-gradient(90deg, transparent, #F97316, transparent)",
               borderRadius: "2px",
             }}
           />
@@ -665,14 +666,14 @@ function HowItWorksSection() {
                     right: "-8px",
                     width: "22px",
                     height: "22px",
-                    background: "#f5c542",
+                    background: "#F97316",
                     borderRadius: "50%",
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
                     fontSize: "11px",
                     fontWeight: 700,
-                    color: "#0d1b3e",
+                    color: "#fff",
                     fontFamily: "var(--font-dm)",
                   }}
                 >
@@ -692,7 +693,7 @@ function HowItWorksSection() {
               </div>
               <p
                 style={{
-                  color: "#8fa0c0",
+                  color: "#94A3B8",
                   fontSize: "13.5px",
                   lineHeight: 1.75,
                   fontFamily: "var(--font-dm)",
@@ -709,11 +710,7 @@ function HowItWorksSection() {
 }
 
 /* ─── TESTIMONIALS ───────────────────────────── */
-function TestimonialCard({
-  t,
-}: {
-  t: (typeof testimonials)[0];
-}) {
+function TestimonialCard({ t }: { t: (typeof testimonials)[0] }) {
   return (
     <div
       style={{
@@ -729,7 +726,7 @@ function TestimonialCard({
     >
       <div
         style={{
-          color: "#f5c542",
+          color: "#F59E0B",
           fontSize: "13px",
           letterSpacing: "2px",
           marginBottom: "12px",
@@ -780,7 +777,7 @@ function TestimonialCard({
           </div>
           <div
             style={{
-              color: "#f5c542",
+              color: "#94A3B8",
               fontSize: "12px",
               marginTop: "2px",
               fontFamily: "var(--font-dm)",
@@ -842,7 +839,7 @@ function TestimonialsSection() {
 
   return (
     <section
-      style={{ background: "#0d1b3e", padding: "88px 60px", overflow: "hidden" }}
+      style={{ background: "#1B2866", padding: "88px 60px", overflow: "hidden" }}
     >
       <motion.div
         ref={ref}
@@ -857,7 +854,7 @@ function TestimonialsSection() {
             fontWeight: 600,
             letterSpacing: "3px",
             textTransform: "uppercase",
-            color: "#f5c542",
+            color: "#F97316",
             display: "block",
             marginBottom: "12px",
             fontFamily: "var(--font-dm)",
@@ -877,7 +874,7 @@ function TestimonialsSection() {
         </h2>
         <p
           style={{
-            color: "#8fa0c0",
+            color: "#94A3B8",
             marginTop: "12px",
             fontSize: "15px",
             fontFamily: "var(--font-dm)",
@@ -913,7 +910,7 @@ function CTABand() {
   return (
     <section
       ref={ref}
-      style={{ background: "#f5c542", padding: "68px 60px", textAlign: "center" }}
+      style={{ background: "#F97316", padding: "68px 60px", textAlign: "center" }}
     >
       <motion.h2
         initial={{ opacity: 0, y: 20 }}
@@ -922,7 +919,7 @@ function CTABand() {
         style={{
           fontFamily: "var(--font-playfair)",
           fontSize: "42px",
-          color: "#0d1b3e",
+          color: "#fff",
           fontWeight: 700,
           marginBottom: "12px",
         }}
@@ -934,7 +931,7 @@ function CTABand() {
         animate={inView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.6, delay: 0.1 }}
         style={{
-          color: "rgba(13,27,62,0.68)",
+          color: "rgba(255,255,255,0.85)",
           fontSize: "17px",
           marginBottom: "34px",
           fontFamily: "var(--font-dm)",
@@ -953,7 +950,7 @@ function CTABand() {
           target="_blank"
           rel="noopener noreferrer"
           style={{
-            background: "#0d1b3e",
+            background: "#1B2866",
             color: "#fff",
             padding: "14px 34px",
             borderRadius: "10px",
@@ -967,10 +964,10 @@ function CTABand() {
             fontFamily: "var(--font-dm)",
           }}
           onMouseEnter={(e) => {
-            (e.currentTarget as HTMLElement).style.background = "#162040";
+            (e.currentTarget as HTMLElement).style.background = "#0E1847";
           }}
           onMouseLeave={(e) => {
-            (e.currentTarget as HTMLElement).style.background = "#0d1b3e";
+            (e.currentTarget as HTMLElement).style.background = "#1B2866";
           }}
         >
           💬 WhatsApp Us
@@ -978,8 +975,8 @@ function CTABand() {
         <Link
           href="/#packages"
           style={{
-            border: "2px solid #0d1b3e",
-            color: "#0d1b3e",
+            border: "2px solid rgba(255,255,255,0.8)",
+            color: "#fff",
             padding: "14px 34px",
             borderRadius: "10px",
             fontWeight: 600,
@@ -989,7 +986,7 @@ function CTABand() {
             fontFamily: "var(--font-dm)",
           }}
           onMouseEnter={(e) => {
-            (e.currentTarget as HTMLElement).style.background = "rgba(13,27,62,0.08)";
+            (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.15)";
           }}
           onMouseLeave={(e) => {
             (e.currentTarget as HTMLElement).style.background = "transparent";

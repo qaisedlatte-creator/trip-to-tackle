@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 
 const navLinks = [
@@ -37,17 +38,20 @@ export default function Navbar() {
       <Link
         href="/"
         style={{
-          fontFamily: "var(--font-playfair)",
-          fontSize: "22px",
-          fontWeight: 700,
-          color: "#fff",
-          letterSpacing: "-0.3px",
+          display: "flex",
+          alignItems: "center",
           textDecoration: "none",
           flexShrink: 0,
-          textShadow: "0 1px 12px rgba(0,0,0,0.5)",
         }}
       >
-        Trip to <span style={{ color: "#f5c542" }}>Tackle</span>
+        <Image
+          src="/logo.png"
+          alt="Trip 2 Tackle"
+          width={140}
+          height={40}
+          style={{ objectFit: "contain", filter: "drop-shadow(0 1px 8px rgba(0,0,0,0.4))" }}
+          priority
+        />
       </Link>
 
       {/* Desktop links */}
@@ -78,7 +82,7 @@ export default function Navbar() {
                   fontSize: "14px",
                   fontWeight: isActive ? 600 : 500,
                   transition: "color 0.2s",
-                  borderBottom: isActive ? "2px solid #f5c542" : "none",
+                  borderBottom: isActive ? "2px solid #F97316" : "none",
                   paddingBottom: isActive ? "2px" : "0",
                   fontFamily: "var(--font-dm)",
                   textShadow: "0 1px 8px rgba(0,0,0,0.4)",
@@ -109,7 +113,7 @@ export default function Navbar() {
             display: "flex",
             alignItems: "center",
             gap: "7px",
-            border: "1.5px solid rgba(255,255,255,0.45)",
+            border: "1.5px solid rgba(255,255,255,0.4)",
             color: "#fff",
             padding: "8px 17px",
             borderRadius: "8px",
@@ -129,7 +133,7 @@ export default function Navbar() {
           }}
           onMouseLeave={(e) => {
             const el = e.currentTarget as HTMLElement;
-            el.style.borderColor = "rgba(255,255,255,0.45)";
+            el.style.borderColor = "rgba(255,255,255,0.4)";
             el.style.color = "#fff";
           }}
           className="hidden sm:flex"
@@ -144,8 +148,8 @@ export default function Navbar() {
         <Link
           href="/#packages"
           style={{
-            background: "#f5c542",
-            color: "#0d1b3e",
+            background: "#F97316",
+            color: "#fff",
             padding: "9px 22px",
             borderRadius: "8px",
             fontSize: "13px",
@@ -155,13 +159,13 @@ export default function Navbar() {
             fontFamily: "var(--font-dm)",
             textDecoration: "none",
             transition: "background 0.2s",
-            boxShadow: "0 2px 12px rgba(245,197,66,0.3)",
+            boxShadow: "0 2px 12px rgba(249,115,22,0.35)",
           }}
           onMouseEnter={(e) => {
-            (e.currentTarget as HTMLElement).style.background = "#d4a820";
+            (e.currentTarget as HTMLElement).style.background = "#EA6C0B";
           }}
           onMouseLeave={(e) => {
-            (e.currentTarget as HTMLElement).style.background = "#f5c542";
+            (e.currentTarget as HTMLElement).style.background = "#F97316";
           }}
         >
           Book Now
@@ -212,7 +216,7 @@ export default function Navbar() {
             top: "68px",
             left: 0,
             right: 0,
-            background: "rgba(13,27,62,0.97)",
+            background: "rgba(27,40,102,0.97)",
             backdropFilter: "blur(20px)",
             borderBottom: "1px solid rgba(255,255,255,0.07)",
             padding: "20px 24px",

@@ -7,36 +7,31 @@ import { motion, useInView } from "framer-motion";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
-const values = [
+const whyUs = [
   {
     icon: "🌍",
-    title: "Adventure-First Culture",
-    desc: "We live what we sell. Team trips, offsite retreats, and travel perks are baked into our DNA.",
+    title: "Travel-First Culture",
+    desc: "We don't just sell travel — we live it. Team trips, offsite retreats, and destination experiences are part of the job.",
   },
   {
-    icon: "🤝",
-    title: "People Over Metrics",
-    desc: "We build real relationships — with travellers and with each other. No burnout culture here.",
+    icon: "📈",
+    title: "Real Growth",
+    desc: "We're scaling fast across India and the GCC. Join early and grow into a leadership role as the company expands.",
   },
   {
-    icon: "⚡",
-    title: "Move Fast, Stay Human",
-    desc: "We're a lean team that ships quickly. Big ideas are welcome and acted on, not put in a queue.",
-  },
-  {
-    icon: "🌱",
-    title: "Grow With Us",
-    desc: "We're scaling fast. Join early and grow into leadership as we expand across India and the GCC.",
+    icon: "💡",
+    title: "Make an Impact",
+    desc: "Every decision you make shapes real experiences for real people. No bureaucracy, no endless queues — your ideas get acted on.",
   },
 ];
 
 const perks = [
-  "✈️ Annual travel allowance + team trip",
-  "🏠 Flexible remote-first work model",
-  "📈 Performance bonuses & clear growth path",
-  "🌴 Generous paid leave (including your birthday!)",
-  "📚 Learning budget for courses & events",
-  "💬 Direct access to founders from day one",
+  { icon: "✈️", title: "Travel Allowance", desc: "Annual travel credit + group team trip every year" },
+  { icon: "🏠", title: "Remote-Friendly", desc: "Most roles have flexible work-from-anywhere options" },
+  { icon: "📈", title: "Growth Path", desc: "Clear progression with quarterly performance reviews" },
+  { icon: "🌴", title: "Generous Leave", desc: "Paid leave including your birthday and festive seasons" },
+  { icon: "📚", title: "Learning Budget", desc: "Courses, certifications, and industry events covered" },
+  { icon: "💬", title: "Founder Access", desc: "Direct line to leadership from day one — no middlemen" },
 ];
 
 const roles = [
@@ -45,14 +40,14 @@ const roles = [
     dept: "Sales",
     type: "Full-time",
     loc: "Kochi / Remote",
-    desc: "Convert warm leads into confirmed bookings. Own the client relationship from first call to departure.",
+    desc: "Convert warm leads into confirmed bookings. Own the client relationship end-to-end.",
   },
   {
     role: "Social Media & Content Lead",
     dept: "Marketing",
     type: "Full-time",
     loc: "Remote",
-    desc: "Build our voice across Instagram, YouTube, and more. Storytelling + strategy in equal parts.",
+    desc: "Build our brand voice across Instagram, YouTube and Reels. Storytelling meets strategy.",
   },
   {
     role: "Tour Coordinator",
@@ -62,11 +57,11 @@ const roles = [
     desc: "Orchestrate seamless group departures. You're the reason every trip runs like clockwork.",
   },
   {
-    role: "Customer Experience Executive",
+    role: "Customer Experience Associate",
     dept: "Support",
     type: "Part-time",
     loc: "Remote",
-    desc: "Be the calm, knowledgeable voice when travellers have questions — before, during, and after.",
+    desc: "Be the calm, knowledgeable voice for travellers — before, during, and after every trip.",
   },
 ];
 
@@ -76,22 +71,15 @@ const teamPhotos = [
   "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=800&q=85",
 ];
 
-/* ─── SECTION WRAPPER ─── */
-function FadeSection({
-  children,
-  delay = 0,
-}: {
-  children: React.ReactNode;
-  delay?: number;
-}) {
+function FadeIn({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) {
   const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-80px" });
+  const inView = useInView(ref, { once: true, margin: "-60px" });
   return (
     <motion.div
       ref={ref}
-      initial={{ opacity: 0, y: 28 }}
+      initial={{ opacity: 0, y: 24 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.65, delay, ease: [0.16, 1, 0.3, 1] }}
+      transition={{ duration: 0.6, delay, ease: [0.16, 1, 0.3, 1] }}
     >
       {children}
     </motion.div>
@@ -108,279 +96,248 @@ export default function CareersPage() {
       {/* ── HERO ── */}
       <section
         style={{
-          background: "#0d1b3e",
+          background: "linear-gradient(135deg, #0E1847 0%, #1B2866 60%, #0E2A5A 100%)",
           padding: "120px 60px 80px",
           position: "relative",
           overflow: "hidden",
-          minHeight: "480px",
-          display: "flex",
-          alignItems: "center",
+          minHeight: "520px",
         }}
       >
-        {/* Decorative circles */}
+        {/* Decorative grid */}
         <div
           style={{
             position: "absolute",
-            right: "-80px",
-            top: "-80px",
-            width: "520px",
-            height: "520px",
+            inset: 0,
+            backgroundImage:
+              "linear-gradient(rgba(249,115,22,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(249,115,22,0.04) 1px, transparent 1px)",
+            backgroundSize: "60px 60px",
+            pointerEvents: "none",
+          }}
+        />
+        {/* Decorative circle */}
+        <div
+          style={{
+            position: "absolute",
+            right: "-60px",
+            top: "-60px",
+            width: "420px",
+            height: "420px",
             borderRadius: "50%",
-            background: "rgba(245,197,66,0.04)",
-            border: "1px solid rgba(245,197,66,0.08)",
+            border: "1px solid rgba(249,115,22,0.1)",
+            pointerEvents: "none",
           }}
         />
         <div
           style={{
             position: "absolute",
             right: "60px",
-            top: "20px",
-            width: "280px",
-            height: "280px",
+            top: "40px",
+            width: "240px",
+            height: "240px",
             borderRadius: "50%",
-            border: "1px solid rgba(245,197,66,0.06)",
-          }}
-        />
-        {/* Grid overlay */}
-        <div
-          style={{
-            position: "absolute",
-            inset: 0,
-            backgroundImage:
-              "linear-gradient(rgba(245,197,66,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(245,197,66,0.025) 1px, transparent 1px)",
-            backgroundSize: "60px 60px",
+            border: "1px solid rgba(249,115,22,0.07)",
             pointerEvents: "none",
           }}
         />
 
-        <div style={{ position: "relative", zIndex: 2, maxWidth: "640px" }}>
-          <motion.span
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            style={{
-              display: "block",
-              fontSize: "11px",
-              fontWeight: 600,
-              letterSpacing: "3px",
-              textTransform: "uppercase",
-              color: "#f5c542",
-              marginBottom: "20px",
-              fontFamily: "var(--font-dm)",
-            }}
-          >
-            Join Our Team
-          </motion.span>
+        <div
+          style={{
+            position: "relative",
+            zIndex: 2,
+            display: "grid",
+            gridTemplateColumns: "1fr auto",
+            gap: "60px",
+            alignItems: "center",
+            maxWidth: "1100px",
+            margin: "0 auto",
+          }}
+        >
+          <div>
+            <motion.span
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              style={{
+                display: "block",
+                fontSize: "11px",
+                fontWeight: 600,
+                letterSpacing: "3px",
+                textTransform: "uppercase",
+                color: "#F97316",
+                marginBottom: "18px",
+                fontFamily: "var(--font-dm)",
+              }}
+            >
+              Careers at Trip 2 Tackle
+            </motion.span>
 
-          <motion.h1
-            initial={{ opacity: 0, y: 22 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-            style={{
-              fontFamily: "var(--font-playfair)",
-              fontSize: "clamp(40px, 5vw, 62px)",
-              fontWeight: 700,
-              color: "#fff",
-              lineHeight: 1.1,
-              marginBottom: "22px",
-            }}
-          >
-            Work Where{" "}
-            <span style={{ color: "#f5c542" }}>Travel is the Job</span>
-          </motion.h1>
+            <motion.h1
+              initial={{ opacity: 0, y: 22 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+              style={{
+                fontFamily: "var(--font-playfair)",
+                fontSize: "clamp(36px, 5vw, 58px)",
+                fontWeight: 700,
+                color: "#fff",
+                lineHeight: 1.1,
+                marginBottom: "20px",
+              }}
+            >
+              Shape Your Career
+              <br />
+              <span style={{ color: "#F97316" }}>in Travel</span>
+            </motion.h1>
 
-          <motion.p
-            initial={{ opacity: 0, y: 22 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            style={{
-              color: "#8fa0c0",
-              fontSize: "17px",
-              lineHeight: 1.7,
-              marginBottom: "38px",
-              fontFamily: "var(--font-dm)",
-              fontWeight: 300,
-            }}
-          >
-            We&apos;re a small but mighty travel company building something special. If
-            you&apos;re obsessed with travel, people, and great experiences — let&apos;s talk.
-          </motion.p>
+            <motion.p
+              initial={{ opacity: 0, y: 22 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              style={{
+                color: "#94A3B8",
+                fontSize: "17px",
+                lineHeight: 1.7,
+                marginBottom: "36px",
+                fontFamily: "var(--font-dm)",
+                fontWeight: 300,
+                maxWidth: "520px",
+              }}
+            >
+              Join a team that turns wanderlust into a profession. We build journeys, not just itineraries — and we need people who care deeply about both.
+            </motion.p>
 
-          <motion.button
-            initial={{ opacity: 0, y: 22 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            onClick={() => rolesRef.current?.scrollIntoView({ behavior: "smooth" })}
+            <motion.div
+              initial={{ opacity: 0, y: 22 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+              style={{ display: "flex", gap: "14px", flexWrap: "wrap" }}
+            >
+              <button
+                onClick={() => rolesRef.current?.scrollIntoView({ behavior: "smooth" })}
+                style={{
+                  background: "#F97316",
+                  color: "#fff",
+                  padding: "13px 30px",
+                  borderRadius: "8px",
+                  fontWeight: 700,
+                  fontSize: "15px",
+                  border: "none",
+                  cursor: "pointer",
+                  fontFamily: "var(--font-dm)",
+                  boxShadow: "0 4px 20px rgba(249,115,22,0.4)",
+                  transition: "background 0.2s, transform 0.2s",
+                }}
+                onMouseEnter={(e) => {
+                  (e.currentTarget as HTMLElement).style.background = "#EA6C0B";
+                  (e.currentTarget as HTMLElement).style.transform = "translateY(-1px)";
+                }}
+                onMouseLeave={(e) => {
+                  (e.currentTarget as HTMLElement).style.background = "#F97316";
+                  (e.currentTarget as HTMLElement).style.transform = "translateY(0)";
+                }}
+              >
+                View Open Roles →
+              </button>
+              <Link
+                href="/campus-ambassador"
+                style={{
+                  border: "1.5px solid rgba(255,255,255,0.25)",
+                  color: "#fff",
+                  padding: "13px 28px",
+                  borderRadius: "8px",
+                  fontWeight: 500,
+                  fontSize: "15px",
+                  textDecoration: "none",
+                  fontFamily: "var(--font-dm)",
+                  background: "rgba(255,255,255,0.06)",
+                  backdropFilter: "blur(8px)",
+                  transition: "background 0.2s",
+                }}
+                onMouseEnter={(e) => {
+                  (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.12)";
+                }}
+                onMouseLeave={(e) => {
+                  (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.06)";
+                }}
+              >
+                Campus Ambassador
+              </Link>
+            </motion.div>
+          </div>
+
+          {/* Hero image */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.92 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.9, delay: 0.15 }}
             style={{
-              background: "#f5c542",
-              color: "#0d1b3e",
-              padding: "14px 32px",
-              borderRadius: "10px",
-              fontWeight: 700,
-              fontSize: "15px",
-              border: "none",
-              cursor: "pointer",
-              display: "inline-flex",
-              alignItems: "center",
-              gap: "8px",
-              fontFamily: "var(--font-dm)",
-              transition: "background 0.2s, transform 0.2s",
+              width: "260px",
+              height: "260px",
+              borderRadius: "50%",
+              overflow: "hidden",
+              border: "3px solid rgba(249,115,22,0.3)",
+              boxShadow: "0 0 60px rgba(249,115,22,0.15)",
+              flexShrink: 0,
+              position: "relative",
             }}
-            whileHover={{ scale: 1.03, backgroundColor: "#d4a820" }}
-            whileTap={{ scale: 0.98 }}
+            className="hidden lg:block"
           >
-            See Open Roles
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-              <path d="M5 12h14M12 5l7 7-7 7" />
-            </svg>
-          </motion.button>
+            <Image
+              src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=600&q=85"
+              alt="Team"
+              fill
+              style={{ objectFit: "cover" }}
+              sizes="260px"
+            />
+          </motion.div>
         </div>
       </section>
 
       {/* ── PHOTO STRIP ── */}
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(3, 1fr)",
-          height: "240px",
-          overflow: "hidden",
-        }}
-      >
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", height: "220px", overflow: "hidden" }}>
         {teamPhotos.map((src, i) => (
-          <div
-            key={i}
-            style={{ position: "relative", overflow: "hidden" }}
-          >
+          <div key={i} style={{ position: "relative", overflow: "hidden" }}>
             <Image
               src={src}
-              alt={`Team photo ${i + 1}`}
+              alt={`Team ${i + 1}`}
               fill
-              style={{ objectFit: "cover", filter: "brightness(0.75)" }}
+              style={{ objectFit: "cover", filter: "brightness(0.7)" }}
               sizes="33vw"
             />
             <div
               style={{
                 position: "absolute",
                 inset: 0,
-                background: "linear-gradient(to top, rgba(13,27,62,0.6) 0%, transparent 60%)",
+                background: "linear-gradient(to top, rgba(14,24,71,0.5) 0%, transparent 60%)",
               }}
             />
             {i === 1 && (
               <div
                 style={{
                   position: "absolute",
-                  bottom: "16px",
-                  left: "20px",
-                  color: "#f5c542",
-                  fontSize: "12px",
-                  fontWeight: 600,
-                  letterSpacing: "2px",
+                  bottom: "14px",
+                  left: "50%",
+                  transform: "translateX(-50%)",
+                  color: "#F97316",
+                  fontSize: "11px",
+                  fontWeight: 700,
+                  letterSpacing: "2.5px",
                   textTransform: "uppercase",
                   fontFamily: "var(--font-dm)",
+                  whiteSpace: "nowrap",
                 }}
               >
-                Life at Trip to Tackle
+                Life at Trip 2 Tackle
               </div>
             )}
           </div>
         ))}
       </div>
 
-      {/* ── VALUES ── */}
-      <section style={{ background: "#f7f6f2", padding: "88px 60px" }}>
-        <FadeSection>
+      {/* ── WHY US ── */}
+      <section style={{ background: "#fff", padding: "88px 60px" }}>
+        <FadeIn>
           <div style={{ textAlign: "center", marginBottom: "52px" }}>
-            <span
-              style={{
-                display: "block",
-                fontSize: "10.5px",
-                fontWeight: 600,
-                letterSpacing: "3px",
-                textTransform: "uppercase",
-                color: "#0d1b3e",
-                marginBottom: "10px",
-                fontFamily: "var(--font-dm)",
-              }}
-            >
-              Our Culture
-            </span>
-            <h2
-              style={{
-                fontFamily: "var(--font-playfair)",
-                fontSize: "44px",
-                color: "#0d1b3e",
-                fontWeight: 700,
-              }}
-            >
-              Why People Love Working Here
-            </h2>
-          </div>
-        </FadeSection>
-
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(4, 1fr)",
-            gap: "28px",
-            maxWidth: "1100px",
-            margin: "0 auto",
-          }}
-        >
-          {values.map((v, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 28 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.55, delay: i * 0.1 }}
-              className="benefit-card"
-              style={{
-                background: "#fff",
-                borderRadius: "16px",
-                padding: "32px 28px",
-                boxShadow: "0 4px 24px rgba(0,0,0,0.07)",
-              }}
-            >
-              <div style={{ fontSize: "36px", marginBottom: "16px" }}>{v.icon}</div>
-              <h3
-                style={{
-                  fontFamily: "var(--font-playfair)",
-                  fontSize: "19px",
-                  color: "#0d1b3e",
-                  fontWeight: 700,
-                  marginBottom: "10px",
-                }}
-              >
-                {v.title}
-              </h3>
-              <p
-                style={{
-                  color: "#777",
-                  fontSize: "13.5px",
-                  lineHeight: 1.7,
-                  fontFamily: "var(--font-dm)",
-                }}
-              >
-                {v.desc}
-              </p>
-            </motion.div>
-          ))}
-        </div>
-      </section>
-
-      {/* ── PERKS ── */}
-      <section style={{ background: "#0d1b3e", padding: "80px 60px" }}>
-        <div
-          style={{
-            maxWidth: "1100px",
-            margin: "0 auto",
-            display: "grid",
-            gridTemplateColumns: "1fr 1fr",
-            gap: "60px",
-            alignItems: "center",
-          }}
-        >
-          <FadeSection>
             <span
               style={{
                 display: "block",
@@ -388,111 +345,203 @@ export default function CareersPage() {
                 fontWeight: 600,
                 letterSpacing: "3px",
                 textTransform: "uppercase",
-                color: "#f5c542",
-                marginBottom: "16px",
-                fontFamily: "var(--font-dm)",
-              }}
-            >
-              Perks &amp; Benefits
-            </span>
-            <h2
-              style={{
-                fontFamily: "var(--font-playfair)",
-                fontSize: "40px",
-                color: "#fff",
-                fontWeight: 700,
-                marginBottom: "32px",
-                lineHeight: 1.2,
-              }}
-            >
-              Built for People Who Love to Travel
-            </h2>
-            <div style={{ display: "flex", flexDirection: "column", gap: "14px" }}>
-              {perks.map((p, i) => (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: i * 0.07 }}
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    gap: "14px",
-                    color: "rgba(255,255,255,0.85)",
-                    fontSize: "15px",
-                    fontFamily: "var(--font-dm)",
-                  }}
-                >
-                  <div
-                    style={{
-                      width: "7px",
-                      height: "7px",
-                      borderRadius: "50%",
-                      background: "#f5c542",
-                      flexShrink: 0,
-                    }}
-                  />
-                  {p}
-                </motion.div>
-              ))}
-            </div>
-          </FadeSection>
-
-          <FadeSection delay={0.15}>
-            <div
-              style={{
-                borderRadius: "20px",
-                overflow: "hidden",
-                height: "400px",
-                position: "relative",
-              }}
-            >
-              <Image
-                src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800&q=85"
-                alt="Team culture"
-                fill
-                style={{ objectFit: "cover" }}
-                sizes="50vw"
-              />
-              <div
-                style={{
-                  position: "absolute",
-                  inset: 0,
-                  background: "linear-gradient(to top, rgba(13,27,62,0.5) 0%, transparent 60%)",
-                }}
-              />
-            </div>
-          </FadeSection>
-        </div>
-      </section>
-
-      {/* ── OPEN ROLES ── */}
-      <section
-        ref={rolesRef}
-        style={{ background: "#fff", padding: "80px 60px" }}
-      >
-        <FadeSection>
-          <div style={{ textAlign: "center", marginBottom: "48px" }}>
-            <span
-              style={{
-                display: "block",
-                fontSize: "10.5px",
-                fontWeight: 600,
-                letterSpacing: "3px",
-                textTransform: "uppercase",
-                color: "#f5c542",
+                color: "#F97316",
                 marginBottom: "10px",
                 fontFamily: "var(--font-dm)",
               }}
             >
-              Come Aboard
+              Why Join Us
             </span>
             <h2
               style={{
                 fontFamily: "var(--font-playfair)",
-                fontSize: "44px",
-                color: "#0d1b3e",
+                fontSize: "clamp(32px, 4vw, 44px)",
+                color: "#111827",
+                fontWeight: 700,
+              }}
+            >
+              Built Different. For People Who Think Different.
+            </h2>
+          </div>
+        </FadeIn>
+
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(3, 1fr)",
+            gap: "28px",
+            maxWidth: "1000px",
+            margin: "0 auto",
+          }}
+        >
+          {whyUs.map((w, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: i * 0.1 }}
+              style={{
+                background: "#F8F9FA",
+                borderRadius: "16px",
+                padding: "32px 28px",
+                borderTop: "4px solid #F97316",
+                transition: "box-shadow 0.2s, transform 0.2s",
+              }}
+              whileHover={{ y: -4, boxShadow: "0 12px 36px rgba(0,0,0,0.08)" }}
+            >
+              <div style={{ fontSize: "32px", marginBottom: "14px" }}>{w.icon}</div>
+              <h3
+                style={{
+                  fontFamily: "var(--font-playfair)",
+                  fontSize: "19px",
+                  color: "#111827",
+                  fontWeight: 700,
+                  marginBottom: "10px",
+                }}
+              >
+                {w.title}
+              </h3>
+              <p
+                style={{
+                  color: "#6B7280",
+                  fontSize: "14px",
+                  lineHeight: 1.7,
+                  fontFamily: "var(--font-dm)",
+                }}
+              >
+                {w.desc}
+              </p>
+            </motion.div>
+          ))}
+        </div>
+      </section>
+
+      {/* ── PERKS ── */}
+      <section style={{ background: "#F8F9FA", padding: "80px 60px" }}>
+        <FadeIn>
+          <div style={{ textAlign: "center", marginBottom: "48px" }}>
+            <span
+              style={{
+                display: "block",
+                fontSize: "11px",
+                fontWeight: 600,
+                letterSpacing: "3px",
+                textTransform: "uppercase",
+                color: "#F97316",
+                marginBottom: "10px",
+                fontFamily: "var(--font-dm)",
+              }}
+            >
+              Perks & Benefits
+            </span>
+            <h2
+              style={{
+                fontFamily: "var(--font-playfair)",
+                fontSize: "clamp(30px, 4vw, 40px)",
+                color: "#111827",
+                fontWeight: 700,
+              }}
+            >
+              We Take Care of Our People
+            </h2>
+          </div>
+        </FadeIn>
+
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(3, 1fr)",
+            gap: "20px",
+            maxWidth: "1000px",
+            margin: "0 auto",
+          }}
+        >
+          {perks.map((p, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.45, delay: (i % 3) * 0.1 }}
+              style={{
+                background: "#fff",
+                borderRadius: "14px",
+                padding: "24px 22px",
+                display: "flex",
+                alignItems: "flex-start",
+                gap: "16px",
+                border: "1px solid #E2E8F0",
+                transition: "border-color 0.2s, box-shadow 0.2s",
+              }}
+              whileHover={{ borderColor: "#F97316", boxShadow: "0 6px 24px rgba(0,0,0,0.07)" }}
+            >
+              <div
+                style={{
+                  width: "42px",
+                  height: "42px",
+                  borderRadius: "10px",
+                  background: "rgba(249,115,22,0.1)",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  fontSize: "20px",
+                  flexShrink: 0,
+                }}
+              >
+                {p.icon}
+              </div>
+              <div>
+                <div
+                  style={{
+                    fontWeight: 600,
+                    fontSize: "14px",
+                    color: "#111827",
+                    marginBottom: "4px",
+                    fontFamily: "var(--font-dm)",
+                  }}
+                >
+                  {p.title}
+                </div>
+                <div
+                  style={{
+                    fontSize: "13px",
+                    color: "#6B7280",
+                    lineHeight: 1.55,
+                    fontFamily: "var(--font-dm)",
+                  }}
+                >
+                  {p.desc}
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </section>
+
+      {/* ── OPEN ROLES ── */}
+      <section ref={rolesRef} style={{ background: "#fff", padding: "88px 60px" }}>
+        <FadeIn>
+          <div style={{ textAlign: "center", marginBottom: "48px" }}>
+            <span
+              style={{
+                display: "block",
+                fontSize: "11px",
+                fontWeight: 600,
+                letterSpacing: "3px",
+                textTransform: "uppercase",
+                color: "#F97316",
+                marginBottom: "10px",
+                fontFamily: "var(--font-dm)",
+              }}
+            >
+              Current Openings
+            </span>
+            <h2
+              style={{
+                fontFamily: "var(--font-playfair)",
+                fontSize: "clamp(30px, 4vw, 42px)",
+                color: "#111827",
                 fontWeight: 700,
               }}
             >
@@ -500,16 +549,16 @@ export default function CareersPage() {
             </h2>
             <p
               style={{
-                color: "#888",
+                color: "#6B7280",
                 marginTop: "10px",
                 fontSize: "15px",
                 fontFamily: "var(--font-dm)",
               }}
             >
-              Don&apos;t see a role? Send your CV anyway — we&apos;re always looking for great people.
+              Don&apos;t see your role? Send your CV — we&apos;re always looking for great people.
             </p>
           </div>
-        </FadeSection>
+        </FadeIn>
 
         <div
           style={{
@@ -517,35 +566,36 @@ export default function CareersPage() {
             margin: "0 auto",
             display: "flex",
             flexDirection: "column",
-            gap: "16px",
+            gap: "14px",
           }}
         >
           {roles.map((r, i) => (
             <motion.div
               key={i}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 18 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
+              transition={{ duration: 0.45, delay: i * 0.08 }}
               className="role-card"
               style={{
-                background: i % 2 === 0 ? "#f7f6f2" : "#fff",
-                borderRadius: "14px",
-                padding: "24px 28px",
+                background: "#fff",
+                borderRadius: "12px",
+                padding: "22px 26px",
                 display: "flex",
                 justifyContent: "space-between",
                 alignItems: "center",
-                border: "1px solid #e8e8e8",
+                border: "1px solid #E2E8F0",
+                borderLeft: "4px solid transparent",
                 cursor: "pointer",
               }}
             >
               <div style={{ flex: 1 }}>
                 <h3
                   style={{
-                    fontSize: "17px",
+                    fontSize: "16px",
                     fontWeight: 600,
-                    color: "#0d1b3e",
-                    marginBottom: "6px",
+                    color: "#111827",
+                    marginBottom: "5px",
                     fontFamily: "var(--font-dm)",
                   }}
                 >
@@ -554,7 +604,7 @@ export default function CareersPage() {
                 <p
                   style={{
                     fontSize: "13px",
-                    color: "#888",
+                    color: "#6B7280",
                     marginBottom: "10px",
                     fontFamily: "var(--font-dm)",
                   }}
@@ -566,12 +616,13 @@ export default function CareersPage() {
                     <span
                       key={tag}
                       style={{
-                        fontSize: "12px",
-                        color: "#777",
-                        background: "rgba(13,27,62,0.07)",
+                        fontSize: "11px",
+                        color: "#374151",
+                        background: "#F1F5F9",
                         padding: "3px 10px",
                         borderRadius: "20px",
                         fontFamily: "var(--font-dm)",
+                        fontWeight: 500,
                       }}
                     >
                       {tag}
@@ -579,16 +630,14 @@ export default function CareersPage() {
                   ))}
                 </div>
               </div>
-              <motion.button
-                whileHover={{ scale: 1.04 }}
-                whileTap={{ scale: 0.97 }}
+              <button
                 style={{
-                  background: "#0d1b3e",
+                  background: "#F97316",
                   color: "#fff",
                   padding: "10px 22px",
                   borderRadius: "8px",
                   fontSize: "13px",
-                  fontWeight: 600,
+                  fontWeight: 700,
                   border: "none",
                   cursor: "pointer",
                   fontFamily: "var(--font-dm)",
@@ -597,23 +646,29 @@ export default function CareersPage() {
                   flexShrink: 0,
                   transition: "background 0.2s",
                 }}
+                onMouseEnter={(e) => {
+                  (e.currentTarget as HTMLElement).style.background = "#EA6C0B";
+                }}
+                onMouseLeave={(e) => {
+                  (e.currentTarget as HTMLElement).style.background = "#F97316";
+                }}
               >
                 Apply Now
-              </motion.button>
+              </button>
             </motion.div>
           ))}
 
           {/* Send CV card */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 18 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.4 }}
+            transition={{ duration: 0.45, delay: 0.35 }}
             style={{
-              marginTop: "8px",
-              background: "#0d1b3e",
-              borderRadius: "16px",
-              padding: "36px 40px",
+              marginTop: "6px",
+              background: "linear-gradient(135deg, #1B2866 0%, #0E1847 100%)",
+              borderRadius: "14px",
+              padding: "32px 36px",
               display: "flex",
               justifyContent: "space-between",
               alignItems: "center",
@@ -625,9 +680,9 @@ export default function CareersPage() {
               <h4
                 style={{
                   color: "#fff",
-                  fontSize: "18px",
+                  fontSize: "17px",
                   fontWeight: 600,
-                  marginBottom: "6px",
+                  marginBottom: "5px",
                   fontFamily: "var(--font-dm)",
                 }}
               >
@@ -635,33 +690,34 @@ export default function CareersPage() {
               </h4>
               <p
                 style={{
-                  color: "#8fa0c0",
+                  color: "#94A3B8",
                   fontSize: "13px",
                   fontFamily: "var(--font-dm)",
                 }}
               >
-                Drop us your CV and a note about what excites you.
+                Send us your CV and a note on what excites you. We&apos;ll reach out.
               </p>
             </div>
             <a
-              href="mailto:careers@triptotackle.com"
+              href="mailto:careers@trip2tackle.com"
               style={{
-                background: "#f5c542",
-                color: "#0d1b3e",
+                background: "#F97316",
+                color: "#fff",
                 padding: "12px 26px",
                 borderRadius: "8px",
                 fontWeight: 700,
                 fontSize: "14px",
                 textDecoration: "none",
-                whiteSpace: "nowrap",
                 fontFamily: "var(--font-dm)",
+                whiteSpace: "nowrap",
+                boxShadow: "0 4px 16px rgba(249,115,22,0.35)",
                 transition: "background 0.2s",
               }}
               onMouseEnter={(e) => {
-                (e.currentTarget as HTMLElement).style.background = "#d4a820";
+                (e.currentTarget as HTMLElement).style.background = "#EA6C0B";
               }}
               onMouseLeave={(e) => {
-                (e.currentTarget as HTMLElement).style.background = "#f5c542";
+                (e.currentTarget as HTMLElement).style.background = "#F97316";
               }}
             >
               Send Your CV →
@@ -673,17 +729,17 @@ export default function CareersPage() {
       {/* ── BOTTOM CTA ── */}
       <section
         style={{
-          background: "#f5c542",
+          background: "#F97316",
           padding: "64px 60px",
           textAlign: "center",
         }}
       >
-        <FadeSection>
+        <FadeIn>
           <h2
             style={{
               fontFamily: "var(--font-playfair)",
-              fontSize: "38px",
-              color: "#0d1b3e",
+              fontSize: "clamp(28px, 4vw, 38px)",
+              color: "#fff",
               fontWeight: 700,
               marginBottom: "12px",
             }}
@@ -692,20 +748,16 @@ export default function CareersPage() {
           </h2>
           <p
             style={{
-              color: "rgba(13,27,62,0.7)",
+              color: "rgba(255,255,255,0.8)",
               fontSize: "16px",
               marginBottom: "28px",
               fontFamily: "var(--font-dm)",
             }}
           >
-            Also check out our{" "}
+            Also check our{" "}
             <Link
               href="/campus-ambassador"
-              style={{
-                color: "#0d1b3e",
-                fontWeight: 700,
-                textDecoration: "underline",
-              }}
+              style={{ color: "#fff", fontWeight: 700, textDecoration: "underline" }}
             >
               Campus Ambassador Program
             </Link>{" "}
@@ -716,10 +768,10 @@ export default function CareersPage() {
             target="_blank"
             rel="noopener noreferrer"
             style={{
-              background: "#0d1b3e",
+              background: "#1B2866",
               color: "#fff",
               padding: "14px 34px",
-              borderRadius: "10px",
+              borderRadius: "8px",
               fontWeight: 600,
               fontSize: "15px",
               textDecoration: "none",
@@ -727,11 +779,18 @@ export default function CareersPage() {
               alignItems: "center",
               gap: "8px",
               fontFamily: "var(--font-dm)",
+              transition: "background 0.2s",
+            }}
+            onMouseEnter={(e) => {
+              (e.currentTarget as HTMLElement).style.background = "#0E1847";
+            }}
+            onMouseLeave={(e) => {
+              (e.currentTarget as HTMLElement).style.background = "#1B2866";
             }}
           >
             💬 Talk to Us on WhatsApp
           </a>
-        </FadeSection>
+        </FadeIn>
       </section>
 
       <Footer />

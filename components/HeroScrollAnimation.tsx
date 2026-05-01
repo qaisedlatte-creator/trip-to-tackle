@@ -2,22 +2,189 @@
 
 import { useEffect, useRef, useState, useCallback } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { motion } from "framer-motion";
 
 const TOTAL_FRAMES = 40;
 const DESKTOP_FOLDER = "/frames";
-const MOBILE_FOLDER = "/frames-mobile";
 const MOBILE_BREAKPOINT = 768;
-const CROP = 1.08; // zoom 8% — cleanly removes Veo watermark from corners
+const CROP = 1.08; // zoom 8% — cleanly removes watermark from corners
 
 function pad(n: number) {
   return String(n).padStart(3, "0");
 }
 
+/* ── STATIC MOBILE HERO ── */
+function MobileHero() {
+  return (
+    <div
+      style={{
+        position: "relative",
+        width: "100%",
+        height: "100vh",
+        overflow: "hidden",
+        background: "linear-gradient(135deg, #0E1847 0%, #1B2866 40%, #0E2A5A 100%)",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        textAlign: "center",
+      }}
+    >
+      {/* Background image */}
+      <Image
+        src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80"
+        alt="Kashmir mountains"
+        fill
+        style={{ objectFit: "cover", opacity: 0.35 }}
+        priority
+        sizes="100vw"
+      />
+
+      {/* Dark overlay */}
+      <div
+        style={{
+          position: "absolute",
+          inset: 0,
+          background:
+            "linear-gradient(180deg, rgba(14,24,71,0.55) 0%, rgba(14,24,71,0.3) 40%, rgba(14,24,71,0.75) 100%)",
+          pointerEvents: "none",
+        }}
+      />
+
+      {/* Content */}
+      <div
+        style={{
+          position: "relative",
+          zIndex: 10,
+          padding: "0 28px",
+          maxWidth: "480px",
+        }}
+      >
+        <motion.span
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          style={{
+            display: "block",
+            fontSize: 11,
+            fontWeight: 600,
+            letterSpacing: "3px",
+            textTransform: "uppercase",
+            color: "#F97316",
+            marginBottom: 18,
+            fontFamily: "var(--font-dm)",
+            textShadow: "0 1px 8px rgba(0,0,0,0.7)",
+          }}
+        >
+          Live Group Departures · India &amp; Beyond
+        </motion.span>
+
+        <motion.h1
+          initial={{ opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
+          style={{
+            fontFamily: "var(--font-playfair)",
+            fontSize: "clamp(44px, 10vw, 72px)",
+            fontWeight: 900,
+            lineHeight: 1.02,
+            color: "#fff",
+            textShadow: "0 4px 48px rgba(0,0,0,0.7)",
+            marginBottom: 16,
+          }}
+        >
+          Trip to{" "}
+          <span className="gold-shimmer-text">Tackle</span>
+        </motion.h1>
+
+        <motion.p
+          initial={{ opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
+          style={{
+            fontSize: "clamp(15px, 4vw, 18px)",
+            color: "rgba(255,255,255,0.88)",
+            fontWeight: 300,
+            lineHeight: 1.6,
+            marginBottom: 8,
+            fontFamily: "var(--font-dm)",
+            textShadow: "0 2px 14px rgba(0,0,0,0.6)",
+          }}
+        >
+          Discover Your Next Adventure with Us 🌍
+        </motion.p>
+
+        <motion.p
+          initial={{ opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1], delay: 0.3 }}
+          style={{
+            fontSize: 13,
+            color: "rgba(255,255,255,0.5)",
+            marginBottom: 36,
+            fontFamily: "var(--font-dm)",
+            textShadow: "0 1px 8px rgba(0,0,0,0.6)",
+          }}
+        >
+          Affordable &amp; Personalized Travel Plans ✈️
+        </motion.p>
+
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1], delay: 0.42 }}
+          style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap" }}
+        >
+          <Link
+            href="/#packages"
+            style={{
+              background: "#F97316",
+              color: "#fff",
+              padding: "13px 28px",
+              borderRadius: 100,
+              fontSize: 15,
+              fontWeight: 700,
+              textDecoration: "none",
+              display: "flex",
+              alignItems: "center",
+              gap: 8,
+              boxShadow: "0 4px 28px rgba(249,115,22,0.4)",
+              fontFamily: "var(--font-dm)",
+            }}
+          >
+            Explore Packages
+          </Link>
+
+          <a
+            href="https://wa.me/919000000000"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              background: "rgba(255,255,255,0.07)",
+              border: "1.5px solid rgba(255,255,255,0.35)",
+              color: "#fff",
+              padding: "13px 24px",
+              borderRadius: 100,
+              fontSize: 15,
+              fontWeight: 500,
+              textDecoration: "none",
+              backdropFilter: "blur(12px)",
+              fontFamily: "var(--font-dm)",
+            }}
+          >
+            Chat with Us
+          </a>
+        </motion.div>
+      </div>
+    </div>
+  );
+}
+
+/* ── DESKTOP CANVAS HERO ── */
 export default function HeroScrollAnimation() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
-  // Store ImageBitmap[] for GPU-accelerated, zero-copy blitting
   const bitmapsRef = useRef<ImageBitmap[]>([]);
   const ctxRef = useRef<CanvasRenderingContext2D | null>(null);
   const rafRef = useRef<number>(0);
@@ -25,7 +192,7 @@ export default function HeroScrollAnimation() {
   const lastFrameRef = useRef(-1);
 
   const [isLoaded, setIsLoaded] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
+  const [isMobile, setIsMobile] = useState<boolean | null>(null);
 
   /* ── Mobile detection ── */
   useEffect(() => {
@@ -35,27 +202,21 @@ export default function HeroScrollAnimation() {
     return () => window.removeEventListener("resize", check);
   }, []);
 
-  /* ── Preload frames as ImageBitmap (GPU-decoded, hardware-accelerated) ── */
+  /* ── Preload frames (desktop only) ── */
   useEffect(() => {
+    if (isMobile !== false) return; // wait until we know it's desktop
     let mounted = true;
     setIsLoaded(false);
-    // Revoke old bitmaps to free GPU memory
     bitmapsRef.current.forEach((b) => b.close());
     bitmapsRef.current = [];
     lastFrameRef.current = -1;
 
-    const folder = isMobile ? MOBILE_FOLDER : DESKTOP_FOLDER;
-
     const loadAll = async () => {
       const bitmaps: ImageBitmap[] = new Array(TOTAL_FRAMES);
-
-      // Fetch + decode in parallel — browser decodes directly to GPU texture
       await Promise.all(
         Array.from({ length: TOTAL_FRAMES }, async (_, i) => {
-          const res = await fetch(`${folder}/ezgif-frame-${pad(i + 1)}.jpg`);
+          const res = await fetch(`${DESKTOP_FOLDER}/ezgif-frame-${pad(i + 1)}.jpg`);
           const blob = await res.blob();
-          // createImageBitmap decodes JPEG once, stores on GPU memory
-          // premultiplyAlpha: 'none' prevents quality loss on non-alpha images
           bitmaps[i] = await createImageBitmap(blob, {
             resizeQuality: "high",
             premultiplyAlpha: "none",
@@ -63,7 +224,6 @@ export default function HeroScrollAnimation() {
           });
         })
       );
-
       if (!mounted) {
         bitmaps.forEach((b) => b.close());
         return;
@@ -78,7 +238,7 @@ export default function HeroScrollAnimation() {
     };
   }, [isMobile]);
 
-  /* ── Canvas setup — called once + on resize ── */
+  /* ── Canvas setup ── */
   const setupCanvas = useCallback(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -90,7 +250,7 @@ export default function HeroScrollAnimation() {
 
     const ctx = canvas.getContext("2d", {
       alpha: false,
-      desynchronized: true,   // compositor-thread sync, lowest latency
+      desynchronized: true,
       willReadFrequently: false,
     });
     if (!ctx) return;
@@ -98,10 +258,10 @@ export default function HeroScrollAnimation() {
     ctx.imageSmoothingEnabled = true;
     ctx.imageSmoothingQuality = "high";
     ctxRef.current = ctx;
-    needsDrawRef.current = true; // force redraw after resize
+    needsDrawRef.current = true;
   }, []);
 
-  /* ── Draw a single bitmap frame — cover-fill + crop for watermark ── */
+  /* ── Draw frame ── */
   const drawBitmap = useCallback((idx: number) => {
     const ctx = ctxRef.current;
     const bitmaps = bitmapsRef.current;
@@ -114,7 +274,6 @@ export default function HeroScrollAnimation() {
     const canvasRatio = cw / ch;
 
     let dw: number, dh: number;
-    // Cover: fill whole canvas, cropping excess
     if (imgRatio > canvasRatio) {
       dh = ch * CROP;
       dw = imgRatio * dh;
@@ -128,7 +287,7 @@ export default function HeroScrollAnimation() {
     ctx.drawImage(bm, ox, oy, dw, dh);
   }, []);
 
-  /* ── Compute target frame from scroll position ── */
+  /* ── Compute target frame ── */
   const getTargetFrame = useCallback((): number => {
     const el = containerRef.current;
     if (!el) return 0;
@@ -139,7 +298,7 @@ export default function HeroScrollAnimation() {
     return Math.round(progress * (TOTAL_FRAMES - 1));
   }, []);
 
-  /* ── RAF loop: only redraws when frame actually changes ── */
+  /* ── RAF loop ── */
   const tick = useCallback(() => {
     if (isLoaded && bitmapsRef.current.length > 0) {
       const target = getTargetFrame();
@@ -152,8 +311,9 @@ export default function HeroScrollAnimation() {
     rafRef.current = requestAnimationFrame(tick);
   }, [isLoaded, getTargetFrame, drawBitmap]);
 
-  /* ── Init ── */
+  /* ── Init canvas (desktop only) ── */
   useEffect(() => {
+    if (isMobile !== false) return;
     setupCanvas();
     window.addEventListener("resize", setupCanvas);
     rafRef.current = requestAnimationFrame(tick);
@@ -161,8 +321,27 @@ export default function HeroScrollAnimation() {
       window.removeEventListener("resize", setupCanvas);
       cancelAnimationFrame(rafRef.current);
     };
-  }, [setupCanvas, tick]);
+  }, [setupCanvas, tick, isMobile]);
 
+  /* ── SSR / hydration guard ── */
+  if (isMobile === null) {
+    return (
+      <div
+        style={{
+          width: "100%",
+          height: "100vh",
+          background: "linear-gradient(135deg, #0E1847 0%, #1B2866 40%, #0E2A5A 100%)",
+        }}
+      />
+    );
+  }
+
+  /* ── Mobile: static hero ── */
+  if (isMobile) {
+    return <MobileHero />;
+  }
+
+  /* ── Desktop: scroll-driven canvas animation ── */
   return (
     <div ref={containerRef} style={{ position: "relative", width: "100%", height: "500vh" }}>
       {/* Sticky viewport */}
@@ -173,10 +352,9 @@ export default function HeroScrollAnimation() {
           width: "100%",
           height: "100vh",
           overflow: "hidden",
-          background: "#060e20",
+          background: "#0E1847",
         }}
       >
-        {/* Canvas — drawn at full devicePixelRatio for 4K sharpness */}
         <canvas
           ref={canvasRef}
           style={{
@@ -188,22 +366,18 @@ export default function HeroScrollAnimation() {
           }}
         />
 
-        {/*
-          Gradient overlay:
-          - Subtle dark at top → transparent mid → deep navy at bottom
-          - Lets the frame breathe in the middle, melts into stats bar at bottom
-        */}
+        {/* Gradient overlay */}
         <div
           style={{
             position: "absolute",
             inset: 0,
             background:
               "linear-gradient(180deg," +
-              "rgba(6,14,32,0.28) 0%," +
+              "rgba(14,24,71,0.28) 0%," +
               "rgba(0,0,0,0) 18%," +
               "rgba(0,0,0,0) 60%," +
-              "rgba(13,27,62,0.92) 88%," +
-              "rgba(13,27,62,1) 100%)",
+              "rgba(27,40,102,0.92) 88%," +
+              "rgba(27,40,102,1) 100%)",
             pointerEvents: "none",
             zIndex: 1,
           }}
@@ -219,19 +393,16 @@ export default function HeroScrollAnimation() {
               flexDirection: "column",
               alignItems: "center",
               justifyContent: "center",
-              background: "#060e20",
+              background: "#0E1847",
               zIndex: 20,
             }}
           >
-            <style>{`
-              @keyframes spin { to { transform: rotate(360deg); } }
-            `}</style>
             <div
               style={{
                 width: 36,
                 height: 36,
-                border: "2px solid rgba(245,197,66,0.15)",
-                borderTop: "2px solid #f5c542",
+                border: "2px solid rgba(249,115,22,0.15)",
+                borderTop: "2px solid #F97316",
                 borderRadius: "50%",
                 animation: "spin 0.7s linear infinite",
                 marginBottom: 14,
@@ -277,7 +448,7 @@ export default function HeroScrollAnimation() {
               fontWeight: 600,
               letterSpacing: "3px",
               textTransform: "uppercase",
-              color: "#f5c542",
+              color: "#F97316",
               marginBottom: 20,
               fontFamily: "var(--font-dm)",
               textShadow: "0 1px 8px rgba(0,0,0,0.7)",
@@ -346,8 +517,8 @@ export default function HeroScrollAnimation() {
             <Link
               href="/#packages"
               style={{
-                background: "#f5c542",
-                color: "#0d1b3e",
+                background: "#F97316",
+                color: "#fff",
                 padding: "14px 32px",
                 borderRadius: 100,
                 fontSize: 15,
@@ -356,21 +527,21 @@ export default function HeroScrollAnimation() {
                 display: "flex",
                 alignItems: "center",
                 gap: 8,
-                boxShadow: "0 4px 28px rgba(245,197,66,0.4)",
+                boxShadow: "0 4px 28px rgba(249,115,22,0.4)",
                 transition: "background 0.2s, transform 0.18s, box-shadow 0.2s",
                 fontFamily: "var(--font-dm)",
               }}
               onMouseEnter={(e) => {
                 const el = e.currentTarget as HTMLElement;
-                el.style.background = "#d4a820";
+                el.style.background = "#EA6C0B";
                 el.style.transform = "translateY(-2px)";
-                el.style.boxShadow = "0 8px 36px rgba(245,197,66,0.55)";
+                el.style.boxShadow = "0 8px 36px rgba(249,115,22,0.55)";
               }}
               onMouseLeave={(e) => {
                 const el = e.currentTarget as HTMLElement;
-                el.style.background = "#f5c542";
+                el.style.background = "#F97316";
                 el.style.transform = "translateY(0)";
-                el.style.boxShadow = "0 4px 28px rgba(245,197,66,0.4)";
+                el.style.boxShadow = "0 4px 28px rgba(249,115,22,0.4)";
               }}
             >
               Explore Packages

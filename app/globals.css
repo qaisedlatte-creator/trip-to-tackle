@@ -1,14 +1,20 @@
 @import "tailwindcss";
 
 @theme {
-  --color-navy: #0d1b3e;
-  --color-navy-mid: #162040;
-  --color-navy-light: #1e2e58;
-  --color-gold: #f5c542;
-  --color-gold-dark: #d4a820;
-  --color-off-white: #f7f6f2;
-  --color-text-dim: #8fa0c0;
-  --color-dark-bg: #060e20;
+  --color-navy: #1B2866;
+  --color-navy-dark: #0E1847;
+  --color-orange: #F97316;
+  --color-orange-dark: #EA6C0B;
+  --color-teal: #0891B2;
+  --color-gold: #F59E0B;
+  --color-bg-white: #FFFFFF;
+  --color-bg-gray: #F8F9FA;
+  --color-bg-gray-mid: #F1F5F9;
+  --color-text-dark: #111827;
+  --color-text-mid: #374151;
+  --color-text-light: #6B7280;
+  --color-border: #E2E8F0;
+  --color-dim-on-dark: #94A3B8;
   --font-playfair: var(--font-playfair-var), 'Playfair Display', Georgia, serif;
   --font-dm: var(--font-dm-var), 'DM Sans', sans-serif;
 }
@@ -22,8 +28,8 @@ html {
 }
 
 body {
-  background-color: #0d1b3e;
-  color: #fff;
+  background-color: #FFFFFF;
+  color: #111827;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -32,9 +38,9 @@ body {
 
 /* Custom scrollbar */
 ::-webkit-scrollbar { width: 5px; }
-::-webkit-scrollbar-track { background: #060e20; }
-::-webkit-scrollbar-thumb { background: #1e2e58; border-radius: 3px; }
-::-webkit-scrollbar-thumb:hover { background: #d4a820; }
+::-webkit-scrollbar-track { background: #F1F5F9; }
+::-webkit-scrollbar-thumb { background: #1B2866; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #0891B2; }
 
 /* Fade mask for testimonials */
 .fade-mask {
@@ -62,6 +68,9 @@ body {
   100% { transform: translateY(-20vh) scale(1); opacity: 0; }
 }
 
+/* Spin */
+@keyframes spin { to { transform: rotate(360deg); } }
+
 .bounce-scroll {
   position: absolute;
   bottom: 36px;
@@ -70,7 +79,7 @@ body {
 }
 
 .gold-shimmer-text {
-  background: linear-gradient(90deg, #f5c542 0%, #fff5c0 40%, #f5c542 60%, #d4a820 100%);
+  background: linear-gradient(90deg, #F97316 0%, #FBBF24 40%, #F97316 60%, #EA6C0B 100%);
   background-size: 200% auto;
   animation: shimmer-move 3s linear infinite;
   -webkit-background-clip: text;
@@ -95,12 +104,12 @@ body {
 
 /* Role card hover */
 .role-card {
-  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease, border-left-color 0.2s ease;
 }
 .role-card:hover {
   transform: translateY(-3px);
   box-shadow: 0 12px 36px rgba(0, 0, 0, 0.1);
-  border-color: rgba(245, 197, 66, 0.3);
+  border-left-color: #F97316 !important;
 }
 
 /* Benefit card hover */
@@ -115,7 +124,6 @@ body {
 /* Nav link active indicator */
 .nav-link-active {
   color: #fff !important;
-  border-bottom: 2px solid #f5c542;
+  border-bottom: 2px solid #F97316;
   padding-bottom: 2px;
 }
-
