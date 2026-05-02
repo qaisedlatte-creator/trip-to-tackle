@@ -3,7 +3,7 @@ import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { MessageCircle, ArrowRight, Star } from "lucide-react";
+import { MessageCircle, ArrowRight, Star, ShieldCheck, Tag, Headphones, Map } from "lucide-react";
 import Navbar from "@/components/blocks/navbar";
 import Footer from "@/components/blocks/footer";
 import HeroScrollAnimation from "@/components/blocks/scroll-animation";
@@ -38,56 +38,156 @@ export default function HomePage() {
         {/* HERO */}
         <HeroScrollAnimation />
 
-        {/* WHY TRIP 2 TACKLE */}
-        <section className="py-24 bg-white border-t border-gray-100">
+        {/* WHY TRIP 2 TACKLE — rich split section */}
+        <section className="py-24 bg-white overflow-hidden">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-              <motion.div {...fadeUp} className="space-y-6">
-                <p className="section-label">Why Choose Us</p>
-                <h2 className="font-playfair text-3xl md:text-4xl font-bold leading-snug" style={{ color: "#0A1F44" }}>
-                  Why Thousands Choose
-                  <br />
-                  <span className="italic">Trip 2 Tackle</span>
-                </h2>
-                <p className="font-dm text-gray-500 leading-relaxed text-base max-w-lg">
-                  We&apos;re a Kerala-born travel agency with deep local expertise and a genuine passion
-                  for connecting travelers with extraordinary experiences. Whether you&apos;re planning a
-                  Maldives getaway, a group Himalayan trek, or a budget Bali trip — we handle every
-                  detail with transparent pricing and zero hidden charges.
-                </p>
-                <Link
-                  href="/destinations"
-                  className="inline-flex items-center gap-2 font-dm font-medium px-6 py-3 rounded-xl transition-colors duration-200 text-sm"
-                  style={{ background: "#0A1F44", color: "#fff", textDecoration: "none" }}
-                >
-                  Explore Destinations
-                  <ArrowRight size={15} />
-                </Link>
-              </motion.div>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
 
+              {/* Left — image with overlaid stats */}
               <motion.div
-                initial={{ opacity: 0, x: 20 }}
+                initial={{ opacity: 0, x: -24 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.55, delay: 0.1 }}
-                className="grid grid-cols-3 gap-0 border border-gray-100 rounded-2xl overflow-hidden"
+                transition={{ duration: 0.65 }}
+                style={{ position: "relative", height: "480px", borderRadius: "24px", overflow: "hidden" }}
               >
-                {[
-                  { value: "500+", label: "Happy Travellers" },
-                  { value: "50+", label: "Destinations" },
-                  { value: "4.9★", label: "Avg Rating" },
-                ].map((s, i) => (
-                  <div
-                    key={s.label}
-                    className="text-center py-10 px-4"
-                    style={{ borderRight: i < 2 ? "1px solid #f0f0f0" : "none" }}
+                <Image
+                  src="https://images.unsplash.com/photo-1488085061387-422e29b40080?w=900&q=85"
+                  alt="Happy travellers"
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  style={{ objectFit: "cover" }}
+                />
+                {/* dark gradient overlay */}
+                <div style={{
+                  position: "absolute", inset: 0,
+                  background: "linear-gradient(160deg, rgba(10,31,68,0.72) 0%, rgba(10,31,68,0.38) 55%, rgba(10,31,68,0.68) 100%)",
+                }} />
+
+                {/* No.1 badge */}
+                <div style={{
+                  position: "absolute", top: 20, right: 20,
+                  width: 82, height: 82, borderRadius: "50%",
+                  background: "linear-gradient(135deg, #FF6A00 0%, #ff9540 100%)",
+                  display: "flex", flexDirection: "column",
+                  alignItems: "center", justifyContent: "center",
+                  boxShadow: "0 8px 32px rgba(255,106,0,0.5)",
+                  zIndex: 2,
+                }}>
+                  <span style={{ fontFamily: "var(--font-heading)", fontSize: "18px", fontWeight: 800, color: "#fff", lineHeight: 1 }}>No.1</span>
+                  <span style={{ fontFamily: "var(--font-body)", fontSize: "8.5px", fontWeight: 600, color: "rgba(255,255,255,0.88)", letterSpacing: "0.3px", textAlign: "center", lineHeight: 1.25, marginTop: 4 }}>Travel{"\n"}Agency</span>
+                </div>
+
+                {/* Stats 2×2 grid at the bottom */}
+                <div style={{
+                  position: "absolute", bottom: 0, left: 0, right: 0,
+                  display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1px",
+                  zIndex: 2,
+                }}>
+                  {[
+                    { value: "500+", label: "Happy Travellers" },
+                    { value: "50+",  label: "Destinations"     },
+                    { value: "5+",   label: "Years Experience" },
+                    { value: "4.9★", label: "Satisfaction Rate" },
+                  ].map((s) => (
+                    <div key={s.label} style={{
+                      background: "rgba(255,255,255,0.09)",
+                      backdropFilter: "blur(16px)",
+                      WebkitBackdropFilter: "blur(16px)",
+                      padding: "18px 20px",
+                      borderTop: "1px solid rgba(255,255,255,0.12)",
+                    }}>
+                      <div style={{ fontFamily: "var(--font-heading)", fontSize: "26px", fontWeight: 700, color: "#fff", letterSpacing: "-0.02em", lineHeight: 1 }}>
+                        {s.value}
+                      </div>
+                      <div style={{ fontFamily: "var(--font-body)", fontSize: "12px", color: "rgba(255,255,255,0.62)", marginTop: 5 }}>
+                        {s.label}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </motion.div>
+
+              {/* Right — content */}
+              <motion.div
+                initial={{ opacity: 0, x: 24 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.65, delay: 0.12 }}
+              >
+                {/* Label with line */}
+                <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 18 }}>
+                  <div style={{ width: 36, height: 1.5, background: "#FF6A00", borderRadius: 2, flexShrink: 0 }} />
+                  <span style={{ fontFamily: "var(--font-body)", fontSize: "11px", fontWeight: 700, letterSpacing: "3px", textTransform: "uppercase", color: "#FF6A00" }}>
+                    Why Trip 2 Tackle
+                  </span>
+                </div>
+
+                <h2 style={{ fontFamily: "var(--font-heading)", fontSize: "clamp(30px, 3.6vw, 48px)", fontWeight: 700, color: "#0A1F44", lineHeight: 1.15, marginBottom: 20 }}>
+                  Stress-Free Holidays,{" "}
+                  <span style={{ color: "#FF6A00", fontStyle: "italic" }}>Crafted For You</span>
+                </h2>
+
+                <p style={{ fontFamily: "var(--font-body)", fontSize: "16px", color: "#6b7280", lineHeight: 1.75, marginBottom: 34, maxWidth: 500 }}>
+                  For over 5 years, Trip 2 Tackle has been transforming travel dreams into unforgettable
+                  realities. We don&apos;t just book trips — we craft experiences that last a lifetime.
+                </p>
+
+                {/* 4 feature cards */}
+                <div className="grid grid-cols-2 gap-3 mb-9">
+                  {[
+                    { Icon: ShieldCheck, title: "100% Transparent Pricing",  desc: "No hidden charges, ever. Every cost is explained upfront before you commit." },
+                    { Icon: Tag,         title: "Best Price Guarantee",       desc: "We match or beat any comparable quote. No markup surprises." },
+                    { Icon: Headphones,  title: "24/7 Travel Support",        desc: "Our dedicated travel concierge is available round the clock, wherever you are." },
+                    { Icon: Map,         title: "Personalised Itineraries",   desc: "Every journey is hand-designed by our experts — no cookie-cutter packages." },
+                  ].map(({ Icon, title, desc }) => (
+                    <motion.div
+                      key={title}
+                      whileHover={{ y: -3, boxShadow: "0 10px 28px rgba(0,0,0,0.09)" }}
+                      style={{
+                        background: "#F7F8FF",
+                        borderRadius: 14,
+                        padding: "18px 16px",
+                        border: "1px solid #eef0f8",
+                        transition: "all 0.2s",
+                      }}
+                    >
+                      <div style={{
+                        width: 36, height: 36, borderRadius: 10,
+                        background: "rgba(10,31,68,0.08)",
+                        display: "flex", alignItems: "center", justifyContent: "center",
+                        marginBottom: 10, flexShrink: 0,
+                      }}>
+                        <Icon size={17} color="#0A1F44" />
+                      </div>
+                      <h4 style={{ fontFamily: "var(--font-body)", fontSize: "13px", fontWeight: 700, color: "#0A1F44", marginBottom: 4, lineHeight: 1.35 }}>
+                        {title}
+                      </h4>
+                      <p style={{ fontFamily: "var(--font-body)", fontSize: "12px", color: "#9E9A94", lineHeight: 1.55, margin: 0 }}>
+                        {desc}
+                      </p>
+                    </motion.div>
+                  ))}
+                </div>
+
+                {/* CTAs */}
+                <div style={{ display: "flex", gap: 14, flexWrap: "wrap" }}>
+                  <Link
+                    href="/#packages"
+                    style={{ background: "#0A1F44", color: "#fff", padding: "13px 28px", borderRadius: 10, fontFamily: "var(--font-body)", fontSize: 14, fontWeight: 700, textDecoration: "none", display: "inline-flex", alignItems: "center", gap: 8, transition: "background 0.2s" }}
+                    onMouseEnter={e => { (e.currentTarget as HTMLElement).style.background = "#FF6A00"; }}
+                    onMouseLeave={e => { (e.currentTarget as HTMLElement).style.background = "#0A1F44"; }}
                   >
-                    <p className="font-playfair text-4xl md:text-5xl font-bold" style={{ color: "#0A1F44" }}>
-                      {s.value}
-                    </p>
-                    <p className="font-dm text-xs text-gray-400 mt-2 leading-tight">{s.label}</p>
-                  </div>
-                ))}
+                    Start Your Journey <ArrowRight size={15} />
+                  </Link>
+                  <a
+                    href="https://wa.me/918309218545"
+                    target="_blank" rel="noopener noreferrer"
+                    style={{ color: "#0A1F44", border: "1.5px solid rgba(10,31,68,0.28)", padding: "13px 28px", borderRadius: 10, fontFamily: "var(--font-body)", fontSize: 14, fontWeight: 600, textDecoration: "none", display: "inline-flex", alignItems: "center", gap: 8 }}
+                  >
+                    <MessageCircle size={15} /> Chat With Us
+                  </a>
+                </div>
               </motion.div>
             </div>
           </div>
