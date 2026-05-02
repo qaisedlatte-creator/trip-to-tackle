@@ -37,10 +37,24 @@ export default function HeroScrollAnimation() {
   const totalRef     = useRef(DESKTOP_TOTAL);
   const lastDrawMsRef= useRef(0);  // for mobile fps throttle
 
-  const textRef   = useRef<HTMLDivElement>(null);
-  const hintRef   = useRef<HTMLDivElement>(null);
-  const lightRef  = useRef<HTMLDivElement>(null);
-  const searchRef = useRef<HTMLDivElement>(null);
+  const textRef          = useRef<HTMLDivElement>(null);
+  const hintRef          = useRef<HTMLDivElement>(null);
+  const lightRef         = useRef<HTMLDivElement>(null);
+  const searchRef        = useRef<HTMLDivElement>(null);
+  const destInputRef     = useRef<HTMLInputElement>(null);
+  const durationInputRef = useRef<HTMLInputElement>(null);
+  const budgetInputRef   = useRef<HTMLInputElement>(null);
+  const travelersInputRef= useRef<HTMLInputElement>(null);
+
+  const handleExplore = useCallback(() => {
+    const params = new URLSearchParams();
+    if (destInputRef.current?.value)       params.set("dest",      destInputRef.current.value);
+    if (durationInputRef.current?.value)   params.set("duration",  durationInputRef.current.value);
+    if (budgetInputRef.current?.value)     params.set("budget",    budgetInputRef.current.value);
+    if (travelersInputRef.current?.value)  params.set("travelers", travelersInputRef.current.value);
+    const qs = params.toString();
+    window.location.href = `/destinations${qs ? "?" + qs : ""}`;
+  }, []);
 
   const [ready, setReady]       = useState(false);
   const [isMobile, setIsMobile] = useState<boolean | null>(null);
@@ -202,8 +216,8 @@ export default function HeroScrollAnimation() {
             lightRef.current.style.opacity = String(la);
           }
 
-          /* search widget — staggered 0.07p after brand text */
-          const sa = p < 0.87 ? 0 : Math.min(1, (p - 0.87) / 0.10);
+          /* search widget — simultaneous with brand text */
+          const sa = p < 0.80 ? 0 : Math.min(1, (p - 0.80) / 0.12);
           if (searchRef.current) {
             searchRef.current.style.opacity      = String(sa);
             searchRef.current.style.pointerEvents = sa > 0.3 ? "auto" : "none";
@@ -304,9 +318,9 @@ export default function HeroScrollAnimation() {
           </div>
         )}
 
-        {/* brand text — fades in at 80 % scroll */}
+        {/* brand text — fades in at 80 % scroll, z-13 sits above overlay */}
         <div ref={textRef} style={{
-          position: "absolute", inset: 0, zIndex: 10,
+          position: "absolute", inset: 0, zIndex: 13,
           display: "flex", flexDirection: "column",
           alignItems: "center", justifyContent: "center",
           opacity: 0, pointerEvents: "none",
@@ -333,109 +347,124 @@ export default function HeroScrollAnimation() {
           </p>
         </div>
 
-        {/* light fade overlay — covers canvas at end of scroll */}
+        {/* end overlay — covers black canvas frames with brand navy */}
         <div
           ref={lightRef}
           style={{
             position: "absolute",
             inset: 0,
-            background: "#eef2f7",
+            background: "#0A1F44",
             opacity: 0,
             zIndex: 11,
             pointerEvents: "none",
           }}
         />
 
-        {/* search widget — desktop only, staggered after hero title */}
+        {/* search widget — desktop only, appears simultaneously with hero title */}
         {!isMobile && (
           <div
             ref={searchRef}
             style={{
               position: "absolute",
-              bottom: "8%",
+              bottom: "7%",
               left: "50%",
               transform: "translateX(-50%)",
-              width: "min(880px, calc(100% - 48px))",
-              background: "rgba(22, 22, 22, 0.92)",
-              backdropFilter: "blur(20px)",
-              WebkitBackdropFilter: "blur(20px)",
-              borderRadius: "16px",
-              padding: "22px 28px",
+              width: "min(900px, calc(100% - 48px))",
+              background: "rgba(8, 20, 52, 0.82)",
+              backdropFilter: "blur(24px)",
+              WebkitBackdropFilter: "blur(24px)",
+              borderRadius: "18px",
+              padding: "24px 30px 22px",
               zIndex: 14,
               opacity: 0,
               pointerEvents: "none",
+              border: "1px solid rgba(255,255,255,0.1)",
             }}
           >
             {/* header */}
-            <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "18px" }}>
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#F5A623" strokeWidth="2.5" strokeLinecap="round">
+            <div style={{ display: "flex", alignItems: "center", gap: "9px", marginBottom: "20px" }}>
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#FF6A00" strokeWidth="2.5" strokeLinecap="round">
                 <circle cx="11" cy="11" r="8" /><path d="m21 21-4.35-4.35" />
               </svg>
-              <span style={{ color: "#F5A623", fontSize: "14px", fontWeight: 600, fontFamily: "var(--font-body)" }}>
+              <span style={{ color: "#FF6A00", fontSize: "14px", fontWeight: 600, fontFamily: "var(--font-body)", letterSpacing: "0.2px" }}>
                 Search Your Perfect Holiday
               </span>
             </div>
 
-            {/* fields */}
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "14px", marginBottom: "18px" }}>
-              {[
-                {
-                  label: "DESTINATION", placeholder: "Where to go?",
-                  icon: <svg key="d" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#F5A623" strokeWidth="2" strokeLinecap="round"><path d="M20 10c0 6-8 13-8 13s-8-7-8-13a8 8 0 0 1 16 0Z" /><circle cx="12" cy="10" r="3" /></svg>,
-                },
-                {
-                  label: "DURATION", placeholder: "How long?",
-                  icon: <svg key="du" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#F5A623" strokeWidth="2" strokeLinecap="round"><rect width="18" height="18" x="3" y="4" rx="2" /><line x1="16" x2="16" y1="2" y2="6" /><line x1="8" x2="8" y1="2" y2="6" /><line x1="3" x2="21" y1="10" y2="10" /></svg>,
-                },
-                {
-                  label: "BUDGET", placeholder: "Your budget?",
-                  icon: <svg key="b" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#F5A623" strokeWidth="2" strokeLinecap="round"><rect width="20" height="14" x="2" y="5" rx="2" /><line x1="2" x2="22" y1="10" y2="10" /></svg>,
-                },
-                {
-                  label: "TRAVELERS", placeholder: "How many?",
-                  icon: <svg key="t" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#F5A623" strokeWidth="2" strokeLinecap="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" /><circle cx="9" cy="7" r="4" /><path d="M23 21v-2a4 4 0 0 0-3-3.87" /><path d="M16 3.13a4 4 0 0 1 0 7.75" /></svg>,
-                },
-              ].map((field) => (
-                <div key={field.label}>
-                  <div style={{
-                    fontSize: "9px", fontWeight: 700, letterSpacing: "1.5px",
-                    textTransform: "uppercase", color: "rgba(255,255,255,0.4)",
-                    fontFamily: "var(--font-body)", marginBottom: "8px",
-                  }}>
-                    {field.label}
-                  </div>
-                  <div style={{
-                    display: "flex", alignItems: "center", gap: "10px",
-                    background: "rgba(255,255,255,0.07)", borderRadius: "10px",
-                    padding: "11px 14px", border: "1px solid rgba(255,255,255,0.1)",
-                  }}>
-                    {field.icon}
-                    <span style={{ fontSize: "13px", color: "rgba(255,255,255,0.4)", fontFamily: "var(--font-body)" }}>
-                      {field.placeholder}
-                    </span>
-                  </div>
+            {/* 4 fields — real inputs */}
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "14px", marginBottom: "20px" }}>
+              {/* DESTINATION */}
+              <div>
+                <div style={{ fontSize: "9px", fontWeight: 700, letterSpacing: "1.5px", textTransform: "uppercase", color: "rgba(255,255,255,0.45)", fontFamily: "var(--font-body)", marginBottom: "9px" }}>
+                  Destination
                 </div>
-              ))}
+                <div style={{ display: "flex", alignItems: "center", gap: "10px", background: "rgba(255,255,255,0.07)", borderRadius: "10px", padding: "11px 14px", border: "1px solid rgba(255,255,255,0.12)" }}>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#FF6A00" strokeWidth="2" strokeLinecap="round" style={{ flexShrink: 0 }}>
+                    <path d="M20 10c0 6-8 13-8 13s-8-7-8-13a8 8 0 0 1 16 0Z" /><circle cx="12" cy="10" r="3" />
+                  </svg>
+                  <input ref={destInputRef} type="text" placeholder="Where to go?" style={{ background: "transparent", border: "none", outline: "none", color: "#fff", fontSize: "13px", fontFamily: "var(--font-body)", width: "100%", minWidth: 0 }} />
+                </div>
+              </div>
+
+              {/* DURATION */}
+              <div>
+                <div style={{ fontSize: "9px", fontWeight: 700, letterSpacing: "1.5px", textTransform: "uppercase", color: "rgba(255,255,255,0.45)", fontFamily: "var(--font-body)", marginBottom: "9px" }}>
+                  Duration
+                </div>
+                <div style={{ display: "flex", alignItems: "center", gap: "10px", background: "rgba(255,255,255,0.07)", borderRadius: "10px", padding: "11px 14px", border: "1px solid rgba(255,255,255,0.12)" }}>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#FF6A00" strokeWidth="2" strokeLinecap="round" style={{ flexShrink: 0 }}>
+                    <rect width="18" height="18" x="3" y="4" rx="2" /><line x1="16" x2="16" y1="2" y2="6" /><line x1="8" x2="8" y1="2" y2="6" /><line x1="3" x2="21" y1="10" y2="10" />
+                  </svg>
+                  <input ref={durationInputRef} type="text" placeholder="How long?" style={{ background: "transparent", border: "none", outline: "none", color: "#fff", fontSize: "13px", fontFamily: "var(--font-body)", width: "100%", minWidth: 0 }} />
+                </div>
+              </div>
+
+              {/* BUDGET */}
+              <div>
+                <div style={{ fontSize: "9px", fontWeight: 700, letterSpacing: "1.5px", textTransform: "uppercase", color: "rgba(255,255,255,0.45)", fontFamily: "var(--font-body)", marginBottom: "9px" }}>
+                  Budget
+                </div>
+                <div style={{ display: "flex", alignItems: "center", gap: "10px", background: "rgba(255,255,255,0.07)", borderRadius: "10px", padding: "11px 14px", border: "1px solid rgba(255,255,255,0.12)" }}>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#FF6A00" strokeWidth="2" strokeLinecap="round" style={{ flexShrink: 0 }}>
+                    <rect width="20" height="14" x="2" y="5" rx="2" /><line x1="2" x2="22" y1="10" y2="10" />
+                  </svg>
+                  <input ref={budgetInputRef} type="text" placeholder="Your budget?" style={{ background: "transparent", border: "none", outline: "none", color: "#fff", fontSize: "13px", fontFamily: "var(--font-body)", width: "100%", minWidth: 0 }} />
+                </div>
+              </div>
+
+              {/* TRAVELERS */}
+              <div>
+                <div style={{ fontSize: "9px", fontWeight: 700, letterSpacing: "1.5px", textTransform: "uppercase", color: "rgba(255,255,255,0.45)", fontFamily: "var(--font-body)", marginBottom: "9px" }}>
+                  Travelers
+                </div>
+                <div style={{ display: "flex", alignItems: "center", gap: "10px", background: "rgba(255,255,255,0.07)", borderRadius: "10px", padding: "11px 14px", border: "1px solid rgba(255,255,255,0.12)" }}>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#FF6A00" strokeWidth="2" strokeLinecap="round" style={{ flexShrink: 0 }}>
+                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" /><circle cx="9" cy="7" r="4" /><path d="M23 21v-2a4 4 0 0 0-3-3.87" /><path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                  </svg>
+                  <input ref={travelersInputRef} type="text" placeholder="How many?" style={{ background: "transparent", border: "none", outline: "none", color: "#fff", fontSize: "13px", fontFamily: "var(--font-body)", width: "100%", minWidth: 0 }} />
+                </div>
+              </div>
             </div>
 
             {/* CTA */}
-            <a
-              href="/destinations"
+            <button
+              onClick={handleExplore}
               style={{
                 display: "inline-flex", alignItems: "center", gap: "8px",
-                background: "#F5A623", color: "#1A1A1A",
-                padding: "11px 24px", borderRadius: "10px",
-                fontSize: "14px", fontWeight: 700,
-                textDecoration: "none", fontFamily: "var(--font-body)",
+                background: "#FF6A00", color: "#fff",
+                padding: "11px 26px", borderRadius: "10px",
+                fontSize: "14px", fontWeight: 700, border: "none",
+                cursor: "pointer", fontFamily: "var(--font-body)",
+                transition: "background 0.2s",
               }}
-              onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.background = "#e09a1f"; }}
-              onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.background = "#F5A623"; }}
+              onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.background = "#d95f00"; }}
+              onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.background = "#FF6A00"; }}
             >
               <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
                 <circle cx="11" cy="11" r="8" /><path d="m21 21-4.35-4.35" />
               </svg>
               Explore Tours
-            </a>
+            </button>
           </div>
         )}
 
