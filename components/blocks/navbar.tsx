@@ -41,7 +41,7 @@ export default function Navbar() {
           backdropFilter: scrolled ? "blur(16px)" : "none",
         }}
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-[72px] flex items-center justify-between">
           {/* Logo — color on light bg, white on dark bg */}
           <Link href="/" className="flex items-center">
             <Image
@@ -50,7 +50,7 @@ export default function Navbar() {
               width={140}
               height={40}
               priority
-              style={{ objectFit: "contain", height: "46px", width: "auto" }}
+              style={{ objectFit: "contain", height: "58px", width: "auto" }}
             />
           </Link>
 
@@ -169,7 +169,7 @@ export default function Navbar() {
                 alt="Trip 2 Tackle"
                 width={120}
                 height={34}
-                style={{ objectFit: "contain", height: "32px", width: "auto" }}
+                style={{ objectFit: "contain", height: "40px", width: "auto" }}
               />
               <button onClick={() => setOpen(false)} style={{ color: "#fff" }}>
                 <X size={26} />

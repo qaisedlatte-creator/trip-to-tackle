@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useState, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion, useInView } from "framer-motion";
@@ -88,6 +88,18 @@ function FadeIn({ children, delay = 0 }: { children: React.ReactNode; delay?: nu
 
 export default function CareersPage() {
   const rolesRef = useRef<HTMLDivElement>(null);
+
+  const [applyName, setApplyName]       = useState("");
+  const [applyPhone, setApplyPhone]     = useState("");
+  const [applyWhatsApp, setApplyWhatsApp] = useState("");
+  const [applyDesc, setApplyDesc]       = useState("");
+
+  const handleApply = (e: React.FormEvent) => {
+    e.preventDefault();
+    const wa  = applyWhatsApp || applyPhone;
+    const msg = `Career Application\n\nName: ${applyName}\nPhone: ${applyPhone}\nWhatsApp: ${wa}\n\nAbout:\n${applyDesc}`;
+    window.open(`https://wa.me/918309218545?text=${encodeURIComponent(msg)}`, "_blank");
+  };
 
   return (
     <>
@@ -356,7 +368,7 @@ export default function CareersPage() {
             </span>
             <h2
               style={{
-                fontFamily: "var(--font-heading)",
+                fontFamily: "'Poppins', var(--font-body), system-ui, sans-serif",
                 fontSize: "clamp(32px, 4vw, 44px)",
                 color: "#1A1A1A",
                 fontWeight: 600,
@@ -389,7 +401,7 @@ export default function CareersPage() {
               <div style={{ fontSize: "32px", marginBottom: "14px" }}>{w.icon}</div>
               <h3
                 style={{
-                  fontFamily: "var(--font-heading)",
+                  fontFamily: "'Poppins', var(--font-body), system-ui, sans-serif",
                   fontSize: "19px",
                   color: "#1A1A1A",
                   fontWeight: 600,
@@ -507,6 +519,161 @@ export default function CareersPage() {
             </motion.div>
           ))}
         </div>
+      </section>
+
+      {/* ── APPLICATION FORM ── */}
+      <section className="px-4 sm:px-6 lg:px-[60px]" style={{ background: "#eef2f7", paddingTop: "88px", paddingBottom: "88px" }}>
+        <FadeIn>
+          <div style={{ textAlign: "center", marginBottom: "48px" }}>
+            <span
+              style={{
+                display: "block",
+                fontSize: "11px",
+                fontWeight: 600,
+                letterSpacing: "4px",
+                textTransform: "uppercase",
+                color: "#9E9A94",
+                marginBottom: "10px",
+                fontFamily: "var(--font-body)",
+              }}
+            >
+              Quick Apply
+            </span>
+            <h2
+              style={{
+                fontFamily: "'Poppins', var(--font-body), system-ui, sans-serif",
+                fontSize: "clamp(28px, 4vw, 38px)",
+                color: "#1A1A1A",
+                fontWeight: 600,
+                marginBottom: "10px",
+              }}
+            >
+              Interested in Joining?
+            </h2>
+            <p style={{ color: "#9E9A94", fontSize: "15px", fontFamily: "var(--font-body)" }}>
+              Tell us about yourself and we&apos;ll reach out via WhatsApp.
+            </p>
+          </div>
+        </FadeIn>
+
+        <form
+          onSubmit={handleApply}
+          style={{ maxWidth: "600px", margin: "0 auto", display: "flex", flexDirection: "column", gap: "16px" }}
+        >
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "16px" }}>
+            <div>
+              <label style={{ display: "block", fontSize: "13px", fontWeight: 500, color: "#374151", marginBottom: "6px", fontFamily: "var(--font-body)" }}>
+                Full Name *
+              </label>
+              <input
+                type="text"
+                required
+                value={applyName}
+                onChange={(e) => setApplyName(e.target.value)}
+                placeholder="Your name"
+                style={{
+                  width: "100%",
+                  padding: "10px 14px",
+                  borderRadius: "10px",
+                  border: "1px solid #E5E7EB",
+                  fontSize: "14px",
+                  fontFamily: "var(--font-body)",
+                  outline: "none",
+                  background: "#fff",
+                }}
+              />
+            </div>
+            <div>
+              <label style={{ display: "block", fontSize: "13px", fontWeight: 500, color: "#374151", marginBottom: "6px", fontFamily: "var(--font-body)" }}>
+                Phone Number *
+              </label>
+              <input
+                type="tel"
+                required
+                value={applyPhone}
+                onChange={(e) => setApplyPhone(e.target.value)}
+                placeholder="+91 98765 43210"
+                style={{
+                  width: "100%",
+                  padding: "10px 14px",
+                  borderRadius: "10px",
+                  border: "1px solid #E5E7EB",
+                  fontSize: "14px",
+                  fontFamily: "var(--font-body)",
+                  outline: "none",
+                  background: "#fff",
+                }}
+              />
+            </div>
+          </div>
+
+          <div>
+            <label style={{ display: "block", fontSize: "13px", fontWeight: 500, color: "#374151", marginBottom: "6px", fontFamily: "var(--font-body)" }}>
+              WhatsApp Number <span style={{ fontWeight: 400, color: "#9E9A94" }}>(if different from phone)</span>
+            </label>
+            <input
+              type="tel"
+              value={applyWhatsApp}
+              onChange={(e) => setApplyWhatsApp(e.target.value)}
+              placeholder="Leave blank if same as phone"
+              style={{
+                width: "100%",
+                padding: "10px 14px",
+                borderRadius: "10px",
+                border: "1px solid #E5E7EB",
+                fontSize: "14px",
+                fontFamily: "var(--font-body)",
+                outline: "none",
+                background: "#fff",
+              }}
+            />
+          </div>
+
+          <div>
+            <label style={{ display: "block", fontSize: "13px", fontWeight: 500, color: "#374151", marginBottom: "6px", fontFamily: "var(--font-body)" }}>
+              Tell us about yourself *
+            </label>
+            <textarea
+              required
+              rows={4}
+              value={applyDesc}
+              onChange={(e) => setApplyDesc(e.target.value)}
+              placeholder="Share your skills, experience, and what excites you about Trip 2 Tackle..."
+              style={{
+                width: "100%",
+                padding: "10px 14px",
+                borderRadius: "10px",
+                border: "1px solid #E5E7EB",
+                fontSize: "14px",
+                fontFamily: "var(--font-body)",
+                outline: "none",
+                resize: "none",
+                background: "#fff",
+              }}
+            />
+          </div>
+
+          <button
+            type="submit"
+            style={{
+              background: "#FF6A00",
+              color: "#fff",
+              padding: "13px 32px",
+              borderRadius: "10px",
+              fontSize: "15px",
+              fontWeight: 700,
+              border: "none",
+              cursor: "pointer",
+              fontFamily: "var(--font-body)",
+              alignSelf: "flex-start",
+              transition: "background 0.2s",
+            }}
+            onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.background = "#d95f00"; }}
+            onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.background = "#FF6A00"; }}
+          >
+            Apply via WhatsApp →
+          </button>
+        </form>
       </section>
 
       {/* ── OPEN ROLES ── */}

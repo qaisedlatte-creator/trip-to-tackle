@@ -3,13 +3,14 @@ import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { MessageCircle, ArrowRight, Users, Calendar, MapPin, Star } from "lucide-react";
+import { MessageCircle, ArrowRight, Star } from "lucide-react";
 import Navbar from "@/components/blocks/navbar";
 import Footer from "@/components/blocks/footer";
 import HeroScrollAnimation from "@/components/blocks/scroll-animation";
 import Testimonials from "@/components/blocks/testimonials";
 import BookingSteps from "@/components/blocks/booking-steps";
 import PaymentModal from "@/components/blocks/payment-modal";
+import InquiryForm from "@/components/blocks/inquiry-form";
 import { featuredDestinations } from "@/lib/destinations";
 import { packages } from "@/lib/packages";
 import type { Package } from "@/lib/packages";
@@ -21,60 +22,11 @@ const fadeUp = {
   transition: { duration: 0.55, ease: "easeOut" },
 } as const;
 
-const livePackages = [
-  {
-    destination: "Spiti Valley",
-    region: "Himachal Pradesh",
-    dates: "Jun 14 – Jun 22, 2025",
-    spots: 4,
-    price: "₹18,500",
-    image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&q=80",
-  },
-  {
-    destination: "Bali",
-    region: "Indonesia",
-    dates: "Jul 5 – Jul 12, 2025",
-    spots: 6,
-    price: "₹45,000",
-    image: "https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=600&q=80",
-  },
-  {
-    destination: "Meghalaya",
-    region: "Northeast India",
-    dates: "Jul 19 – Jul 25, 2025",
-    spots: 3,
-    price: "₹14,000",
-    image: "https://images.unsplash.com/photo-1518509562904-e7ef99cdcc86?w=600&q=80",
-  },
-  {
-    destination: "Kashmir",
-    region: "Jammu & Kashmir",
-    dates: "Aug 2 – Aug 9, 2025",
-    spots: 5,
-    price: "₹16,000",
-    image: "https://images.unsplash.com/photo-1593181629936-11c609b8db9b?w=600&q=80",
-  },
-  {
-    destination: "Vietnam",
-    region: "Southeast Asia",
-    dates: "Aug 18 – Aug 26, 2025",
-    spots: 8,
-    price: "₹32,000",
-    image: "https://images.unsplash.com/photo-1528360983277-13d401cdc186?w=600&q=80",
-  },
-  {
-    destination: "Coorg",
-    region: "Karnataka",
-    dates: "Sep 6 – Sep 8, 2025",
-    spots: 2,
-    price: "₹7,500",
-    image: "https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?w=600&q=80",
-  },
-];
-
 export default function HomePage() {
   const [selectedPkg, setSelectedPkg] = useState<Package | null>(null);
   const [modalOpen, setModalOpen] = useState(false);
+  const [couponEmail, setCouponEmail] = useState("");
+  const [couponShown, setCouponShown] = useState(false);
 
   const openModal = (pkg: Package) => { setSelectedPkg(pkg); setModalOpen(true); };
 
@@ -86,6 +38,80 @@ export default function HomePage() {
       <main>
         {/* HERO */}
         <HeroScrollAnimation />
+
+        {/* SEARCH YOUR PERFECT HOLIDAY */}
+        <section className="py-20 overflow-hidden" style={{ background: "#eef2f7" }}>
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <motion.div
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7, ease: "easeOut" }}
+            >
+              <div className="text-center mb-10">
+                <p className="section-label mb-3">Find Your Trip</p>
+                <h2
+                  className="font-playfair text-3xl md:text-4xl font-bold"
+                  style={{ color: "#0A1F44" }}
+                >
+                  Search Your Perfect Holiday
+                </h2>
+                <p
+                  className="font-dm text-sm mt-4 max-w-md mx-auto leading-relaxed"
+                  style={{ color: "#6b7280" }}
+                >
+                  Choose your travel style and we&apos;ll match you with the perfect destinations.
+                </p>
+              </div>
+
+              <div className="flex flex-wrap justify-center gap-3 mb-10">
+                {[
+                  { label: "🏖️ Beach", type: "Beach" },
+                  { label: "⛰️ Mountains", type: "Mountains" },
+                  { label: "🏛️ Culture", type: "Culture" },
+                  { label: "🦁 Wildlife", type: "Wildlife" },
+                  { label: "🌆 City Break", type: "City+Break" },
+                  { label: "🎒 Budget", type: "Backpacking" },
+                  { label: "✈️ International", type: "International" },
+                ].map((f) => (
+                  <a
+                    key={f.type}
+                    href={`/destinations?type=${f.type}`}
+                    className="font-dm text-sm font-medium px-5 py-2.5 rounded-full cursor-pointer transition-all duration-200"
+                    style={{
+                      background: "#fff",
+                      border: "1.5px solid #0A1F44",
+                      color: "#0A1F44",
+                      textDecoration: "none",
+                    }}
+                    onMouseEnter={(e) => {
+                      (e.currentTarget as HTMLElement).style.background = "#0A1F44";
+                      (e.currentTarget as HTMLElement).style.color = "#fff";
+                    }}
+                    onMouseLeave={(e) => {
+                      (e.currentTarget as HTMLElement).style.background = "#fff";
+                      (e.currentTarget as HTMLElement).style.color = "#0A1F44";
+                    }}
+                  >
+                    {f.label}
+                  </a>
+                ))}
+              </div>
+
+              <div className="text-center">
+                <Link
+                  href="/destinations"
+                  className="inline-flex items-center gap-2 font-dm font-semibold px-8 py-3.5 rounded-xl transition-all duration-200"
+                  style={{ background: "#FF6A00", color: "#fff", textDecoration: "none" }}
+                  onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.background = "#d95f00"; }}
+                  onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.background = "#FF6A00"; }}
+                >
+                  Browse All Destinations <ArrowRight size={16} />
+                </Link>
+              </div>
+            </motion.div>
+          </div>
+        </section>
 
         {/* FEATURED DESTINATIONS */}
         <section className="py-24 bg-white overflow-hidden">
@@ -160,103 +186,6 @@ export default function HomePage() {
               <Link href="/destinations" className="inline-flex items-center gap-2 font-dm text-sm font-medium" style={{ color: "#0A1F44" }}>
                 See All Destinations <ArrowRight size={15} />
               </Link>
-            </div>
-          </div>
-        </section>
-
-        {/* LIVE GROUP EXPERIENCES */}
-        <section className="py-24 bg-[#F7F7F7]">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <motion.div {...fadeUp} className="mb-14">
-              <p className="section-label mb-2">Real Groups, Fixed Departures</p>
-              <h2 className="font-playfair text-3xl md:text-4xl font-bold mt-2" style={{ color: "#0A1F44" }}>
-                Live Group Experiences
-              </h2>
-              <p className="font-dm text-gray-500 mt-4 max-w-xl leading-relaxed text-base">
-                Join an existing curated group and travel with like-minded people. Fixed departure dates,
-                shared costs, unforgettable stories — no solo planning required.
-              </p>
-            </motion.div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {livePackages.map((pkg, i) => (
-                <motion.div
-                  key={pkg.destination}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.1, duration: 0.5 }}
-                  className="bg-white rounded-2xl overflow-hidden group"
-                  style={{ boxShadow: "0 2px 24px rgba(0,0,0,0.07)" }}
-                >
-                  {/* Image */}
-                  <div className="relative h-48 overflow-hidden">
-                    <Image
-                      src={pkg.image}
-                      alt={pkg.destination}
-                      fill
-                      sizes="(max-width: 768px) 100vw, 33vw"
-                      className="object-cover transition-transform duration-700 group-hover:scale-105"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
-                    {/* Spots badge */}
-                    <div
-                      className="absolute top-3 right-3 font-dm text-xs font-semibold px-2.5 py-1 rounded-full"
-                      style={{
-                        background: pkg.spots <= 3 ? "#FF6A00" : "#0A1F44",
-                        color: "#fff",
-                      }}
-                    >
-                      {pkg.spots} spots left
-                    </div>
-                  </div>
-
-                  {/* Content */}
-                  <div className="p-5">
-                    <div className="flex items-start justify-between mb-3">
-                      <div>
-                        <h3 className="font-playfair font-bold text-xl" style={{ color: "#0A1F44" }}>
-                          {pkg.destination}
-                        </h3>
-                        <div className="flex items-center gap-1 mt-0.5">
-                          <MapPin size={11} style={{ color: "#FF6A00" }} />
-                          <span className="font-dm text-xs text-gray-400">{pkg.region}</span>
-                        </div>
-                      </div>
-                      <span className="font-playfair font-bold text-lg" style={{ color: "#0A1F44" }}>
-                        {pkg.price}
-                      </span>
-                    </div>
-
-                    <div className="flex items-center gap-1.5 mb-5">
-                      <Calendar size={12} style={{ color: "#0A1F44", opacity: 0.45 }} />
-                      <span className="font-dm text-xs text-gray-400">{pkg.dates}</span>
-                    </div>
-
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-1.5">
-                        <Users size={13} style={{ color: "#0A1F44", opacity: 0.45 }} />
-                        <span className="font-dm text-xs text-gray-400">Group travel</span>
-                      </div>
-                      <a
-                        href="https://wa.me/919000000000"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="font-dm font-semibold text-sm px-4 py-2 rounded-lg transition-all duration-200"
-                        style={{
-                          background: "#0A1F44",
-                          color: "#fff",
-                          textDecoration: "none",
-                        }}
-                        onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.background = "#FF6A00"; }}
-                        onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.background = "#0A1F44"; }}
-                      >
-                        Join Group
-                      </a>
-                    </div>
-                  </div>
-                </motion.div>
-              ))}
             </div>
           </div>
         </section>
@@ -347,7 +276,7 @@ export default function HomePage() {
                     alt={img.name}
                     fill
                     sizes="(max-width: 768px) 50vw, 25vw"
-                    className="object-cover transition-transform duration-700 group-hover:scale-108"
+                    className="object-cover transition-transform duration-700 group-hover:scale-110"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/65 to-transparent" />
                   <p className="absolute bottom-3 left-3 font-playfair text-white font-semibold text-lg">
@@ -442,8 +371,235 @@ export default function HomePage() {
           </div>
         </section>
 
+        {/* CORPORATE TRAVEL & PILGRIMAGES */}
+        <section className="py-24" style={{ background: "#F7F7F7" }}>
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <motion.div {...fadeUp} className="text-center mb-14">
+              <p className="section-label mb-3">Special Packages</p>
+              <h2 className="font-playfair text-3xl md:text-4xl font-bold" style={{ color: "#0A1F44" }}>
+                Corporate Travel &amp; Pilgrimages
+              </h2>
+              <p className="font-dm text-gray-500 mt-4 max-w-xl mx-auto leading-relaxed">
+                Tailored experiences for teams and pilgrims alike — from boardroom retreats to sacred journeys.
+              </p>
+            </motion.div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {/* Corporate */}
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+                className="bg-white rounded-2xl overflow-hidden"
+                style={{ boxShadow: "0 4px 24px rgba(0,0,0,0.08)" }}
+              >
+                <div className="relative h-56 overflow-hidden">
+                  <Image
+                    src="https://images.unsplash.com/photo-1556761175-b413da4baf72?w=800&q=80"
+                    alt="Corporate Travel"
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0A1F44]/80 to-transparent" />
+                  <div className="absolute bottom-4 left-5">
+                    <span className="font-dm text-xs font-bold px-2.5 py-1 rounded-full" style={{ background: "#FF6A00", color: "#fff" }}>
+                      Corporate
+                    </span>
+                  </div>
+                </div>
+                <div className="p-6">
+                  <h3 className="font-playfair text-2xl font-bold mb-3" style={{ color: "#0A1F44" }}>
+                    Corporate Travel
+                  </h3>
+                  <p className="font-dm text-sm text-gray-500 leading-relaxed mb-5">
+                    Strategic team outings, incentive travel programs, and corporate retreats that inspire and motivate your workforce.
+                  </p>
+                  <ul className="space-y-2 mb-6">
+                    {["Team Building Retreats", "Incentive Travel Programs", "Conference & Events", "Executive Getaways"].map((item) => (
+                      <li key={item} className="flex items-center gap-2 font-dm text-sm text-gray-600">
+                        <span style={{ color: "#FF6A00", fontWeight: 700 }}>✓</span> {item}
+                      </li>
+                    ))}
+                  </ul>
+                  <a
+                    href="https://wa.me/918309218545?text=Hi%2C%20I%27m%20interested%20in%20Corporate%20Travel%20packages"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 font-dm font-semibold text-sm px-6 py-3 rounded-xl transition-all duration-200"
+                    style={{ background: "#0A1F44", color: "#fff", textDecoration: "none" }}
+                    onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.background = "#FF6A00"; }}
+                    onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.background = "#0A1F44"; }}
+                  >
+                    Enquire Now <ArrowRight size={15} />
+                  </a>
+                </div>
+              </motion.div>
+
+              {/* Pilgrimages */}
+              <motion.div
+                initial={{ opacity: 0, x: 20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.1 }}
+                className="bg-white rounded-2xl overflow-hidden"
+                style={{ boxShadow: "0 4px 24px rgba(0,0,0,0.08)" }}
+              >
+                <div className="relative h-56 overflow-hidden">
+                  <Image
+                    src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80"
+                    alt="Pilgrimages"
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0A1F44]/80 to-transparent" />
+                  <div className="absolute bottom-4 left-5">
+                    <span className="font-dm text-xs font-bold px-2.5 py-1 rounded-full" style={{ background: "#FF6A00", color: "#fff" }}>
+                      Pilgrimage
+                    </span>
+                  </div>
+                </div>
+                <div className="p-6">
+                  <h3 className="font-playfair text-2xl font-bold mb-3" style={{ color: "#0A1F44" }}>
+                    Sacred Journeys
+                  </h3>
+                  <p className="font-dm text-sm text-gray-500 leading-relaxed mb-5">
+                    Carefully curated pilgrimage tours with comfortable stays, expert guides, and deeply spiritual immersion.
+                  </p>
+                  <ul className="space-y-2 mb-6">
+                    {["Char Dham Yatra", "Vaishno Devi", "Tirupati Darshan", "Rameswaram & Kashi"].map((item) => (
+                      <li key={item} className="flex items-center gap-2 font-dm text-sm text-gray-600">
+                        <span style={{ color: "#FF6A00", fontWeight: 700 }}>✓</span> {item}
+                      </li>
+                    ))}
+                  </ul>
+                  <a
+                    href="https://wa.me/918309218545?text=Hi%2C%20I%27m%20interested%20in%20Pilgrimage%20tour%20packages"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 font-dm font-semibold text-sm px-6 py-3 rounded-xl transition-all duration-200"
+                    style={{ background: "#0A1F44", color: "#fff", textDecoration: "none" }}
+                    onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.background = "#FF6A00"; }}
+                    onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.background = "#0A1F44"; }}
+                  >
+                    Enquire Now <ArrowRight size={15} />
+                  </a>
+                </div>
+              </motion.div>
+            </div>
+          </div>
+        </section>
+
+        {/* EMAIL SIGNUP + COUPON */}
+        <section className="py-16" style={{ background: "#0A1F44" }}>
+          <div className="max-w-2xl mx-auto px-4 text-center">
+            <motion.div {...fadeUp}>
+              <p className="section-label mb-3" style={{ color: "rgba(255,255,255,0.4)" }}>
+                Exclusive Offer
+              </p>
+              <h2 className="font-playfair text-2xl md:text-3xl font-bold text-white mb-3">
+                Get 10% Off Your First Booking
+              </h2>
+              <p className="font-dm text-sm mb-8" style={{ color: "rgba(255,255,255,0.55)" }}>
+                Sign up with your email and get an instant discount coupon.
+              </p>
+
+              {!couponShown ? (
+                <form
+                  onSubmit={(e) => { e.preventDefault(); if (couponEmail) setCouponShown(true); }}
+                  className="flex gap-3 max-w-md mx-auto"
+                >
+                  <input
+                    type="email"
+                    required
+                    value={couponEmail}
+                    onChange={(e) => setCouponEmail(e.target.value)}
+                    placeholder="Enter your email"
+                    className="flex-1 font-dm text-sm px-4 py-3 rounded-xl outline-none"
+                    style={{
+                      background: "rgba(255,255,255,0.1)",
+                      border: "1px solid rgba(255,255,255,0.2)",
+                      color: "#fff",
+                    }}
+                  />
+                  <button
+                    type="submit"
+                    className="font-dm font-bold text-sm px-6 py-3 rounded-xl transition-all duration-200 shrink-0"
+                    style={{ background: "#FF6A00", color: "#fff", border: "none", cursor: "pointer" }}
+                    onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.background = "#d95f00"; }}
+                    onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.background = "#FF6A00"; }}
+                  >
+                    Get Coupon
+                  </button>
+                </form>
+              ) : (
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.92 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.4 }}
+                  className="max-w-sm mx-auto p-6 rounded-2xl"
+                  style={{ background: "rgba(255,255,255,0.1)", border: "1px solid rgba(255,255,255,0.2)" }}
+                >
+                  <p className="font-dm text-sm mb-2" style={{ color: "rgba(255,255,255,0.7)" }}>
+                    Your exclusive coupon code:
+                  </p>
+                  <p className="font-space text-3xl font-bold text-white tracking-widest mb-3">
+                    TRAVEL10
+                  </p>
+                  <p className="font-dm text-xs" style={{ color: "rgba(255,255,255,0.5)" }}>
+                    Apply at checkout · Valid for 30 days
+                  </p>
+                </motion.div>
+              )}
+            </motion.div>
+          </div>
+        </section>
+
         <Testimonials />
         <BookingSteps />
+
+        {/* INQUIRY FORM */}
+        <section className="py-24 bg-white">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+              <motion.div {...fadeUp}>
+                <p className="section-label mb-3">Get in Touch</p>
+                <h2 className="font-playfair text-3xl md:text-4xl font-bold mb-5" style={{ color: "#0A1F44" }}>
+                  Plan Your Perfect Trip
+                </h2>
+                <p className="font-dm text-gray-500 leading-relaxed mb-8 text-base max-w-md">
+                  Tell us about your dream destination and we&apos;ll craft a personalised itinerary.
+                  Our travel experts respond within 24 hours.
+                </p>
+                <div className="space-y-4">
+                  {[
+                    { icon: "📞", text: "+91 83092 18545" },
+                    { icon: "✉️", text: "hello@trip2tackle.com" },
+                    { icon: "📍", text: "Kochi, Kerala, India" },
+                  ].map((item) => (
+                    <div key={item.text} className="flex items-center gap-3 font-dm text-gray-600 text-sm">
+                      <span className="text-base">{item.icon}</span>
+                      <span>{item.text}</span>
+                    </div>
+                  ))}
+                </div>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.1 }}
+                className="rounded-2xl p-8"
+                style={{ background: "#F7F7F7" }}
+              >
+                <InquiryForm />
+              </motion.div>
+            </div>
+          </div>
+        </section>
 
         {/* FINAL CTA */}
         <section className="py-24" style={{ background: "#0A1F44" }}>
@@ -461,7 +617,7 @@ export default function HomePage() {
               </p>
               <div className="flex flex-wrap justify-center gap-4">
                 <a
-                  href="https://wa.me/919000000000"
+                  href="https://wa.me/918309218545"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-2 font-dm font-semibold px-7 py-3 rounded-xl transition-colors min-h-[44px]"

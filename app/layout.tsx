@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Playfair_Display, DM_Sans, Space_Mono } from "next/font/google";
 import "./globals.css";
 import SmoothScroll from "@/components/SmoothScroll";
+import WhatsAppFloat from "@/components/blocks/whatsapp-float";
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
@@ -58,6 +59,7 @@ export default function RootLayout({
     >
       <body className="antialiased text-[#171717]">
         <SmoothScroll>{children}</SmoothScroll>
+        <WhatsAppFloat />
       </body>
     </html>
   );

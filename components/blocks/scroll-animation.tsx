@@ -37,8 +37,9 @@ export default function HeroScrollAnimation() {
   const totalRef     = useRef(DESKTOP_TOTAL);
   const lastDrawMsRef= useRef(0);  // for mobile fps throttle
 
-  const textRef = useRef<HTMLDivElement>(null);
-  const hintRef = useRef<HTMLDivElement>(null);
+  const textRef  = useRef<HTMLDivElement>(null);
+  const hintRef  = useRef<HTMLDivElement>(null);
+  const lightRef = useRef<HTMLDivElement>(null);
 
   const [ready, setReady]       = useState(false);
   const [isMobile, setIsMobile] = useState<boolean | null>(null);
@@ -193,6 +194,12 @@ export default function HeroScrollAnimation() {
           if (hintRef.current) {
             hintRef.current.style.opacity = ta < 0.1 ? "1" : "0";
           }
+
+          /* soft light fade at animation end — reveals #eef2f7 */
+          const la = p < 0.88 ? 0 : Math.min(1, (p - 0.88) / 0.12);
+          if (lightRef.current) {
+            lightRef.current.style.opacity = String(la);
+          }
         }
       }
     }
@@ -317,6 +324,19 @@ export default function HeroScrollAnimation() {
             Travel to Experience
           </p>
         </div>
+
+        {/* light fade overlay — covers canvas at end of scroll */}
+        <div
+          ref={lightRef}
+          style={{
+            position: "absolute",
+            inset: 0,
+            background: "#eef2f7",
+            opacity: 0,
+            zIndex: 11,
+            pointerEvents: "none",
+          }}
+        />
 
         {/* scroll hint */}
         <div ref={hintRef} style={{
