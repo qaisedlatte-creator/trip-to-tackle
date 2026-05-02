@@ -1,113 +1,60 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion, useInView } from "framer-motion";
+import { ArrowRight } from "lucide-react";
 import Navbar from "@/components/blocks/navbar";
 import Footer from "@/components/blocks/footer";
+import { destinations } from "@/lib/destinations";
 
-const filters = ["All", "Beach", "Mountains", "Culture", "Wildlife", "City Break", "Backpacking"];
+const filters = ["All", "Beach", "Mountains", "Culture", "Wildlife", "City Break", "Backpacking"] as const;
 
-const destinations = [
-  {
-    name: "Kashmir",
-    region: "North India",
-    type: "Mountains",
-    price: "₹22,999",
-    nights: "6N / 7D",
-    badge: "Trending",
-    img: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=700&q=85",
-  },
-  {
-    name: "Bali",
-    region: "Indonesia",
-    type: "Beach",
-    price: "₹38,999",
-    nights: "5N / 6D",
-    badge: "Bestseller",
-    img: "https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=700&q=85",
-  },
-  {
-    name: "Maldives",
-    region: "South Asia",
-    type: "Beach",
-    price: "₹62,999",
-    nights: "4N / 5D",
-    badge: "Luxury",
-    img: "https://images.unsplash.com/photo-1573843981267-be1999ff37cd?w=700&q=85",
-  },
-  {
-    name: "Thailand",
-    region: "Southeast Asia",
-    type: "Culture",
-    price: "₹29,999",
-    nights: "7N / 8D",
-    badge: "Budget",
-    img: "https://images.unsplash.com/photo-1506665531195-3566af2b4dfa?w=700&q=85",
-  },
-  {
-    name: "Kerala",
-    region: "South India",
-    type: "Culture",
-    price: "₹12,999",
-    nights: "4N / 5D",
-    badge: "Cultural",
-    img: "https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?w=700&q=85",
-  },
-  {
-    name: "Dubai",
-    region: "UAE",
-    type: "City Break",
-    price: "₹44,999",
-    nights: "5N / 6D",
-    badge: "Premium",
-    img: "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=700&q=85",
-  },
-  {
-    name: "Rajasthan",
-    region: "North India",
-    type: "Culture",
-    price: "₹18,999",
-    nights: "5N / 6D",
-    badge: "Heritage",
-    img: "https://images.unsplash.com/photo-1477587458883-47145ed94245?w=700&q=85",
-  },
-  {
-    name: "Coorg",
-    region: "South India",
-    type: "Mountains",
-    price: "₹12,999",
-    nights: "3N / 4D",
-    badge: "Weekend",
-    img: "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=700&q=85",
-  },
-  {
-    name: "Singapore",
-    region: "Southeast Asia",
-    type: "City Break",
-    price: "₹52,999",
-    nights: "5N / 6D",
-    badge: "Family",
-    img: "https://images.unsplash.com/photo-1525625293386-3f8f99389edd?w=700&q=85",
-  },
-];
+type Filter = (typeof filters)[number];
+type CategoryFilter = Exclude<Filter, "All">;
+type DestinationSlug = (typeof destinations)[number]["slug"];
+
+const CATEGORY_MAP: Record<CategoryFilter, DestinationSlug[]> = {
+  Beach: ["maldives", "bali", "thailand", "alappuzha"],
+  Mountains: ["kashmir", "manali", "sar-pass", "kodaikanal", "ooty", "munnar"],
+  Culture: ["bali", "thailand", "vietnam", "malaysia", "singapore"],
+  Wildlife: ["wayanad"],
+  "City Break": ["singapore", "malaysia"],
+  Backpacking: ["sar-pass", "vietnam", "thailand", "manali"],
+};
+
+const BADGE_MAP: Partial<Record<DestinationSlug, string>> = {
+  kashmir: "Trending",
+  bali: "Bestseller",
+  maldives: "Luxury",
+  thailand: "Budget",
+  vietnam: "Budget",
+  singapore: "Family",
+  manali: "Adventure",
+  "sar-pass": "Trek",
+  munnar: "Scenic",
+  wayanad: "Wildlife",
+  kodaikanal: "Getaway",
+  ooty: "Heritage",
+  alappuzha: "Backwaters",
+  malaysia: "Popular",
+};
 
 export default function DestinationsPage() {
-  const [activeFilter, setActiveFilter] = useState("All");
-  const headerRef = useRef(null);
+  const [activeFilter, setActiveFilter] = useState<Filter>("All");
+  const headerRef = useRef<HTMLDivElement | null>(null);
   const headerInView = useInView(headerRef, { once: true });
 
-  const filtered =
+  const filteredDestinations =
     activeFilter === "All"
       ? destinations
-      : destinations.filter((d) => d.type === activeFilter);
+      : destinations.filter((destination) => CATEGORY_MAP[activeFilter].includes(destination.slug));
 
   return (
     <>
       <Navbar />
 
-      {/* Hero */}
       <div
         className="px-4 sm:px-6 lg:px-[60px]"
         style={{
@@ -129,11 +76,13 @@ export default function DestinationsPage() {
             pointerEvents: "none",
           }}
         />
+
         <div ref={headerRef} style={{ position: "relative", zIndex: 2, maxWidth: "600px" }}>
           <motion.span
             initial={{ opacity: 0, y: 16 }}
             animate={headerInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6 }}
+            className="font-dm"
             style={{
               display: "block",
               fontSize: "10.5px",
@@ -142,7 +91,6 @@ export default function DestinationsPage() {
               textTransform: "uppercase",
               color: "rgba(255,255,255,0.55)",
               marginBottom: "14px",
-              fontFamily: "var(--font-body)",
             }}
           >
             Explore the World
@@ -151,11 +99,11 @@ export default function DestinationsPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={headerInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.7, delay: 0.1 }}
+            className="font-playfair"
             style={{
-              fontFamily: "var(--font-heading)",
               fontSize: "clamp(36px, 5vw, 56px)",
               color: "#fff",
-              fontWeight: 600,
+              fontWeight: 700,
               marginBottom: "14px",
             }}
           >
@@ -165,29 +113,29 @@ export default function DestinationsPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={headerInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.7, delay: 0.18 }}
+            className="font-dm"
             style={{
               color: "rgba(255,255,255,0.5)",
               fontSize: "16px",
               maxWidth: "500px",
               lineHeight: 1.6,
-              fontFamily: "var(--font-body)",
               marginBottom: "36px",
             }}
           >
-            From misty mountain treks to tropical beach escapes — find your perfect match.
+            From misty mountain treks to tropical beach escapes, find the trip that matches your pace.
           </motion.p>
 
-          {/* Filters */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={headerInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.7, delay: 0.26 }}
             style={{ display: "flex", gap: "10px", flexWrap: "wrap" }}
           >
-            {filters.map((f) => (
+            {filters.map((filter) => (
               <button
-                key={f}
-                onClick={() => setActiveFilter(f)}
+                key={filter}
+                onClick={() => setActiveFilter(filter)}
+                className="font-dm"
                 style={{
                   padding: "8px 20px",
                   borderRadius: "100px",
@@ -195,188 +143,193 @@ export default function DestinationsPage() {
                   fontWeight: 500,
                   cursor: "pointer",
                   border: "1.5px solid",
-                  borderColor: activeFilter === f ? "#FF6A00" : "rgba(255,255,255,0.2)",
-                  background: activeFilter === f ? "#FF6A00" : "transparent",
-                  color: activeFilter === f ? "#fff" : "rgba(255,255,255,0.7)",
-                  fontFamily: "var(--font-body)",
+                  borderColor: activeFilter === filter ? "#FF6A00" : "rgba(255,255,255,0.2)",
+                  background: activeFilter === filter ? "#FF6A00" : "transparent",
+                  color: activeFilter === filter ? "#fff" : "rgba(255,255,255,0.7)",
                   transition: "all 0.2s",
                 }}
               >
-                {f}
+                {filter}
               </button>
             ))}
           </motion.div>
         </div>
       </div>
 
-      {/* Grid */}
       <div className="bg-[#F3F2F0] px-4 sm:px-6 lg:px-[60px] py-14" style={{ paddingBottom: "88px" }}>
-        <div
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-7"
-        >
-          {filtered.map((d, i) => (
-            <motion.div
-              key={d.name}
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: (i % 3) * 0.1 }}
-              className="pkg-card"
-              style={{
-                background: "#fff",
-                borderRadius: "16px",
-                overflow: "hidden",
-                boxShadow: "0 4px 20px rgba(0,0,0,0.07)",
-                cursor: "pointer",
-              }}
-            >
-              <div style={{ position: "relative", height: "210px", overflow: "hidden" }}>
-                <Image
-                  src={d.img}
-                  alt={d.name}
-                  fill
-                  className="pkg-img-inner"
-                  style={{ objectFit: "cover" }}
-                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                />
-                <div
-                  style={{
-                    position: "absolute",
-                    top: "14px",
-                    right: "14px",
-                    background: "#FF6A00",
-                    color: "#fff",
-                    fontSize: "10px",
-                    fontWeight: 700,
-                    padding: "4px 10px",
-                    borderRadius: "20px",
-                    letterSpacing: "0.8px",
-                    fontFamily: "var(--font-body)",
-                  }}
-                >
-                  {d.badge}
-                </div>
-                <div
-                  style={{
-                    position: "absolute",
-                    bottom: "14px",
-                    left: "14px",
-                    background: "rgba(10,31,68,0.8)",
-                    color: "#fff",
-                    fontSize: "11px",
-                    padding: "4px 10px",
-                    borderRadius: "6px",
-                    fontFamily: "var(--font-body)",
-                  }}
-                >
-                  {d.nights}
-                </div>
-              </div>
-              <div style={{ padding: "18px 20px 22px" }}>
-                <div
-                  style={{
-                    fontSize: "11px",
-                    color: "#9E9A94",
-                    letterSpacing: "1px",
-                    textTransform: "uppercase",
-                    marginBottom: "4px",
-                    fontFamily: "var(--font-body)",
-                  }}
-                >
-                  {d.region} · {d.type}
-                </div>
-                <h3
-                  style={{
-                    fontSize: "20px",
-                    fontFamily: "var(--font-heading)",
-                    color: "#1A1A1A",
-                    fontWeight: 600,
-                    marginBottom: "14px",
-                  }}
-                >
-                  {d.name}
-                </h3>
-                <div
-                  style={{
-                    display: "flex",
-                    justifyContent: "space-between",
-                    alignItems: "center",
-                  }}
-                >
-                  <div>
-                    <div style={{ fontSize: "11px", color: "#9E9A94", fontFamily: "var(--font-body)" }}>
-                      Starting from
-                    </div>
+        <div className="grid grid-cols-1 gap-7 sm:grid-cols-2 lg:grid-cols-3">
+          {filteredDestinations.map((destination, index) => {
+            const badge = BADGE_MAP[destination.slug];
+
+            return (
+              <motion.div
+                key={destination.id}
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: (index % 3) * 0.1 }}
+                className="pkg-card"
+                style={{
+                  background: "#fff",
+                  borderRadius: "16px",
+                  overflow: "hidden",
+                  boxShadow: "0 4px 20px rgba(0,0,0,0.07)",
+                }}
+              >
+                <div style={{ position: "relative", height: "210px", overflow: "hidden" }}>
+                  <Image
+                    src={destination.image}
+                    alt={destination.name}
+                    fill
+                    className="pkg-img-inner"
+                    style={{ objectFit: "cover" }}
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  />
+                  <div
+                    style={{
+                      position: "absolute",
+                      inset: 0,
+                      background: "linear-gradient(180deg, rgba(10,31,68,0.1) 0%, rgba(10,31,68,0.72) 100%)",
+                    }}
+                  />
+                  {badge && (
                     <div
+                      className="font-dm"
                       style={{
-                        fontSize: "20px",
+                        position: "absolute",
+                        top: "14px",
+                        right: "14px",
+                        background: "#FF6A00",
+                        color: "#fff",
+                        fontSize: "10px",
                         fontWeight: 700,
-                        color: "#1A1A1A",
-                        fontFamily: "var(--font-body)",
+                        padding: "4px 10px",
+                        borderRadius: "20px",
+                        letterSpacing: "0.8px",
                       }}
                     >
-                      {d.price}
+                      {badge}
                     </div>
-                  </div>
-                  <a
-                    href={`https://wa.me/919000000000?text=Hi! I'm interested in ${d.name} (${d.price})`}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                  )}
+                  <div
+                    className="font-dm"
                     style={{
-                      background: "#0A1F44",
+                      position: "absolute",
+                      bottom: "14px",
+                      left: "14px",
+                      background: "rgba(10,31,68,0.82)",
                       color: "#fff",
-                      padding: "9px 18px",
-                      borderRadius: "8px",
-                      fontSize: "13px",
-                      fontWeight: 600,
-                      textDecoration: "none",
-                      fontFamily: "var(--font-body)",
-                      transition: "background 0.2s",
-                    }}
-                    onMouseEnter={(e) => {
-                      (e.currentTarget as HTMLElement).style.background = "#FF6A00";
-                    }}
-                    onMouseLeave={(e) => {
-                      (e.currentTarget as HTMLElement).style.background = "#0A1F44";
+                      fontSize: "11px",
+                      padding: "4px 10px",
+                      borderRadius: "6px",
                     }}
                   >
-                    Book Now
-                  </a>
+                    {destination.duration}
+                  </div>
                 </div>
-              </div>
-            </motion.div>
-          ))}
+
+                <div style={{ padding: "18px 20px 22px" }}>
+                  <div
+                    className="font-dm"
+                    style={{
+                      fontSize: "11px",
+                      color: "#9E9A94",
+                      letterSpacing: "1px",
+                      textTransform: "uppercase",
+                      marginBottom: "4px",
+                    }}
+                  >
+                    {destination.region} · {destination.type_label}
+                  </div>
+                  <h3
+                    className="font-playfair"
+                    style={{
+                      fontSize: "20px",
+                      color: "#1A1A1A",
+                      fontWeight: 700,
+                      marginBottom: "14px",
+                    }}
+                  >
+                    {destination.name}
+                  </h3>
+                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: "16px" }}>
+                    <div>
+                      <div className="font-dm" style={{ fontSize: "11px", color: "#9E9A94" }}>
+                        Starting from
+                      </div>
+                      <div
+                        className="font-space"
+                        style={{
+                          fontSize: "20px",
+                          fontWeight: 700,
+                          color: "#1A1A1A",
+                        }}
+                      >
+                        {destination.priceLabel}
+                      </div>
+                    </div>
+                    <Link
+                      href={`/destinations/${destination.slug}`}
+                      className="font-dm"
+                      style={{
+                        background: "#0A1F44",
+                        color: "#fff",
+                        padding: "9px 18px",
+                        borderRadius: "8px",
+                        fontSize: "13px",
+                        fontWeight: 600,
+                        textDecoration: "none",
+                        transition: "background 0.2s",
+                        display: "inline-flex",
+                        alignItems: "center",
+                        gap: "8px",
+                        whiteSpace: "nowrap",
+                      }}
+                      onMouseEnter={(event) => {
+                        event.currentTarget.style.background = "#FF6A00";
+                      }}
+                      onMouseLeave={(event) => {
+                        event.currentTarget.style.background = "#0A1F44";
+                      }}
+                    >
+                      View Details
+                      <ArrowRight size={14} />
+                    </Link>
+                  </div>
+                </div>
+              </motion.div>
+            );
+          })}
         </div>
 
-        {filtered.length === 0 && (
+        {filteredDestinations.length === 0 && (
           <div style={{ textAlign: "center", padding: "80px 40px", color: "#9E9A94" }}>
             <div style={{ fontSize: "48px", marginBottom: "16px" }}>🗺️</div>
-            <p style={{ fontSize: "18px", fontFamily: "var(--font-body)" }}>
-              No destinations match this filter. More coming soon!
+            <p className="font-dm" style={{ fontSize: "18px" }}>
+              No destinations match this filter. More trips are on the way.
             </p>
           </div>
         )}
       </div>
 
-      {/* CTA */}
-      <section style={{ background: "#0A1F44", padding: "64px 60px", textAlign: "center" }}>
+      <section style={{ background: "#0A1F44", padding: "64px 24px", textAlign: "center" }}>
         <h3
+          className="font-playfair"
           style={{
-            fontFamily: "var(--font-heading)",
             fontSize: "36px",
             color: "#fff",
             marginBottom: "12px",
-            fontWeight: 600,
+            fontWeight: 700,
           }}
         >
           Can&apos;t Find What You&apos;re Looking For?
         </h3>
         <p
+          className="font-dm"
           style={{
             color: "rgba(255,255,255,0.45)",
             marginBottom: "28px",
             fontSize: "15px",
-            fontFamily: "var(--font-body)",
           }}
         >
           We can plan a custom trip to almost anywhere. Just ask on WhatsApp.
@@ -385,6 +338,7 @@ export default function DestinationsPage() {
           href="https://wa.me/919000000000"
           target="_blank"
           rel="noopener noreferrer"
+          className="font-dm"
           style={{
             background: "#FF6A00",
             color: "#fff",
@@ -393,17 +347,20 @@ export default function DestinationsPage() {
             fontWeight: 700,
             fontSize: "15px",
             textDecoration: "none",
-            fontFamily: "var(--font-body)",
             transition: "background 0.2s",
+            display: "inline-flex",
+            alignItems: "center",
+            justifyContent: "center",
+            minHeight: "46px",
           }}
-          onMouseEnter={(e) => {
-            (e.currentTarget as HTMLElement).style.background = "#d95f00";
+          onMouseEnter={(event) => {
+            event.currentTarget.style.background = "#d95f00";
           }}
-          onMouseLeave={(e) => {
-            (e.currentTarget as HTMLElement).style.background = "#FF6A00";
+          onMouseLeave={(event) => {
+            event.currentTarget.style.background = "#FF6A00";
           }}
         >
-          💬 Request a Custom Trip
+          Request a Custom Trip
         </a>
       </section>
 
@@ -411,4 +368,3 @@ export default function DestinationsPage() {
     </>
   );
 }
-
