@@ -3,6 +3,8 @@ import { Playfair_Display, DM_Sans, Space_Mono } from "next/font/google";
 import "./globals.css";
 import SmoothScroll from "@/components/SmoothScroll";
 import WhatsAppFloat from "@/components/blocks/whatsapp-float";
+import AuthModal from "@/components/blocks/auth-modal";
+import { AuthProvider } from "@/context/auth-context";
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
@@ -58,8 +60,11 @@ export default function RootLayout({
       className={`${playfair.variable} ${dmSans.variable} ${spaceMono.variable}`}
     >
       <body className="antialiased text-[#171717]">
-        <SmoothScroll>{children}</SmoothScroll>
-        <WhatsAppFloat />
+        <AuthProvider>
+          <SmoothScroll>{children}</SmoothScroll>
+          <WhatsAppFloat />
+          <AuthModal />
+        </AuthProvider>
       </body>
     </html>
   );

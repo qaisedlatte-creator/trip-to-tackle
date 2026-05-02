@@ -4,7 +4,7 @@ import { useEffect, useRef, useState, useCallback } from "react";
 
 /* ─── tunables ───────────────────────────────────────────────────────── */
 const DESKTOP_TOTAL  = 250;
-const DESKTOP_BATCH  = 15;     // concurrent fetches desktop
+const DESKTOP_BATCH  = 8;      // reduced to avoid I/O saturation causing jank
 
 /* Mobile: load 1 frame per 4 → 63 frames, resize to 720 px wide        */
 const MOBILE_STRIDE  = 4;
@@ -142,7 +142,7 @@ export default function HeroScrollAnimation() {
     const canvas = canvasRef.current;
     const sticky = stickyRef.current;
     if (!canvas || !sticky) return;
-    const dpr = isMobile ? 1 : Math.min(window.devicePixelRatio || 1, 2);
+    const dpr = isMobile ? 1 : Math.min(window.devicePixelRatio || 1, 1.5);
     canvas.width  = Math.round(window.innerWidth  * dpr);
     canvas.height = Math.round(window.innerHeight * dpr);
     const ctx = canvas.getContext("2d", {
@@ -177,6 +177,8 @@ export default function HeroScrollAnimation() {
 
   /* ── RAF tick ── */
   const tick = useCallback(() => {
+    /* skip drawing while tab is hidden — saves GPU work */
+    if (document.hidden) { rafRef.current = requestAnimationFrame(tick); return; }
     if (isReadyRef.current) {
       const now = performance.now();
       const canDraw = !isMobile || (now - lastDrawMsRef.current >= MOBILE_FPS_MS);
@@ -227,6 +229,13 @@ export default function HeroScrollAnimation() {
     }
     rafRef.current = requestAnimationFrame(tick);
   }, [isMobile, drawBitmap]);
+
+  /* skip RAF when tab is hidden */
+  useEffect(() => {
+    const onVisible = () => { needsDrawRef.current = true; };
+    document.addEventListener("visibilitychange", onVisible);
+    return () => document.removeEventListener("visibilitychange", onVisible);
+  }, []);
 
   /* ── init ── */
   useEffect(() => {
@@ -360,27 +369,26 @@ export default function HeroScrollAnimation() {
           }}
         />
 
-        {/* search widget — desktop only, appears simultaneously with hero title */}
-        {!isMobile && (
-          <div
-            ref={searchRef}
-            style={{
-              position: "absolute",
-              bottom: "7%",
-              left: "50%",
-              transform: "translateX(-50%)",
-              width: "min(900px, calc(100% - 48px))",
-              background: "rgba(8, 20, 52, 0.82)",
-              backdropFilter: "blur(24px)",
-              WebkitBackdropFilter: "blur(24px)",
-              borderRadius: "18px",
-              padding: "24px 30px 22px",
-              zIndex: 14,
-              opacity: 0,
-              pointerEvents: "none",
-              border: "1px solid rgba(255,255,255,0.1)",
-            }}
-          >
+        {/* search widget — desktop + mobile, appears simultaneously with hero title */}
+        <div
+          ref={searchRef}
+          style={{
+            position: "absolute",
+            bottom: isMobile ? "5%" : "7%",
+            left: "50%",
+            transform: "translateX(-50%)",
+            width: isMobile ? "min(420px, calc(100% - 32px))" : "min(900px, calc(100% - 48px))",
+            background: "rgba(8, 20, 52, 0.88)",
+            backdropFilter: "blur(24px)",
+            WebkitBackdropFilter: "blur(24px)",
+            borderRadius: "16px",
+            padding: isMobile ? "16px 18px 14px" : "24px 30px 22px",
+            zIndex: 14,
+            opacity: 0,
+            pointerEvents: "none",
+            border: "1px solid rgba(255,255,255,0.1)",
+          }}
+        >
             {/* header */}
             <div style={{ display: "flex", alignItems: "center", gap: "9px", marginBottom: "20px" }}>
               <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#FF6A00" strokeWidth="2.5" strokeLinecap="round">
@@ -391,8 +399,8 @@ export default function HeroScrollAnimation() {
               </span>
             </div>
 
-            {/* 4 fields — real inputs */}
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "14px", marginBottom: "20px" }}>
+            {/* 4 fields — real inputs, 2-col on mobile */}
+            <div style={{ display: "grid", gridTemplateColumns: isMobile ? "repeat(2, 1fr)" : "repeat(4, 1fr)", gap: isMobile ? "10px" : "14px", marginBottom: isMobile ? "14px" : "20px" }}>
               {/* DESTINATION */}
               <div>
                 <div style={{ fontSize: "9px", fontWeight: 700, letterSpacing: "1.5px", textTransform: "uppercase", color: "rgba(255,255,255,0.45)", fontFamily: "var(--font-body)", marginBottom: "9px" }}>
@@ -466,7 +474,6 @@ export default function HeroScrollAnimation() {
               Explore Tours
             </button>
           </div>
-        )}
 
         {/* scroll hint */}
         <div ref={hintRef} style={{
