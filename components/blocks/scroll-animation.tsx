@@ -33,9 +33,10 @@ export default function HeroScrollAnimation() {
   const needsDrawRef = useRef(false);
   const lastFrameRef = useRef(-1);
   const progressRef  = useRef(0);
-  const isReadyRef   = useRef(false);
-  const totalRef     = useRef(DESKTOP_TOTAL);
-  const lastDrawMsRef= useRef(0);  // for mobile fps throttle
+  const isReadyRef     = useRef(false);
+  const totalRef       = useRef(DESKTOP_TOTAL);
+  const lastDrawMsRef  = useRef(0);  // for mobile fps throttle
+  const hasCompletedRef= useRef(false); // true after first full play-through
 
   const textRef          = useRef<HTMLDivElement>(null);
   const hintRef          = useRef<HTMLDivElement>(null);
@@ -194,7 +195,13 @@ export default function HeroScrollAnimation() {
             : 0;
           progressRef.current = p;
 
-          const target = Math.round(p * (totalRef.current - 1));
+          /* after first full play-through, show last frame at p≈0 so
+             the second scroll doesn't start with black frames */
+          if (p > 0.92) hasCompletedRef.current = true;
+          const rawTarget = Math.round(p * (totalRef.current - 1));
+          const target = hasCompletedRef.current && p < 0.04
+            ? totalRef.current - 1
+            : rawTarget;
           if (target !== lastFrameRef.current || needsDrawRef.current) {
             lastFrameRef.current = target;
             needsDrawRef.current = false;
@@ -370,15 +377,15 @@ export default function HeroScrollAnimation() {
             left: "50%",
             transform: "translateX(-50%)",
             width: isMobile ? "min(420px, calc(100% - 32px))" : "min(900px, calc(100% - 48px))",
-            background: "rgba(8, 20, 52, 0.88)",
-            backdropFilter: "blur(24px)",
-            WebkitBackdropFilter: "blur(24px)",
+            background: "rgba(0, 0, 0, 0.42)",
+            backdropFilter: "blur(28px)",
+            WebkitBackdropFilter: "blur(28px)",
             borderRadius: "16px",
             padding: isMobile ? "16px 18px 14px" : "24px 30px 22px",
             zIndex: 14,
             opacity: 0,
             pointerEvents: "none",
-            border: "1px solid rgba(255,255,255,0.1)",
+            border: "1px solid rgba(255,255,255,0.14)",
           }}
         >
             {/* header */}
@@ -398,7 +405,7 @@ export default function HeroScrollAnimation() {
                 <div style={{ fontSize: "9px", fontWeight: 700, letterSpacing: "1.5px", textTransform: "uppercase", color: "rgba(255,255,255,0.45)", fontFamily: "var(--font-body)", marginBottom: "9px" }}>
                   Destination
                 </div>
-                <div style={{ display: "flex", alignItems: "center", gap: "10px", background: "rgba(255,255,255,0.07)", borderRadius: "10px", padding: "11px 14px", border: "1px solid rgba(255,255,255,0.12)" }}>
+                <div style={{ display: "flex", alignItems: "center", gap: "10px", background: "rgba(255,255,255,0.10)", borderRadius: "10px", padding: "11px 14px", border: "1px solid rgba(255,255,255,0.18)" }}>
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#FF6A00" strokeWidth="2" strokeLinecap="round" style={{ flexShrink: 0 }}>
                     <path d="M20 10c0 6-8 13-8 13s-8-7-8-13a8 8 0 0 1 16 0Z" /><circle cx="12" cy="10" r="3" />
                   </svg>
@@ -411,7 +418,7 @@ export default function HeroScrollAnimation() {
                 <div style={{ fontSize: "9px", fontWeight: 700, letterSpacing: "1.5px", textTransform: "uppercase", color: "rgba(255,255,255,0.45)", fontFamily: "var(--font-body)", marginBottom: "9px" }}>
                   Duration
                 </div>
-                <div style={{ display: "flex", alignItems: "center", gap: "10px", background: "rgba(255,255,255,0.07)", borderRadius: "10px", padding: "11px 14px", border: "1px solid rgba(255,255,255,0.12)" }}>
+                <div style={{ display: "flex", alignItems: "center", gap: "10px", background: "rgba(255,255,255,0.10)", borderRadius: "10px", padding: "11px 14px", border: "1px solid rgba(255,255,255,0.18)" }}>
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#FF6A00" strokeWidth="2" strokeLinecap="round" style={{ flexShrink: 0 }}>
                     <rect width="18" height="18" x="3" y="4" rx="2" /><line x1="16" x2="16" y1="2" y2="6" /><line x1="8" x2="8" y1="2" y2="6" /><line x1="3" x2="21" y1="10" y2="10" />
                   </svg>
@@ -424,7 +431,7 @@ export default function HeroScrollAnimation() {
                 <div style={{ fontSize: "9px", fontWeight: 700, letterSpacing: "1.5px", textTransform: "uppercase", color: "rgba(255,255,255,0.45)", fontFamily: "var(--font-body)", marginBottom: "9px" }}>
                   Budget
                 </div>
-                <div style={{ display: "flex", alignItems: "center", gap: "10px", background: "rgba(255,255,255,0.07)", borderRadius: "10px", padding: "11px 14px", border: "1px solid rgba(255,255,255,0.12)" }}>
+                <div style={{ display: "flex", alignItems: "center", gap: "10px", background: "rgba(255,255,255,0.10)", borderRadius: "10px", padding: "11px 14px", border: "1px solid rgba(255,255,255,0.18)" }}>
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#FF6A00" strokeWidth="2" strokeLinecap="round" style={{ flexShrink: 0 }}>
                     <rect width="20" height="14" x="2" y="5" rx="2" /><line x1="2" x2="22" y1="10" y2="10" />
                   </svg>
@@ -437,7 +444,7 @@ export default function HeroScrollAnimation() {
                 <div style={{ fontSize: "9px", fontWeight: 700, letterSpacing: "1.5px", textTransform: "uppercase", color: "rgba(255,255,255,0.45)", fontFamily: "var(--font-body)", marginBottom: "9px" }}>
                   Travelers
                 </div>
-                <div style={{ display: "flex", alignItems: "center", gap: "10px", background: "rgba(255,255,255,0.07)", borderRadius: "10px", padding: "11px 14px", border: "1px solid rgba(255,255,255,0.12)" }}>
+                <div style={{ display: "flex", alignItems: "center", gap: "10px", background: "rgba(255,255,255,0.10)", borderRadius: "10px", padding: "11px 14px", border: "1px solid rgba(255,255,255,0.18)" }}>
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#FF6A00" strokeWidth="2" strokeLinecap="round" style={{ flexShrink: 0 }}>
                     <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" /><circle cx="9" cy="7" r="4" /><path d="M23 21v-2a4 4 0 0 0-3-3.87" /><path d="M16 3.13a4 4 0 0 1 0 7.75" />
                   </svg>

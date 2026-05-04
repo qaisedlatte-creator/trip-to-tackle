@@ -121,15 +121,15 @@ export default function PilgrimagesPage() {
         {/* HERO */}
         <section className="relative min-h-[90vh] overflow-hidden" style={{ background: "#1a0800" }}>
           <Image
-            src="https://images.unsplash.com/photo-1561361513-2d000a50f0dc?w=1600&q=85"
+            src="https://images.unsplash.com/photo-1597074866923-dc0589150358?w=1600&q=85"
             alt="Sacred Pilgrimage"
             fill
             priority
             sizes="100vw"
-            className="object-cover opacity-25"
+            className="object-cover opacity-50"
           />
-          <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(26,8,0,0.97)_0%,rgba(80,30,0,0.85)_50%,rgba(26,8,0,0.92)_100%)]" />
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(217,119,6,0.14),transparent_55%)]" />
+          <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(26,8,0,0.70)_0%,rgba(80,30,0,0.45)_50%,rgba(26,8,0,0.70)_100%)]" />
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(217,119,6,0.20),transparent_55%)]" />
 
           <div className="relative z-10 mx-auto flex min-h-[90vh] max-w-7xl flex-col justify-center px-4 py-32 sm:px-6 lg:px-8">
             <motion.div
