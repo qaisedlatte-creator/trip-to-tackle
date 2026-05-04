@@ -10,10 +10,12 @@ import { useAuth } from "@/context/auth-context";
 const links = [
   { href: "/", label: "Home" },
   { href: "/destinations", label: "Destinations" },
-  { href: "/#packages", label: "Packages" },
   { href: "/blog", label: "Blog" },
   { href: "/careers", label: "Careers" },
-  { href: "/campus-ambassador", label: "Campus Ambassador" },
+  { href: "/about", label: "About Us" },
+  { href: "/contact", label: "Contact" },
+  { href: "/corporate", label: "Corporate" },
+  { href: "/pilgrimages", label: "Pilgrimage" },
 ];
 
 export default function Navbar() {
@@ -43,27 +45,27 @@ export default function Navbar() {
           backdropFilter: scrolled ? "blur(16px)" : "none",
         }}
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-[80px] flex items-center justify-between">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-[92px] flex items-center justify-between">
           <Link href="/" className="flex items-center">
             <Image
               src={scrolled ? "/logo-color.png" : "/logo-dark.png"}
               alt="Trip 2 Tackle"
-              width={160}
-              height={46}
+              width={220}
+              height={63}
               priority
-              style={{ objectFit: "contain", height: "64px", width: "auto" }}
+              style={{ objectFit: "contain", height: "86px", width: "auto" }}
             />
           </Link>
 
           {/* Desktop links */}
-          <div className="hidden md:flex items-center gap-6">
-            {links.slice(0, 5).map((l) => (
+          <div className="hidden lg:flex items-center gap-4">
+            {links.map((l) => (
               <Link
                 key={l.href}
                 href={l.href}
                 style={{
                   fontFamily: "var(--font-body)",
-                  fontSize: 14,
+                  fontSize: 13,
                   fontWeight: 500,
                   color: scrolled
                     ? pathname === l.href ? "#0A1F44" : "rgba(10,31,68,0.55)"
@@ -88,7 +90,7 @@ export default function Navbar() {
           </div>
 
           {/* CTA buttons */}
-          <div className="hidden md:flex items-center gap-3">
+          <div className="hidden lg:flex items-center gap-3">
             <a
               href="https://wa.me/918309218545"
               target="_blank" rel="noopener noreferrer"
@@ -154,7 +156,7 @@ export default function Navbar() {
 
           {/* Mobile hamburger */}
           <button
-            className="md:hidden p-1"
+            className="lg:hidden p-1"
             style={{ color: scrolled ? "#0A1F44" : "#fff" }}
             onClick={() => setOpen(true)}
             aria-label="Open menu"
@@ -175,8 +177,8 @@ export default function Navbar() {
             <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "20px 24px" }}>
               <Image
                 src="/logo-dark.png" alt="Trip 2 Tackle"
-                width={140} height={40}
-                style={{ objectFit: "contain", height: "46px", width: "auto" }}
+                width={190} height={54}
+                style={{ objectFit: "contain", height: "62px", width: "auto" }}
               />
               <button onClick={() => setOpen(false)} style={{ color: "#fff" }}>
                 <X size={26} />

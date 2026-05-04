@@ -84,8 +84,8 @@ export default function Footer() {
             <h4 className="font-playfair text-lg font-semibold mb-5 text-white">Company</h4>
             <ul className="space-y-2">
               {[
-                { href: "#", label: "About Us" },
-                { href: "#", label: "Partners" },
+                { href: "/about", label: "About Us" },
+                { href: "/contact", label: "Contact Us" },
                 { href: "#", label: "Privacy Policy" },
                 { href: "#", label: "Terms & Conditions" },
                 { href: "#", label: "Cancellation Policy" },
