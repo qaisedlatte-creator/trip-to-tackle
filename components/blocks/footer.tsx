@@ -134,7 +134,7 @@ export default function Footer() {
               <li className="flex items-start gap-3">
                 <MapPin size={16} className="text-[#4a6fa5] mt-0.5 shrink-0" />
                 <span className="font-dm text-sm text-white/60">
-                  Kochi, Kerala, India
+                  Vijayawada, Andhra Pradesh, India
                 </span>
               </li>
             </ul>

@@ -212,12 +212,6 @@ export default function HeroScrollAnimation() {
             hintRef.current.style.opacity = ta < 0.1 ? "1" : "0";
           }
 
-          /* soft light fade at animation end — reveals #eef2f7 */
-          const la = p < 0.88 ? 0 : Math.min(1, (p - 0.88) / 0.12);
-          if (lightRef.current) {
-            lightRef.current.style.opacity = String(la);
-          }
-
           /* search widget — simultaneous with brand text */
           const sa = p < 0.80 ? 0 : Math.min(1, (p - 0.80) / 0.12);
           if (searchRef.current) {
@@ -356,14 +350,12 @@ export default function HeroScrollAnimation() {
           </p>
         </div>
 
-        {/* end overlay — covers black canvas frames with brand navy */}
+        {/* subtle dark gradient to keep text readable over the final landscape frame */}
         <div
-          ref={lightRef}
           style={{
             position: "absolute",
             inset: 0,
-            background: "#0A1F44",
-            opacity: 0,
+            background: "linear-gradient(to bottom, rgba(0,0,0,0.18) 0%, rgba(0,0,0,0.32) 50%, rgba(0,0,0,0.55) 100%)",
             zIndex: 11,
             pointerEvents: "none",
           }}

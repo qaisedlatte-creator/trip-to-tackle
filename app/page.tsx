@@ -526,7 +526,7 @@ export default function HomePage() {
                   {[
                     { icon: "📞", text: "+91 83092 18545" },
                     { icon: "✉️", text: "hello@trip2tackle.com" },
-                    { icon: "📍", text: "Kochi, Kerala, India" },
+                    { icon: "📍", text: "Vijayawada, Andhra Pradesh, India" },
                   ].map((item) => (
                     <div key={item.text} className="flex items-center gap-3 font-dm text-gray-600 text-sm">
                       <span className="text-base">{item.icon}</span>

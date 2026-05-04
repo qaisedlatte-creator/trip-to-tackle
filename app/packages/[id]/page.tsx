@@ -234,7 +234,7 @@ For enquiries: hello@trip2tackle.com | +91 83092 18545
           <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(10,31,68,0.18)_0%,rgba(10,31,68,0.54)_42%,rgba(10,31,68,0.96)_100%)]" />
 
           <div className="relative z-10 mx-auto flex min-h-[88vh] max-w-7xl flex-col justify-between px-4 pb-12 pt-28 sm:px-6 lg:px-8">
-            <div className="flex items-center gap-3">
+            <div>
               <Link
                 href="/#packages"
                 className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-4 py-2 font-dm text-sm font-medium text-white/85 backdrop-blur-md"
@@ -242,19 +242,6 @@ For enquiries: hello@trip2tackle.com | +91 83092 18545
                 <ArrowLeft size={15} />
                 All Packages
               </Link>
-              {/* PDF download + email buttons */}
-              <button
-                onClick={downloadItinerary}
-                className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-4 py-2 font-dm text-sm font-medium text-white/85 backdrop-blur-md hover:bg-white/20 transition"
-              >
-                <Download size={14} /> Download Itinerary
-              </button>
-              <button
-                onClick={() => setEmailModalOpen(true)}
-                className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-4 py-2 font-dm text-sm font-medium text-white/85 backdrop-blur-md hover:bg-white/20 transition"
-              >
-                <Mail size={14} /> Email Itinerary
-              </button>
             </div>
 
             <motion.div {...fadeInView} className="max-w-3xl">
@@ -265,6 +252,21 @@ For enquiries: hello@trip2tackle.com | +91 83092 18545
                 {pkg.name}
               </h1>
               <p className="mt-5 max-w-2xl font-dm text-lg leading-8 text-white/65">{pkg.description}</p>
+              {/* Itinerary download/email — visible below headline */}
+              <div className="mt-7 flex flex-wrap gap-3">
+                <button
+                  onClick={downloadItinerary}
+                  className="inline-flex items-center gap-2 rounded-xl bg-[#FF6A00] px-5 py-3 font-dm text-sm font-bold text-white transition-colors hover:bg-[#e55f00]"
+                >
+                  <Download size={15} /> Download Itinerary PDF
+                </button>
+                <button
+                  onClick={() => setEmailModalOpen(true)}
+                  className="inline-flex items-center gap-2 rounded-xl border border-white/25 px-5 py-3 font-dm text-sm font-semibold text-white hover:bg-white/10 transition"
+                >
+                  <Mail size={15} /> Email Itinerary
+                </button>
+              </div>
             </motion.div>
           </div>
         </section>

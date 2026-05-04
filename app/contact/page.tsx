@@ -30,7 +30,7 @@ export default function ContactPage() {
     {
       Icon: MapPin,
       label: "Office Address",
-      value: "3rd Floor, Sapphire Tower, MG Road, Ernakulam, Kochi — 682 016, Kerala, India",
+      value: "Vijayawada, Andhra Pradesh — 520 001, India",
     },
     { Icon: Phone, label: "Phone / WhatsApp", value: "+91 83092 18545" },
     { Icon: Mail, label: "Email", value: "hello@trip2tackle.com" },
@@ -238,7 +238,7 @@ export default function ContactPage() {
                   className="overflow-hidden rounded-2xl shadow-[0_8px_24px_rgba(10,31,68,0.07)]"
                 >
                   <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3929.1899044074393!2d76.28987067480027!3d10.001699990093!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b080d514abec6bf%3A0xbd582caa5f6a2a3c!2sMG%20Road%2C%20Ernakulam%2C%20Kochi%2C%20Kerala!5e0!3m2!1sen!2sin!4v1716000000000!5m2!1sen!2sin"
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3826.5!2d80.6480!3d16.5062!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a35eff9196ec327%3A0xa7e632a2fe58b70e!2sVijayawada%2C%20Andhra%20Pradesh!5e0!3m2!1sen!2sin!4v1716000000000!5m2!1sen!2sin"
                     width="100%"
                     height="220"
                     style={{ border: 0 }}

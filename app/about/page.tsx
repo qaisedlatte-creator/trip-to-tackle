@@ -16,40 +16,16 @@ const fadeUp = {
 
 const team = [
   {
-    name: "Rahul Menon",
-    role: "Founder & CEO",
-    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80",
-    bio: "10+ years in travel and hospitality. Passionate about crafting group journeys that feel personal.",
+    name: "M Doondi Karthik",
+    role: "Founder & Managing Director",
+    initials: "MDK",
+    bio: "Passionate traveller and entrepreneur from Andhra Pradesh. Founded Trip 2 Tackle to give South Indian travellers access to expertly curated group journeys at honest, transparent prices.",
   },
   {
-    name: "Priya Nair",
-    role: "Head of Operations",
-    image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&q=80",
-    bio: "Ensures every departure runs like clockwork — from hotel confirmations to on-ground coordination.",
-  },
-  {
-    name: "Arjun Das",
-    role: "Destination Expert — South India",
-    image: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=400&q=80",
-    bio: "Knows every trail, temple, and hidden gem across Kerala, Karnataka, and Tamil Nadu.",
-  },
-  {
-    name: "Sneha Sharma",
-    role: "Corporate & MICE Lead",
-    image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&q=80",
-    bio: "Manages corporate offsite programmes for mid-size to enterprise teams across India.",
-  },
-  {
-    name: "Vikram Krishnan",
-    role: "International Packages",
-    image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&q=80",
-    bio: "Curates Bali, Thailand, Vietnam, and Maldives escapes with insider stays and local guides.",
-  },
-  {
-    name: "Fatima Zahra",
-    role: "Pilgrimage & Heritage",
-    image: "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=400&q=80",
-    bio: "Plans sacred journeys for families and community groups — temples, dargahs, and churches.",
+    name: "P. Sashank Reddy",
+    role: "Co-Founder & Head of Operations",
+    initials: "PSR",
+    bio: "Handles logistics, partner networks, and on-ground coordination to ensure every Trip 2 Tackle departure runs smoothly — from Vijayawada to Vaishno Devi.",
   },
 ];
 
@@ -165,9 +141,9 @@ export default function AboutPage() {
                 />
                 <div className="absolute inset-0 bg-[linear-gradient(160deg,rgba(10,31,68,0.6)_0%,rgba(10,31,68,0.2)_60%)]" />
                 <div className="absolute bottom-6 left-6 right-6 rounded-2xl bg-white/10 p-5 backdrop-blur-sm border border-white/20">
-                  <p className="font-playfair text-2xl font-bold text-white">Founded in Kochi, 2018</p>
+                  <p className="font-playfair text-2xl font-bold text-white">Founded in Andhra Pradesh</p>
                   <p className="mt-2 font-dm text-sm text-white/70">
-                    Starting with group trips to Munnar and Wayanad, growing to serve clients across Kerala and beyond.
+                    Starting with group trips from Vijayawada, growing to serve travellers across Andhra Pradesh, Telangana, and beyond.
                   </p>
                 </div>
               </motion.div>
@@ -185,14 +161,14 @@ export default function AboutPage() {
                 </h2>
                 <div className="mt-6 space-y-5 font-dm text-[#0A1F44]/70 leading-8">
                   <p>
-                    It started with a small group of college friends and a bus to Munnar. What struck our founders
-                    wasn&apos;t just the destination — it was how much better travel felt when shared with the right
-                    people.
+                    It started with a vision to give Andhra Pradesh travellers the kind of expertly organised group
+                    travel that was previously only accessible to metro cities. Our founders believed that great
+                    travel shouldn&apos;t require a big city address.
                   </p>
                   <p>
-                    Trip 2 Tackle was officially registered in 2018, with offices in Kochi. In five years, we&apos;ve
-                    helped over 500 travellers discover India&apos;s most stunning landscapes, international beach
-                    escapes, and deeply spiritual pilgrimage circuits.
+                    Trip 2 Tackle was founded in Vijayawada, Andhra Pradesh. In just a few years, we&apos;ve helped
+                    hundreds of travellers from across AP and Telangana discover India&apos;s most stunning
+                    landscapes, international beach escapes, and deeply spiritual pilgrimage circuits.
                   </p>
                   <p>
                     Today, we offer group packages, corporate travel, sacred pilgrimages, and fully custom itineraries
@@ -249,34 +225,29 @@ export default function AboutPage() {
               </p>
             </motion.div>
 
-            <div className="grid grid-cols-1 gap-7 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="mx-auto grid max-w-3xl grid-cols-1 gap-7 sm:grid-cols-2">
               {team.map((member, i) => (
                 <motion.div
                   key={member.name}
                   initial={{ opacity: 0, y: 24 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ delay: i * 0.08, duration: 0.5 }}
+                  transition={{ delay: i * 0.1, duration: 0.5 }}
                   className="overflow-hidden rounded-[24px] bg-white shadow-[0_8px_30px_rgba(10,31,68,0.08)] transition-all hover:-translate-y-1 hover:shadow-[0_18px_44px_rgba(10,31,68,0.13)]"
                 >
-                  <div className="relative h-64 overflow-hidden">
-                    <Image
-                      src={member.image}
-                      alt={member.name}
-                      fill
-                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                      className="object-cover object-top"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#0A1F44]/80 via-transparent to-transparent" />
-                    <div className="absolute bottom-4 left-4 right-4">
-                      <p className="font-playfair text-xl font-bold text-white">{member.name}</p>
-                      <p className="mt-0.5 font-dm text-xs text-[#FF6A00] font-semibold tracking-wider uppercase">
-                        {member.role}
-                      </p>
+                  <div className="flex h-52 items-center justify-center bg-[#0A1F44]">
+                    <div className="flex h-24 w-24 items-center justify-center rounded-full bg-[#FF6A00] shadow-[0_0_0_4px_rgba(255,106,0,0.25)]">
+                      <span className="font-playfair text-3xl font-bold text-white tracking-tight">
+                        {member.initials}
+                      </span>
                     </div>
                   </div>
-                  <div className="p-5">
-                    <p className="font-dm text-sm leading-6 text-[#0A1F44]/65">{member.bio}</p>
+                  <div className="p-6">
+                    <p className="font-playfair text-xl font-bold text-[#0A1F44]">{member.name}</p>
+                    <p className="mt-0.5 font-dm text-xs font-semibold uppercase tracking-wider text-[#FF6A00]">
+                      {member.role}
+                    </p>
+                    <p className="mt-3 font-dm text-sm leading-6 text-[#0A1F44]/65">{member.bio}</p>
                   </div>
                 </motion.div>
               ))}
