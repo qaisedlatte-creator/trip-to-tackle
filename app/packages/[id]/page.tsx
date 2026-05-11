@@ -22,6 +22,7 @@ import Navbar from "@/components/blocks/navbar";
 import Footer from "@/components/blocks/footer";
 import BookingForm from "@/components/blocks/booking-form";
 import DepartureDates, { type DepartureDate } from "@/components/blocks/departure-dates";
+import PaymentModal from "@/components/blocks/payment-modal";
 import { packages, type Package } from "@/lib/packages";
 
 const fadeInView = {
@@ -141,6 +142,7 @@ export default function PackageDetailPage() {
   const [emailModalOpen, setEmailModalOpen] = useState(false);
   const [selectedDeparture, setSelectedDeparture] = useState<DepartureDate | null>(null);
   const [showBookingForm, setShowBookingForm] = useState(false);
+  const [paymentModalOpen, setPaymentModalOpen] = useState(false);
 
   const sidebarRef = useRef<HTMLDivElement>(null);
 
@@ -243,6 +245,12 @@ For enquiries: hello@trip2tackle.com | +91 83092 18545
   return (
     <>
       {emailModalOpen && <EmailModal pkg={pkg} onClose={() => setEmailModalOpen(false)} />}
+      <PaymentModal
+        pkg={pkg}
+        open={paymentModalOpen}
+        onClose={() => setPaymentModalOpen(false)}
+        initialDate={selectedDeparture?.date ?? ""}
+      />
       <Navbar />
 
       <main className="bg-[#F7F7F7]">
@@ -486,14 +494,15 @@ For enquiries: hello@trip2tackle.com | +91 83092 18545
                         </div>
                       </div>
                     ) : !showBookingForm ? (
-                      /* Date selected, show proceed */
+                      /* Date selected — dual CTA: Book Directly OR Enquiry Form */
                       <motion.div
                         initial={{ opacity: 0, y: 8 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.35 }}
                       >
+                        {/* confirmed date chip */}
                         <div className="mb-4 rounded-xl border border-[#22c55e]/20 bg-[#f0fdf4] px-4 py-3">
-                          <p className="font-dm text-xs text-[#16a34a]/70 uppercase tracking-wide font-semibold mb-1">Date Confirmed</p>
+                          <p className="font-dm text-xs text-[#16a34a]/70 uppercase tracking-wide font-semibold mb-1">Date Selected</p>
                           <p className="font-dm text-sm font-bold text-[#0A1F44]">
                             {formatDate(selectedDeparture.date)}
                           </p>
@@ -501,15 +510,36 @@ For enquiries: hello@trip2tackle.com | +91 83092 18545
                             {selectedDeparture.slotsLeft} of {selectedDeparture.slotsTotal} seats available
                           </p>
                         </div>
+
+                        {/* PRIMARY: direct booking */}
+                        <button
+                          onClick={() => setPaymentModalOpen(true)}
+                          className="w-full rounded-2xl bg-[#0A1F44] px-5 py-4 font-dm text-base font-bold text-white transition-colors hover:bg-[#1a3a6b]"
+                        >
+                          Book Directly →
+                        </button>
+                        <p className="mt-1.5 font-dm text-[10px] text-center text-[#0A1F44]/38">
+                          Secure payment via Razorpay
+                        </p>
+
+                        {/* divider */}
+                        <div className="my-3 flex items-center gap-3">
+                          <div className="flex-1 h-px bg-[#0A1F44]/10" />
+                          <span className="font-dm text-xs text-[#0A1F44]/35">or</span>
+                          <div className="flex-1 h-px bg-[#0A1F44]/10" />
+                        </div>
+
+                        {/* SECONDARY: enquiry form */}
                         <button
                           onClick={handleProceed}
-                          className="w-full rounded-2xl bg-[#FF6A00] px-5 py-4 font-dm text-base font-bold text-white transition-colors hover:bg-[#e55f00]"
+                          className="w-full rounded-2xl border border-[#FF6A00]/60 px-5 py-3 font-dm text-sm font-semibold text-[#FF6A00] transition-colors hover:bg-[#FF6A00] hover:text-white"
                         >
-                          Continue to Enquiry Form →
+                          Send Enquiry Form
                         </button>
+
                         <button
                           onClick={() => setSelectedDeparture(null)}
-                          className="mt-2 w-full rounded-xl py-2 font-dm text-xs text-[#0A1F44]/40 hover:text-[#0A1F44] transition-colors"
+                          className="mt-2 w-full rounded-xl py-2 font-dm text-xs text-[#0A1F44]/38 hover:text-[#0A1F44] transition-colors"
                         >
                           Change date
                         </button>

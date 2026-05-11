@@ -11,7 +11,7 @@ import HeroScrollAnimation from "@/components/blocks/scroll-animation";
 import Testimonials from "@/components/blocks/testimonials";
 import BookingSteps from "@/components/blocks/booking-steps";
 import InquiryForm from "@/components/blocks/inquiry-form";
-import LogoCarousel from "@/components/blocks/logo-carousel";
+import BestSellingCarousel from "@/components/blocks/best-selling-carousel";
 import { packages } from "@/lib/packages";
 
 const fadeUp = {
@@ -501,8 +501,7 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* TRUSTED BY — animated logo carousel */}
-        <LogoCarousel label="Trusted by leading organisations" heading="Partnering With India's Best" />
+        <BestSellingCarousel />
 
         <Testimonials />
         <BookingSteps />

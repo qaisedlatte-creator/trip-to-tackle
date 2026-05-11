@@ -13,9 +13,10 @@ interface Props {
   pkg: Package | null;
   open: boolean;
   onClose: () => void;
+  initialDate?: string;
 }
 
-export default function PaymentModal({ pkg, open, onClose }: Props) {
+export default function PaymentModal({ pkg, open, onClose, initialDate = "" }: Props) {
   const { user, openAuth, addBooking } = useAuth();
 
   const [travelers, setTravelers] = useState(2);
@@ -27,14 +28,15 @@ export default function PaymentModal({ pkg, open, onClose }: Props) {
   const [confirmed, setConfirmed] = useState(false);
   const [bookingRef, setBookingRef] = useState("");
 
-  /* pre-fill fields from logged-in user */
+  /* pre-fill fields from logged-in user and selected date */
   useEffect(() => {
     if (user) {
       setName(user.name);
       setEmail(user.email);
       setPhone(user.phone);
     }
-  }, [user, open]);
+    if (initialDate) setTravelDate(initialDate);
+  }, [user, open, initialDate]);
 
   if (!pkg) return null;
 
@@ -108,7 +110,7 @@ export default function PaymentModal({ pkg, open, onClose }: Props) {
 
   const handleClose = () => {
     setConfirmed(false); setBookingRef("");
-    setTravelers(2);     setTravelDate("");
+    setTravelers(2);     setTravelDate(initialDate);
     if (!user) { setName(""); setEmail(""); setPhone(""); }
     onClose();
   };
