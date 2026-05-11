@@ -8,23 +8,16 @@ import { ArrowRight } from "lucide-react";
 import Navbar from "@/components/blocks/navbar";
 import Footer from "@/components/blocks/footer";
 import { destinations } from "@/lib/destinations";
+import { packages } from "@/lib/packages";
 
-const filters = ["All", "Beach", "Mountains", "Culture", "Wildlife", "City Break", "Backpacking"] as const;
+// Destination slugs that have fixed group-departure packages
+const GROUP_DEPARTURE_SLUGS = [...new Set(packages.map((p) => p.destinationSlug))];
 
-type Filter = (typeof filters)[number];
-type CategoryFilter = Exclude<Filter, "All">;
-type DestinationSlug = (typeof destinations)[number]["slug"];
+// All filter options: "All" first, then "Group Departures", then each destination name
+const DESTINATION_FILTERS = destinations.map((d) => d.name);
+const ALL_FILTERS = ["All", "Group Departures", ...DESTINATION_FILTERS];
 
-const CATEGORY_MAP: Record<CategoryFilter, DestinationSlug[]> = {
-  Beach: ["maldives", "bali", "thailand", "alappuzha"],
-  Mountains: ["kashmir", "manali", "sar-pass", "kodaikanal", "ooty", "munnar"],
-  Culture: ["bali", "thailand", "vietnam", "malaysia", "singapore"],
-  Wildlife: ["wayanad"],
-  "City Break": ["singapore", "malaysia"],
-  Backpacking: ["sar-pass", "vietnam", "thailand", "manali"],
-};
-
-const BADGE_MAP: Partial<Record<DestinationSlug, string>> = {
+const BADGE_MAP: Record<string, string> = {
   kashmir: "Trending",
   bali: "Bestseller",
   maldives: "Luxury",
@@ -42,14 +35,16 @@ const BADGE_MAP: Partial<Record<DestinationSlug, string>> = {
 };
 
 export default function DestinationsPage() {
-  const [activeFilter, setActiveFilter] = useState<Filter>("All");
+  const [activeFilter, setActiveFilter] = useState("All");
   const headerRef = useRef<HTMLDivElement | null>(null);
   const headerInView = useInView(headerRef, { once: true });
 
   const filteredDestinations =
     activeFilter === "All"
       ? destinations
-      : destinations.filter((destination) => CATEGORY_MAP[activeFilter].includes(destination.slug));
+      : activeFilter === "Group Departures"
+      ? destinations.filter((d) => GROUP_DEPARTURE_SLUGS.includes(d.slug))
+      : destinations.filter((d) => d.name === activeFilter);
 
   return (
     <>
@@ -129,29 +124,51 @@ export default function DestinationsPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={headerInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.7, delay: 0.26 }}
-            style={{ display: "flex", gap: "10px", flexWrap: "wrap" }}
+            style={{ display: "flex", gap: "8px", flexWrap: "wrap" }}
           >
-            {filters.map((filter) => (
-              <button
-                key={filter}
-                onClick={() => setActiveFilter(filter)}
-                className="font-dm"
-                style={{
-                  padding: "8px 20px",
-                  borderRadius: "100px",
-                  fontSize: "13px",
-                  fontWeight: 500,
-                  cursor: "pointer",
-                  border: "1.5px solid",
-                  borderColor: activeFilter === filter ? "#FF6A00" : "rgba(255,255,255,0.2)",
-                  background: activeFilter === filter ? "#FF6A00" : "transparent",
-                  color: activeFilter === filter ? "#fff" : "rgba(255,255,255,0.7)",
-                  transition: "all 0.2s",
-                }}
-              >
-                {filter}
-              </button>
-            ))}
+            {ALL_FILTERS.map((filter) => {
+              const isActive   = activeFilter === filter;
+              const isGroup    = filter === "Group Departures";
+              const isDivider  = filter === DESTINATION_FILTERS[0]; // first destination name after the special filters
+
+              return (
+                <button
+                  key={filter}
+                  onClick={() => setActiveFilter(filter)}
+                  className="font-dm"
+                  style={{
+                    padding: isGroup ? "8px 18px" : "8px 16px",
+                    borderRadius: "100px",
+                    fontSize: "12.5px",
+                    fontWeight: isActive ? 700 : isGroup ? 600 : 500,
+                    cursor: "pointer",
+                    border: "1.5px solid",
+                    borderColor: isActive
+                      ? "#FF6A00"
+                      : isGroup
+                      ? "rgba(255,106,0,0.45)"
+                      : "rgba(255,255,255,0.18)",
+                    background: isActive
+                      ? "#FF6A00"
+                      : isGroup
+                      ? "rgba(255,106,0,0.12)"
+                      : "transparent",
+                    color: isActive
+                      ? "#fff"
+                      : isGroup
+                      ? "#FF6A00"
+                      : "rgba(255,255,255,0.68)",
+                    transition: "all 0.2s",
+                    marginLeft: isDivider ? "6px" : 0,
+                  }}
+                >
+                  {isGroup && !isActive && (
+                    <span style={{ marginRight: "5px", fontSize: "10px" }}>✦</span>
+                  )}
+                  {filter}
+                </button>
+              );
+            })}
           </motion.div>
         </div>
       </div>
