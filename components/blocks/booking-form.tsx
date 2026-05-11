@@ -16,13 +16,14 @@ interface BookingFormProps {
   price?: string;
   onClose?: () => void;
   className?: string;
+  initialDate?: string;
 }
 
-export default function BookingForm({ tourName, price, onClose, className = "" }: BookingFormProps) {
+export default function BookingForm({ tourName, price, onClose, className = "", initialDate = "" }: BookingFormProps) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
-  const [travelDate, setTravelDate] = useState("");
+  const [travelDate, setTravelDate] = useState(initialDate);
   const [rooms, setRooms] = useState<Room[]>([{ adults: 2, children: 0 }]);
   const [occupancy, setOccupancy] = useState<OccupancyType>("Double");
   const [submitting, setSubmitting] = useState(false);

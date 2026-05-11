@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
@@ -9,10 +10,9 @@ import Footer from "@/components/blocks/footer";
 import HeroScrollAnimation from "@/components/blocks/scroll-animation";
 import Testimonials from "@/components/blocks/testimonials";
 import BookingSteps from "@/components/blocks/booking-steps";
-import PaymentModal from "@/components/blocks/payment-modal";
 import InquiryForm from "@/components/blocks/inquiry-form";
+import LogoCarousel from "@/components/blocks/logo-carousel";
 import { packages } from "@/lib/packages";
-import type { Package } from "@/lib/packages";
 
 const fadeUp = {
   initial: { opacity: 0, y: 18 },
@@ -22,16 +22,12 @@ const fadeUp = {
 } as const;
 
 export default function HomePage() {
-  const [selectedPkg, setSelectedPkg] = useState<Package | null>(null);
-  const [modalOpen, setModalOpen] = useState(false);
+  const router = useRouter();
   const [couponEmail, setCouponEmail] = useState("");
   const [couponShown, setCouponShown] = useState(false);
 
-  const openModal = (pkg: Package) => { setSelectedPkg(pkg); setModalOpen(true); };
-
   return (
     <>
-      <PaymentModal pkg={selectedPkg} open={modalOpen} onClose={() => setModalOpen(false)} />
       <Navbar />
 
       <main>
@@ -39,7 +35,7 @@ export default function HomePage() {
         <HeroScrollAnimation />
 
         {/* WHY TRIP 2 TACKLE — rich split section */}
-        <section className="py-24 bg-white overflow-hidden">
+        <section className="py-24 overflow-hidden" style={{ background: "linear-gradient(135deg, #f9fafb 0%, #fff9f5 55%, #f5f8ff 100%)" }}>
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
 
@@ -237,7 +233,7 @@ export default function HomePage() {
         </section>
 
         {/* PACKAGES */}
-        <section id="packages" className="py-24 bg-white">
+        <section id="packages" className="py-24" style={{ background: "linear-gradient(to bottom, #f5f7ff 0%, #ffffff 40%, #fff8f3 100%)" }}>
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <motion.div {...fadeUp} className="mb-12">
               <p className="section-label mb-2">Our Packages</p>
@@ -304,9 +300,8 @@ export default function HomePage() {
                         </div>
                         <button
                           onClick={(e) => {
-                            e.preventDefault();
                             e.stopPropagation();
-                            openModal(pkg);
+                            router.push(`/packages/${pkg.id}`);
                           }}
                           className="font-dm font-bold text-sm px-5 py-2.5 rounded-xl transition-all duration-200"
                           style={{ background: "#0A1F44", color: "#fff" }}
@@ -506,11 +501,14 @@ export default function HomePage() {
           </div>
         </section>
 
+        {/* TRUSTED BY — animated logo carousel */}
+        <LogoCarousel label="Trusted by leading organisations" heading="Partnering With India's Best" />
+
         <Testimonials />
         <BookingSteps />
 
         {/* INQUIRY FORM */}
-        <section className="py-24 bg-white">
+        <section className="py-24" style={{ background: "linear-gradient(160deg, #fafcff 0%, #fffef8 100%)" }}>
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
               <motion.div {...fadeUp}>

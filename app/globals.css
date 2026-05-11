@@ -22,7 +22,7 @@
 
 * { box-sizing: border-box; }
 
-html { scroll-behavior: auto; }
+html { scroll-behavior: smooth; }
 
 body {
   color: #171717;
@@ -85,10 +85,35 @@ h1, h2, h3 {
   mask-image: linear-gradient(to bottom, transparent, black 20%, black 80%, transparent);
 }
 
-.pkg-card { transition: transform 0.25s ease, box-shadow 0.25s ease; }
-.pkg-card:hover { transform: translateY(-5px); box-shadow: 0 14px 40px rgba(0,0,0,0.11); }
-.pkg-img-inner { transition: transform 0.5s ease; }
-.pkg-card:hover .pkg-img-inner { transform: scale(1.05); }
+.pkg-card { transition: transform 0.35s cubic-bezier(0.4,0,0.2,1), box-shadow 0.35s cubic-bezier(0.4,0,0.2,1); }
+.pkg-card:hover { transform: translateY(-6px); box-shadow: 0 20px 50px rgba(0,0,0,0.13); }
+.pkg-img-inner { transition: transform 0.6s cubic-bezier(0.4,0,0.2,1); }
+.pkg-card:hover .pkg-img-inner { transform: scale(1.07); }
+
+/* Logo carousel */
+@keyframes logo-marquee {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* Corporate service cards */
+.service-card { transition: transform 0.35s cubic-bezier(0.4,0,0.2,1), box-shadow 0.35s cubic-bezier(0.4,0,0.2,1), border-color 0.35s ease; }
+.service-card:hover { transform: translateY(-7px); box-shadow: 0 28px 64px rgba(10,31,68,0.16); border-color: rgba(255,106,0,0.35) !important; }
+.service-card-icon { transition: background 0.35s ease, transform 0.35s ease; }
+.service-card:hover .service-card-icon { background: rgba(255,106,0,0.9) !important; transform: scale(1.08); }
+.service-card-icon svg { transition: color 0.35s ease; }
+.service-card:hover .service-card-icon svg { color: #ffffff !important; }
+.service-card-title { transition: color 0.35s ease; }
+.service-card:hover .service-card-title { color: #ffffff !important; }
+.service-card-desc { transition: color 0.35s ease; }
+.service-card:hover .service-card-desc { color: rgba(255,255,255,0.75) !important; }
+.service-card-overlay {
+  position: absolute; inset: 0; opacity: 0; border-radius: inherit;
+  background: linear-gradient(135deg, #0A1F44 0%, #1a3a6b 100%);
+  transition: opacity 0.35s ease;
+  pointer-events: none;
+}
+.service-card:hover .service-card-overlay { opacity: 1; }
 
 
 @layer utilities {

@@ -10,6 +10,7 @@ import {
 import Navbar from "@/components/blocks/navbar";
 import Footer from "@/components/blocks/footer";
 import BookingForm from "@/components/blocks/booking-form";
+import LogoCarousel from "@/components/blocks/logo-carousel";
 import { corporatePackages } from "@/lib/corporate";
 
 const fadeUp = {
@@ -24,37 +25,31 @@ const services = [
     Icon: Briefcase,
     title: "MICE Travel",
     desc: "Meetings, incentives, conferences, and exhibitions — end-to-end logistics handled by a dedicated MICE specialist.",
-    color: "#1a3a6b",
   },
   {
     Icon: Users,
     title: "Team Offsites",
     desc: "Retreat-style experiences that build cohesion, creativity, and morale across teams of 10 to 500+.",
-    color: "#1e4a8a",
   },
   {
     Icon: Award,
     title: "Incentive Travel",
     desc: "Reward your top performers with curated escapes — Bali, Maldives, or Kashmir — fully managed.",
-    color: "#1a3a6b",
   },
   {
     Icon: Globe,
     title: "Rotational Client Travel",
     desc: "Seamless coordination for client visiting circuits across India with accommodation, transport, and meeting prep.",
-    color: "#1e4a8a",
   },
   {
     Icon: BarChart3,
     title: "Annual Conference Trips",
     desc: "Venue sourcing, group transfers, pre/post-conference excursions and full event-day logistics.",
-    color: "#1a3a6b",
   },
   {
     Icon: HeadphonesIcon,
     title: "24/7 Dedicated Support",
     desc: "A named account manager on every corporate trip. One call solves everything, at any hour.",
-    color: "#1e4a8a",
   },
 ];
 
@@ -93,7 +88,6 @@ const testimonials = [
   },
 ];
 
-const logos = ["Infosys", "TCS", "Wipro", "HDFC Bank", "Cochin Shipyard", "BPCL", "L&T", "Mphasis"];
 
 export default function CorporatePage() {
   const [activeTestimonial, setActiveTestimonial] = useState(0);
@@ -214,30 +208,28 @@ export default function CorporatePage() {
             </motion.div>
 
             <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
-              {services.map(({ Icon, title, desc, color }, i) => (
+              {services.map(({ Icon, title, desc }, i) => (
                 <motion.div
                   key={title}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.07, duration: 0.5 }}
-                  className="group relative overflow-hidden rounded-2xl border border-[#0A1F44]/08 bg-white p-6 transition-all hover:-translate-y-1 hover:shadow-[0_16px_40px_rgba(10,31,68,0.12)]"
+                  className="service-card relative overflow-hidden rounded-[20px] border border-[#0A1F44]/08 p-7"
+                  style={{ background: "linear-gradient(135deg, #ffffff 0%, #f8f9ff 100%)" }}
                 >
-                  <div
-                    className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                    style={{ background: `linear-gradient(135deg, ${color} 0%, ${color}dd 100%)` }}
-                  />
+                  <div className="service-card-overlay" />
                   <div className="relative z-10">
                     <div
-                      className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl transition-colors"
+                      className="service-card-icon mb-5 flex h-12 w-12 items-center justify-center rounded-xl"
                       style={{ background: "rgba(10,31,68,0.08)" }}
                     >
-                      <Icon size={22} className="text-[#0A1F44] group-hover:text-white transition-colors" />
+                      <Icon size={22} style={{ color: "#0A1F44" }} />
                     </div>
-                    <h3 className="font-playfair text-lg font-bold text-[#0A1F44] group-hover:text-white transition-colors">
+                    <h3 className="service-card-title font-playfair text-lg font-bold" style={{ color: "#0A1F44" }}>
                       {title}
                     </h3>
-                    <p className="mt-2 font-dm text-sm leading-6 text-[#0A1F44]/60 group-hover:text-white/75 transition-colors">
+                    <p className="service-card-desc mt-2 font-dm text-sm leading-6" style={{ color: "rgba(10,31,68,0.6)" }}>
                       {desc}
                     </p>
                   </div>
@@ -247,24 +239,11 @@ export default function CorporatePage() {
           </div>
         </section>
 
-        {/* CLIENT LOGOS */}
-        <section className="overflow-hidden border-y border-[#0A1F44]/08 bg-white py-10">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <p className="mb-6 text-center font-dm text-xs font-semibold uppercase tracking-widest text-[#0A1F44]/35">
-              Trusted by leading organisations
-            </p>
-            <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-4">
-              {logos.map((name) => (
-                <div
-                  key={name}
-                  className="rounded-lg border border-[#0A1F44]/10 bg-[#F5F6FA] px-5 py-2.5 font-dm text-sm font-bold text-[#0A1F44]/40 tracking-wide"
-                >
-                  {name}
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
+        {/* CLIENT LOGOS — animated carousel */}
+        <LogoCarousel
+          label="Trusted by leading organisations"
+          heading="Companies That Trust Us"
+        />
 
         {/* TESTIMONIALS CAROUSEL */}
         <section className="bg-[#0A1F44] py-24">

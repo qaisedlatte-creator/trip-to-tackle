@@ -9,13 +9,11 @@ import { useAuth } from "@/context/auth-context";
 
 const links = [
   { href: "/", label: "Home" },
-  { href: "/destinations", label: "Destinations" },
-  { href: "/blog", label: "Blog" },
-  { href: "/careers", label: "Careers" },
   { href: "/about", label: "About Us" },
-  { href: "/contact", label: "Contact" },
+  { href: "/destinations", label: "Destinations" },
   { href: "/corporate", label: "Corporate" },
   { href: "/pilgrimages", label: "Pilgrimage" },
+  { href: "/contact", label: "Contact" },
 ];
 
 export default function Navbar() {

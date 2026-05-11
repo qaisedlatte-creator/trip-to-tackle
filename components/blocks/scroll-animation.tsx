@@ -216,14 +216,13 @@ export default function HeroScrollAnimation() {
             textRef.current.style.pointerEvents = ta > 0.3 ? "auto" : "none";
           }
           if (hintRef.current) {
-            hintRef.current.style.opacity = ta < 0.1 ? "1" : "0";
+            hintRef.current.style.opacity = p < 0.12 ? String(1 - p / 0.12) : "0";
           }
 
-          /* search widget — simultaneous with brand text */
-          const sa = p < 0.80 ? 0 : Math.min(1, (p - 0.80) / 0.12);
+          /* search widget — always visible once loaded */
           if (searchRef.current) {
-            searchRef.current.style.opacity      = String(sa);
-            searchRef.current.style.pointerEvents = sa > 0.3 ? "auto" : "none";
+            searchRef.current.style.opacity      = "1";
+            searchRef.current.style.pointerEvents = "auto";
           }
         }
       }
@@ -383,8 +382,8 @@ export default function HeroScrollAnimation() {
             borderRadius: "16px",
             padding: isMobile ? "16px 18px 14px" : "24px 30px 22px",
             zIndex: 14,
-            opacity: 0,
-            pointerEvents: "none",
+            opacity: 1,
+            pointerEvents: "auto",
             border: "1px solid rgba(255,255,255,0.14)",
           }}
         >

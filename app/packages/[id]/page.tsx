@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useParams } from "next/navigation";
@@ -16,10 +16,10 @@ import {
   Wallet,
   X,
   Send,
+  ChevronDown,
 } from "lucide-react";
 import Navbar from "@/components/blocks/navbar";
 import Footer from "@/components/blocks/footer";
-import PaymentModal from "@/components/blocks/payment-modal";
 import BookingForm from "@/components/blocks/booking-form";
 import DepartureDates, { type DepartureDate } from "@/components/blocks/departure-dates";
 import { packages, type Package } from "@/lib/packages";
@@ -39,6 +39,10 @@ function buildDepartures(price: number): DepartureDate[] {
     { date: new Date(base.getFullYear(), base.getMonth(), base.getDate() + 46).toISOString().split("T")[0], slotsTotal: 30, slotsLeft: 30, price, label: "New" },
     { date: new Date(base.getFullYear(), base.getMonth(), base.getDate() + 65).toISOString().split("T")[0], slotsTotal: 30, slotsLeft: 30, price, label: "New" },
   ];
+}
+
+function formatDate(dateStr: string) {
+  return new Date(dateStr).toLocaleDateString("en-IN", { day: "numeric", month: "long", year: "numeric" });
 }
 
 function EmailModal({ pkg, onClose }: { pkg: Package; onClose: () => void }) {
@@ -134,14 +138,29 @@ export default function PackageDetailPage() {
   const id = Array.isArray(idParam) ? idParam[0] : idParam;
   const pkg = packages.find((item) => item.id === id);
 
-  const [selectedPkg, setSelectedPkg] = useState<Package | null>(null);
-  const [modalOpen, setModalOpen] = useState(false);
   const [emailModalOpen, setEmailModalOpen] = useState(false);
+  const [selectedDeparture, setSelectedDeparture] = useState<DepartureDate | null>(null);
   const [showBookingForm, setShowBookingForm] = useState(false);
 
-  const openBooking = (targetPkg: Package) => {
-    setSelectedPkg(targetPkg);
-    setModalOpen(true);
+  const sidebarRef = useRef<HTMLDivElement>(null);
+
+  const handleDateSelect = (d: DepartureDate) => {
+    setSelectedDeparture(d);
+    setShowBookingForm(false); // reset form when date changes
+    // Smooth scroll to sidebar on mobile
+    if (window.innerWidth < 1024) {
+      setTimeout(() => {
+        sidebarRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+      }, 200);
+    }
+  };
+
+  const handleProceed = () => {
+    if (!selectedDeparture) return;
+    setShowBookingForm(true);
+    setTimeout(() => {
+      sidebarRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+    }, 100);
   };
 
   const downloadItinerary = () => {
@@ -223,7 +242,6 @@ For enquiries: hello@trip2tackle.com | +91 83092 18545
 
   return (
     <>
-      <PaymentModal pkg={selectedPkg} open={modalOpen} onClose={() => setModalOpen(false)} />
       {emailModalOpen && <EmailModal pkg={pkg} onClose={() => setEmailModalOpen(false)} />}
       <Navbar />
 
@@ -252,7 +270,6 @@ For enquiries: hello@trip2tackle.com | +91 83092 18545
                 {pkg.name}
               </h1>
               <p className="mt-5 max-w-2xl font-dm text-lg leading-8 text-white/65">{pkg.description}</p>
-              {/* Itinerary download/email — visible below headline */}
               <div className="mt-7 flex flex-wrap gap-3">
                 <button
                   onClick={downloadItinerary}
@@ -299,7 +316,7 @@ For enquiries: hello@trip2tackle.com | +91 83092 18545
         {/* MAIN CONTENT */}
         <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 gap-12 lg:grid-cols-[minmax(0,1fr)_380px]">
-            {/* LEFT — Itinerary + Highlights */}
+            {/* LEFT — Itinerary + Highlights + Departure Dates */}
             <div>
               <motion.div {...fadeInView} className="mb-14">
                 <p className="section-label mb-3">Day by Day</p>
@@ -363,19 +380,45 @@ For enquiries: hello@trip2tackle.com | +91 83092 18545
                 </motion.div>
               </div>
 
-              {/* DEPARTURE DATES */}
+              {/* DEPARTURE DATES — Step 1 of group booking flow */}
               <motion.div
                 {...fadeInView}
                 className="mt-14 rounded-[24px] border border-[#0A1F44]/08 bg-white p-6 shadow-[0_14px_40px_rgba(10,31,68,0.06)]"
               >
-                <DepartureDates departures={departures} priceLabel={pkg.priceLabel} />
+                <DepartureDates
+                  departures={departures}
+                  priceLabel={pkg.priceLabel}
+                  onSelect={handleDateSelect}
+                />
+
+                {/* Prompt after selecting a date */}
+                {selectedDeparture && !showBookingForm && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 8 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.35 }}
+                    className="mt-5 flex items-center justify-between rounded-xl border border-[#FF6A00]/25 bg-[#fff8f3] px-4 py-3"
+                  >
+                    <div className="flex items-center gap-2 font-dm text-sm text-[#0A1F44]">
+                      <CalendarDays size={15} className="text-[#FF6A00]" />
+                      <span>Date selected: <strong>{formatDate(selectedDeparture.date)}</strong></span>
+                    </div>
+                    <button
+                      onClick={handleProceed}
+                      className="flex items-center gap-1.5 rounded-lg bg-[#FF6A00] px-4 py-2 font-dm text-sm font-bold text-white transition-colors hover:bg-[#e55f00]"
+                    >
+                      Proceed <ChevronDown size={14} className="rotate-[-90deg]" />
+                    </button>
+                  </motion.div>
+                )}
               </motion.div>
             </div>
 
-            {/* RIGHT — Sticky booking card */}
+            {/* RIGHT — Sticky booking sidebar */}
             <div>
               <motion.div
                 {...fadeInView}
+                ref={sidebarRef}
                 className="sticky top-24 space-y-4"
               >
                 {/* Price card */}
@@ -399,7 +442,7 @@ For enquiries: hello@trip2tackle.com | +91 83092 18545
                   <div className="rounded-[22px] border border-[#0A1F44]/6 bg-[#F7F7F7] p-5">
                     <p className="font-dm text-[11px] uppercase tracking-[0.14em] text-[#0A1F44]/50">Starting from</p>
                     <p className="mt-2 font-space text-4xl font-bold text-[#0A1F44]">{pkg.priceLabel}</p>
-                    <p className="mt-1 font-dm text-sm text-[#0A1F44]/58">per person, live booking confirmation</p>
+                    <p className="mt-1 font-dm text-sm text-[#0A1F44]/58">per person · group departure</p>
                   </div>
 
                   {/* Itinerary actions */}
@@ -417,29 +460,85 @@ For enquiries: hello@trip2tackle.com | +91 83092 18545
                       <Mail size={13} /> Email PDF
                     </button>
                   </div>
-
-                  <button
-                    onClick={() => openBooking(pkg)}
-                    className="mt-4 w-full rounded-2xl bg-[#FF6A00] px-5 py-4 font-dm text-base font-bold text-white transition-colors hover:bg-[#e55f00]"
-                  >
-                    Book Now
-                  </button>
                 </div>
 
-                {/* Enquiry form toggle */}
-                <div className="rounded-[24px] border border-[#0A1F44]/08 bg-white overflow-hidden">
-                  <button
-                    onClick={() => setShowBookingForm(!showBookingForm)}
-                    className="flex w-full items-center justify-between px-6 py-4 font-dm text-sm font-bold text-[#0A1F44] hover:bg-[#F7F7F7] transition"
-                  >
-                    <span>Enquire / Custom Booking</span>
-                    <span className="text-[#0A1F44]/40">{showBookingForm ? "▲" : "▼"}</span>
-                  </button>
-                  {showBookingForm && (
-                    <div className="px-6 pb-6">
-                      <BookingForm tourName={pkg.name} price={pkg.priceLabel} />
-                    </div>
-                  )}
+                {/* GROUP BOOKING — Step 2: date gate + inquiry form */}
+                <div className="overflow-hidden rounded-[24px] border border-[#0A1F44]/08 bg-white">
+                  <div className="border-b border-[#0A1F44]/06 px-6 py-5">
+                    <p className="section-label mb-1">Group Booking</p>
+                    <h3 className="font-playfair text-xl font-bold text-[#0A1F44]">Enquire / Custom Booking</h3>
+                  </div>
+
+                  <div className="px-6 py-5">
+                    {!selectedDeparture ? (
+                      /* No date selected yet */
+                      <div className="rounded-xl border border-dashed border-[#0A1F44]/15 bg-[#F7F8FF] px-5 py-6 text-center">
+                        <div className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-[#FF6A00]/10">
+                          <CalendarDays size={22} className="text-[#FF6A00]" />
+                        </div>
+                        <p className="font-playfair text-base font-bold text-[#0A1F44]">Select a Departure Date</p>
+                        <p className="mt-1.5 font-dm text-xs leading-5 text-[#0A1F44]/55">
+                          Choose an upcoming date from the itinerary section below to unlock the booking form.
+                        </p>
+                        <div className="mt-4 flex items-center justify-center gap-1.5 font-dm text-xs font-semibold text-[#FF6A00]">
+                          <ChevronDown size={14} />
+                          Scroll down to select a date
+                        </div>
+                      </div>
+                    ) : !showBookingForm ? (
+                      /* Date selected, show proceed */
+                      <motion.div
+                        initial={{ opacity: 0, y: 8 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.35 }}
+                      >
+                        <div className="mb-4 rounded-xl border border-[#22c55e]/20 bg-[#f0fdf4] px-4 py-3">
+                          <p className="font-dm text-xs text-[#16a34a]/70 uppercase tracking-wide font-semibold mb-1">Date Confirmed</p>
+                          <p className="font-dm text-sm font-bold text-[#0A1F44]">
+                            {formatDate(selectedDeparture.date)}
+                          </p>
+                          <p className="font-dm text-xs text-[#0A1F44]/50 mt-0.5">
+                            {selectedDeparture.slotsLeft} of {selectedDeparture.slotsTotal} seats available
+                          </p>
+                        </div>
+                        <button
+                          onClick={handleProceed}
+                          className="w-full rounded-2xl bg-[#FF6A00] px-5 py-4 font-dm text-base font-bold text-white transition-colors hover:bg-[#e55f00]"
+                        >
+                          Continue to Enquiry Form →
+                        </button>
+                        <button
+                          onClick={() => setSelectedDeparture(null)}
+                          className="mt-2 w-full rounded-xl py-2 font-dm text-xs text-[#0A1F44]/40 hover:text-[#0A1F44] transition-colors"
+                        >
+                          Change date
+                        </button>
+                      </motion.div>
+                    ) : (
+                      /* Booking form unlocked with pre-filled date */
+                      <motion.div
+                        initial={{ opacity: 0, y: 12 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.4 }}
+                      >
+                        <div className="mb-4 rounded-xl border border-[#22c55e]/20 bg-[#f0fdf4] px-4 py-3">
+                          <p className="font-dm text-xs text-[#16a34a]/70 uppercase tracking-wide font-semibold mb-1">Selected Date</p>
+                          <p className="font-dm text-sm font-bold text-[#0A1F44]">{formatDate(selectedDeparture.date)}</p>
+                        </div>
+                        <BookingForm
+                          tourName={pkg.name}
+                          price={pkg.priceLabel}
+                          initialDate={selectedDeparture.date}
+                        />
+                        <button
+                          onClick={() => { setShowBookingForm(false); setSelectedDeparture(null); }}
+                          className="mt-3 w-full rounded-xl py-2 font-dm text-xs text-[#0A1F44]/40 hover:text-[#0A1F44] transition-colors"
+                        >
+                          ← Change departure date
+                        </button>
+                      </motion.div>
+                    )}
+                  </div>
                 </div>
               </motion.div>
             </div>
