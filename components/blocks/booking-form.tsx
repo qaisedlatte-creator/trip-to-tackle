@@ -144,19 +144,36 @@ export default function BookingForm({ tourName, price, onClose, className = "", 
             className="w-full rounded-xl border border-[#0A1F44]/12 bg-[#F7F7F7] px-4 py-3 font-dm text-sm text-[#0A1F44] outline-none focus:border-[#FF6A00] focus:ring-2 focus:ring-[#FF6A00]/15 transition"
           />
         </div>
-        <div>
-          <label className="mb-1 flex items-center gap-1.5 font-dm text-xs font-semibold uppercase tracking-wider text-[#0A1F44]/45">
-            <Calendar size={12} /> Travel Date *
-          </label>
-          <input
-            required
-            type="date"
-            min={today}
-            value={travelDate}
-            onChange={(e) => setTravelDate(e.target.value)}
-            className="w-full rounded-xl border border-[#0A1F44]/12 bg-[#F7F7F7] px-4 py-3 font-dm text-sm text-[#0A1F44] outline-none focus:border-[#FF6A00] focus:ring-2 focus:ring-[#FF6A00]/15 transition"
-          />
-        </div>
+
+        {initialDate ? (
+          /* Group departure — date is fixed, not editable */
+          <div>
+            <label className="mb-1 flex items-center gap-1.5 font-dm text-xs font-semibold uppercase tracking-wider text-[#16a34a]/70">
+              <Calendar size={12} /> Group Departure
+            </label>
+            <div className="flex items-center gap-2.5 rounded-xl border border-[#22c55e]/30 bg-[#f0fdf4] px-4 py-3">
+              <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#16a34a] text-white text-[9px] font-bold">✓</span>
+              <span className="font-dm text-sm font-semibold text-[#0A1F44]">
+                {new Date(initialDate).toLocaleDateString("en-IN", { day: "numeric", month: "long", year: "numeric" })}
+              </span>
+            </div>
+          </div>
+        ) : (
+          /* Custom booking — user selects date */
+          <div>
+            <label className="mb-1 flex items-center gap-1.5 font-dm text-xs font-semibold uppercase tracking-wider text-[#0A1F44]/45">
+              <Calendar size={12} /> Travel Date *
+            </label>
+            <input
+              required
+              type="date"
+              min={today}
+              value={travelDate}
+              onChange={(e) => setTravelDate(e.target.value)}
+              className="w-full rounded-xl border border-[#0A1F44]/12 bg-[#F7F7F7] px-4 py-3 font-dm text-sm text-[#0A1F44] outline-none focus:border-[#FF6A00] focus:ring-2 focus:ring-[#FF6A00]/15 transition"
+            />
+          </div>
+        )}
       </div>
 
       {/* Occupancy type */}
