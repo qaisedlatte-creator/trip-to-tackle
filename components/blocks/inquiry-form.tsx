@@ -28,6 +28,20 @@ export default function InquiryForm() {
     setErrors({});
     setStatus("loading");
 
+    // Save to database (fire-and-forget)
+    fetch("/api/orders", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        name,
+        phone,
+        email,
+        destination: "General Inquiry",
+        notes: message,
+        status: "Pending",
+      }),
+    }).catch(() => {});
+
     const lines: string[] = [
       "🌍 *New Enquiry — Trip 2 Tackle*",
       "",

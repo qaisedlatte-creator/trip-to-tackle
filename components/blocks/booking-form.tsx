@@ -55,13 +55,32 @@ export default function BookingForm({ tourName, price, onClose, className = "", 
 
   const today = new Date().toISOString().split("T")[0];
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setSubmitting(true);
 
     const dateDisplay = initialDate
       ? new Date(initialDate + "T00:00:00").toLocaleDateString("en-IN", { day: "numeric", month: "long", year: "numeric" })
       : travelDate || "Flexible";
+
+    // Save inquiry to database (fire-and-forget so WhatsApp always opens)
+    fetch("/api/orders", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        name,
+        phone,
+        email,
+        destination: tourName,
+        packageName: tourName,
+        travelDate: initialDate || travelDate || null,
+        occupancyType: occupancy,
+        rooms,
+        totalTravellers,
+        amount: 0,
+        status: "Pending",
+      }),
+    }).catch(() => {});
 
     const lines: string[] = [
       "🌍 *New Enquiry — Trip 2 Tackle*",
