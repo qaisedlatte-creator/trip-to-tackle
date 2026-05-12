@@ -55,10 +55,35 @@ export default function BookingForm({ tourName, price, onClose, className = "", 
 
   const today = new Date().toISOString().split("T")[0];
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setSubmitting(true);
-    await new Promise((r) => setTimeout(r, 1000));
+
+    const dateDisplay = initialDate
+      ? new Date(initialDate + "T00:00:00").toLocaleDateString("en-IN", { day: "numeric", month: "long", year: "numeric" })
+      : travelDate || "Flexible";
+
+    const lines: string[] = [
+      "🌍 *New Enquiry — Trip 2 Tackle*",
+      "",
+      `📦 *Package:* ${tourName}`,
+      ...(price ? [`💰 *Price:* ${price} per person`] : []),
+      `📅 *Departure:* ${dateDisplay}`,
+      "",
+      `👤 *Name:* ${name}`,
+      `📞 *Phone:* ${phone}`,
+      `📧 *Email:* ${email}`,
+      "",
+      `🛏️ *Occupancy:* ${occupancy}`,
+      `🏨 *Rooms:* ${rooms.length}`,
+      `👥 *Adults:* ${totalAdults}`,
+      ...(totalChildren > 0 ? [`👶 *Children:* ${totalChildren}`] : []),
+      `🧳 *Total Travellers:* ${totalTravellers}`,
+      "",
+      "_Enquiry via Trip2Tackle website_",
+    ];
+
+    window.open(`https://wa.me/918309218545?text=${encodeURIComponent(lines.join("\n"))}`, "_blank");
     setSubmitting(false);
     setSubmitted(true);
   };
@@ -69,10 +94,10 @@ export default function BookingForm({ tourName, price, onClose, className = "", 
         <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-green-50">
           <CheckCircle size={30} className="text-green-500" />
         </div>
-        <h3 className="font-playfair text-xl font-bold text-[#0A1F44]">Enquiry Sent!</h3>
+        <h3 className="font-playfair text-xl font-bold text-[#0A1F44]">WhatsApp Opened!</h3>
         <p className="mt-2 font-dm text-sm text-[#0A1F44]/60 leading-6">
-          We&apos;ve received your booking request for <strong>{tourName}</strong>.
-          <br />Our team will contact you at <strong>{email}</strong> within 24 hours.
+          Your <strong>{tourName}</strong> enquiry is pre-filled in WhatsApp.
+          <br />Just tap Send — our team will respond within a few hours.
         </p>
         <div className="mt-5 rounded-xl bg-[#F7F7F7] px-5 py-4 text-left w-full max-w-xs">
           <p className="font-dm text-xs font-semibold uppercase tracking-wider text-[#0A1F44]/45 mb-2">Summary</p>

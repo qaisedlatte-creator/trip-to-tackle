@@ -666,22 +666,44 @@ Vijayawada, Andhra Pradesh, India
                               {pkg.priceLabel}
                             </p>
                           </div>
-                          <button
-                            onClick={() => openBooking(pkg)}
-                            className="font-dm"
-                            style={{
-                              background: "#FF6A00",
-                              color: "#fff",
-                              border: "none",
-                              borderRadius: "12px",
-                              padding: "12px 18px",
-                              fontWeight: 700,
-                              cursor: "pointer",
-                              minHeight: "46px",
-                            }}
-                          >
-                            Book Now
-                          </button>
+                          {pkg.isGroupDeparture ? (
+                            <button
+                              onClick={() => openBooking(pkg)}
+                              className="font-dm"
+                              style={{
+                                background: "#FF6A00",
+                                color: "#fff",
+                                border: "none",
+                                borderRadius: "12px",
+                                padding: "12px 18px",
+                                fontWeight: 700,
+                                cursor: "pointer",
+                                minHeight: "46px",
+                              }}
+                            >
+                              Book Now
+                            </button>
+                          ) : (
+                            <a
+                              href={`https://wa.me/918309218545?text=${encodeURIComponent(`🌍 *Enquiry — Trip 2 Tackle*\n\n📦 *Package:* ${pkg.name}\n📍 *Destination:* ${pkg.destination}\n⏱️ *Duration:* ${pkg.duration}\n💰 *Price:* ${pkg.priceLabel} per person\n\nHi, I'd like to enquire about this trip.`)}`}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="font-dm"
+                              style={{
+                                background: "#FF6A00",
+                                color: "#fff",
+                                borderRadius: "12px",
+                                padding: "12px 18px",
+                                fontWeight: 700,
+                                minHeight: "46px",
+                                display: "inline-flex",
+                                alignItems: "center",
+                                textDecoration: "none",
+                              }}
+                            >
+                              Enquire Now
+                            </a>
+                          )}
                         </div>
                       </div>
                     </div>

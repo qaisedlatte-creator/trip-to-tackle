@@ -372,82 +372,83 @@ export default function HeroScrollAnimation() {
           ref={searchRef}
           style={{
             position: "absolute",
-            bottom: isMobile ? "5%" : "7%",
+            bottom: isMobile ? "4%" : "6%",
             left: "50%",
             transform: "translateX(-50%)",
-            width: isMobile ? "min(420px, calc(100% - 32px))" : "min(900px, calc(100% - 48px))",
-            background: "rgba(0, 0, 0, 0.42)",
-            backdropFilter: "blur(28px)",
-            WebkitBackdropFilter: "blur(28px)",
-            borderRadius: "16px",
-            padding: isMobile ? "16px 18px 14px" : "24px 30px 22px",
+            width: isMobile ? "min(460px, calc(100% - 28px))" : "min(1040px, calc(100% - 40px))",
+            background: "rgba(0, 0, 0, 0.48)",
+            backdropFilter: "blur(32px)",
+            WebkitBackdropFilter: "blur(32px)",
+            borderRadius: "22px",
+            padding: isMobile ? "22px 22px 20px" : "32px 42px 30px",
             zIndex: 14,
             opacity: 1,
             pointerEvents: "auto",
-            border: "1px solid rgba(255,255,255,0.14)",
+            border: "1px solid rgba(255,255,255,0.16)",
+            boxShadow: "0 24px 64px rgba(0,0,0,0.38)",
           }}
         >
             {/* header */}
-            <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "22px" }}>
-              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#FF6A00" strokeWidth="2.5" strokeLinecap="round">
+            <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: isMobile ? "20px" : "28px" }}>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FF6A00" strokeWidth="2.5" strokeLinecap="round">
                 <circle cx="11" cy="11" r="8" /><path d="m21 21-4.35-4.35" />
               </svg>
-              <span style={{ color: "#FF6A00", fontSize: isMobile ? "15px" : "18px", fontWeight: 700, fontFamily: "var(--font-body)", letterSpacing: "0.1px" }}>
+              <span style={{ color: "#FF6A00", fontSize: isMobile ? "17px" : "22px", fontWeight: 700, fontFamily: "var(--font-body)", letterSpacing: "0.1px" }}>
                 Search Your Perfect Holiday
               </span>
             </div>
 
             {/* 4 fields — real inputs, 2-col on mobile */}
-            <div style={{ display: "grid", gridTemplateColumns: isMobile ? "repeat(2, 1fr)" : "repeat(4, 1fr)", gap: isMobile ? "10px" : "14px", marginBottom: isMobile ? "14px" : "20px" }}>
+            <div style={{ display: "grid", gridTemplateColumns: isMobile ? "repeat(2, 1fr)" : "repeat(4, 1fr)", gap: isMobile ? "12px" : "20px", marginBottom: isMobile ? "18px" : "26px" }}>
               {/* DESTINATION */}
               <div>
-                <div style={{ fontSize: "9px", fontWeight: 700, letterSpacing: "1.5px", textTransform: "uppercase", color: "rgba(255,255,255,0.45)", fontFamily: "var(--font-body)", marginBottom: "9px" }}>
+                <div style={{ fontSize: "10px", fontWeight: 700, letterSpacing: "1.8px", textTransform: "uppercase", color: "rgba(255,255,255,0.5)", fontFamily: "var(--font-body)", marginBottom: "11px" }}>
                   Destination
                 </div>
-                <div style={{ display: "flex", alignItems: "center", gap: "10px", background: "rgba(255,255,255,0.10)", borderRadius: "10px", padding: "11px 14px", border: "1px solid rgba(255,255,255,0.18)" }}>
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#FF6A00" strokeWidth="2" strokeLinecap="round" style={{ flexShrink: 0 }}>
+                <div style={{ display: "flex", alignItems: "center", gap: "11px", background: "rgba(255,255,255,0.11)", borderRadius: "12px", padding: isMobile ? "12px 14px" : "14px 18px", border: "1px solid rgba(255,255,255,0.18)" }}>
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#FF6A00" strokeWidth="2" strokeLinecap="round" style={{ flexShrink: 0 }}>
                     <path d="M20 10c0 6-8 13-8 13s-8-7-8-13a8 8 0 0 1 16 0Z" /><circle cx="12" cy="10" r="3" />
                   </svg>
-                  <input ref={destInputRef} type="text" placeholder="Where to go?" style={{ background: "transparent", border: "none", outline: "none", color: "#fff", fontSize: "13px", fontFamily: "var(--font-body)", width: "100%", minWidth: 0 }} />
+                  <input ref={destInputRef} type="text" placeholder="Where to go?" style={{ background: "transparent", border: "none", outline: "none", color: "#fff", fontSize: isMobile ? "13px" : "14px", fontFamily: "var(--font-body)", width: "100%", minWidth: 0 }} />
                 </div>
               </div>
 
               {/* DURATION */}
               <div>
-                <div style={{ fontSize: "9px", fontWeight: 700, letterSpacing: "1.5px", textTransform: "uppercase", color: "rgba(255,255,255,0.45)", fontFamily: "var(--font-body)", marginBottom: "9px" }}>
+                <div style={{ fontSize: "10px", fontWeight: 700, letterSpacing: "1.8px", textTransform: "uppercase", color: "rgba(255,255,255,0.5)", fontFamily: "var(--font-body)", marginBottom: "11px" }}>
                   Duration
                 </div>
-                <div style={{ display: "flex", alignItems: "center", gap: "10px", background: "rgba(255,255,255,0.10)", borderRadius: "10px", padding: "11px 14px", border: "1px solid rgba(255,255,255,0.18)" }}>
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#FF6A00" strokeWidth="2" strokeLinecap="round" style={{ flexShrink: 0 }}>
+                <div style={{ display: "flex", alignItems: "center", gap: "11px", background: "rgba(255,255,255,0.11)", borderRadius: "12px", padding: isMobile ? "12px 14px" : "14px 18px", border: "1px solid rgba(255,255,255,0.18)" }}>
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#FF6A00" strokeWidth="2" strokeLinecap="round" style={{ flexShrink: 0 }}>
                     <rect width="18" height="18" x="3" y="4" rx="2" /><line x1="16" x2="16" y1="2" y2="6" /><line x1="8" x2="8" y1="2" y2="6" /><line x1="3" x2="21" y1="10" y2="10" />
                   </svg>
-                  <input ref={durationInputRef} type="text" placeholder="How long?" style={{ background: "transparent", border: "none", outline: "none", color: "#fff", fontSize: "13px", fontFamily: "var(--font-body)", width: "100%", minWidth: 0 }} />
+                  <input ref={durationInputRef} type="text" placeholder="How long?" style={{ background: "transparent", border: "none", outline: "none", color: "#fff", fontSize: isMobile ? "13px" : "14px", fontFamily: "var(--font-body)", width: "100%", minWidth: 0 }} />
                 </div>
               </div>
 
               {/* BUDGET */}
               <div>
-                <div style={{ fontSize: "9px", fontWeight: 700, letterSpacing: "1.5px", textTransform: "uppercase", color: "rgba(255,255,255,0.45)", fontFamily: "var(--font-body)", marginBottom: "9px" }}>
+                <div style={{ fontSize: "10px", fontWeight: 700, letterSpacing: "1.8px", textTransform: "uppercase", color: "rgba(255,255,255,0.5)", fontFamily: "var(--font-body)", marginBottom: "11px" }}>
                   Budget
                 </div>
-                <div style={{ display: "flex", alignItems: "center", gap: "10px", background: "rgba(255,255,255,0.10)", borderRadius: "10px", padding: "11px 14px", border: "1px solid rgba(255,255,255,0.18)" }}>
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#FF6A00" strokeWidth="2" strokeLinecap="round" style={{ flexShrink: 0 }}>
+                <div style={{ display: "flex", alignItems: "center", gap: "11px", background: "rgba(255,255,255,0.11)", borderRadius: "12px", padding: isMobile ? "12px 14px" : "14px 18px", border: "1px solid rgba(255,255,255,0.18)" }}>
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#FF6A00" strokeWidth="2" strokeLinecap="round" style={{ flexShrink: 0 }}>
                     <rect width="20" height="14" x="2" y="5" rx="2" /><line x1="2" x2="22" y1="10" y2="10" />
                   </svg>
-                  <input ref={budgetInputRef} type="text" placeholder="Your budget?" style={{ background: "transparent", border: "none", outline: "none", color: "#fff", fontSize: "13px", fontFamily: "var(--font-body)", width: "100%", minWidth: 0 }} />
+                  <input ref={budgetInputRef} type="text" placeholder="Your budget?" style={{ background: "transparent", border: "none", outline: "none", color: "#fff", fontSize: isMobile ? "13px" : "14px", fontFamily: "var(--font-body)", width: "100%", minWidth: 0 }} />
                 </div>
               </div>
 
               {/* TRAVELERS */}
               <div>
-                <div style={{ fontSize: "9px", fontWeight: 700, letterSpacing: "1.5px", textTransform: "uppercase", color: "rgba(255,255,255,0.45)", fontFamily: "var(--font-body)", marginBottom: "9px" }}>
+                <div style={{ fontSize: "10px", fontWeight: 700, letterSpacing: "1.8px", textTransform: "uppercase", color: "rgba(255,255,255,0.5)", fontFamily: "var(--font-body)", marginBottom: "11px" }}>
                   Travelers
                 </div>
-                <div style={{ display: "flex", alignItems: "center", gap: "10px", background: "rgba(255,255,255,0.10)", borderRadius: "10px", padding: "11px 14px", border: "1px solid rgba(255,255,255,0.18)" }}>
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#FF6A00" strokeWidth="2" strokeLinecap="round" style={{ flexShrink: 0 }}>
+                <div style={{ display: "flex", alignItems: "center", gap: "11px", background: "rgba(255,255,255,0.11)", borderRadius: "12px", padding: isMobile ? "12px 14px" : "14px 18px", border: "1px solid rgba(255,255,255,0.18)" }}>
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#FF6A00" strokeWidth="2" strokeLinecap="round" style={{ flexShrink: 0 }}>
                     <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" /><circle cx="9" cy="7" r="4" /><path d="M23 21v-2a4 4 0 0 0-3-3.87" /><path d="M16 3.13a4 4 0 0 1 0 7.75" />
                   </svg>
-                  <input ref={travelersInputRef} type="text" placeholder="How many?" style={{ background: "transparent", border: "none", outline: "none", color: "#fff", fontSize: "13px", fontFamily: "var(--font-body)", width: "100%", minWidth: 0 }} />
+                  <input ref={travelersInputRef} type="text" placeholder="How many?" style={{ background: "transparent", border: "none", outline: "none", color: "#fff", fontSize: isMobile ? "13px" : "14px", fontFamily: "var(--font-body)", width: "100%", minWidth: 0 }} />
                 </div>
               </div>
             </div>
@@ -456,17 +457,18 @@ export default function HeroScrollAnimation() {
             <button
               onClick={handleExplore}
               style={{
-                display: "inline-flex", alignItems: "center", gap: "8px",
+                display: "inline-flex", alignItems: "center", gap: "9px",
                 background: "#FF6A00", color: "#fff",
-                padding: "11px 26px", borderRadius: "10px",
-                fontSize: "14px", fontWeight: 700, border: "none",
+                padding: isMobile ? "12px 28px" : "14px 36px", borderRadius: "12px",
+                fontSize: isMobile ? "14px" : "15px", fontWeight: 700, border: "none",
                 cursor: "pointer", fontFamily: "var(--font-body)",
                 transition: "background 0.2s",
+                letterSpacing: "0.2px",
               }}
               onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.background = "#d95f00"; }}
               onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.background = "#FF6A00"; }}
             >
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
                 <circle cx="11" cy="11" r="8" /><path d="m21 21-4.35-4.35" />
               </svg>
               Explore Tours

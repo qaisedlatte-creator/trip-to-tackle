@@ -308,7 +308,7 @@ export default function HomePage() {
                           onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.background = "#FF6A00"; }}
                           onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.background = "#0A1F44"; }}
                         >
-                          Book Now
+                          {pkg.isGroupDeparture ? "Book Now" : "Enquire Now"}
                         </button>
                       </div>
                     </div>

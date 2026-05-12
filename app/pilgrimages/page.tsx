@@ -336,7 +336,7 @@ export default function PilgrimagesPage() {
                             className="rounded-xl px-4 py-2.5 font-dm text-sm font-bold text-white transition-colors hover:opacity-90"
                             style={{ background: "#0A1F44" }}
                           >
-                            Book Now
+                            Enquire Now
                           </button>
                         </div>
                       </div>

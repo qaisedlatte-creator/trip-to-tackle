@@ -1,14 +1,14 @@
 "use client";
 
 import { useState } from "react";
-import { CheckCircle, AlertCircle } from "lucide-react";
+import { CheckCircle } from "lucide-react";
 
 export default function InquiryForm() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [message, setMessage] = useState("");
-  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [status, setStatus] = useState<"idle" | "loading" | "success">("idle");
   const [errors, setErrors] = useState<Record<string, string>>({});
 
   const validate = () => {
@@ -21,27 +21,29 @@ export default function InquiryForm() {
     return errs;
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const errs = validate();
     if (Object.keys(errs).length > 0) { setErrors(errs); return; }
     setErrors({});
     setStatus("loading");
-    try {
-      const res = await fetch("/api/orders", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, email, phone, message, destination: "General Inquiry" }),
-      });
-      if (res.ok) {
-        setStatus("success");
-        setName(""); setEmail(""); setPhone(""); setMessage("");
-      } else {
-        setStatus("error");
-      }
-    } catch {
-      setStatus("error");
-    }
+
+    const lines: string[] = [
+      "🌍 *New Enquiry — Trip 2 Tackle*",
+      "",
+      `👤 *Name:* ${name}`,
+      `📞 *Phone:* ${phone}`,
+      `📧 *Email:* ${email}`,
+      "",
+      `💬 *Message:*`,
+      message,
+      "",
+      "_Enquiry via Trip2Tackle website_",
+    ];
+
+    window.open(`https://wa.me/918309218545?text=${encodeURIComponent(lines.join("\n"))}`, "_blank");
+    setStatus("success");
+    setName(""); setEmail(""); setPhone(""); setMessage("");
   };
 
   const fieldStyle = (err?: string) => ({
@@ -63,16 +65,16 @@ export default function InquiryForm() {
           <CheckCircle size={32} color="#22c55e" />
         </div>
         <h3 style={{ fontFamily: "var(--font-heading)", fontSize: "22px", fontWeight: 700, color: "#0A1F44" }}>
-          Message Sent!
+          WhatsApp Opened!
         </h3>
-        <p style={{ fontFamily: "var(--font-body)", color: "#6b7280", fontSize: "14px", maxWidth: "280px" }}>
-          We&apos;ll get back to you within 24 hours. Check your inbox!
+        <p style={{ fontFamily: "var(--font-body)", color: "#6b7280", fontSize: "14px", maxWidth: "300px" }}>
+          Your enquiry is pre-filled in WhatsApp. Just tap Send — we&apos;ll respond within a few hours.
         </p>
         <button
           onClick={() => setStatus("idle")}
           style={{ fontFamily: "var(--font-body)", fontSize: "13px", color: "#FF6A00", textDecoration: "underline", background: "none", border: "none", cursor: "pointer" }}
         >
-          Send another message
+          Send another enquiry
         </button>
       </div>
     );
@@ -136,15 +138,6 @@ export default function InquiryForm() {
         />
         {errors.message && <p style={{ fontSize: "12px", color: "#ef4444", marginTop: "4px", fontFamily: "var(--font-body)" }}>{errors.message}</p>}
       </div>
-
-      {status === "error" && (
-        <div style={{ display: "flex", alignItems: "center", gap: "8px", padding: "12px 14px", background: "#fef2f2", borderRadius: "10px" }}>
-          <AlertCircle size={16} color="#ef4444" style={{ flexShrink: 0 }} />
-          <p style={{ fontSize: "13px", color: "#dc2626", fontFamily: "var(--font-body)" }}>
-            Something went wrong. Please try again.
-          </p>
-        </div>
-      )}
 
       <button
         type="submit"
