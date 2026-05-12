@@ -494,7 +494,7 @@ For enquiries: hello@trip2tackle.com | +91 83092 18545
                         </div>
                       </div>
                     ) : !showBookingForm ? (
-                      /* Date selected — dual CTA: Book Directly OR Enquiry Form */
+                      /* Date selected */
                       <motion.div
                         initial={{ opacity: 0, y: 8 }}
                         animate={{ opacity: 1, y: 0 }}
@@ -511,30 +511,33 @@ For enquiries: hello@trip2tackle.com | +91 83092 18545
                           </p>
                         </div>
 
-                        {/* PRIMARY: direct booking */}
-                        <button
-                          onClick={() => setPaymentModalOpen(true)}
-                          className="w-full rounded-2xl bg-[#0A1F44] px-5 py-4 font-dm text-base font-bold text-white transition-colors hover:bg-[#1a3a6b]"
-                        >
-                          Book Directly →
-                        </button>
-                        <p className="mt-1.5 font-dm text-[10px] text-center text-[#0A1F44]/38">
-                          Secure payment via Razorpay
-                        </p>
+                        {pkg.isGroupDeparture && (
+                          <>
+                            {/* PRIMARY: direct booking — Group Departures only */}
+                            <button
+                              onClick={() => setPaymentModalOpen(true)}
+                              className="w-full rounded-2xl bg-[#0A1F44] px-5 py-4 font-dm text-base font-bold text-white transition-colors hover:bg-[#1a3a6b]"
+                            >
+                              Book Directly →
+                            </button>
+                            <p className="mt-1.5 font-dm text-[10px] text-center text-[#0A1F44]/38">
+                              Secure payment via Razorpay
+                            </p>
+                            {/* divider */}
+                            <div className="my-3 flex items-center gap-3">
+                              <div className="flex-1 h-px bg-[#0A1F44]/10" />
+                              <span className="font-dm text-xs text-[#0A1F44]/35">or</span>
+                              <div className="flex-1 h-px bg-[#0A1F44]/10" />
+                            </div>
+                          </>
+                        )}
 
-                        {/* divider */}
-                        <div className="my-3 flex items-center gap-3">
-                          <div className="flex-1 h-px bg-[#0A1F44]/10" />
-                          <span className="font-dm text-xs text-[#0A1F44]/35">or</span>
-                          <div className="flex-1 h-px bg-[#0A1F44]/10" />
-                        </div>
-
-                        {/* SECONDARY: enquiry form */}
+                        {/* Enquiry form — all packages */}
                         <button
                           onClick={handleProceed}
-                          className="w-full rounded-2xl border border-[#FF6A00]/60 px-5 py-3 font-dm text-sm font-semibold text-[#FF6A00] transition-colors hover:bg-[#FF6A00] hover:text-white"
+                          className="w-full rounded-2xl bg-[#FF6A00] px-5 py-4 font-dm text-base font-bold text-white transition-colors hover:bg-[#e55f00]"
                         >
-                          Send Enquiry Form
+                          Send Enquiry →
                         </button>
 
                         <button

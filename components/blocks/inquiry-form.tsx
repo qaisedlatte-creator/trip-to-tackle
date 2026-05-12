@@ -28,10 +28,10 @@ export default function InquiryForm() {
     setErrors({});
     setStatus("loading");
     try {
-      const res = await fetch("https://formspree.io/f/YOUR_FORM_ID", {
+      const res = await fetch("/api/orders", {
         method: "POST",
-        body: JSON.stringify({ name, email, phone, message }),
-        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, email, phone, message, destination: "General Inquiry" }),
       });
       if (res.ok) {
         setStatus("success");

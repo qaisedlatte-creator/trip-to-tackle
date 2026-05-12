@@ -9,17 +9,25 @@ import {
   ArrowLeft,
   CalendarDays,
   Check,
+  Download,
+  Mail,
   MessageCircle,
   Plane,
+  Send,
   Sparkles,
   SunMedium,
   Wallet,
+  X,
 } from "lucide-react";
 import Navbar from "@/components/blocks/navbar";
 import Footer from "@/components/blocks/footer";
 import PaymentModal from "@/components/blocks/payment-modal";
+import DepartureDates from "@/components/blocks/departure-dates";
+import BookingForm from "@/components/blocks/booking-form";
 import { getDestinationBySlug } from "@/lib/destinations";
 import { packages, type Package } from "@/lib/packages";
+import { buildDepartures } from "@/lib/departures";
+import type { Destination } from "@/lib/destinations";
 
 const fadeInView = {
   initial: { opacity: 0, y: 20 },
@@ -35,6 +43,50 @@ export default function DestinationDetailPage() {
   const destination = slug ? getDestinationBySlug(slug) : undefined;
   const [selectedPkg, setSelectedPkg] = useState<Package | null>(null);
   const [modalOpen, setModalOpen] = useState(false);
+  const [emailOpen, setEmailOpen] = useState(false);
+  const [showBookingForm, setShowBookingForm] = useState(false);
+
+  const downloadItinerary = (dest: Destination) => {
+    const content = `
+TRIP 2 TACKLE — GROUP DEPARTURE ITINERARY
+
+Destination: ${dest.name}
+Region: ${dest.region}
+Duration: ${dest.duration}
+Best Time: ${dest.bestTime}
+Starting From: ${dest.priceLabel}
+
+ABOUT ${dest.name.toUpperCase()}
+${dest.description}
+
+INCLUSIONS
+${dest.includes.map((i) => `• ${i}`).join("\n")}
+
+DAY-BY-DAY PLAN
+${dest.itinerary.map((d) => `Day ${d.day}: ${d.title}\n${d.description}`).join("\n\n")}
+
+---
+GROUP DEPARTURES
+Fixed-date group departures are available from Vijayawada/Hyderabad.
+Contact us for slot availability and custom departure dates.
+
+TERMS & CONDITIONS
+• Prices are per person on twin/triple sharing basis.
+• Booking confirmation requires 30% advance payment.
+• Balance payment due 15 days before departure.
+• Cancellation: 30+ days — 10% deduction; 15–29 days — 30%; under 15 days — 50%.
+
+Trip 2 Tackle | hello@trip2tackle.com | +91 83092 18545
+Vijayawada, Andhra Pradesh, India
+`.trim();
+    const blob = new Blob([content], { type: "text/plain" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = `${dest.slug}-group-itinerary.txt`;
+    a.click();
+    URL.revokeObjectURL(url);
+  };
 
   if (!slug || !destination) {
     return (
@@ -111,6 +163,7 @@ export default function DestinationDetailPage() {
     );
   }
 
+  const departures = buildDepartures(destination.price);
   const relatedPackages = packages.filter((pkg) => pkg.destinationSlug === slug);
   const customPkg: Package = {
     id: destination.id,
@@ -230,6 +283,20 @@ export default function DestinationDetailPage() {
               >
                 {destination.tagline}
               </p>
+              <div className="mt-7 flex flex-wrap gap-3">
+                <button
+                  onClick={() => downloadItinerary(destination)}
+                  className="inline-flex items-center gap-2 rounded-xl bg-[#FF6A00] px-5 py-3 font-dm text-sm font-bold text-white transition-colors hover:bg-[#e55f00]"
+                >
+                  <Download size={15} /> Download Group Itinerary
+                </button>
+                <button
+                  onClick={() => setEmailOpen(true)}
+                  className="inline-flex items-center gap-2 rounded-xl border border-white/25 px-5 py-3 font-dm text-sm font-semibold text-white hover:bg-white/10 transition"
+                >
+                  <Mail size={15} /> Email Itinerary
+                </button>
+              </div>
             </motion.div>
           </div>
         </section>

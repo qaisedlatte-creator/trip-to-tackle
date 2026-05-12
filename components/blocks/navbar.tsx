@@ -11,8 +11,10 @@ const links = [
   { href: "/", label: "Home" },
   { href: "/about", label: "About Us" },
   { href: "/destinations", label: "Destinations" },
+  { href: "/group-departures", label: "Group Departures" },
   { href: "/corporate", label: "Corporate" },
   { href: "/pilgrimages", label: "Pilgrimage" },
+  { href: "/blog", label: "Blogs" },
   { href: "/contact", label: "Contact" },
 ];
 

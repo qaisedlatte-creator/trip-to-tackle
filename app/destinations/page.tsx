@@ -8,14 +8,12 @@ import { ArrowRight } from "lucide-react";
 import Navbar from "@/components/blocks/navbar";
 import Footer from "@/components/blocks/footer";
 import { destinations } from "@/lib/destinations";
-import { packages } from "@/lib/packages";
 
-// Destination slugs that have fixed group-departure packages
-const GROUP_DEPARTURE_SLUGS = [...new Set(packages.map((p) => p.destinationSlug))];
+const INDIA_DESTINATIONS = destinations.filter((d) => d.type === "domestic");
+const INTL_DESTINATIONS  = destinations.filter((d) => d.type === "international");
 
-// All filter options: "All" first, then "Group Departures", then each destination name
-const DESTINATION_FILTERS = destinations.map((d) => d.name);
-const ALL_FILTERS = ["All", "Group Departures", ...DESTINATION_FILTERS];
+const INDIA_FILTERS = INDIA_DESTINATIONS.map((d) => d.name);
+const INTL_FILTERS  = INTL_DESTINATIONS.map((d) => d.name);
 
 const BADGE_MAP: Record<string, string> = {
   kashmir: "Trending",
@@ -40,11 +38,10 @@ export default function DestinationsPage() {
   const headerInView = useInView(headerRef, { once: true });
 
   const filteredDestinations =
-    activeFilter === "All"
-      ? destinations
-      : activeFilter === "Group Departures"
-      ? destinations.filter((d) => GROUP_DEPARTURE_SLUGS.includes(d.slug))
-      : destinations.filter((d) => d.name === activeFilter);
+    activeFilter === "All"       ? destinations
+    : activeFilter === "India"   ? INDIA_DESTINATIONS
+    : activeFilter === "International" ? INTL_DESTINATIONS
+    : destinations.filter((d) => d.name === activeFilter);
 
   return (
     <>
@@ -124,51 +121,99 @@ export default function DestinationsPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={headerInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.7, delay: 0.26 }}
-            style={{ display: "flex", gap: "8px", flexWrap: "wrap" }}
+            style={{ display: "flex", flexDirection: "column", gap: "16px" }}
           >
-            {ALL_FILTERS.map((filter) => {
-              const isActive   = activeFilter === filter;
-              const isGroup    = filter === "Group Departures";
-              const isDivider  = filter === DESTINATION_FILTERS[0]; // first destination name after the special filters
+            {/* All filter */}
+            <div style={{ display: "flex", gap: "8px", flexWrap: "wrap", alignItems: "center" }}>
+              {["All"].map((filter) => {
+                const isActive = activeFilter === filter;
+                return (
+                  <button
+                    key={filter}
+                    onClick={() => setActiveFilter(filter)}
+                    className="font-dm"
+                    style={{
+                      padding: "8px 20px",
+                      borderRadius: "100px",
+                      fontSize: "12.5px",
+                      fontWeight: isActive ? 700 : 500,
+                      cursor: "pointer",
+                      border: "1.5px solid",
+                      borderColor: isActive ? "#FF6A00" : "rgba(255,255,255,0.18)",
+                      background: isActive ? "#FF6A00" : "transparent",
+                      color: isActive ? "#fff" : "rgba(255,255,255,0.68)",
+                      transition: "all 0.2s",
+                    }}
+                  >
+                    {filter}
+                  </button>
+                );
+              })}
+            </div>
 
-              return (
-                <button
-                  key={filter}
-                  onClick={() => setActiveFilter(filter)}
-                  className="font-dm"
-                  style={{
-                    padding: isGroup ? "8px 18px" : "8px 16px",
-                    borderRadius: "100px",
-                    fontSize: "12.5px",
-                    fontWeight: isActive ? 700 : isGroup ? 600 : 500,
-                    cursor: "pointer",
-                    border: "1.5px solid",
-                    borderColor: isActive
-                      ? "#FF6A00"
-                      : isGroup
-                      ? "rgba(255,106,0,0.45)"
-                      : "rgba(255,255,255,0.18)",
-                    background: isActive
-                      ? "#FF6A00"
-                      : isGroup
-                      ? "rgba(255,106,0,0.12)"
-                      : "transparent",
-                    color: isActive
-                      ? "#fff"
-                      : isGroup
-                      ? "#FF6A00"
-                      : "rgba(255,255,255,0.68)",
-                    transition: "all 0.2s",
-                    marginLeft: isDivider ? "6px" : 0,
-                  }}
-                >
-                  {isGroup && !isActive && (
-                    <span style={{ marginRight: "5px", fontSize: "10px" }}>✦</span>
-                  )}
-                  {filter}
-                </button>
-              );
-            })}
+            {/* India destinations */}
+            <div style={{ display: "flex", gap: "8px", flexWrap: "wrap", alignItems: "center" }}>
+              <span className="font-dm" style={{ fontSize: "10px", fontWeight: 700, letterSpacing: "2.5px", textTransform: "uppercase", color: "rgba(255,255,255,0.35)", marginRight: "2px", whiteSpace: "nowrap" }}>
+                🇮🇳 India
+              </span>
+              {["India", ...INDIA_FILTERS].map((filter) => {
+                const isActive = activeFilter === filter;
+                const isSection = filter === "India";
+                return (
+                  <button
+                    key={filter}
+                    onClick={() => setActiveFilter(filter)}
+                    className="font-dm"
+                    style={{
+                      padding: "7px 15px",
+                      borderRadius: "100px",
+                      fontSize: "12px",
+                      fontWeight: isActive ? 700 : isSection ? 600 : 500,
+                      cursor: "pointer",
+                      border: "1.5px solid",
+                      borderColor: isActive ? "#FF6A00" : isSection ? "rgba(255,255,255,0.3)" : "rgba(255,255,255,0.15)",
+                      background: isActive ? "#FF6A00" : "transparent",
+                      color: isActive ? "#fff" : isSection ? "rgba(255,255,255,0.85)" : "rgba(255,255,255,0.6)",
+                      transition: "all 0.2s",
+                    }}
+                  >
+                    {filter === "India" ? "All India" : filter}
+                  </button>
+                );
+              })}
+            </div>
+
+            {/* International destinations */}
+            <div style={{ display: "flex", gap: "8px", flexWrap: "wrap", alignItems: "center" }}>
+              <span className="font-dm" style={{ fontSize: "10px", fontWeight: 700, letterSpacing: "2.5px", textTransform: "uppercase", color: "rgba(255,255,255,0.35)", marginRight: "2px", whiteSpace: "nowrap" }}>
+                🌍 International
+              </span>
+              {["International", ...INTL_FILTERS].map((filter) => {
+                const isActive = activeFilter === filter;
+                const isSection = filter === "International";
+                return (
+                  <button
+                    key={filter}
+                    onClick={() => setActiveFilter(filter)}
+                    className="font-dm"
+                    style={{
+                      padding: "7px 15px",
+                      borderRadius: "100px",
+                      fontSize: "12px",
+                      fontWeight: isActive ? 700 : isSection ? 600 : 500,
+                      cursor: "pointer",
+                      border: "1.5px solid",
+                      borderColor: isActive ? "#FF6A00" : isSection ? "rgba(255,255,255,0.3)" : "rgba(255,255,255,0.15)",
+                      background: isActive ? "#FF6A00" : "transparent",
+                      color: isActive ? "#fff" : isSection ? "rgba(255,255,255,0.85)" : "rgba(255,255,255,0.6)",
+                      transition: "all 0.2s",
+                    }}
+                  >
+                    {filter === "International" ? "All International" : filter}
+                  </button>
+                );
+              })}
+            </div>
           </motion.div>
         </div>
       </div>

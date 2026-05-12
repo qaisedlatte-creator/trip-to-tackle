@@ -11,6 +11,7 @@ import Navbar from "@/components/blocks/navbar";
 import Footer from "@/components/blocks/footer";
 import BookingForm from "@/components/blocks/booking-form";
 import DepartureDates, { type DepartureDate } from "@/components/blocks/departure-dates";
+import BestSellingCarousel from "@/components/blocks/best-selling-carousel";
 import { pilgrimages } from "@/lib/pilgrimages";
 
 const fadeUp = {
@@ -346,6 +347,14 @@ export default function PilgrimagesPage() {
             </div>
           </div>
         </section>
+
+        {/* BEST SELLING — Pilgrimages */}
+        <BestSellingCarousel
+          label="Most Booked"
+          title="Best Selling Sacred Journeys"
+          packages={pilgrimages}
+          linkPrefix="/packages"
+        />
 
         {/* TESTIMONIALS CAROUSEL */}
         <section className="py-24" style={{ background: "#1a0800" }}>

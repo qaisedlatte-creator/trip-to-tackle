@@ -45,7 +45,7 @@ export default function HomePage() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.65 }}
-                style={{ position: "relative", height: "480px", borderRadius: "24px", overflow: "hidden" }}
+                style={{ position: "relative", height: "620px", borderRadius: "24px", overflow: "hidden" }}
               >
                 <Image
                   src="https://images.unsplash.com/photo-1488085061387-422e29b40080?w=900&q=85"

@@ -14,6 +14,7 @@ export interface Package {
   highlights: string[];
   description: string;
   badge?: string;
+  isGroupDeparture?: boolean;
   itinerary?: {
     day: number;
     title: string;
@@ -38,6 +39,7 @@ export const packages: Package[] = [
     highlights: ["Dal Lake Shikara", "Gulmarg Gondola", "Pahalgam Valley", "Mughal Gardens"],
     description: "Experience the magic of Kashmir in winter — frozen lakes, snow-draped Himalayan peaks, and the warm glow of walnut wood houseboats on Dal Lake.",
     badge: "Most Popular",
+    isGroupDeparture: true,
     itinerary: [
       { day: 1, title: "Fly to Srinagar and settle into Dal Lake", description: "Depart from Hyderabad/Vijayawada. Arrive in Srinagar, board your houseboat on Dal Lake, enjoy kahwa on deck, and take an evening Shikara ride at sunset." },
       { day: 2, title: "Discover Srinagar's heritage and gardens", description: "Visit the Mughal Gardens, Shankaracharya Temple, and old city markets before a traditional Kashmiri dinner." },
@@ -63,6 +65,7 @@ export const packages: Package[] = [
     highlights: ["Ubud Rice Terraces", "Mt. Batur Sunrise", "Uluwatu Temple", "Jimbaran Dinner"],
     description: "An immersive Balinese journey blending spiritual temples, active volcano treks, and legendary sunsets over the Indian Ocean.",
     badge: "Bestseller",
+    isGroupDeparture: true,
     itinerary: [
       { day: 1, title: "Arrive in Bali and unwind by the coast", description: "Airport pickup, villa check-in, and a soft landing evening around Seminyak with beachside dining." },
       { day: 2, title: "Ubud art, temples, and rice terraces", description: "Visit Tegalalang, Tirta Empul, and Ubud's craft quarters for a deep first taste of Balinese culture." },
@@ -88,6 +91,7 @@ export const packages: Package[] = [
     includes: ["Flights Included", "Hotel", "Breakfast Daily", "Island Hopping", "Transfers"],
     highlights: ["Phi Phi Islands", "Railay Beach", "Grand Palace", "Muay Thai Show"],
     description: "Bangkok's chaotic beauty, Krabi's limestone karsts, and Phi Phi's crystal waters — Thailand's greatest hits in one perfectly paced package.",
+    isGroupDeparture: true,
     itinerary: [
       { day: 1, title: "Arrive in Bangkok", description: "Transfer to the hotel, freshen up, and head out for a relaxed evening along the river or local night market." },
       { day: 2, title: "Bangkok temples and city highlights", description: "Cover the Grand Palace, Wat Pho, canal views, and a guided walk through the city's busiest cultural pockets." },
@@ -113,6 +117,7 @@ export const packages: Package[] = [
     highlights: ["Overwater Bungalow", "Bioluminescent Beach", "Reef Diving", "Island Hopping"],
     description: "The ultimate luxury escape — overwater villas, private reefs, and the kind of silence that only 1,200 coral islands in the middle of the Indian Ocean can provide.",
     badge: "Premium",
+    isGroupDeparture: true,
     itinerary: [
       { day: 1, title: "Arrive in Malé and transfer to your resort", description: "Land in the Maldives, take the seaplane or speedboat to your island, and settle into your overwater villa." },
       { day: 2, title: "House reef and ocean activities", description: "Spend the day snorkeling the house reef, trying paddle sports, and enjoying a sunset cruise." },
@@ -137,6 +142,7 @@ export const packages: Package[] = [
     highlights: ["Soochipara Falls", "Wildlife Safari", "Edakkal Caves", "Spice Walk"],
     description: "A perfect escape from Vijayawada or Hyderabad into the misty forests of Wayanad — waterfalls, wildlife, and tribal heritage in a relaxed 3-day group format.",
     badge: "Best Value",
+    isGroupDeparture: true,
     itinerary: [
       { day: 1, title: "Drive into the hills and chase waterfalls", description: "Depart early from AP. Arrive in Wayanad, check in to the resort, visit Soochipara Falls, and end with a campfire dinner." },
       { day: 2, title: "Safari, caves, and nature", description: "Start with an early wildlife safari, continue to Edakkal Caves and a spice walk through plantations." },
@@ -158,6 +164,7 @@ export const packages: Package[] = [
     includes: ["Flights Included", "Hotel", "Ha Long Bay Cruise", "Breakfast Daily", "Transfers"],
     highlights: ["Ha Long Bay Cruise", "Hoi An Lanterns", "Cu Chi Tunnels", "Street Food Tour"],
     description: "From Hanoi's ancient streets to Ha Long Bay's jade waters and Hoi An's lantern-lit Old Town — an 8-day sweep of Vietnam's most iconic experiences.",
+    isGroupDeparture: true,
     itinerary: [
       { day: 1, title: "Arrive in Hanoi", description: "Transfer to the Old Quarter, settle in, and enjoy a gentle evening walk around Hoan Kiem Lake." },
       { day: 2, title: "Hanoi culture and street food", description: "Visit the Temple of Literature, key city landmarks, and finish with a guided street food crawl." },

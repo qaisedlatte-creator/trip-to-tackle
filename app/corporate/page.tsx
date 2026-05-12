@@ -11,6 +11,7 @@ import Navbar from "@/components/blocks/navbar";
 import Footer from "@/components/blocks/footer";
 import BookingForm from "@/components/blocks/booking-form";
 import LogoCarousel from "@/components/blocks/logo-carousel";
+import BestSellingCarousel from "@/components/blocks/best-selling-carousel";
 import { corporatePackages } from "@/lib/corporate";
 
 const fadeUp = {
@@ -392,6 +393,14 @@ export default function CorporatePage() {
             </div>
           </div>
         </section>
+
+        {/* BEST SELLING — Corporate */}
+        <BestSellingCarousel
+          label="Most Booked"
+          title="Best Selling Corporate Packages"
+          packages={corporatePackages}
+          linkPrefix="/packages"
+        />
 
         {/* WHY CHOOSE US */}
         <section className="bg-white py-20">

@@ -257,7 +257,7 @@ export default function HeroScrollAnimation() {
     return <div style={{ width: "100%", height: "100vh", background: "#0A1F44" }} />;
   }
 
-  const scrollH = isMobile ? "240vh" : "500vh";
+  const scrollH = isMobile ? "165vh" : "350vh";
 
   return (
     <div
@@ -388,11 +388,11 @@ export default function HeroScrollAnimation() {
           }}
         >
             {/* header */}
-            <div style={{ display: "flex", alignItems: "center", gap: "9px", marginBottom: "20px" }}>
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#FF6A00" strokeWidth="2.5" strokeLinecap="round">
+            <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "22px" }}>
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#FF6A00" strokeWidth="2.5" strokeLinecap="round">
                 <circle cx="11" cy="11" r="8" /><path d="m21 21-4.35-4.35" />
               </svg>
-              <span style={{ color: "#FF6A00", fontSize: "14px", fontWeight: 600, fontFamily: "var(--font-body)", letterSpacing: "0.2px" }}>
+              <span style={{ color: "#FF6A00", fontSize: isMobile ? "15px" : "18px", fontWeight: 700, fontFamily: "var(--font-body)", letterSpacing: "0.1px" }}>
                 Search Your Perfect Holiday
               </span>
             </div>

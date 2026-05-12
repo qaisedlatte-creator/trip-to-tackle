@@ -3,10 +3,18 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Star } from "lucide-react";
-import { packages } from "@/lib/packages";
+import { packages as allPackages, type Package } from "@/lib/packages";
 
-export default function BestSellingCarousel() {
-  const doubled = [...packages, ...packages];
+interface Props {
+  label?: string;
+  title?: string;
+  packages?: Package[];
+  linkPrefix?: string;
+}
+
+export default function BestSellingCarousel({ label = "Most Booked", title = "Best Selling Packages", packages: customPackages, linkPrefix = "/packages" }: Props) {
+  const source = customPackages ?? allPackages.filter((p) => p.isGroupDeparture);
+  const doubled = [...source, ...source];
 
   return (
     <section
@@ -31,7 +39,7 @@ export default function BestSellingCarousel() {
               color: "rgba(255,255,255,0.4)",
             }}
           >
-            Most Booked
+            {label}
           </span>
         </div>
         <h2
@@ -43,7 +51,7 @@ export default function BestSellingCarousel() {
             lineHeight: 1.15,
           }}
         >
-          Best Selling Packages
+          {title}
         </h2>
       </div>
 
@@ -61,7 +69,7 @@ export default function BestSellingCarousel() {
           {doubled.map((pkg, i) => (
             <Link
               key={i}
-              href={`/packages/${pkg.id}`}
+              href={`${linkPrefix}/${pkg.id}`}
               className="pkg-sell-card"
               style={{
                 flexShrink: 0,
