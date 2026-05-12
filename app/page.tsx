@@ -37,7 +37,7 @@ export default function HomePage() {
         {/* WHY TRIP 2 TACKLE — rich split section */}
         <section className="py-24 overflow-hidden" style={{ background: "linear-gradient(135deg, #f9fafb 0%, #fff9f5 55%, #f5f8ff 100%)" }}>
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 items-stretch">
 
               {/* Left — image with overlaid stats */}
               <motion.div
@@ -45,7 +45,7 @@ export default function HomePage() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.65 }}
-                style={{ position: "relative", height: "620px", borderRadius: "24px", overflow: "hidden" }}
+                style={{ position: "relative", minHeight: "620px", borderRadius: "0px", overflow: "hidden" }}
               >
                 <Image
                   src="https://images.unsplash.com/photo-1488085061387-422e29b40080?w=900&q=85"

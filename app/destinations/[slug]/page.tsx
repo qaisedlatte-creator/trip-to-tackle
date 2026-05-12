@@ -19,6 +19,7 @@ import {
 } from "lucide-react";
 import Navbar from "@/components/blocks/navbar";
 import Footer from "@/components/blocks/footer";
+import BookingForm from "@/components/blocks/booking-form";
 import { getDestinationBySlug } from "@/lib/destinations";
 import { packages, type Package } from "@/lib/packages";
 import type { Destination } from "@/lib/destinations";
@@ -524,47 +525,22 @@ Vijayawada, Andhra Pradesh, India
                 }}
               >
                 <p className="section-label" style={{ marginBottom: "10px" }}>
-                  Ready When You Are
+                  Plan Your Trip
                 </p>
                 <h2
                   className="font-playfair"
                   style={{
-                    fontSize: "30px",
+                    fontSize: "28px",
                     color: "#0A1F44",
                     fontWeight: 700,
-                    marginBottom: "16px",
+                    marginBottom: "6px",
                   }}
                 >
-                  Book This Trip
+                  Enquire About {destination.name}
                 </h2>
-                <div
-                  style={{
-                    padding: "18px 18px 20px",
-                    borderRadius: "20px",
-                    background: "#F7F7F7",
-                    border: "1px solid rgba(10,31,68,0.06)",
-                    marginBottom: "22px",
-                  }}
-                >
-                  <p
-                    className="font-dm"
-                    style={{
-                      fontSize: "12px",
-                      letterSpacing: "0.14em",
-                      textTransform: "uppercase",
-                      color: "rgba(10,31,68,0.5)",
-                      marginBottom: "6px",
-                    }}
-                  >
-                    Starting Price
-                  </p>
-                  <p className="font-space" style={{ fontSize: "30px", fontWeight: 700, color: "#0A1F44", marginBottom: "4px" }}>
-                    {destination.priceLabel}
-                  </p>
-                  <p className="font-dm" style={{ color: "rgba(10,31,68,0.58)", fontSize: "14px" }}>
-                    Flexible booking for Kerala departures and custom dates.
-                  </p>
-                </div>
+                <p className="font-dm" style={{ color: "rgba(10,31,68,0.55)", fontSize: "13px", marginBottom: "22px", lineHeight: 1.6 }}>
+                  Fill in your details and we&apos;ll reach out on WhatsApp within a few hours.
+                </p>
 
                 <div style={{ display: "grid", gap: "14px" }}>
                   {packagesToShow.map((pkg) => (
@@ -577,7 +553,8 @@ Vijayawada, Andhra Pradesh, India
                         background: "#fff",
                       }}
                     >
-                      <div style={{ position: "relative", height: "160px" }}>
+                      {/* Package header image */}
+                      <div style={{ position: "relative", height: "140px" }}>
                         <Image
                           src={pkg.image}
                           alt={pkg.name}
@@ -589,87 +566,22 @@ Vijayawada, Andhra Pradesh, India
                           style={{
                             position: "absolute",
                             inset: 0,
-                            background: "linear-gradient(180deg, rgba(10,31,68,0.12) 0%, rgba(10,31,68,0.78) 100%)",
+                            background: "linear-gradient(180deg, rgba(10,31,68,0.12) 0%, rgba(10,31,68,0.82) 100%)",
                           }}
                         />
-                        <div style={{ position: "absolute", bottom: "16px", left: "16px", right: "16px" }}>
-                          <p
-                            className="font-dm"
-                            style={{
-                              color: "rgba(255,255,255,0.72)",
-                              fontSize: "11px",
-                              letterSpacing: "0.14em",
-                              textTransform: "uppercase",
-                              marginBottom: "6px",
-                            }}
-                          >
-                            {pkg.duration}
+                        <div style={{ position: "absolute", bottom: "14px", left: "16px", right: "16px" }}>
+                          <p className="font-dm" style={{ color: "rgba(255,255,255,0.65)", fontSize: "10px", letterSpacing: "0.14em", textTransform: "uppercase", marginBottom: "4px" }}>
+                            {pkg.destination} · {pkg.duration} · {pkg.priceLabel}
                           </p>
-                          <h3 className="font-playfair" style={{ color: "#fff", fontSize: "24px", fontWeight: 700 }}>
+                          <h3 className="font-playfair" style={{ color: "#fff", fontSize: "20px", fontWeight: 700, lineHeight: 1.2 }}>
                             {pkg.name}
                           </h3>
                         </div>
                       </div>
-                      <div style={{ padding: "18px" }}>
-                        <p className="font-dm" style={{ color: "rgba(10,31,68,0.62)", lineHeight: 1.7, fontSize: "14px", marginBottom: "14px" }}>
-                          {pkg.description}
-                        </p>
-                        <div style={{ display: "flex", flexWrap: "wrap", gap: "8px", marginBottom: "16px" }}>
-                          {pkg.highlights.slice(0, 3).map((highlight) => (
-                            <span
-                              key={highlight}
-                              className="font-dm"
-                              style={{
-                                background: "rgba(10,31,68,0.06)",
-                                color: "#0A1F44",
-                                borderRadius: "999px",
-                                padding: "6px 10px",
-                                fontSize: "12px",
-                                fontWeight: 600,
-                              }}
-                            >
-                              {highlight}
-                            </span>
-                          ))}
-                        </div>
-                        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: "12px" }}>
-                          <div>
-                            <p
-                              className="font-dm"
-                              style={{
-                                fontSize: "11px",
-                                color: "rgba(10,31,68,0.45)",
-                                textTransform: "uppercase",
-                                letterSpacing: "0.14em",
-                                marginBottom: "4px",
-                              }}
-                            >
-                              Price
-                            </p>
-                            <p className="font-space" style={{ color: "#0A1F44", fontSize: "20px", fontWeight: 700 }}>
-                              {pkg.priceLabel}
-                            </p>
-                          </div>
-                          <a
-                            href={`https://wa.me/918309218545?text=${encodeURIComponent(`🌍 *Enquiry — Trip 2 Tackle*\n\n📦 *Package:* ${pkg.name}\n📍 *Destination:* ${pkg.destination}\n⏱️ *Duration:* ${pkg.duration}\n💰 *Price:* ${pkg.priceLabel} per person\n\nHi, I'd like to enquire about this trip.`)}`}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="font-dm"
-                            style={{
-                              background: "#FF6A00",
-                              color: "#fff",
-                              borderRadius: "12px",
-                              padding: "12px 18px",
-                              fontWeight: 700,
-                              minHeight: "46px",
-                              display: "inline-flex",
-                              alignItems: "center",
-                              textDecoration: "none",
-                            }}
-                          >
-                            Enquire Now
-                          </a>
-                        </div>
+
+                      {/* Inquiry form */}
+                      <div style={{ padding: "20px" }}>
+                        <BookingForm tourName={pkg.name} price={pkg.priceLabel} />
                       </div>
                     </div>
                   ))}
