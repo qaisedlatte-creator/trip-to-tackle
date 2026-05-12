@@ -13,20 +13,14 @@ import {
   Mail,
   MessageCircle,
   Plane,
-  Send,
   Sparkles,
   SunMedium,
   Wallet,
-  X,
 } from "lucide-react";
 import Navbar from "@/components/blocks/navbar";
 import Footer from "@/components/blocks/footer";
-import PaymentModal from "@/components/blocks/payment-modal";
-import DepartureDates from "@/components/blocks/departure-dates";
-import BookingForm from "@/components/blocks/booking-form";
 import { getDestinationBySlug } from "@/lib/destinations";
 import { packages, type Package } from "@/lib/packages";
-import { buildDepartures } from "@/lib/departures";
 import type { Destination } from "@/lib/destinations";
 
 const fadeInView = {
@@ -41,10 +35,7 @@ export default function DestinationDetailPage() {
   const slugParam = params.slug;
   const slug = Array.isArray(slugParam) ? slugParam[0] : slugParam;
   const destination = slug ? getDestinationBySlug(slug) : undefined;
-  const [selectedPkg, setSelectedPkg] = useState<Package | null>(null);
-  const [modalOpen, setModalOpen] = useState(false);
   const [emailOpen, setEmailOpen] = useState(false);
-  const [showBookingForm, setShowBookingForm] = useState(false);
 
   const downloadItinerary = (dest: Destination) => {
     const content = `
@@ -163,7 +154,6 @@ Vijayawada, Andhra Pradesh, India
     );
   }
 
-  const departures = buildDepartures(destination.price);
   const relatedPackages = packages.filter((pkg) => pkg.destinationSlug === slug);
   const customPkg: Package = {
     id: destination.id,
@@ -183,14 +173,8 @@ Vijayawada, Andhra Pradesh, India
   };
   const packagesToShow = relatedPackages.length > 0 ? relatedPackages : [customPkg];
 
-  const openBooking = (pkg: Package) => {
-    setSelectedPkg(pkg);
-    setModalOpen(true);
-  };
-
   return (
     <>
-      <PaymentModal pkg={selectedPkg} open={modalOpen} onClose={() => setModalOpen(false)} />
       <Navbar />
 
       <main style={{ background: "#F7F7F7" }}>
@@ -666,44 +650,25 @@ Vijayawada, Andhra Pradesh, India
                               {pkg.priceLabel}
                             </p>
                           </div>
-                          {pkg.isGroupDeparture ? (
-                            <button
-                              onClick={() => openBooking(pkg)}
-                              className="font-dm"
-                              style={{
-                                background: "#FF6A00",
-                                color: "#fff",
-                                border: "none",
-                                borderRadius: "12px",
-                                padding: "12px 18px",
-                                fontWeight: 700,
-                                cursor: "pointer",
-                                minHeight: "46px",
-                              }}
-                            >
-                              Book Now
-                            </button>
-                          ) : (
-                            <a
-                              href={`https://wa.me/918309218545?text=${encodeURIComponent(`🌍 *Enquiry — Trip 2 Tackle*\n\n📦 *Package:* ${pkg.name}\n📍 *Destination:* ${pkg.destination}\n⏱️ *Duration:* ${pkg.duration}\n💰 *Price:* ${pkg.priceLabel} per person\n\nHi, I'd like to enquire about this trip.`)}`}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="font-dm"
-                              style={{
-                                background: "#FF6A00",
-                                color: "#fff",
-                                borderRadius: "12px",
-                                padding: "12px 18px",
-                                fontWeight: 700,
-                                minHeight: "46px",
-                                display: "inline-flex",
-                                alignItems: "center",
-                                textDecoration: "none",
-                              }}
-                            >
-                              Enquire Now
-                            </a>
-                          )}
+                          <a
+                            href={`https://wa.me/918309218545?text=${encodeURIComponent(`🌍 *Enquiry — Trip 2 Tackle*\n\n📦 *Package:* ${pkg.name}\n📍 *Destination:* ${pkg.destination}\n⏱️ *Duration:* ${pkg.duration}\n💰 *Price:* ${pkg.priceLabel} per person\n\nHi, I'd like to enquire about this trip.`)}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="font-dm"
+                            style={{
+                              background: "#FF6A00",
+                              color: "#fff",
+                              borderRadius: "12px",
+                              padding: "12px 18px",
+                              fontWeight: 700,
+                              minHeight: "46px",
+                              display: "inline-flex",
+                              alignItems: "center",
+                              textDecoration: "none",
+                            }}
+                          >
+                            Enquire Now
+                          </a>
                         </div>
                       </div>
                     </div>
