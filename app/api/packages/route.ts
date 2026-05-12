@@ -33,6 +33,7 @@ export async function GET() {
       description: p.description ?? '',
       badge: p.badge || undefined,
       itinerary: p.itinerary ?? [],
+      isGroupDeparture: true,
     }))
 
     return NextResponse.json(mapped)

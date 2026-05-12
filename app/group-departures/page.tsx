@@ -1,13 +1,13 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowRight, CalendarDays, Users, Star, MapPin, Clock3, ChevronDown } from "lucide-react";
 import Navbar from "@/components/blocks/navbar";
 import Footer from "@/components/blocks/footer";
-import { packages } from "@/lib/packages";
+import { packages as staticPackages } from "@/lib/packages";
 import { buildDepartures } from "@/lib/departures";
 
 const fadeUp = {
@@ -16,8 +16,6 @@ const fadeUp = {
   viewport: { once: true },
   transition: { duration: 0.55, ease: "easeOut" },
 } as const;
-
-const groupPackages = packages.filter((p) => p.isGroupDeparture);
 
 function formatDate(dateStr: string) {
   return new Date(dateStr).toLocaleDateString("en-IN", {
@@ -29,6 +27,14 @@ function formatDate(dateStr: string) {
 
 export default function GroupDeparturesPage() {
   const [expandedId, setExpandedId] = useState<string | null>(null);
+  const [groupPackages, setGroupPackages] = useState(staticPackages.filter((p) => p.isGroupDeparture));
+
+  useEffect(() => {
+    fetch("/api/packages")
+      .then((r) => r.json())
+      .then((data) => { if (Array.isArray(data) && data.length > 0) setGroupPackages(data.filter((p: any) => p.isGroupDeparture !== false)); })
+      .catch(() => {});
+  }, []);
 
   return (
     <>

@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
@@ -12,7 +12,7 @@ import Testimonials from "@/components/blocks/testimonials";
 import BookingSteps from "@/components/blocks/booking-steps";
 import InquiryForm from "@/components/blocks/inquiry-form";
 import BestSellingCarousel from "@/components/blocks/best-selling-carousel";
-import { packages } from "@/lib/packages";
+import { packages as staticPackages } from "@/lib/packages";
 
 const fadeUp = {
   initial: { opacity: 0, y: 18 },
@@ -25,6 +25,14 @@ export default function HomePage() {
   const router = useRouter();
   const [couponEmail, setCouponEmail] = useState("");
   const [couponShown, setCouponShown] = useState(false);
+  const [packages, setPackages] = useState(staticPackages);
+
+  useEffect(() => {
+    fetch("/api/packages")
+      .then((r) => r.json())
+      .then((data) => { if (Array.isArray(data) && data.length > 0) setPackages(data); })
+      .catch(() => {});
+  }, []);
 
   return (
     <>

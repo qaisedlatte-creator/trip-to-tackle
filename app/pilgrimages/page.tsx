@@ -12,7 +12,7 @@ import Footer from "@/components/blocks/footer";
 import BookingForm from "@/components/blocks/booking-form";
 import DepartureDates, { type DepartureDate } from "@/components/blocks/departure-dates";
 import BestSellingCarousel from "@/components/blocks/best-selling-carousel";
-import { pilgrimages } from "@/lib/pilgrimages";
+import { pilgrimages as staticPilgrimages } from "@/lib/pilgrimages";
 
 const fadeUp = {
   initial: { opacity: 0, y: 18 },
@@ -96,7 +96,36 @@ export default function PilgrimagesPage() {
   const [activeTestimonial, setActiveTestimonial] = useState(0);
   const [showBooking, setShowBooking] = useState(false);
   const [expandedId, setExpandedId] = useState<string | null>(null);
+  const [pilgrimages, setPilgrimages] = useState(staticPilgrimages);
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
+
+  useEffect(() => {
+    fetch("/api/pilgrimages")
+      .then((r) => r.json())
+      .then((data) => {
+        if (Array.isArray(data) && data.length > 0) {
+          setPilgrimages(data.map((p: any) => ({
+            id: p._id || p.id || p.slug,
+            name: p.title || p.name,
+            slug: p.slug,
+            destination: p.destination,
+            destinationSlug: (p.destination || "").toLowerCase().replace(/\s+/g, "-"),
+            duration: p.duration,
+            nights: p.nights || 0,
+            days: p.days || 0,
+            price: p.price,
+            priceLabel: p.priceLabel || `₹${p.price?.toLocaleString("en-IN")}`,
+            image: p.images?.[0] || p.image || "",
+            includes: p.includes || [],
+            highlights: p.highlights || [],
+            description: p.description || "",
+            badge: p.badge || undefined,
+            itinerary: p.itinerary || [],
+          })));
+        }
+      })
+      .catch(() => {});
+  }, []);
 
   useEffect(() => {
     intervalRef.current = setInterval(() => {

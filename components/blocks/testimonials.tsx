@@ -1,94 +1,23 @@
 "use client";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 
-const allTestimonials = [
-  {
-    text: "Trip 2 Tackle made our Kashmir trip absolutely magical. The houseboat on Dal Lake was unforgettable.",
-    name: "Rahul Menon",
-    location: "Dubai, UAE",
-    package: "Kashmir Snow Escape",
-    rating: 5,
-  },
-  {
-    text: "Best Wayanad weekend package. The jungle resort was stunning and price was unbeatable from Kochi.",
-    name: "Priya Krishnan",
-    location: "Bangalore",
-    package: "Wayanad Weekend",
-    rating: 5,
-  },
-  {
-    text: "Bali was a dream. Every detail handled perfectly — from Seminyak villa to Mt. Batur sunrise trek.",
-    name: "Arjun Suresh",
-    location: "Kochi, Kerala",
-    package: "Bali Soul Journey",
-    rating: 5,
-  },
-  {
-    text: "Thailand trip was flawless. Trip 2 Tackle handled everything — flights, hotels, and transfers.",
-    name: "Fathima Nair",
-    location: "Kozhikode",
-    package: "Thailand Adventure",
-    rating: 5,
-  },
-  {
-    text: "Sar Pass trek was the experience of a lifetime. The team was responsive via WhatsApp throughout.",
-    name: "Vishnu Raj",
-    location: "Thrissur",
-    package: "Sar Pass Trek",
-    rating: 5,
-  },
-  {
-    text: "Maldives for our honeymoon — water villa, snorkeling, sunset dinner. Pure perfection.",
-    name: "Anjali & Deepak",
-    location: "Kochi",
-    package: "Maldives Luxury Retreat",
-    rating: 5,
-  },
-  {
-    text: "Vietnam in 8 days — Ha Long Bay, Hoi An, Ho Chi Minh. Trip 2 Tackle nailed every single detail.",
-    name: "Mohammed Shafeeq",
-    location: "Calicut",
-    package: "Vietnam Explorer",
-    rating: 5,
-  },
-  {
-    text: "Alappuzha houseboat overnight was the most peaceful experience I've ever had. Highly recommend.",
-    name: "Sreelakshmi T.",
-    location: "Bangalore",
-    package: "Alappuzha Backwaters",
-    rating: 5,
-  },
-  {
-    text: "Singapore with family — Universal Studios, Gardens by the Bay, everything sorted perfectly.",
-    name: "Rajan Pillai",
-    location: "Abu Dhabi",
-    package: "Singapore Family Tour",
-    rating: 5,
-  },
-  {
-    text: "The Spiti Valley group trip was unlike anything I've done. New friends, incredible landscapes.",
-    name: "Divya Nambiar",
-    location: "Chennai",
-    package: "Spiti Valley Expedition",
-    rating: 5,
-  },
-  {
-    text: "Booked Bali two weeks before departure and they handled everything seamlessly. Truly impressive.",
-    name: "Arun Kumar",
-    location: "Hyderabad",
-    package: "Bali Soul Journey",
-    rating: 5,
-  },
-  {
-    text: "Kerala backwaters houseboat was a surreal experience. Perfectly curated, zero stress.",
-    name: "Neha Iyer",
-    location: "Mumbai",
-    package: "Alappuzha Backwaters",
-    rating: 5,
-  },
-];
+type Testimonial = { text: string; name: string; location: string; package: string; rating: number };
 
-type Testimonial = (typeof allTestimonials)[0];
+const STATIC_TESTIMONIALS: Testimonial[] = [
+  { text: "Trip 2 Tackle made our Kashmir trip absolutely magical. The houseboat on Dal Lake was unforgettable.", name: "Rahul Menon", location: "Dubai, UAE", package: "Kashmir Snow Escape", rating: 5 },
+  { text: "Best Wayanad weekend package. The jungle resort was stunning and price was unbeatable from Kochi.", name: "Priya Krishnan", location: "Bangalore", package: "Wayanad Weekend", rating: 5 },
+  { text: "Bali was a dream. Every detail handled perfectly — from Seminyak villa to Mt. Batur sunrise trek.", name: "Arjun Suresh", location: "Kochi, Kerala", package: "Bali Soul Journey", rating: 5 },
+  { text: "Thailand trip was flawless. Trip 2 Tackle handled everything — flights, hotels, and transfers.", name: "Fathima Nair", location: "Kozhikode", package: "Thailand Adventure", rating: 5 },
+  { text: "Sar Pass trek was the experience of a lifetime. The team was responsive via WhatsApp throughout.", name: "Vishnu Raj", location: "Thrissur", package: "Sar Pass Trek", rating: 5 },
+  { text: "Maldives for our honeymoon — water villa, snorkeling, sunset dinner. Pure perfection.", name: "Anjali & Deepak", location: "Kochi", package: "Maldives Luxury Retreat", rating: 5 },
+  { text: "Vietnam in 8 days — Ha Long Bay, Hoi An, Ho Chi Minh. Trip 2 Tackle nailed every single detail.", name: "Mohammed Shafeeq", location: "Calicut", package: "Vietnam Explorer", rating: 5 },
+  { text: "Alappuzha houseboat overnight was the most peaceful experience I've ever had. Highly recommend.", name: "Sreelakshmi T.", location: "Bangalore", package: "Alappuzha Backwaters", rating: 5 },
+  { text: "Singapore with family — Universal Studios, Gardens by the Bay, everything sorted perfectly.", name: "Rajan Pillai", location: "Abu Dhabi", package: "Singapore Family Tour", rating: 5 },
+  { text: "The Spiti Valley group trip was unlike anything I've done. New friends, incredible landscapes.", name: "Divya Nambiar", location: "Chennai", package: "Spiti Valley Expedition", rating: 5 },
+  { text: "Booked Bali two weeks before departure and they handled everything seamlessly. Truly impressive.", name: "Arun Kumar", location: "Hyderabad", package: "Bali Soul Journey", rating: 5 },
+  { text: "Kerala backwaters houseboat was a surreal experience. Perfectly curated, zero stress.", name: "Neha Iyer", location: "Mumbai", package: "Alappuzha Backwaters", rating: 5 },
+];
 
 function StarRating({ count }: { count: number }) {
   return (
@@ -177,6 +106,15 @@ function ScrollingColumn({ testimonials, duration, reverse = false, desktopOnly 
 }
 
 export default function Testimonials() {
+  const [allTestimonials, setAllTestimonials] = useState<Testimonial[]>(STATIC_TESTIMONIALS);
+
+  useEffect(() => {
+    fetch("/api/testimonials")
+      .then((r) => r.json())
+      .then((data) => { if (Array.isArray(data) && data.length > 0) setAllTestimonials(data); })
+      .catch(() => {});
+  }, []);
+
   /* 4 columns: col1 mobile+, col2/3 md+, col4 xl+ */
   const col1 = allTestimonials.slice(0, 3);
   const col2 = allTestimonials.slice(3, 6);

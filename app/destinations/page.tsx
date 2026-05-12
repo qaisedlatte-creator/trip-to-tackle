@@ -1,19 +1,13 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion, useInView } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import Navbar from "@/components/blocks/navbar";
 import Footer from "@/components/blocks/footer";
-import { destinations } from "@/lib/destinations";
-
-const INDIA_DESTINATIONS = destinations.filter((d) => d.type === "domestic");
-const INTL_DESTINATIONS  = destinations.filter((d) => d.type === "international");
-
-const INDIA_FILTERS = INDIA_DESTINATIONS.map((d) => d.name);
-const INTL_FILTERS  = INTL_DESTINATIONS.map((d) => d.name);
+import { destinations as staticDestinations } from "@/lib/destinations";
 
 const BADGE_MAP: Record<string, string> = {
   kashmir: "Trending",
@@ -34,8 +28,21 @@ const BADGE_MAP: Record<string, string> = {
 
 export default function DestinationsPage() {
   const [activeFilter, setActiveFilter] = useState("All");
+  const [destinations, setDestinations] = useState(staticDestinations);
   const headerRef = useRef<HTMLDivElement | null>(null);
   const headerInView = useInView(headerRef, { once: true });
+
+  useEffect(() => {
+    fetch("/api/destinations")
+      .then((r) => r.json())
+      .then((data) => { if (Array.isArray(data) && data.length > 0) setDestinations(data); })
+      .catch(() => {});
+  }, []);
+
+  const INDIA_DESTINATIONS = destinations.filter((d) => d.type === "domestic");
+  const INTL_DESTINATIONS  = destinations.filter((d) => d.type === "international");
+  const INDIA_FILTERS = INDIA_DESTINATIONS.map((d) => d.name);
+  const INTL_FILTERS  = INTL_DESTINATIONS.map((d) => d.name);
 
   const filteredDestinations =
     activeFilter === "All"       ? destinations
